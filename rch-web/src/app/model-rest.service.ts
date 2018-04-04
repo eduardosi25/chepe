@@ -13,7 +13,7 @@ export class ModelRestService implements IModel {
 
   constructor() { }
   
-  getRoutes():Response<Route>{
+  getRoutes():Response<Route[]>{
     return null;
   }
   createIntent(type:string):Response<Intent>{

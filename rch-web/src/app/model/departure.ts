@@ -1,7 +1,16 @@
 export class Departure{
+    public constructor(id:number=0,id_trainstop:number=0,weekday:number=0,time:string="1970-01-01 00:00:01",direction:number = 0,status:number=1){
+        this.id = id;
+        this.id_trainstop = id_trainstop;
+        this.weekday = weekday;
+        this.time = time;
+        this.status = status;
+        this.direction = 0;
+    }
     id:number;
     id_trainstop:number;
     weekday:number;
     time:string;
     status:number = 1;
+    direction:number = 0;
 }

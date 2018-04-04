@@ -16,11 +16,11 @@ export class ModelService implements IModel {
 
   private impl:IModel;
 
-  constructor(private model_dummy:ModelDummyService,private model_rest:ModelRestService) { 
+  constructor(private model_dummy:ModelDummyService) { 
     this.impl = model_dummy;
   }
 
-  getRoutes():Response<Route>{
+  getRoutes():Response<Route[]>{
     return this.impl.getRoutes();
   }
   createIntent(type:string):Response<Intent>{

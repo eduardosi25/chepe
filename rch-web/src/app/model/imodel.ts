@@ -7,7 +7,7 @@ import { Travel } from "./travel";
 import { Response } from "./response";
 
 export interface IModel{
-    getRoutes():Response<Route>;
+    getRoutes():Response<Route[]>;
     createIntent(type:string):Response<Intent>;
     createSession():Response<SessionToken>;
     getStatus():Response<boolean>;

@@ -15,6 +15,8 @@ import { Step5Component } from './rch/step5/step5.component';
 import { CommitComponent } from './rch/commit/commit.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ModelService} from "./model.service";
+import { ModelDummyService } from './model-dummy.service';
+import { ModelRestService } from './model-rest.service';
 
 
 @NgModule({
@@ -35,7 +37,7 @@ import { ModelService} from "./model.service";
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ModelService],
+  providers: [ModelService,ModelDummyService,ModelRestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
