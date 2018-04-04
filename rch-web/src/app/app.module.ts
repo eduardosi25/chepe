@@ -18,6 +18,7 @@ import { ModelService} from "./model.service";
 import { ModelDummyService } from './model-dummy.service';
 import { ModelRestService } from './model-rest.service';
 import { SessionService } from './session.service';
+import { FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SessionService } from './session.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ModelService,ModelDummyService,ModelRestService,SessionService],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" *ngIf="route">
                     
     <div class="col-md-20 no-gutter-left">
         <div class="row">
@@ -35,21 +35,24 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="origen">Origen</label>
-                                        <select class="form-control" id="origen" [(ngModel)]="session.query.src">
-                                            <option *ngFor="let ts of route.getSrcs(0)" [ngValue]="ts">De {{ts.name}}</option>
+                                        <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src">
+                                            <option [ngValue]="null">Elige una opción</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">De {{ts.name}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="origen">Destino</label>
-                                        <select class="form-control" id="origen" [(ngModel)]="session.query.dst">
-                                            <option *ngFor="let ts of route.getDsts(0,session.query.src.id)" [ngValue]="ts">De {{ts.name}}</option>
+                                        <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst">
+                                                <option [ngValue]="null">Elige una opción</option>
+                                            <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">De {{ts.name}}</option>
                                         </select>
                                     </div>                                                   
                                     <label>Total de pasajeros</label>
                                     <div class="box-passenger">
                                         <div class="row">
                                             <div class="col-xs-24 passenger-total" >
-                                                    <a class="btn btn-block bg-white c-base text-left" role="button" data-toggle="collapse" href="#popover-content-passengers" aria-expanded="false" aria-controls="collapseExample" ><span id="total-passengers" style="text-transform: capitalize;">Adulto</span></a>
+                                                    <a class="btn btn-block bg-white c-base text-left" style="display:inline;" role="button" data-toggle="collapse" href="#popover-content-passengers" aria-expanded="false" aria-controls="collapseExample" >
+                                                        <span style="text-transform: capitalize;">{{getTotalPassengers()}}</span></a>
                                                 </div>
                                              
                                         </div>
@@ -62,13 +65,13 @@
                                                 <div class="col-xs-12">
                                                         <div class="input-group">
                                                         <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="adultos">
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
                                                                 <span class="glyphicon glyphicon-minus"></span>
                                                             </button>
                                                         </span>
-                                                        <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [(ngModel)]="session.query.passengers[pt.id]" min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
+                                                        <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]" min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
                                                         <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="pt_{{pt.id}}">
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
                                                                 <span class="glyphicon glyphicon-plus"></span>
                                                             </button>
                                                         </span>
@@ -90,13 +93,13 @@
                                     <div class="form-group">
                                         <label for="origen">Inicio del viaje</label>
                                         <div class="input-group date">
-                                          <input type="text" class="form-control" value="09/11/2017" [(ngModel)]="session.query.start"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                          <input type="text" class="form-control" value="09/11/2017"  [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="origen">Fin del viaje</label>
                                         <div class="input-group date">
-                                          <input type="text" class="form-control" value="10/11/2017" [(ngModel)]="session.query.end"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                          <input type="text" class="form-control" value="10/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -145,8 +148,8 @@
             </div>
             -->
 
-             <div class="col-sm-8 col-sm-offset-6 center margintop30">
-                <a class="btn btn-link c-one" routerLink="{{route.name}}/paso2" role="button">
+             <div class="col-sm-8 col-sm-offset-6 center margintop30" *ngIf="readyToGoNext()">
+                <a class="btn btn-link c-one" routerLink="/{{route.name}}/paso2" role="button">
                     <div> <img src="assets/img/icon_train.png"></div>
                     <div>Buscar trenes</div>
                 </a>
@@ -163,9 +166,9 @@
                     <div class="select-map regional">
                         <div class="select-map-body">
                             <img width="900px" src="{{route.img_map}}">
-                            <div class="check" *ngFor="let ts of getRouteStops()">
-                                <input type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}" value="{{ts.id}}" [(ngModel)]="session.query.stops">
-                                <label for="ts_{{ts.id}}"></label>
+                            <div class="check" [style]="getCoordinates(ts)" *ngFor="let ts of getRouteStops()">
+                                <input type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.stops[ts.id]">
+                                <label for="ts_{{ts.id}}">{{ts.name}}</label>
                             </div>
                         </div>
                     </div>

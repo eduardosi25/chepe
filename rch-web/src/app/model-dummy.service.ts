@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IModel } from './model/imodel';
-import { Route } from './model/Route';
+import { Route } from './model/route';
 import { Intent } from './model/intent';
 import { SessionToken } from './model/sessiontoken';
 import { Schedule } from './model/schedule';

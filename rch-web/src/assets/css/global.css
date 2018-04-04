@@ -225,12 +225,12 @@ label {
 
 
 @media screen and (min-width: 768px) {
-    .no-gutter-left{
+    .no-gutter-left, app-main .no-gutter:nth-child(2n+1){
         padding-right: 19px;
         padding-left: 0;
     }
 
-    .no-gutter-right{
+    .no-gutter-right, app-main .no-gutter:nth-child(2n){
         padding-right: 0;
         padding-left: 19px;
     }
@@ -1501,7 +1501,18 @@ table.chepe.four tr:last-child{
     color: #4f5858;
 }
 
-
+.select-map .check{
+    position: absolute;
+}
+.select-map .check label{
+    display:none;
+    padding:4px;
+    background-color:white;
+    border-radius:3px;
+}
+.select-map .check:hover label,.select-map .check:active label{
+    display:initial;
+}
 .select-map .check.elfuerte{
     position: absolute;
     bottom: 187px;

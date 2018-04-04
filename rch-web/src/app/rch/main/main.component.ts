@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModelService } from '../../model.service';
-import { Route } from '../../model/Route';
+import { Route } from '../../model/route';
 import { Response } from '../../model/response';
 import { Wagon } from '../../model/wagon';
 import { WagonType } from '../../model/wagontype';

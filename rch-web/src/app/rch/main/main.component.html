@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="col-md-12  marginbot80 no-gutter-left" *ngFor="let route of routes">                        
+    <div class="col-md-12  marginbot80 no-gutter" *ngFor="let route of routes">                        
         <div class="row">
 
             <div class="col-sm-24 no-gutter-mobile">
@@ -45,7 +45,7 @@
                 </a>
             </div>
             <div class=" col-sm-24 center margintop30">
-                <a class="btn btn-link c-one" routerLink="/{route.name}/paso1" role="button">
+                <a class="btn btn-link c-one" routerLink="/{{route.name}}/paso1" role="button">
                     <div><img src="assets/img/icon_train.png"></div>
                     <div>BUSCAR TRENES</div>
                 </a>
@@ -53,64 +53,6 @@
         </div>
 
 
-    </div>
-    <div class="col-md-12 marginbot80 no-gutter-right">
-            
-        <div class="row">
-
-            <div class="col-sm-24 no-gutter-mobile">
-                <div class="border-img-bot c-border-two">
-                    <img class="img-responsive" src="assets/img/reservacion/header-reserva-regional.jpg">
-                </div>
-            </div>
-        
-            <div class="col-sm-21 gap-small-left">
-                    <h1 class="c-two blue-regio">Chepe Regional</h1>
-            </div>
-
-            <div class="col-sm-24 no-gutter-left-mobile">
-                <span class="title-underline-half c-border-two"></span>
-            </div>
-
-            <div class=" col-sm-22 gap-small-left margintop30">
-                <div class="table-responsive">
-                    <table class="table chepe secondary">
-
-                        <tbody>
-                            <tr>
-                                <th class="bg-three border2" scope="row">VAGONES</th> <td colspan="2">TURISTA Y CAFETERÍA</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-three border2" scope="row" rowspan="2">SALIDAS<br> TERCIADAS</th>
-                                <td class="c-two">7:00 hrs <br><br> 22:38 hrs</td>
-                                <td class="bg-two-light">Sale de Chihuahua <br> Lunes, jueves y sábado <br> Llega a los Mochis</td>
-                            </tr>
-                            <tr>
-                                <td class="c-two">7:00 hrs <br><br> 21:54 hrs</td> <td class="bg-two-light">Sale de los Mochis <br> Martes, viernes y domingo <br> Llega a Chihuahua</td>
-                            </tr>
-                            <tr>
-                                <th class="bg-three border2" scope="row">TARIFAS</th> <td class="c-two">$3,277.00</td> <td class="bg-two-light">Viaje sencillo <br>(Incluye 3 escalas)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        
-            <div class=" col-sm-12 col-sm-offset-6 margintop30">
-                <a href="#" data-toggle="modal" data-target="#mapa-chepe-regional">
-                <img class="img-responsive" src="assets/img/reservacion/map_regional.jpg">
-                </a>
-            </div>
-        
-            <div class="col-sm-24 center margintop30">
-                <a class="btn btn-link c-one" routerLink="/paso1" role="button">
-                    <div><img src="assets/img/icon_train.png"></div>
-                    <div>BUSCAR TRENES</div>
-                </a>
-            </div>
-            
-            
-        
     </div>
 </div>
 
