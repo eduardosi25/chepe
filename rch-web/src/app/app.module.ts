@@ -17,6 +17,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ModelService} from "./model.service";
 import { ModelDummyService } from './model-dummy.service';
 import { ModelRestService } from './model-rest.service';
+import { SessionService } from './session.service';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { ModelRestService } from './model-rest.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ModelService,ModelDummyService,ModelRestService],
+  providers: [ModelService,ModelDummyService,ModelRestService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

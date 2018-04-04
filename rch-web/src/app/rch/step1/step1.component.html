@@ -35,14 +35,14 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="origen">Origen</label>
-                                        <select class="form-control" id="origen" [(ngModel)]="session.query.id_src">
-                                            <option *ngFor="let ts of route.getSrcs()" [value]="ts.id">De {{ts.name}}</option>
+                                        <select class="form-control" id="origen" [(ngModel)]="session.query.src">
+                                            <option *ngFor="let ts of route.getSrcs(0)" [ngValue]="ts">De {{ts.name}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="origen">Destino</label>
-                                        <select class="form-control" id="origen" [(ngModel)]="session.query.id_dst">
-                                            <option *ngFor="let ts of route.getDsts()" [value]="ts.id">De {{ts.name}}</option>
+                                        <select class="form-control" id="origen" [(ngModel)]="session.query.dst">
+                                            <option *ngFor="let ts of route.getDsts(0,session.query.src.id)" [ngValue]="ts">De {{ts.name}}</option>
                                         </select>
                                     </div>                                                   
                                     <label>Total de pasajeros</label>
@@ -55,126 +55,27 @@
                                         </div>
                                         <div  class="popover passengers collapse" id="popover-content-passengers">
                                         
-                                        <div class="row">
-                                            <div class="col-xs-12 passenger-label">
-                                                <label>Adultos</label>
+                                            <div class="row" *ngFor="let pt of route.passenger_types">
+                                                <div class="col-xs-12 passenger-label">
+                                                    <label>{{pt.name}}<span *ngIf="pt.details"><br/>{{pt.details}}</span></label>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                        <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="adultos">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [(ngModel)]="session.query.passengers[pt.id]" min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="pt_{{pt.id}}">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                        </div>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="adultos">
-                                                              <span class="glyphicon glyphicon-minus"></span>
-                                                          </button>
-                                                      </span>
-                                                      <input type="text" name="adultos" class="form-control input-number" value="1" min="0" max="10" disabled="disabled">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="adultos">
-                                                              <span class="glyphicon glyphicon-plus"></span>
-                                                          </button>
-                                                      </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 passenger-label">
-                                                <label>Menor <br>(de 5 a 11 años)</label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="menor" disabled="disabled">
-                                                              <span class="glyphicon glyphicon-minus"></span>
-                                                          </button>
-                                                      </span>
-                                                      <input type="text" name="menor" class="form-control input-number" value="0" min="0" max="10" disabled="disabled">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="menor">
-                                                              <span class="glyphicon glyphicon-plus"></span>
-                                                          </button>
-                                                      </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 passenger-label">
-                                                <label>INSEN</label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="insen" disabled="disabled">
-                                                              <span class="glyphicon glyphicon-minus"></span>
-                                                          </button>
-                                                      </span>
-                                                      <input type="text" name="insen" class="form-control input-number" value="0" min="0" max="10" disabled="disabled">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="insen">
-                                                              <span class="glyphicon glyphicon-plus"></span>
-                                                          </button>
-                                                      </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 passenger-label">
-                                                <label>Estudiante</label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="estudiente" disabled="disabled">
-                                                              <span class="glyphicon glyphicon-minus"></span>
-                                                          </button>
-                                                      </span>
-                                                      <input type="text" name="estudiente" class="form-control input-number" value="0" min="0" max="10" disabled="disabled">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="estudiente">
-                                                              <span class="glyphicon glyphicon-plus"></span>
-                                                          </button>
-                                                      </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 passenger-label">
-                                                <label>Profesor</label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="profesor" disabled="disabled">
-                                                              <span class="glyphicon glyphicon-minus"></span>
-                                                          </button>
-                                                      </span>
-                                                      <input type="text" name="profesor" class="form-control input-number" value="0" min="0" max="10" disabled="disabled">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="profesor">
-                                                              <span class="glyphicon glyphicon-plus"></span>
-                                                          </button>
-                                                      </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 passenger-label">
-                                                <label>Personas con discapacidad</label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="minus" data-field="discapacidad" disabled="disabled">
-                                                              <span class="glyphicon glyphicon-minus"></span>
-                                                          </button>
-                                                      </span>
-                                                      <input type="text" name="discapacidad" class="form-control input-number" value="0" min="0" max="10" disabled="disabled">
-                                                      <span class="input-group-btn">
-                                                          <button type="button" class="btn btn-xs btn-number" data-type="plus" data-field="discapacidad">
-                                                              <span class="glyphicon glyphicon-plus"></span>
-                                                          </button>
-                                                      </span>
-                                                    </div>
-                                            </div>
-                                        </div>
+                                        
                                         </div>
                                     </div>
 
@@ -189,13 +90,13 @@
                                     <div class="form-group">
                                         <label for="origen">Inicio del viaje</label>
                                         <div class="input-group date">
-                                          <input type="text" class="form-control" value="09/11/2017"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                          <input type="text" class="form-control" value="09/11/2017" [(ngModel)]="session.query.start"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="origen">Fin del viaje</label>
                                         <div class="input-group date">
-                                          <input type="text" class="form-control" value="10/11/2017"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                          <input type="text" class="form-control" value="10/11/2017" [(ngModel)]="session.query.end"><span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +123,7 @@
             
         
             <div class=" col-sm-21 col-sm-offset-3">
-                    <h3 class="c-two">Ruta Chepe Regional</h3>
+                    <h3 class="c-two">Ruta {{route.name}}</h3>
             </div>
 
             <div class="col-sm-21 col-sm-offset-3 no-gutter-right-mobile">
@@ -231,9 +132,9 @@
             
             <div class=" col-sm-17 col-sm-offset-3">
                 <a href="#" data-toggle="modal" data-target="#ruta-chepe-regional">
-                    <img src="assets/img/reservacion/map_regional.jpg" class="img-responsive">
+                    <img src="{{route.img_map}}" class="img-responsive">
                 </a>
-                    <p class="center bold">Elige las tres escalas intermedias sobre el mapa</p>
+                    <p class="center bold">Elige las {{route.max_stops}} escalas intermedias sobre el mapa</p>
             </div>
             <!--
             <div class="col-sm-8 col-sm-offset-3 center margintop30">
@@ -245,7 +146,7 @@
             -->
 
              <div class="col-sm-8 col-sm-offset-6 center margintop30">
-                <a class="btn btn-link c-one" routerLink="/paso2" role="button">
+                <a class="btn btn-link c-one" routerLink="{{route.name}}/paso2" role="button">
                     <div> <img src="assets/img/icon_train.png"></div>
                     <div>Buscar trenes</div>
                 </a>
@@ -261,36 +162,10 @@
                   <div class="modal-body">
                     <div class="select-map regional">
                         <div class="select-map-body">
-                            <img width="900px" src="assets/img/reservacion/map_regional_full_select.jpg">
-                            <div class="check elfuerte">
-                                <input type="checkbox" id="el-fuerte" name="el-fuerte" value="el-fuerte">
-                                <label for="el-fuerte"></label>
-                            </div>
-                            <div class="check temoris">
-                                <input type="checkbox" id="temoris" name="temoris" value="temoris">
-                                <label class="small" for="temoris"></label>
-                            </div>
-                            <div class="check bahuichivo">
-                                <input type="checkbox" id="bahuichivo" name="bahuichivo" value="bahuichivo">
-                                <label  class="small" for="bahuichivo"></label>
-                            </div>
-                            <div class="check divisadero right">
-                                <input type="checkbox" id="divisadero" name="divisadero" value="divisadero">
-                                <label for="divisadero"></label>
-                            </div>
-                            <div class="check creel">
-                                <input type="checkbox" id="creel" name="creel" value="creel">
-                                <label for="creel"></label>
-                            </div>
-                            <!--
-                            <div class="check san-juanito">
-                                <input type="checkbox" id="san-juanito" name="san-juanito" value="san-juanito">
-                                <label class="small" for="san-juanito">SAN JUANITO</label>
-                            </div>
-                          -->
-                            <div class="check cuauhtemoc right">
-                                <input type="checkbox" id="cuauhtemoc" name="cuauhtemoc" value="cuauhtemoc">
-                                <label style="top: -15px; right: 86px; position: absolute;" class="small" for="cuauhtemoc"></label>
+                            <img width="900px" src="{{route.img_map}}">
+                            <div class="check" *ngFor="let ts of getRouteStops()">
+                                <input type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}" value="{{ts.id}}" [(ngModel)]="session.query.stops">
+                                <label for="ts_{{ts.id}}"></label>
                             </div>
                         </div>
                     </div>

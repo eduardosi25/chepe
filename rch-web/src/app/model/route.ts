@@ -62,4 +62,16 @@ export class Route {
         if(direction == 0){this.first = ts;}
         return ts;
     }
+    public getSrcs(direction:number=0):TrainStop[]{
+        return this.stops;
+    }
+    public getDsts(direction:number=0,id_src:number):TrainStop[]{
+        var tss:TrainStop[] = [];
+        for(var i=0;i<this.stops.length;i++){
+            let ts:TrainStop = this.stops[i];
+            if(ts.id == id_src){continue;}
+            tss.push(ts);
+        }
+        return tss;
+    }
 }
