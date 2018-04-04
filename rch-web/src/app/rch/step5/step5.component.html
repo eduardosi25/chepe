@@ -1,0 +1,386 @@
+<div class="row" >
+                    
+    <div class="col-sm-24 col-md-16 no-gutter-left">
+        <div class="row">
+            <div class=" col-sm-20 gap-left">
+                    <h1 class="c-two">Chepe Regional</h1>
+            </div>
+
+            <div class="col-sm-24 no-gutter-left-mobile">
+                <span class="title-underline c-border-two"></span>
+            </div>
+            
+            <div class=" col-sm-20 gap-left">
+                    <h3 class=" c-two fontweight400">Selecciona tus asientos</h3>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-sm-24 col-md-8">
+        <br/>
+        <div class="row">
+            <div class="col-xs-24 timeline-seats-box center">
+                <h6 class="uppercase"><span class="bg-two-light no-pasaje">No. de pasajeros: 2</span></h6>
+            </div>
+        </div>
+        <div class="row timeline-seats regional">
+            <div class="col-xs-12 timeline-seats-box">
+                    <div class="timeline-seats-title"><h5 class="c-two orange-t fontweight700">Origen</h5></div>
+                    <div class="timeline-seats-line">
+                        <span class="dot"></span>
+                    </div>
+                    <div><h5 class="c-two orange-t fontweight700">CHIHUAHUA</h5></div>
+            </div>
+            <div class="col-xs-12 timeline-seats-box">
+                    <div class="timeline-seats-title"><h5 class="fontweight700">Escala 1</h5></div>
+                    <div class="timeline-seats-line">
+                        <span class="dot"></span>
+                    </div>
+                    <div><h5>CREEL</h5></div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="row margintop50" >
+    <div class="col-sm-24 no-gutter-left">
+        <div class="row ">
+            <div class=" col-sm-24 seat-color gap-left">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-7 col-md-6 col-lg-5 seat-color-box">
+                            <span class="seat-color-code selected"></span>ASIENTO SELECCIONADO
+                        </div>
+                        <div class="col-xs-24 col-sm-7 col-md-6 col-lg-5 seat-color-box">
+                            <span class="seat-color-code available">ASIENTOS DISPONIBLES</span>
+                        </div>
+                        <div class="col-xs-24 col-sm-7 col-md-6 col-lg-5 seat-color-box">
+                            <span class="seat-color-code occupied">ASIENTOS NO DISPONIBLES</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row margintop20">
+    
+    <!-- max number of seats -->
+    <div id="seatsnumbermax" data="3"></div>
+    
+    <div class="col-sm-24 ">
+        <div class="row">
+            <div class="col-sm-24 center">
+                <h3 class="c-two fontweight400">Vagón Clásico <a href="#" data-toggle="modal" data-target="#vagon-clasico">
+                    <div class="info-vagon">i</div>
+                    </a>
+                </h3>
+            
+            </div>
+            <div class="col-sm-24">
+                <div class="bg-base-light center">
+                    <div class="select-seat classic" id="VC">
+                        <div class="wagon-img-classic">
+                            <img class=" img-responsive" src="assets/img/reservacion/vagon-clasico-regional.png">
+                        </div>
+                        <div class="block-seats">
+                            <div class="row-seats clearfix" id="VC1">
+                                <div class="seat left regseatlb" id="VC1D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrb" id="VC1C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat  right regseatrb" id="VC1A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat unavailable right regseatlb" id="VC1B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC2">
+                                <div class="seat left regseatlb" id="VC2D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrb" id="VC2C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrb" id="VC2A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlb" id="VC2B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC3">
+                                <div class="seat left regseatlb" id="VC3D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left  regseatrb" id="VC3C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrb" id="VC3A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlb" id="VC3B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC4">
+                                <div class="seat left regseatlb" id="VC4D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrb" id="VC4C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrb" id="VC4A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlb" id="VC4B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC5">
+                                <div class="seat left regseatlb" id="VC5D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrb" id="VC5C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrb" id="VC5A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlb" id="VC5B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC6">
+                                <div class="seat left regseatlb" id="VC6D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrb" id="VC6C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrb" id="VC6A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlb" id="VC6B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC7">
+                                <div class="seat left regseatlb" id="VC7D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrb" id="VC7C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrb" id="VC7A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlb" id="VC7B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row-seats clearfix" id="VC8">
+                                <div class="seat left regseatlt" id="VC8D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC8C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC8A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC8B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC9">
+                                <div class="seat left regseatlt" id="VC9D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC9C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC9A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC9B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC10">
+                                <div class="seat left regseatlt" id="VC10D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC10C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC10A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC10B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC11">
+                                <div class="seat left regseatlt" id="VC11D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC11C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC11A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC11B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC12">
+                                <div class="seat left regseatlt" id="VC12D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC12C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC12A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC12B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC13">
+                                <div class="seat left regseatlt" id="VC13D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC13C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC13A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC13B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC14">
+                                <div class="seat left regseatlt" id="VC14D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC14C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC14A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC14B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                            <div class="row-seats clearfix" id="VC15">
+                                <div class="seat left regseatlt" id="VC15D">
+                                    <label>d</label>
+                                </div>
+                                <div class="seat  left regseatrt" id="VC15C">
+                                     <label>c</label>
+                                </div>
+                                
+                                <div class="seat unavailable right regseatrt" id="VC15A">
+                                     <label>a</label>
+                                </div>
+                                <div class="seat right regseatlt" id="VC15B">
+                                     <label>b</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+ <div class="row margintop20 marginbot40">
+     <div class="col-sm-24 no-gutter-left">
+         <div class="row">
+             
+             <div class="col-sm-17 gap-left">
+             </div>
+             
+            <div class="col-xs-12 col-sm-3 center">
+                <a class="btn btn-link" href="reservaciones-regional4.html" role="button">
+                    <div> <img src="assets/img/icon_left.png"></div>
+                    <div>Regresar</div>
+                </a>
+            </div>
+             
+             <div class=" col-xs-12 col-sm-3 center">
+                <a class="btn btn-link c-one" href="reservaciones-forma-pago-regional.html" role="button">
+                    <div> <img src="assets/img/icon_right.png"></div>
+                    <div>Continuar</div>
+                </a>
+            </div>
+             
+         </div>
+     </div>
+</div>
+
+<!-- modal vagon clasico -->  
+<div id="vagon-clasico" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <button type="button" class="close absolute" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="row">
+                <div class="col-xs-24 ">
+                <img src="assets/img/regional-clasico.jpg" class="img-responsive border-img-bot c-border-two">
+                </div>
+            </div>
+            <div class="row padding10">
+                <div class="col-xs-19 col-xs-offset-1 col-sm-18 col-sm-offset-4">
+                <h1 class="c-two">Clásico</h1>
+                </div>
+                <div class="col-xs-19 col-xs-offset-1 col-sm-18 col-sm-offset-4">
+                            <span class="title-underline c-border-two"></span>
+                </div>
+                <div class="col-xs-19 col-xs-offset-1 col-sm-18 col-sm-offset-4 paddingbot20">
+                    <p>Excelente opción para disfrutar de un viaje familiar cómodo, relajado y con vistas inolvidables.</p>
+                        <ul class="bull-reser">
+                            <li><em>Ventanas panorámicas</em></li>
+                            <li><em>60 Asientos reclinables</em></li>
+                            <li><em>4 Pantallas HD</em></li>
+                            <li><em>Sistema de audio premium</em></li>
+                            <li><em>2 Baños de Lujo</em></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
