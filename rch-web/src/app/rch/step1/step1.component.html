@@ -134,7 +134,7 @@
             </div>
             
             <div class=" col-sm-17 col-sm-offset-3">
-                <a href="#" data-toggle="modal" data-target="#ruta-chepe-regional">
+                <a href="#" data-toggle="modal" (click)="onMap()">
                     <img src="{{route.img_map}}" class="img-responsive">
                 </a>
                     <p class="center bold">Elige las {{route.max_stops}} escalas intermedias sobre el mapa</p>
@@ -156,7 +156,7 @@
             </div>
             
             <!-- modal -->
-            <div class="modal mapa fade" id="ruta-chepe-regional" tabindex="-1" role="dialog">
+            <div class="modal mapa fade" id="map-stops" tabindex="-1" role="dialog">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <!--<div class="modal-header">

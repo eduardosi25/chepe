@@ -6,7 +6,7 @@ export class AvailabilityQuery2{
     public start:string = (new Date()).toString();
     public end:string = (new Date()).toString();
     public passengers = [0,1,0,0,0,0,0,0,0];
-    public stops = [];
+    public stops = {};
     public getTotalPassengers():number{
         var n:number = 0;
 

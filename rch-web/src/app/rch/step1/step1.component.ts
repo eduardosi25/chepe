@@ -8,7 +8,7 @@ import { SessionService } from '../../session.service';
 import { AvailabilityQuery2 } from '../../model/availabilityquery2';
 import { PassengerType } from '../../model/passengertype';
 import { DomSanitizer } from '@angular/platform-browser';
-
+declare var $: any;
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
@@ -59,12 +59,17 @@ export class Step1Component implements OnInit {
     return src == null ? this.getSrcs(direction):this.route.getDsts(direction,src.id);
   }
   public readyToGoNext():boolean{
+    console.log(this.session.query);
     if(this.session.query.dst == null){return false;}
     if(this.session.query.src == null){return false;}
     var start_dt:Date = new Date(this.session.query.start);
     var end_dt:Date = new Date(this.session.query.end);
     var now_dt:Date = new Date();
-    var min_end_dt:Date = new Date(start_dt.getTime()+(this.session.query.stops.length*1000*60*60*24));
+    var nstops = 0;
+    for(var i in this.session.query.stops){
+      if(this.session.query.stops[i]){nstops++;}
+    }
+    var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
     if(start_dt.getTime() < now_dt.getTime()){return false;}
     if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){return false;}
     if(this.session.query.getTotalPassengers()<=0){return false;}
@@ -102,6 +107,17 @@ export class Step1Component implements OnInit {
     let styles:string = "left:"+(px*100)+"%;top:"+(py*100)+"%;";
 
     return this.sanitizer.bypassSecurityTrustStyle(styles);
+  }
+  public canSelectMap():boolean{
+    return (this.session.query.src != null  && this.session.query.dst != null);
+  }
+  public onMap(){
+    if(this.canSelectMap()){
+      $('#map-stops').modal('show');
+    }else{
+      alert("Debes elegir un origen y un destino");
+    }
+    
   }
   
 }

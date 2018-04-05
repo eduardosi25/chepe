@@ -11,11 +11,11 @@ import {CommitComponent} from './rch/commit/commit.component';
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: ':route_name/paso1', component: Step1Component },
-  { path: 'paso2', component: Step2Component },
-  { path: 'paso3', component: Step3Component },
-  { path: 'paso4', component: Step4Component },
-  { path: 'paso5', component: Step5Component },
-  { path: 'confirmar', component: CommitComponent }
+  { path: ':route_name/paso2', component: Step2Component },
+  { path: ':route_name/paso3', component: Step3Component },
+  { path: ':route_name/paso4', component: Step4Component },
+  { path: ':route_name/paso5', component: Step5Component },
+  { path: ':route_name/confirmar', component: CommitComponent }
 ];
 
 @NgModule({
