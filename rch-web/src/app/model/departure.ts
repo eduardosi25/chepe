@@ -5,7 +5,7 @@ export class Departure{
         this.weekday = weekday;
         this.time = time;
         this.status = status;
-        this.direction = 0;
+        this.direction = direction;
     }
     id:number;
     id_trainstop:number;

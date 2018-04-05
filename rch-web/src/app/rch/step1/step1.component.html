@@ -3,7 +3,7 @@
     <div class="col-md-20 no-gutter-left">
         <div class="row">
             <div class=" col-sm-20 gap-left">
-                    <h1 class="c-two">Reservaciones del Chepe Regional</h1>
+                    <h1 class="c-two">Reservaciones del {{route.name}}</h1>
             </div>
 
             <div class="col-sm-24 no-gutter-left-mobile">
@@ -11,7 +11,7 @@
             </div>
             
             <div class="col-sm-15 gap-left ">
-                <p>Tu boleto incluye la opción de realizar hasta tres escalas intermedias para vivir de cerca esta increíble experiencia*.</p>
+                <p>Tu boleto incluye la opción de realizar hasta {{route.max_stops}} escalas intermedias para vivir de cerca esta increíble experiencia*.</p>
             </div>
         </div>
     </div>                    
@@ -35,18 +35,14 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <label for="origen">Origen</label>
-                                        <select class="form-control" id="origen">
-                                            <option>De los Mochis</option>
-                                            <option>De los Mochis</option>
-                                            <option>De los Mochis</option>
+                                        <select class="form-control" id="origen" [(ngModel)]="session.query.id_src">
+                                            <option *ngFor="let ts of route.getSrcs()" [value]="ts.id">De {{ts.name}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="origen">Destino</label>
-                                        <select class="form-control" id="origen">
-                                            <option>A creel</option>
-                                            <option>A creel</option>
-                                            <option>A creel</option>
+                                        <select class="form-control" id="origen" [(ngModel)]="session.query.id_dst">
+                                            <option *ngFor="let ts of route.getDsts()" [value]="ts.id">De {{ts.name}}</option>
                                         </select>
                                     </div>                                                   
                                     <label>Total de pasajeros</label>

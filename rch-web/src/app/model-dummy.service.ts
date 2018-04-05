@@ -40,6 +40,7 @@ export class ModelDummyService implements IModel {
     //chepe express
     var rexpress:Route = new Route();
     rexpress.id = 2;
+    rexpress.max_stops = 3;
     rexpress.name = "Chepe Express";
     rexpress.passenger_types = this.getStdPassengerTypes();
     rexpress.stops = [
@@ -56,9 +57,11 @@ export class ModelDummyService implements IModel {
       new Wagon(6,wt4,"006",[new Seat(61,6,"A1",1),new Seat(62,6,"A2",1),new Seat(63,6,"A3",1),new Seat(64,6,"A4",1)],1),
       new Wagon(7,wt5,"007",[new Seat(71,7,"A1",1),new Seat(72,7,"A2",1),new Seat(73,7,"A3",1),new Seat(74,7,"A4",1)],1)];
     rexpress.img_url="assets/img/reservacion/header-reserva-express.jpg";
+    rexpress.img_map="assets/img/reservacion/map_express.jpg";
     //chepe regional
     var rregional:Route = new Route();
     rregional.id = 1;
+    rregional.max_stops = 3;
     rregional.name = "Chepe Regional";
     rregional.passenger_types = this.getStdPassengerTypes();
     rregional.stops = [
@@ -80,6 +83,7 @@ export class ModelDummyService implements IModel {
       new Wagon(6,wt7,"006",[new Seat(61,6,"A1",1),new Seat(62,6,"A2",1),new Seat(63,6,"A3",1),new Seat(64,6,"A4",1)],1),
       new Wagon(7,wt6,"007",[new Seat(71,7,"A1",1),new Seat(72,7,"A2",1),new Seat(73,7,"A3",1),new Seat(74,7,"A4",1)],1)];
     rregional.img_url = "assets/img/reservacion/header-reserva-regional.jpg";
+    rregional.img_map="assets/img/reservacion/map_regional.jpg";
     //response
     var response:Response<Route[]> = new Response<Route[]>("+RCH.WS12.0",null,[rexpress,rregional]);
     return response;

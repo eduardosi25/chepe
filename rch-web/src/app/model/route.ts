@@ -9,6 +9,8 @@ export class Route {
     public stops: TrainStop[];
     public status: number = 1;
     public img_url:string = "";
+    public img_map:string = "";
+    public max_stops:number = 3;
 
     private first:TrainStop = null;
     private last:TrainStop = null;
