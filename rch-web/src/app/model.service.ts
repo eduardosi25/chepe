@@ -9,6 +9,7 @@ import { Schedule } from './model/schedule';
 import { RouteBooking } from './model/routebooking';
 import { Travel } from './model/travel';
 import { Response } from './model/response';
+import { AvailabilityQuery } from './model/availabilityquery';
 
 
 @Injectable()
@@ -32,8 +33,8 @@ export class ModelService implements IModel {
   getStatus():Response<boolean>{
     return this.impl.getStatus();
   }
-  getRouteScheduleAvailable(id:number):Response<Schedule>{
-    return this.impl.getRouteScheduleAvailable(id);
+  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Response<Schedule>{
+    return this.impl.getRouteScheduleAvailable(id,query);
   }
   saveRouteBooking(b:RouteBooking):Response<RouteBooking>{
     return this.impl.saveRouteBooking(b);

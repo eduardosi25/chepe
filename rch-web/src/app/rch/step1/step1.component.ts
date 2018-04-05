@@ -8,6 +8,7 @@ import { SessionService } from '../../session.service';
 import { AvailabilityQuery2 } from '../../model/availabilityquery2';
 import { PassengerType } from '../../model/passengertype';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Direction } from '../../model/direction';
 declare var $: any;
 @Component({
   selector: 'app-step1',
@@ -41,21 +42,21 @@ export class Step1Component implements OnInit {
     if(this.session.query.src == null || this.session.query.dst == null){return tss;}
     let src:TrainStop = this.session.query.src;
     let dst:TrainStop = this.session.query.dst;
-    let direction:number = src.km < dst.km ? 0 : 1;
+    let direction:number = src.km < dst.km ? Direction.up : Direction.down;
 
     for(var i=0;i<this.route.stops.length;i++){
       let ts:TrainStop = this.route.stops[i];
       if(ts == src || ts == dst){continue;}
-      if(direction == 0 && ts.km>src.km && ts.km < dst.km){tss.push(ts);}
-      if(direction == 1 && ts.km<src.km && ts.km > dst.km){tss.push(ts);}
+      if(direction == Direction.up && ts.km>src.km && ts.km < dst.km){tss.push(ts);}
+      if(direction == Direction.down && ts.km<src.km && ts.km > dst.km){tss.push(ts);}
     }
 
     return tss;
   }
-  public getSrcs(direction:number=0):TrainStop[]{
+  public getSrcs(direction:number=Direction.up):TrainStop[]{
     return this.route.getSrcs(direction);
   }
-  public getDsts(direction:number=0,src:TrainStop=null):TrainStop[]{
+  public getDsts(direction:number=Direction.up,src:TrainStop=null):TrainStop[]{
     return src == null ? this.getSrcs(direction):this.route.getDsts(direction,src.id);
   }
   public readyToGoNext():boolean{

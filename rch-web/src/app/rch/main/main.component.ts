@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
     var r:Response<Route[]> = this.model.getRoutes();
     if(r.success){
       this.routes = r.data;
-      console.log(this.routes);
     }else{
       alert(r.status.toString());
     }

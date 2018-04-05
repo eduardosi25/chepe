@@ -7,6 +7,7 @@ import { Schedule } from './model/schedule';
 import { RouteBooking } from './model/routebooking';
 import { Travel } from './model/travel';
 import { Response } from './model/response';
+import { AvailabilityQuery } from './model/availabilityquery';
 
 @Injectable()
 export class ModelRestService implements IModel {
@@ -25,7 +26,7 @@ export class ModelRestService implements IModel {
   getStatus():Response<boolean>{
     return null;
   }
-  getRouteScheduleAvailable(id:number):Response<Schedule>{
+  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Response<Schedule>{
     return null;
   }
   saveRouteBooking(b:RouteBooking):Response<RouteBooking>{

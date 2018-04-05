@@ -13,6 +13,8 @@ import { Wagon } from './model/wagon';
 import { Departure } from './model/departure';
 import { WagonType } from './model/wagontype';
 import { Seat } from './model/seat';
+import { AvailabilityQuery } from './model/availabilityquery';
+import { Direction } from './model/direction';
 
 @Injectable()
 export class ModelDummyService implements IModel {
@@ -28,7 +30,9 @@ export class ModelDummyService implements IModel {
             new PassengerType(6,"Personas con discapacidad","",0,100)];
   }
 
+  private get_routes:Response<Route[]> = null;
   getRoutes():Response<Route[]>{
+    if(this.get_routes != null){return this.get_routes;}
     //wagon types
     var wt1 = new WagonType(1,"Premium",1);
     var wt2 = new WagonType(2,"Clásico",1);
@@ -44,10 +48,10 @@ export class ModelDummyService implements IModel {
     rexpress.name = "Chepe Express";
     rexpress.passenger_types = this.getStdPassengerTypes();
     rexpress.stops = [
-      new TrainStop(20,"CREEL",[new Departure(1,1,0,"15:00:00",1,1),new Departure(1,1,0,"07:00:00",0,1)],27.75556,-107.6349,"",564,1),
-      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"14:00:00",1,1),new Departure(1,1,0,"08:00:00",0,1)],27.53413,-107.82507,"",622,1),
-      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"13:00:00",1,1),new Departure(1,1,0,"09:00:00",0,1)],26.3645,-108.59235,"",839,1),
-      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"12:00:00",1,1),new Departure(1,1,0,"10:00:00",0,1)],25.75877,-108.96825,"",921,1)];
+      new TrainStop(20,"CREEL",[new Departure(1,1,0,"15:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],27.75556,-107.6349,"",564,1),
+      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"14:00:00",Direction.down,1),new Departure(1,1,0,"08:00:00",Direction.up,1)],27.53413,-107.82507,"",622,1),
+      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"13:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
+      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"12:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
     rexpress.wagons = [
       new Wagon(1,wt1,"001",[new Seat(1,1,"A1",1),new Seat(2,1,"A2",1),new Seat(3,1,"A3",1),new Seat(4,1,"A4",1)],1),
       new Wagon(2,wt1,"002",[new Seat(21,2,"A1",1),new Seat(22,2,"A2",1),new Seat(23,2,"A3",1),new Seat(24,2,"A4",1)],1),
@@ -65,15 +69,15 @@ export class ModelDummyService implements IModel {
     rregional.name = "Chepe Regional";
     rregional.passenger_types = this.getStdPassengerTypes();
     rregional.stops = [
-      new TrainStop(1,"CHIHUAHUA",[new Departure(1,1,0,"00:00:00",1,1),new Departure(1,1,0,"07:00:00",0,1)],28.61614,-106.07513,"",268,1),
-      new TrainStop(9,"CUAUHTEMOC",[new Departure(1,1,0,"23:00:00",1,1),new Departure(1,1,0,"08:00:00",0,1)],28.40865,-106.86975,"",401,1),
-      new TrainStop(18,"SAN JUANITO",[new Departure(1,1,0,"22:00:00",1,1),new Departure(1,1,0,"09:00:00",0,1)],27.9704,-107.59967,"",533,1),
-      new TrainStop(21,"PITORREAL",[new Departure(1,1,0,"21:00:00",1,1),new Departure(1,1,0,"10:00:00",0,1)],27.62885,-107.7686,"",602,1),
-      new TrainStop(23,"P. BARRANCAS",[new Departure(1,1,0,"20:00:00",1,1),new Departure(1,1,0,"11:00:00",0,1)],27.50991,-107.84014,"",626,1),
-      new TrainStop(24,"SAN RAFAEL",[new Departure(1,1,0,"19:00:00",1,1),new Departure(1,1,0,"12:00:00",0,1)],27.48831,-107.88949,"",636,1),
-      new TrainStop(25,"CUITECO",[new Departure(1,1,0,"18:00:00",1,1),new Departure(1,1,0,"13:00:00",0,1)],27.4397,-108.02283,"",662,1),
-      new TrainStop(26,"BAHUICHIVO",[new Departure(1,1,0,"17:00:00",1,1),new Departure(1,1,0,"14:00:00",0,1)],27.40669,-108.07234,"",669,1),
-      new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:00:00",1,1),new Departure(1,1,0,"15:00:00",0,1)],27.2551,-108.25694,"",708,1)];
+      new TrainStop(1,"CHIHUAHUA",[new Departure(1,1,0,"00:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],28.61614,-106.07513,"",268,1),
+      new TrainStop(9,"CUAUHTEMOC",[new Departure(1,1,0,"23:00:00",Direction.down,1),new Departure(1,1,0,"08:00:00",Direction.up,1)],28.40865,-106.86975,"",401,1),
+      new TrainStop(18,"SAN JUANITO",[new Departure(1,1,0,"22:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],27.9704,-107.59967,"",533,1),
+      new TrainStop(21,"PITORREAL",[new Departure(1,1,0,"21:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],27.62885,-107.7686,"",602,1),
+      new TrainStop(23,"P. BARRANCAS",[new Departure(1,1,0,"20:00:00",Direction.down,1),new Departure(1,1,0,"11:00:00",Direction.up,1)],27.50991,-107.84014,"",626,1),
+      new TrainStop(24,"SAN RAFAEL",[new Departure(1,1,0,"19:00:00",Direction.down,1),new Departure(1,1,0,"12:00:00",Direction.up,1)],27.48831,-107.88949,"",636,1),
+      new TrainStop(25,"CUITECO",[new Departure(1,1,0,"18:00:00",Direction.down,1),new Departure(1,1,0,"13:00:00",Direction.up,1)],27.4397,-108.02283,"",662,1),
+      new TrainStop(26,"BAHUICHIVO",[new Departure(1,1,0,"17:00:00",Direction.down,1),new Departure(1,1,0,"14:00:00",Direction.up,1)],27.40669,-108.07234,"",669,1),
+      new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],27.2551,-108.25694,"",708,1)];
     rregional.wagons = [
       new Wagon(1,wt6,"001",[new Seat(1,1,"A1",1),new Seat(2,1,"A2",1),new Seat(3,1,"A3",1),new Seat(4,1,"A4",1)],1),
       new Wagon(2,wt7,"002",[new Seat(21,2,"A1",1),new Seat(22,2,"A2",1),new Seat(23,2,"A3",1),new Seat(24,2,"A4",1)],1),
@@ -86,21 +90,49 @@ export class ModelDummyService implements IModel {
     rregional.img_map="assets/img/reservacion/map_regional.jpg";
     //response
     var response:Response<Route[]> = new Response<Route[]>("+RCH.WS12.0",null,[rexpress,rregional]);
+    this.get_routes = response;
     return response;
   }
   createIntent(type:string):Response<Intent>{
-    return null;
+    let intent:Intent = new Intent("xyz");
+    return new Response("+RCH.WS2.0",null,intent);
   }
   createSession():Response<SessionToken>{
-    return null;
+    let st:SessionToken = new SessionToken("abc");
+    return new Response("+RCH.WS3.0",null,st);
   }
   getStatus():Response<boolean>{
-    return null;
+    return new Response("+RCH.WS1.0",null,true);
   }
-  getRouteScheduleAvailable(id:number):Response<Schedule>{
-    return null;
+  private get_route_schedule_available:Response<Schedule> = null;
+  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Response<Schedule>{
+    if(this.get_route_schedule_available != null){return this.get_route_schedule_available;}
+    var schedule:Schedule = new Schedule();
+    schedule.query = query;
+    schedule.travels = [];
+
+    let routes:Route[] = this.getRoutes().data;
+    let route:Route = routes[0];
+    var date:Date = new Date(query.start);
+    let day:number = 1000*60*60*24;
+    for(var i=0;i<(route.stops.length-1);i++){
+      let ts0:TrainStop = route.stops[i];
+      let ts1:TrainStop = route.stops[i+1];
+      let direction:number = route.getDirection(ts0,ts1);
+      let t:Travel = new Travel(ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,date.toString());
+      let t2:Travel = new Travel(ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date(date.getTime()+day).toString());
+      let t3:Travel = new Travel(ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date(date.getTime()+day+day).toString());
+      schedule.travels.push(t,t2,t3);
+      if(query.stops.indexOf(ts1.id)){
+        date = new Date(date.getTime()+day);
+      }
+    }
+
+    this.get_route_schedule_available = new Response("+RCH.WS13.0",null,schedule);
+    return this.get_route_schedule_available;
   }
   saveRouteBooking(b:RouteBooking):Response<RouteBooking>{
+    
     return null;
   }
   getTravel(id:number):Response<Travel>{
