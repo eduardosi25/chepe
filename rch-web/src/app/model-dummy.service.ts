@@ -109,32 +109,43 @@ export class ModelDummyService implements IModel {
   getStatus():Response<boolean>{
     return new Response("+RCH.WS1.0",null,true);
   }
-  private get_route_schedule_available:Response<Schedule> = null;
+  private get_route_schedule_available={};
+  private travels={};
   getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Response<Schedule>{
-    if(this.get_route_schedule_available != null){return this.get_route_schedule_available;}
+    if(this.get_route_schedule_available[id]){return this.get_route_schedule_available[id];}
     var schedule:Schedule = new Schedule();
     schedule.query = query;
     schedule.travels = [];
 
     let routes:Route[] = this.getRoutes().data;
-    let route:Route = routes[0];
+    var route:Route = routes[0];
+    for(var i=0;i<routes.length;i++){
+      let r:Route = routes[i];
+      if(r.id == id){
+        route = r;
+        break;
+      }
+    }
     var date:Date = new Date(query.start);
     let day:number = 1000*60*60*24;
     for(var i=0;i<(route.stops.length-1);i++){
       let ts0:TrainStop = route.stops[i];
       let ts1:TrainStop = route.stops[i+1];
       let direction:number = route.getDirection(ts0,ts1);
-      let t:Travel = new Travel(ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,date.toString());
-      let t2:Travel = new Travel(ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date(date.getTime()+day).toString());
-      let t3:Travel = new Travel(ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date(date.getTime()+day+day).toString());
+      let t:Travel = new Travel((i*3)+1,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,date.toString());
+      let t2:Travel = new Travel((i*3)+2,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date(date.getTime()+day).toString());
+      let t3:Travel = new Travel((i*3)+3,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date(date.getTime()+day+day).toString());
+      this.travels[t.id] =t;
+      this.travels[t2.id] =t2;
+      this.travels[t3.id] =t3;
       schedule.travels.push(t,t2,t3);
       if(query.stops.indexOf(ts1.id)){
         date = new Date(date.getTime()+day);
       }
     }
 
-    this.get_route_schedule_available = new Response("+RCH.WS13.0",null,schedule);
-    return this.get_route_schedule_available;
+    this.get_route_schedule_available[id] = new Response("+RCH.WS13.0",null,schedule);
+    return this.get_route_schedule_available[id];
   }
   saveRouteBooking(b:RouteBooking):Response<RouteBooking>{
     var rb:RouteBooking = b;
@@ -149,6 +160,7 @@ export class ModelDummyService implements IModel {
     return response;
   }
   getTravel(id:number):Response<Travel>{
+    if(this.travels[id]){return this.travels[id];}
     return null;
   }
 }
