@@ -21,21 +21,43 @@ export class Travel{
     wagons:Wagon[];
     date:string;
 
-    getWeekday(n:number=0):string{
-        switch(n){
-            case 0:return 'Dom';
-            case 1:return 'Lun';
-            case 2:return 'Mar';
-            case 3:return 'Mie';
-            case 4:return 'Jue';
-            case 5:return 'Vie';
-            case 6:return 'Sáb';
+    public getWeekday(n:number=-1,full:boolean = true):string{
+        if(n == -1){
+            let d:Date = new Date(this.date);
+            return this.getWeekday(d.getDay());
         }
+        if(!full){
+            switch(n){
+                case 0:return 'Dom';
+                case 1:return 'Lun';
+                case 2:return 'Mar';
+                case 3:return 'Mié';
+                case 4:return 'Jue';
+                case 5:return 'Vie';
+                case 6:return 'Sáb';
+            }
+        }else{
+            switch(n){
+                case 0:return 'Domingo';
+                case 1:return 'Lunes';
+                case 2:return 'Martes';
+                case 3:return 'Miércoles';
+                case 4:return 'Jueves';
+                case 5:return 'Viernes';
+                case 6:return 'Sábado';
+            }
+        }
+        
 
     }
-    public getDate():string{
+    public getDate(with_weekday:boolean = true):string{
         let d:Date = new Date(this.date);
-        return this.getWeekday(d.getDay())+" "+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+        var s:string = "";
+        if(with_weekday){
+            s+=this.getWeekday(d.getDay(),false)+" ";
+        }
+        s+=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+        return s;
     }
     public getDepartureTime():string{
         return this.departure.time;

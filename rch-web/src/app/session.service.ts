@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AvailabilityQuery } from './model/availabilityquery';
 import { AvailabilityQuery2 } from './model/availabilityquery2';
 import { Route } from './model/Route';
+import { Segment } from './model/segment';
 
 @Injectable()
 export class SessionService {
@@ -11,6 +12,7 @@ export class SessionService {
   }
   public query:AvailabilityQuery2;
   public route:Route;
+  public segments:Segment[];
   public save(){
     let x = JSON.stringify(this.query);
     localStorage.setItem(SessionService.ls_query_key,x);

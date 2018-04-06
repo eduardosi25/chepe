@@ -31,7 +31,7 @@ export class Step2Component implements OnInit {
     if(response.success && response.data.travels.length>0){
       this.schedule = response.data;
       this.segments = this.makeSegments(this.schedule,query);
-      
+      this.session.segments = this.segments;
     }else{
       alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
       this.schedule = new Schedule();

@@ -20,6 +20,12 @@ export class Segment{
     public previous:Segment = null;
     public stops_at_dst:boolean = false;
 
+    public getDuration():string{
+        if(this.selected_travel == null){
+            return "00:00:00";
+        }
+        return this.selected_travel.getDuration();
+    }
     public getTravels():Travel[]{
         if(this.previous == null){return this.travels;}
         
