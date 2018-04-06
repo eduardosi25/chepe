@@ -25,17 +25,12 @@ export class Step1Component implements OnInit {
 
   public route:Route = null;
   ngOnInit() {
-    
-    this.session.query = new AvailabilityQuery2();
-    let route_name = this.activated_route.snapshot.paramMap.get('route_name');
-    let routes:Route[] = this.model.getRoutes().data;
-    for(var i=0;i<routes.length;i++){
-      let route = routes[i];
-      if(route.name == route_name){
-        this.route = route;
-        break;
-      }
+    if(this.session.query == null){
+      this.session.query = new AvailabilityQuery2();
     }
+    let route_name = this.activated_route.snapshot.paramMap.get('route_name');
+    this.route = this.model.getRouteByName(route_name);
+    this.session.route = this.route;
   }
   public getRouteStops():TrainStop[]{
     var tss:TrainStop[] = [];
@@ -60,7 +55,6 @@ export class Step1Component implements OnInit {
     return src == null ? this.getSrcs(direction):this.route.getDsts(direction,src.id);
   }
   public readyToGoNext():boolean{
-    console.log(this.session.query);
     if(this.session.query.dst == null){return false;}
     if(this.session.query.src == null){return false;}
     var start_dt:Date = new Date(this.session.query.start);
@@ -84,15 +78,7 @@ export class Step1Component implements OnInit {
     this.session.query.passengers[pt.id] = a;
   }
   public getTotalPassengers():string{
-    var pps:string[] = [];
-    for(var i=0;i<this.route.passenger_types.length;i++){
-      let pt:PassengerType = this.route.passenger_types[i];
-      let q:number = this.session.query.passengers[pt.id];
-      if(q > 0){
-        pps.push(pt.name+": "+q);
-      }
-    }
-    return pps.join(", ");
+    return this.session.query.getPassengersString(this.route);
   }
   public getCoordinates(ts:TrainStop){
     let map={
@@ -120,5 +106,10 @@ export class Step1Component implements OnInit {
     }
     
   }
-  
+  public showStartDt(event){
+    $(event.target.id).datepicker();
+  }
+  public showEndDt(event){
+    $(event.target.id).datepicker();
+  }
 }
