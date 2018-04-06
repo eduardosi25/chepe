@@ -24,22 +24,32 @@ export class Step4Component implements OnInit {
     public session:SessionService) { }
 
   ngOnInit() {
-    this.session.rb = new RouteBooking();
-    this.session.rb.setupFromSession(this.session);
+    if(this.session.rb == null){
+      this.session.rb = new RouteBooking();
+      this.session.rb.setupFromSession(this.session);
+    }
+    
     
     
   }
   goBack(): void {
     this.location.back();
   }
+  static email_regex:RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  static name_regex:RegExp = /\w{3,30}/;
+  static lastname_regex:RegExp = /\w{3,30}/;
+  static country_regex:RegExp = /\w{2,30}/;
+  
   public readyToGoNext():boolean{
+    
     for(var i=0;i<this.session.rb.persons.length;i++){
       let p:Person = this.session.rb.persons[i];
-      if(p.country == ""){return false;}
-      if(p.name == ""){return false;}
-      if(p.lastname == ""){return false;}
+      if(!Step4Component.name_regex.test(p.name)){return false;}
+      if(!Step4Component.lastname_regex.test(p.lastname)){return false;}
+      if(!Step4Component.country_regex.test(p.country)){return false;}
     }
-    if(this.session.rb.etickets_email == ""){return false;}
+    
+    if(!Step4Component.email_regex.test(this.session.rb.etickets_email)){return false;}
     if(this.session.rb.etickets_phone == ""){return false;}
     return this.session.rb.pp;
   }
