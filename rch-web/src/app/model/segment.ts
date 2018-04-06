@@ -1,12 +1,16 @@
 import { TrainStop } from "./trainstop";
 import { Travel } from "./travel";
+import { AvailabilityQuery } from "./availabilityquery";
 
 export class Segment{
-    constructor(n:number = 0,src:TrainStop=null,dst:TrainStop=null,travels:Travel[]=[]){
+    constructor(n:number = 0,src:TrainStop=null,dst:TrainStop=null,travels:Travel[]=[],query:AvailabilityQuery=null){
         this.n = n;
         this.src = src;
         this.dst = dst;
         this.travels = travels;
+        if(query != null && this.dst != null){
+            this.stops_at_dst = (query.stops.indexOf(this.dst.id) != -1);
+        }
     }
     public src:TrainStop;
     public dst:TrainStop;
@@ -14,6 +18,7 @@ export class Segment{
     public n:number = 0;
     public selected_travel:Travel;
     public previous:Segment = null;
+    public stops_at_dst:boolean = false;
 
     public getTravels():Travel[]{
         if(this.previous == null){return this.travels;}
@@ -49,9 +54,16 @@ export class Segment{
             return d;
         }else{
             if(this.previous.selected_travel == null){
-                return this.previous.getMyMinDepartureDate();
+                let dd:Date = this.previous.getMyMinDepartureDate();
+                if(this.previous.stops_at_dst){
+                    dd = new Date(dd.getTime()+(1000*60*60*24));
+                }
+                return dd;
             }else{
                 let dd:Date = new Date(this.previous.selected_travel.date+" "+this.previous.selected_travel.arrival.time);
+                if(this.previous.stops_at_dst){
+                    dd = new Date(dd.getTime()+(1000*60*60*24));
+                }
                 return dd;
             }
         }

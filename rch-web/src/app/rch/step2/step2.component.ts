@@ -9,6 +9,7 @@ import { Segment } from '../../model/segment';
 import { Response } from '../../model/response';
 import { TrainStop } from '../../model/trainstop';
 import { Travel } from '../../model/travel';
+import { AvailabilityQuery } from '../../model/availabilityquery';
 
 @Component({
   selector: 'app-step2',
@@ -25,10 +26,11 @@ export class Step2Component implements OnInit {
     public segments:Segment[] = [];
   ngOnInit() {
     this.session.save();
-    let response:Response<Schedule> = this.model.getRouteScheduleAvailable(this.session.route.id,this.session.query.toAvailabilityQuery(this.session.route));
+    let query:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
+    let response:Response<Schedule> = this.model.getRouteScheduleAvailable(this.session.route.id,query);
     if(response.success && response.data.travels.length>0){
       this.schedule = response.data;
-      this.segments = this.makeSegments(this.schedule);
+      this.segments = this.makeSegments(this.schedule,query);
       
     }else{
       alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
@@ -38,13 +40,13 @@ export class Step2Component implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  makeSegments(schedule:Schedule):Segment[]{
+  makeSegments(schedule:Schedule,query:AvailabilityQuery):Segment[]{
     var segments:Segment[] = [];
     var segments_by_ts={};
     for(var i=0;i<(this.session.route.stops.length-1);i++){
       let ts0:TrainStop = this.session.route.stops[i];
       let ts1:TrainStop = this.session.route.stops[i+1];
-      var segment:Segment = new Segment(i+1,ts0,ts1,[]);
+      var segment:Segment = new Segment(i+1,ts0,ts1,[],query);
       segments_by_ts[ts0.id] = segment;
       if(i>0){
         let prev:Segment = segments[i-1];
@@ -63,6 +65,18 @@ export class Step2Component implements OnInit {
   }
   public onTravelSelected(segment:Segment,travel:Travel){
     segment.selected_travel = travel;
+  }
+  public canContinueNext(){
+    for(var i=0;i<this.segments.length;i++){
+      let s:Segment = this.segments[i];
+      if(s.selected_travel == null){
+        return false;
+      }
+    }
+    return true;
+  }
+  public isStop(ts:TrainStop){
+    return (this.session.query.stops[ts.id]);
   }
 
 }

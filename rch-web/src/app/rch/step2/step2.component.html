@@ -57,7 +57,7 @@
         <div class="row">
             
             <div class="col-md-24 gap-left">
-                <h3 class="uppercase c-two"><span class="fontweight700">Escala {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}</h3>
+                <h3 class="uppercase c-two"><span class="fontweight700">Escala {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}} <span *ngIf="isStop(segment.dst)">(Baja del tren)</span></h3>
             </div>
             <div class="col-sm-18 no-gutter-left-mobile">
                     <span class="title-underline-full c-border-two"></span>
@@ -108,7 +108,7 @@
                             {{session.query.getPassengersString(session.route)}}
                     </div>
                     <div class="col-xs-24 col-sm-7 equalheight">
-                            <input type="radio" id="travel_{{travel.id}}" name="travel_{{travel.id}}"
+                            <input type="radio" id="travel_{{travel.id}}" name="segment_{{segment.n}}"
                             (click)="onTravelSelected(segment,travel)">
                             <label for="travel_{{travel.id}}"><span class="check"></span> SELECCIONAR</label>
                                     
@@ -149,7 +149,7 @@
             </div>
              
              <div class=" col-xs-12 col-sm-3 center margintop30">
-                <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso3" role="button">
+                <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso3" *ngIf="canContinueNext()" role="button">
                     <div> <img src="assets/img/icon_right.png"></div>
                     <div>Continuar</div>
                 </a>
