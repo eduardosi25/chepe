@@ -1,6 +1,11 @@
 import { TrainStop } from "./trainstop";
 import { Travel } from "./travel";
 import { AvailabilityQuery } from "./availabilityquery";
+import { Wagon } from "./wagon";
+import { SeatBooking } from "./seatbooking";
+import { PassengerType } from "./passengertype";
+import { AvailabilityQuery2 } from "./availabilityquery2";
+import { Route } from "./Route";
 
 export class Segment{
     constructor(n:number = 0,src:TrainStop=null,dst:TrainStop=null,travels:Travel[]=[],query:AvailabilityQuery=null){
@@ -19,6 +24,8 @@ export class Segment{
     public selected_travel:Travel;
     public previous:Segment = null;
     public stops_at_dst:boolean = false;
+    public selected_wagon:Wagon;
+    public sbs:SeatBooking[] = null;
 
     public getDuration():string{
         if(this.selected_travel == null){
@@ -73,5 +80,21 @@ export class Segment{
                 return dd;
             }
         }
+    }
+    public getNextPT(route:Route,query:AvailabilityQuery2):PassengerType{
+        for(var i=0;i<route.passenger_types.length;i++){
+            let pt:PassengerType = route.passenger_types[i];
+            var max:number = query.passengers[pt.id];
+            for(var j=0;j<this.sbs.length;j++){
+                let sb:SeatBooking = this.sbs[j];
+                if(sb.passenger_type.id == pt.id){
+                    max--;
+                }
+            }
+            if(max > 0){
+                return pt;
+            }
+        }
+        return null;
     }
 }

@@ -5,8 +5,13 @@ import { SeatBooking } from "./seatbooking";
 import { SessionService } from "../session.service";
 import { Segment } from "./segment";
 import { PassengerType } from "./passengertype";
-
+//0 = inactive 1= editing 2= booked 3= paid 4= cancelled
 export class RouteBooking{
+    public static inactive:number = 0;
+    public static editing:number = 1;
+    public static booked:number = 2;
+    public static paid:number = 3;
+    public static cancel:number = 4;
     public id:number;
     public status:number=1;
     public seats:SeatBooking[]=[];

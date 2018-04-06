@@ -27,7 +27,12 @@ export class Step1Component implements OnInit {
   ngOnInit() {
     if(this.session.query == null){
       this.session.query = new AvailabilityQuery2();
+      this.session.query.start = (new Date((new Date()).getTime()+(1000*60*60*24))).toString();
+      this.session.query.end = (new Date((new Date()).getTime()+(1000*60*60*24))).toString();
     }
+    //clean session
+    this.session.rb = null;
+    this.session.segments = null;
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);
     this.session.route = this.route;

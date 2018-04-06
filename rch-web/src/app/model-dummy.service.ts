@@ -16,6 +16,7 @@ import { Seat } from './model/seat';
 import { AvailabilityQuery } from './model/availabilityquery';
 import { Direction } from './model/direction';
 import { SeatBooking } from './model/seatbooking';
+import { Cost } from './model/cost';
 
 @Injectable()
 export class ModelDummyService implements IModel {
@@ -33,6 +34,9 @@ export class ModelDummyService implements IModel {
   rss():number{
     let r:number = Math.random();
     let r2:number = Math.floor(r*5);
+    if(r2 == Seat.taken){
+      r2 = Seat.available;
+    }
     return r2;
   }
   private get_routes:Response<Route[]> = null;
@@ -58,13 +62,13 @@ export class ModelDummyService implements IModel {
       new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"13:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
       new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"12:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
     rexpress.wagons = [
-      new Wagon(1,wt1,"001",[new Seat(1,1,"A1",this.rss()),new Seat(2,1,"A2",this.rss()),new Seat(3,1,"A3",this.rss()),new Seat(4,1,"A4",this.rss())],1),
-      new Wagon(2,wt1,"002",[new Seat(21,2,"A1",this.rss()),new Seat(22,2,"A2",this.rss()),new Seat(23,2,"A3",this.rss()),new Seat(24,2,"A4",this.rss())],1),
-      new Wagon(3,wt2,"003",[new Seat(31,3,"A1",this.rss()),new Seat(32,3,"A2",this.rss()),new Seat(33,3,"A3",this.rss()),new Seat(34,3,"A4",this.rss())],1),
-      new Wagon(4,wt2,"004",[new Seat(41,4,"A1",this.rss()),new Seat(42,4,"A2",this.rss()),new Seat(43,4,"A3",this.rss()),new Seat(44,4,"A4",this.rss())],1),
-      new Wagon(5,wt3,"005",[new Seat(51,5,"A1",this.rss()),new Seat(52,5,"A2",this.rss()),new Seat(53,5,"A3",this.rss()),new Seat(54,5,"A4",this.rss())],1),
-      new Wagon(6,wt4,"006",[new Seat(61,6,"A1",this.rss()),new Seat(62,6,"A2",this.rss()),new Seat(63,6,"A3",this.rss()),new Seat(64,6,"A4",this.rss())],1),
-      new Wagon(7,wt5,"007",[new Seat(71,7,"A1",this.rss()),new Seat(72,7,"A2",this.rss()),new Seat(73,7,"A3",this.rss()),new Seat(74,7,"A4",this.rss())],1)];
+      this.mkWagon(wt1),
+      this.mkWagon(wt1),
+      this.mkWagon(wt2),
+      this.mkWagon(wt2),
+      this.mkWagon(wt3),
+      this.mkWagon(wt4),
+      this.mkWagon(wt5)];
     rexpress.img_url="assets/img/reservacion/header-reserva-express.jpg";
     rexpress.img_map="assets/img/reservacion/map_express.jpg";
     //chepe regional
@@ -84,19 +88,26 @@ export class ModelDummyService implements IModel {
       new TrainStop(26,"BAHUICHIVO",[new Departure(1,1,0,"17:00:00",Direction.down,1),new Departure(1,1,0,"14:00:00",Direction.up,1)],27.40669,-108.07234,"",669,1),
       new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],27.2551,-108.25694,"",708,1)];
     rregional.wagons = [
-      new Wagon(1,wt6,"001",[new Seat(1,1,"A1",this.rss()),new Seat(2,1,"A2",this.rss()),new Seat(3,1,"A3",this.rss()),new Seat(4,1,"A4",this.rss())],1),
-      new Wagon(2,wt7,"002",[new Seat(21,2,"A1",this.rss()),new Seat(22,2,"A2",this.rss()),new Seat(23,2,"A3",this.rss()),new Seat(24,2,"A4",this.rss())],1),
-      new Wagon(3,wt6,"003",[new Seat(31,3,"A1",this.rss()),new Seat(32,3,"A2",this.rss()),new Seat(33,3,"A3",this.rss()),new Seat(34,3,"A4",this.rss())],1),
-      new Wagon(4,wt7,"004",[new Seat(41,4,"A1",this.rss()),new Seat(42,4,"A2",this.rss()),new Seat(43,4,"A3",this.rss()),new Seat(44,4,"A4",this.rss())],1),
-      new Wagon(5,wt6,"005",[new Seat(51,5,"A1",this.rss()),new Seat(52,5,"A2",this.rss()),new Seat(53,5,"A3",this.rss()),new Seat(54,5,"A4",this.rss())],1),
-      new Wagon(6,wt7,"006",[new Seat(61,6,"A1",this.rss()),new Seat(62,6,"A2",this.rss()),new Seat(63,6,"A3",this.rss()),new Seat(64,6,"A4",this.rss())],1),
-      new Wagon(7,wt6,"007",[new Seat(71,7,"A1",this.rss()),new Seat(72,7,"A2",this.rss()),new Seat(73,7,"A3",this.rss()),new Seat(74,7,"A4",this.rss())],1)];
+      this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6)];
     rregional.img_url = "assets/img/reservacion/header-reserva-regional.jpg";
     rregional.img_map="assets/img/reservacion/map_regional.jpg";
     //response
     var response:Response<Route[]> = new Response<Route[]>("+RCH.WS12.0",null,[rexpress,rregional]);
     this.get_routes = response;
     return response;
+  }
+  wid:number = 1;
+  sid:number = 1;
+  mkWagon(wt:WagonType,rows:number=15):Wagon{
+    var w:Wagon = new Wagon(1,wt,"00"+this.wid,[],1);
+    for(var i=0;i<rows;i++){
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"0",this.rss(),i,0));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"1",this.rss(),i,1));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"2",this.rss(),i,2));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"3",this.rss(),i,3));
+    }
+    this.wid++;
+    return w;
   }
   createIntent(type:string):Response<Intent>{
     let intent:Intent = new Intent("xyz");
@@ -166,15 +177,29 @@ export class ModelDummyService implements IModel {
   }
   saveRouteBooking(b:RouteBooking):Response<RouteBooking>{
     var rb:RouteBooking = b;
-    rb.status = 1;
+    rb.status = Math.floor(Math.random()*5);;
     
     for(var i=0;i<b.seats.length;i++){
       let sb:SeatBooking = b.seats[i];
       sb.seat.status = this.rss();
+      sb.cost = new Cost();
+      sb.cost.currency = this.getRandomCurrency();
+      sb.cost.amount = Math.random()*1000;
     }
-    rb.status = this.rss();
     var response:Response<RouteBooking> = new Response<RouteBooking>("+RCH.WS14.0",null,rb);
     return response;
+  }
+  getRandomCurrency():string{
+    let r:number = Math.floor(Math.random()*3);
+    switch(r){
+      case 0:
+      default:
+      return "MXN";
+      case 1:
+      return "USD";
+      case 2:
+      return "CAD";
+    }
   }
   getTravel(id:number):Response<Travel>{
     if(this.travels[id]){return this.travels[id];}

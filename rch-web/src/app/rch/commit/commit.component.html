@@ -2,7 +2,7 @@
         <div class="col-sm-16 no-gutter-left">
             <div class="row">
                 <div class=" col-sm-20 gap-left">
-                        <h1 class="c-two">Chepe Regional</h1>
+                        <h1 class="c-two">{{session.route.name}}</h1>
                 </div>
 
                 <div class="col-sm-24 no-gutter-left-mobile">
@@ -11,16 +11,16 @@
                 
             </div>
         </div>
-        <div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right">
+        <div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.rb">
             <table class="table uppercase">
                 <tbody>
                     <tr>
                         <th class="bg-three border2 c-one" scope="row">Total</th>
-                        <td class="bg-two-darker border2 c-one">$4,277.00 MXN</td>
+                        <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
                     </tr>
                     <tr>
                         <th class="bg-three c-one" scope="row">Pasajeros</th>
-                        <td class="bg-two-darker c-one">2</td>
+                        <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -34,61 +34,28 @@
                     <div class="table-responsive">
                         <table class="table chepe three center">
 
-                            <thead class="uppercase">
-                                <tr>
-                                    <th>Escalas</th>
-                                    <th>Origen</th>
-                                    <th>Fecha</th>
-                                    <th>Salida</th>
-                                    <th>Vagón</th>
-                                    <th>Destino</th>
-                                    <th>Llegada</th>
-                                    <th>Destino</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td class="bg-two-medium">CHIHUAHUA</td>
-                                    <td>LUN 10/04/2017</td>
-                                    <td class="bg-three">06:00 am</td>
-                                    <td>1</td>
-                                    <td class="bg-two-medium">CREEL</td>
-                                    <td>11:20 am</td>
-                                    <td class="bg-three">05:20 hrs</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="bg-two-medium">CREEL</td>
-                                    <td>JUE 13/04/2017</td>
-                                    <td class="bg-three">11:20 am</td>
-                                    <td>4</td>
-                                    <td class="bg-two-medium">DIVISADERO</td>
-                                    <td>13:04 pm</td>
-                                    <td class="bg-three">01:30 hrs</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="bg-two-medium">DIVISADERO</td>
-                                    <td>SAB 15/04/2017</td>
-                                    <td class="bg-three">13:04 pm</td>
-                                    <td>7</td>
-                                    <td class="bg-two-medium">EL FUERTE</td>
-                                    <td>18:23 pm</td>
-                                    <td class="bg-three">05:00 hrs</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="bg-two-medium">EL FUERTE</td>
-                                    <td>DOM 16/04/2017</td>
-                                    <td class="bg-three">18:23 pm</td>
-                                    <td>11</td>
-                                    <td class="bg-two-medium">LOS MOCHIS</td>
-                                    <td>20:23 pm</td>
-                                    <td class="bg-three">2:00 hrs</td>
-                                </tr>
-                       
-                            </tbody>
+                                <thead class="uppercase">
+                                    <tr>
+                                        <th>Escalas</th>
+                                        <th>Origen</th>
+                                        <th>Fecha</th>
+                                        <th>Salida</th>
+                                        <th>Destino</th>
+                                        <th>Llegada</th>
+                                        <th>Duración</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let segment of session.segments">
+                                        <td>{{segment.n}}</td>
+                                        <td class="bg-two-medium">{{segment.src.name}}</td>
+                                        <td>{{segment.selected_travel.getDate()}}</td>
+                                        <td class="bg-three">{{segment.selected_travel.departure.time}} hrs</td>
+                                        <td class="bg-two-medium">{{segment.dst.name}}</td>
+                                        <td>{{segment.selected_travel.arrival.time}} hrs</td>
+                                        <td class="bg-three">{{segment.selected_travel.getDuration()}}</td>
+                                    </tr>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -96,7 +63,7 @@
         </div>
     </div>
     <br/>
-    <div class="col-sm-24 no-gutter-left">
+    <!--<div class="col-sm-24 no-gutter-left">
         <div class="row">
             
             <div class=" col-sm-24 gap-left">
@@ -127,6 +94,17 @@
                     <h5 class="">Los boletos y asientos quedarán confirmados al finalizar el pago. </h5>
             </div>
         </div>
+    </div>-->
+    <div class="row margintop40 marginbot40">
+        <div class="col-sm-24 no-gutter-left">
+            <div class="row">
+                
+                <div class="col-sm-18 gap-left">
+                    <img src="assets/img/captcha.jpg" class="img-responsive">
+                </div>
+                
+            </div>
+        </div>
     </div>
      <div class="row margintop20 marginbot40">
          <div class="col-sm-24 no-gutter-left">
@@ -137,14 +115,14 @@
                  </div>
                  
                 <div class="col-xs-12 col-sm-3 center">
-                    <a class="btn btn-link" routerLink="/paso5" role="button">
+                    <a class="btn btn-link" (click)="goBack()" role="button">
                         <div> <img src="assets/img/icon_left.png"></div>
                         <div>Regresar</div>
                     </a>
                 </div>
                  
                  <div class=" col-xs-12 col-sm-3 center">
-                    <a class="btn btn-link c-one card" routerLink="/" role="button">
+                    <a class="btn btn-link c-one card" (click)="bookIt()" role="button">
                         <div> <img src="assets/img/icon_card.png"></div>
                         <div>Reservar</div>
                     </a>
