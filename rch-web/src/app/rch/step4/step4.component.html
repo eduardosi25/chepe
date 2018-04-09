@@ -76,7 +76,7 @@
             </div>
             
             <div class="col-sm-24 gap-left bg-three">
-                <div *ngFor="let person of session.rb.persons">
+                <div *ngFor="let person of session.rb.persons;let i = index;">
                     <div class="row">
                         <div class="col-sm-24">
                             <p class="fontweight700">Tipo de pasajero: <span class="c-one">{{person.type.name}}</span></p>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-sm-8 col-md-4">
                             <div class="form-group">
-                                    <input type="text" class="form-control" [(ngModel)]="person.name">
+                                    <input type="text" class="form-control" [(ngModel)]="person.name" id="p_{{i}}_name">
                             </div>
                         </div>
                         <div class="col-sm-4 col-md-2">
@@ -100,17 +100,17 @@
                         </div>
                         <div class="col-sm-8 col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="person.lastname">
+                                <input type="text" class="form-control" [(ngModel)]="person.lastname" id="p_{{i}}_lastname">
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 padd5">
                             <div class="form-group">
-                                <label for="pais-residencia2">País de residencia</label>
+                                <label for="pais-residencia2">País de residencia*</label>
                             </div>
                         </div>
                         <div class="col-sm-8 col-md-4 padd5">
                             <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="person.country">
+                                <input type="text" class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">
                             </div>
                         </div>
                     </div>
@@ -138,14 +138,14 @@
                     <div class="col-sm-12 col-md-8">
                         <div class="form-group">
                             <label for="correos">Cuenta(s) de correo*</label>
-                            <input type="text" class="form-control" aria-describedby="helpBlock" [(ngModel)]="session.rb.etickets_email">
+                            <input type="text" class="form-control" aria-describedby="helpBlock" [(ngModel)]="session.rb.etickets_email" id="etickets_email">
                             <span id="helpBlock" class="help-block">Ej.: ana@dominio.com, pepe@yahoo.com, etc.</span>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-8">
                         <div class="form-group">
                             <label for="celular">Celular para envío de SMS</label>
-                            <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_phone">
+                            <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_phone" id="etickets_phone">
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,8 @@
              <div class="col-sm-14 gap-left marginbot20">
                 <div class="checkbox">
                     <label>
-                      <input type="checkbox" [(ngModel)]="session.rb.pp"> <span class="c-two">AVISO DE PRIVACIDAD <br>Acepto las <a class="underline c-two" href="terminos-condiciones.html">políticas de servicio</a> y <a class="underline c-two" href="aviso-legal.html">aviso de privacidad</a></span>
+                      <input type="checkbox" id="pp" 
+                      [(ngModel)]="session.rb.pp"> <span class="c-two">AVISO DE PRIVACIDAD <br>Acepto las <a class="underline c-two" href="terminos-condiciones.html">políticas de servicio</a> y <a class="underline c-two" href="aviso-legal.html">aviso de privacidad</a></span>
                     </label>
                 </div>
                  <small>* Campos obligatorios.</small>
