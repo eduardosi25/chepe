@@ -11,6 +11,7 @@ export class Route {
     public status: number = 1;
     public img_url:string = "";
     public img_map:string = "";
+    public img_map_full:string = "";
     public max_stops:number = 3;
 
     private first:TrainStop = null;

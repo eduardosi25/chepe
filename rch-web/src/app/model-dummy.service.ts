@@ -71,6 +71,7 @@ export class ModelDummyService implements IModel {
       this.mkWagon(wt5)];
     rexpress.img_url="assets/img/reservacion/header-reserva-express.jpg";
     rexpress.img_map="assets/img/reservacion/map_express.jpg";
+    rexpress.img_map_full="assets/img/reservacion/map_express_full.jpg";
     //chepe regional
     var rregional:Route = new Route();
     rregional.id = 1;
@@ -91,6 +92,7 @@ export class ModelDummyService implements IModel {
       this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6)];
     rregional.img_url = "assets/img/reservacion/header-reserva-regional.jpg";
     rregional.img_map="assets/img/reservacion/map_regional.jpg";
+    rregional.img_map_full="assets/img/reservacion/map_regional_full_select.jpg";
     //response
     var response:Response<Route[]> = new Response<Route[]>("+RCH.WS12.0",null,[rexpress,rregional]);
     this.get_routes = response;

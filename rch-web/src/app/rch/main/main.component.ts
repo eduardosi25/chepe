@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   }
 
   routes:Route[] = [];
+  public selected_route:Route = null;
   ngOnInit() {
     var r:Response<Route[]> = this.model.getRoutes();
     if(r.success){
@@ -24,6 +25,9 @@ export class MainComponent implements OnInit {
     }else{
       alert(r.status.toString());
     }
+  }
+  public selectRoute(route:Route){
+    this.selected_route = route;
   }
   getRouteWagonTypes(route:Route){
     var wts = [];

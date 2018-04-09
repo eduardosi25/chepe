@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class=" col-sm-12 col-sm-offset-6 margintop50">
-                <a href="#" data-toggle="modal" data-target="#mapa-chepe-express">
+                <a href="#" data-toggle="modal" data-target="#mapa-full" (click)="selectRoute(route)">
                 <img class="img-responsive" src="{{route.img_map}}">
                 </a>
             </div>
@@ -57,30 +57,14 @@
 </div>
 
 <!-- modal map Chepe Express -->  
-<div class="modal mapa fade" id="mapa-chepe-express" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal mapa fade" id="mapa-full" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document" *ngIf="selected_route">
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-                <img src="assets/img/reservacion/map_express_full.jpg" class="img-responsive">
-        </div>
-        
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-<!-- modal map Chepe Regional -->  
-    <div class="modal mapa fade" id="mapa-chepe-regional" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-                <img src="assets/img/reservacion/map_regional_full_select.jpg" class="img-responsive">
+            <img src="{{selected_route.img_map_full}}" class="img-responsive"/>
         </div>
         
         </div><!-- /.modal-content -->
