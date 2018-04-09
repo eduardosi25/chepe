@@ -180,13 +180,13 @@ export class Step5Component implements OnInit {
   fly_max:number = -1;
   public shouldFly():boolean{
     return false;
-      this.fly_max = document.body.clientHeight-screen.height;
+    /*  this.fly_max = document.body.clientHeight-screen.height;
     
     let a = document.scrollingElement || document.body;
     if(a.scrollTop > this.fly_max){
       return false;
     }else{
       return true;
-    }
+    }*/
   }
 }
