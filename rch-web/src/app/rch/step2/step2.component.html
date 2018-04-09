@@ -86,7 +86,7 @@
 
 
             </div>
-            <div class="row table-escala-line" *ngFor="let travel of segment.getTravels()">
+            <div class="row table-escala-line" *ngFor="let travel of getSegmentTravels(segment)">
                     <div class=" col-xs-12 col-sm-4  equalheight">
                             <span class="visible-xs-block" >Fecha </span>
                             {{travel.getDate()}}

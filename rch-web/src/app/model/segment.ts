@@ -39,12 +39,28 @@ export class Segment{
         return this.getTravelsAfter(this.getMyMinDepartureDate());
         
     }
+    public getTravels2(gral_max:Date,segments:Segment[]):Travel[]{
+        let min:Date = this.getMyMinDepartureDate();
+        let max:Date = this.getMyMaxDepartureDate(gral_max,segments);
+        return this.getTravelsAfterAndBefore(min,max);
+    }
     private getTravelsAfter(d:Date):Travel[]{
         var travels:Travel[] = [];
         for(var i=0;i<this.travels.length;i++){
             let t:Travel = this.travels[i];
             let dd:Date = new Date(t.date+" "+t.departure.time);
             if(dd.getTime()>=d.getTime()){
+                travels.push(t);
+            }
+        }
+        return travels;
+    }
+    private getTravelsAfterAndBefore(min:Date,max:Date):Travel[]{
+        var travels:Travel[] = [];
+        for(var i=0;i<this.travels.length;i++){
+            let t:Travel = this.travels[i];
+            let dd:Date = new Date(t.date+" "+t.departure.time);
+            if(dd.getTime()>=min.getTime() && dd.getTime()<=max.getTime()){
                 travels.push(t);
             }
         }
@@ -79,6 +95,25 @@ export class Segment{
                 }
                 return dd;
             }
+        }
+    }
+    public getMyMaxDepartureDate(gral_max:Date,segments:Segment[]):Date{
+        let i:number = segments.indexOf(this);
+        if(i == -1){
+            return gral_max;
+        }else{
+            var max:Date = gral_max;
+            let day:number = 1000*60*60*24;
+            for(var j=i;j<segments.length;j++){
+                let s:Segment = segments[j];
+                if(s.stops_at_dst){
+                    max = new Date(max.getTime()-day);
+                    max.setHours(23);
+                    max.setMinutes(59);
+                    max.setSeconds(59);
+                }
+            }
+            return max;
         }
     }
     public getNextPT(route:Route,query:AvailabilityQuery2):PassengerType{

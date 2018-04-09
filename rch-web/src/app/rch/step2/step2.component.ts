@@ -78,5 +78,12 @@ export class Step2Component implements OnInit {
   public isStop(ts:TrainStop){
     return (this.session.query.stops[ts.id]);
   }
+  public getSegmentTravels(segment:Segment):Travel[]{
+    let gral_max:Date = new Date(this.session.query.end);
+    gral_max.setHours(23);
+    gral_max.setMinutes(59);
+    gral_max.setSeconds(59);
+    return segment.getTravels2(gral_max,this.segments);
+  }
 
 }
