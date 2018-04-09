@@ -44,9 +44,9 @@ export class Step4Component implements OnInit {
     $('.form-control').removeClass('orange');
     for(var i=0;i<this.session.rb.persons.length;i++){
       let p:Person = this.session.rb.persons[i];
-      if(!Step4Component.name_regex.test(p.name)){$('#p_'+i+'_name').addClass('orange');return false;}
-      if(!Step4Component.lastname_regex.test(p.lastname)){$('#p_'+i+'_lastname').addClass('orange');return false;}
-      if(!Step4Component.country_regex.test(p.country)){$('#p_'+i+'_country').addClass('orange');return false;}
+      if(!p.name || !Step4Component.name_regex.test(p.name)){$('#p_'+i+'_name').addClass('orange');return false;}
+      if(!p.lastname || !Step4Component.lastname_regex.test(p.lastname)){$('#p_'+i+'_lastname').addClass('orange');return false;}
+      if(!p.country || !Step4Component.country_regex.test(p.country)){$('#p_'+i+'_country').addClass('orange');return false;}
     }
     
     if(!Step4Component.email_regex.test(this.session.rb.etickets_email)){$('#etickets_email').addClass('orange');return false;}

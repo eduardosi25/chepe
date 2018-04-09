@@ -28,5 +28,6 @@ export class Seat{
             case Seat.taken:return "selected";
             case Seat.booked:return "unavailable";
         }
+        return "unavailable";
     }
 }

@@ -144,7 +144,14 @@ export class Step5Component implements OnInit {
       case Seat.booked:seat.status=Seat.booked;break;
     }
   }
-
+  isFirstNav():boolean{
+    let i:number = this.session.segments.indexOf(this.selected_segment);
+    return (i == 0);
+  }
+  isLastNav():boolean{
+    let i:number = this.session.segments.indexOf(this.selected_segment);
+    return (i==(this.session.segments.length-1));
+  }
   onNext(){
     let i:number = this.session.segments.indexOf(this.selected_segment);
     if(i==(this.session.segments.length-1)){
@@ -168,6 +175,18 @@ export class Step5Component implements OnInit {
       }
     }else{
       this.setSelectedSegment(this.session.segments[i-1]);
+    }
+  }
+  fly_max:number = -1;
+  public shouldFly():boolean{
+    return false;
+      this.fly_max = document.body.clientHeight-screen.height;
+    
+    let a = document.scrollingElement || document.body;
+    if(a.scrollTop > this.fly_max){
+      return false;
+    }else{
+      return true;
     }
   }
 }
