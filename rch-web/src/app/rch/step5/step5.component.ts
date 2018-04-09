@@ -16,6 +16,7 @@ import { Wagon } from '../../model/wagon';
 import { WagonType } from '../../model/wagontype';
 import { Seat } from '../../model/seat';
 import { SeatBooking } from '../../model/seatbooking';
+declare var $: any;
 @Component({
   selector: 'app-step5',
   templateUrl: './step5.component.html',
@@ -102,6 +103,15 @@ export class Step5Component implements OnInit {
   getRemainingSbs():number{
     let remaining:number = this.session.query.getTotalPassengers()-this.selected_segment.sbs.length;
     return remaining;
+  }
+  getAssignedSbs():number{
+    let remaining:number = this.getRemainingSbs();
+    if(remaining > 0){
+      $('assigned-passengers').addClass('orange');
+    }else{
+      $('assigned-passengers').removeClass('orange');
+    }
+    return this.selected_segment.sbs.length;
   }
   onSeatClicked(seat:Seat,wagon:Wagon,segment:Segment){
     
