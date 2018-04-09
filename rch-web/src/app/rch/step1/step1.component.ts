@@ -53,6 +53,30 @@ export class Step1Component implements OnInit {
 
     return tss;
   }
+  public onPickTS(ts:TrainStop){
+    var count:number = 0;
+    for(var i in this.session.query.stops){
+      let x = this.session.query.stops;
+      if(x){
+        count++;
+      }
+    }
+
+    let x = this.session.query.stops[ts.id];
+    if(x){
+      delete this.session.query.stops[ts.id];
+    }else{
+      if(count >= this.route.max_stops){
+        alert("Sólo puedes elegir "+this.route.max_stops+" escalas.");
+        return false;
+      }
+      this.session.query.stops[ts.id] = true;
+    }
+  }
+  public isMiddle(i:number,ts:TrainStop){
+    if(ts == this.session.query.src || ts == this.session.query.dst){return false;}
+    return true;
+  }
   public getSrcs(direction:number=Direction.up):TrainStop[]{
     return this.route.getSrcs(direction);
   }

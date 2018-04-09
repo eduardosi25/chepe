@@ -1,3 +1,18 @@
 input.orange, select.orange, div.orange, span.orange{
 border:2px solid #f18a21;
 }
+.check input[type="checkbox"],.check input[disabled]{
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    border:1px solid gray;
+    appearance: none;
+    background-color:white;
+}
+.check input[type="checkbox"]:checked,.check input[disabled]{
+    border:5px solid #0099ff;
+    user-select: none;
+}
+.check input[disabled]{
+    background-color:#f18a21;
+}
