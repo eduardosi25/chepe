@@ -59,9 +59,21 @@ export class Step1Component implements OnInit {
   public getDsts(direction:number=Direction.up,src:TrainStop=null):TrainStop[]{
     return src == null ? this.getSrcs(direction):this.route.getDsts(direction,src.id);
   }
+  public last_failure_motive:string = null;
+  public a1(id:string,cl:string=null){
+    var a = document.getElementById(id);
+    if(a){
+      a.classList.remove('orange');
+      if(cl != null){
+        a.classList.add(cl);
+      }
+    }
+  }
   public readyToGoNext():boolean{
-    if(this.session.query.dst == null){return false;}
-    if(this.session.query.src == null){return false;}
+    this.last_failure_motive = null;
+    this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');
+    if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
+    if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
     var start_dt:Date = new Date(this.session.query.start);
     var end_dt:Date = new Date(this.session.query.end);
     var now_dt:Date = new Date();
@@ -70,9 +82,9 @@ export class Step1Component implements OnInit {
       if(this.session.query.stops[i]){nstops++;}
     }
     var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
-    if(start_dt.getTime() < now_dt.getTime()){return false;}
-    if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){return false;}
-    if(this.session.query.getTotalPassengers()<=0){return false;}
+    if(start_dt.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('inicio','orange');return false;}
+    if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){this.last_failure_motive = "Elige un fin válido.";this.a1('fin','orange');return false;}
+    if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
     return true;
   }
   public add(pt:PassengerType,d:number){
