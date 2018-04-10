@@ -7,6 +7,7 @@ import {Step3Component} from './rch/step3/step3.component';
 import {Step4Component} from './rch/step4/step4.component';
 import {Step5Component} from './rch/step5/step5.component';
 import {CommitComponent} from './rch/commit/commit.component';
+import {ReceiptComponent} from './rch/receipt/receipt.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: ':route_name/paso3', component: Step3Component },
   { path: ':route_name/paso4', component: Step4Component },
   { path: ':route_name/paso5', component: Step5Component },
-  { path: ':route_name/confirmar', component: CommitComponent }
+  { path: ':route_name/confirmar', component: CommitComponent },
+  { path: ':route_name/reservación-exitosa', component:ReceiptComponent}
 ];
 
 @NgModule({

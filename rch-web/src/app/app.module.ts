@@ -19,6 +19,7 @@ import { ModelDummyService } from './model-dummy.service';
 import { ModelRestService } from './model-rest.service';
 import { SessionService } from './session.service';
 import { FormsModule} from '@angular/forms';
+import { ReceiptComponent } from './rch/receipt/receipt.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { FormsModule} from '@angular/forms';
     Step3Component,
     Step4Component,
     Step5Component,
-    CommitComponent
+    CommitComponent,
+    ReceiptComponent
   ],
   imports: [
     BrowserModule,
