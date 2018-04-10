@@ -12,14 +12,15 @@ import { Response } from './model/response';
 import { AvailabilityQuery } from './model/availabilityquery';
 import { TrainStop } from './model/trainstop';
 import {Observable} from 'rxjs/Rx';
+import {environment} from "../environments/environment";
 
 @Injectable()
 export class ModelService implements IModel {
 
   private impl:IModel;
 
-  constructor(private model_dummy:ModelDummyService) { 
-    this.impl = model_dummy;
+  constructor(private model_dummy:ModelDummyService,private model_rest:ModelRestService) { 
+    this.impl = environment.model == "dummy"?model_dummy:model_rest;
   }
 
   private train_stops={};

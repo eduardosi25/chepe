@@ -11,12 +11,13 @@ import { AvailabilityQuery } from './model/availabilityquery';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import {Observable} from "rxjs/Rx";
 import {FromJSONable} from "./model/FromJSONable";
+import {environment} from "../environments/environment";
 @Injectable()
 export class ModelRestService implements IModel {
 
   constructor(private http:HttpClient) { }
-  private base:string="http://10.10.32.60";
-  private prefix:string="rest/v1";
+  private base:string=environment.restws_base;
+  private prefix:string="v1";
   stdCall<T>(url:string,method:string="get",data0=null,params0={},headers0=null,it:string=null):Observable<Response<T>>{
     let obs:Observable<Response<T>> = new Observable((observer)=>{
       var headers = {
