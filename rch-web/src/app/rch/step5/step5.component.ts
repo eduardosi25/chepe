@@ -56,7 +56,7 @@ export class Step5Component implements OnInit {
       this.selected_segment.sbs = [];
       let j:number = this.session.segments.indexOf(segment);
       if(j > 0){
-        this.prePickSeats(segment,this.session.segments[i]);
+        //this.prePickSeats(segment,this.session.segments[i]);
       }
     }
     window.scrollTo(0, 0)
