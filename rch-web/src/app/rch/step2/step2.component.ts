@@ -52,13 +52,22 @@ export class Step2Component implements OnInit {
         let prev:Segment = segments[i-1];
         segment.previous = prev;
       }
-      segments.push(segment);
+      
     }
     for(var i=0;i<schedule.travels.length;i++){
       let t:Travel = schedule.travels[i];
       let segment:Segment = segments_by_ts[t.id_src];
       if(segment == null){continue;}
       segment.travels.push(t);
+    }
+    var k = 1;
+    for(var j in segments_by_ts){
+      let s:Segment = segments_by_ts[j];
+      if(s.travels.length>0){
+        s.n = k++;
+        s.previous = segments.length>0 ? segments[segments.length-1]:null;
+        segments.push(s);
+      }
     }
     console.log(segments);
     return segments;

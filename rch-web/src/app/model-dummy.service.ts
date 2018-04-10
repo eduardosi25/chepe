@@ -139,12 +139,31 @@ export class ModelDummyService implements IModel {
         break;
       }
     }
+    var minkm:number = 0;
+    var maxkm:number = 999999;
+    for(var i=0;i<route.stops.length;i++){
+      let ts:TrainStop = route.stops[i];
+      if(ts.id == query.id_src){
+        minkm = ts.km;
+      }else if(ts.id == query.id_dst){
+        maxkm = ts.km;
+      }
+    }
+    if(minkm > maxkm){
+      let a = minkm;
+      minkm = maxkm;
+      maxkm = a;
+    }
     var date:Date = new Date(query.start);
     var dateend:Date = new Date(query.end);
     let day:number = 1000*60*60*24;
+
     for(var i=0;i<(route.stops.length-1);i++){
       let ts0:TrainStop = route.stops[i];
       let ts1:TrainStop = route.stops[i+1];
+      if(ts0.km < minkm || ts0.km> maxkm || ts1.km < minkm || ts1.km > maxkm){
+        continue;
+      }
       let direction:number = route.getDirection(ts0,ts1);
       let t:Travel = new Travel(schedule.travels.length+1,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,date.toString());
       let t2:Travel = new Travel(schedule.travels.length+2,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,this.dateAddTime(date,day).toString());
