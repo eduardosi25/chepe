@@ -20,6 +20,11 @@ import { ModelRestService } from './model-rest.service';
 import { SessionService } from './session.service';
 import { FormsModule} from '@angular/forms';
 import { ReceiptComponent } from './rch/receipt/receipt.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -40,9 +45,17 @@ import { ReceiptComponent } from './rch/receipt/receipt.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    RecaptchaModule.forRoot()
   ],
-  providers: [ModelService,ModelDummyService,ModelRestService,SessionService],
+  providers: [ModelService,ModelDummyService,ModelRestService,SessionService,{
+    provide: RECAPTCHA_SETTINGS,
+    useValue: { siteKey: '6LfMUFIUAAAAAFDSA3zsQ7F_1q7Lv5Fb8hxNqZGP' } as RecaptchaSettings,
+  },{
+    provide: RECAPTCHA_LANGUAGE,
+    useValue: 'es', 
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -100,7 +100,7 @@
             <div class="row">
                 
                 <div class="col-sm-18 gap-left">
-                    <img src="assets/img/captcha.jpg" class="img-responsive">
+                        <re-captcha (resolved)="captchaSolved($event)"></re-captcha>
                 </div>
                 
             </div>
@@ -122,7 +122,7 @@
                 </div>
                  
                  <div class=" col-xs-12 col-sm-3 center">
-                    <a class="btn btn-link c-one card" (click)="bookIt()" role="button">
+                    <a class="btn btn-link c-one card" (click)="bookIt()" role="button" *ngIf="is_captcha_solved">
                         <div> <img src="assets/img/icon_card.png"></div>
                         <div>Reservar</div>
                     </a>

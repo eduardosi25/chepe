@@ -18,6 +18,8 @@ import { Seat } from '../../model/seat';
 import { SeatBooking } from '../../model/seatbooking';
 import { Cost } from '../../model/cost';
 import { CurrencyPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-commit',
   templateUrl: './commit.component.html',
@@ -28,10 +30,13 @@ export class CommitComponent implements OnInit {
   constructor(private location:Location, 
     private model:ModelService, 
     public session:SessionService,
-    private router:Router) { }
+    private router:Router,
+    private http: HttpClient) { }
 
     public is_getting_quote:boolean = false;
+    private is_captcha_solved:boolean = false;
   ngOnInit() {
+    this.is_captcha_solved = false;
     this.is_getting_quote = true;
     this.session.rb.status = RouteBooking.editing;
     let response:Response<RouteBooking> = this.model.saveRouteBooking(this.session.rb);
@@ -75,5 +80,13 @@ export class CommitComponent implements OnInit {
       costs2.push(c);
     }
     return costs2;
+  }
+  captchaSolved(captchaResponse: string){
+    this.http.post('https://www.google.com/recaptcha/api/siteverify',{
+      'secret':'6LfMUFIUAAAAADHKkgMSv6WKj8-PuuE6jgGHszpR',
+      'response':captchaResponse
+    }).subscribe(data => {
+      this.is_captcha_solved=true;
+    });
   }
 }
