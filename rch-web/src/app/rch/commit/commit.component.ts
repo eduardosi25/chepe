@@ -75,7 +75,7 @@ export class CommitComponent implements OnInit {
       }
       costs[b].amount+=a;
     }
-
+console.log(costs);
     var costs2:Cost[] = [];
     for(var j in costs){
       let c:Cost = costs[j];

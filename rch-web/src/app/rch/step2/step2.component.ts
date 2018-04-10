@@ -10,6 +10,7 @@ import { Response } from '../../model/response';
 import { TrainStop } from '../../model/trainstop';
 import { Travel } from '../../model/travel';
 import { AvailabilityQuery } from '../../model/availabilityquery';
+import { Direction } from '../../model/direction';
 
 @Component({
   selector: 'app-step2',
@@ -43,16 +44,35 @@ export class Step2Component implements OnInit {
   makeSegments(schedule:Schedule,query:AvailabilityQuery):Segment[]{
     var segments:Segment[] = [];
     var segments_by_ts={};
-    for(var i=0;i<(this.session.route.stops.length-1);i++){
-      let ts0:TrainStop = this.session.route.stops[i];
-      let ts1:TrainStop = this.session.route.stops[i+1];
+
+    var routets:TrainStop[] = [];
+    var direction = Direction.up;
+    var fromkm = 0;var tokm=0;
+    for(var i=0;i<this.session.route.stops.length;i++){
+      let ts:TrainStop = this.session.route.stops[i];
+      if(ts.id == query.id_src){
+        fromkm = ts.km;
+      }
+      if(ts.id == query.id_dst){
+        tokm = ts.km;
+      }
+      routets.push(ts);
+    }
+    if(fromkm > tokm){
+      routets.reverse();
+    }
+
+
+    for(var i=0;i<(routets.length-1);i++){
+      let ts0:TrainStop = routets[i];
+      let ts1:TrainStop = routets[i+1];
       var segment:Segment = new Segment(i+1,ts0,ts1,[],query);
       segments_by_ts[ts0.id] = segment;
       if(i>0){
         let prev:Segment = segments[i-1];
         segment.previous = prev;
       }
-      
+      segments.push(segment);
     }
     for(var i=0;i<schedule.travels.length;i++){
       let t:Travel = schedule.travels[i];
@@ -61,16 +81,19 @@ export class Step2Component implements OnInit {
       segment.travels.push(t);
     }
     var k = 1;
-    for(var j in segments_by_ts){
-      let s:Segment = segments_by_ts[j];
+    var segments2:Segment[] =  [];
+    for(var j=0;j<segments.length;j++){
+      let s:Segment = segments[j];
       if(s.travels.length>0){
         s.n = k++;
-        s.previous = segments.length>0 ? segments[segments.length-1]:null;
-        segments.push(s);
+        s.previous = segments2.length>0 ? segments2[segments2.length-1]:null;
+        segments2.push(s);
       }
     }
+    console.log(routets);
     console.log(segments);
-    return segments;
+    console.log(segments2);
+    return segments2;
   }
   public onTravelSelected(segment:Segment,travel:Travel){
     segment.selected_travel = travel;

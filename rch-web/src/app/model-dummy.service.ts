@@ -140,14 +140,19 @@ export class ModelDummyService implements IModel {
       }
     }
     var minkm:number = 0;
-    var maxkm:number = 999999;
+    var maxkm:number = 999999;var trs:TrainStop[] = [];
     for(var i=0;i<route.stops.length;i++){
       let ts:TrainStop = route.stops[i];
+      trs.push(ts);
       if(ts.id == query.id_src){
         minkm = ts.km;
       }else if(ts.id == query.id_dst){
         maxkm = ts.km;
       }
+    }
+    
+    if(minkm>maxkm){
+      trs.reverse();
     }
     if(minkm > maxkm){
       let a = minkm;
@@ -158,9 +163,11 @@ export class ModelDummyService implements IModel {
     var dateend:Date = new Date(query.end);
     let day:number = 1000*60*60*24;
 
-    for(var i=0;i<(route.stops.length-1);i++){
-      let ts0:TrainStop = route.stops[i];
-      let ts1:TrainStop = route.stops[i+1];
+    
+
+    for(var i=0;i<(trs.length-1);i++){
+      let ts0:TrainStop = trs[i];
+      let ts1:TrainStop = trs[i+1];
       if(ts0.km < minkm || ts0.km> maxkm || ts1.km < minkm || ts1.km > maxkm){
         continue;
       }
@@ -186,7 +193,7 @@ export class ModelDummyService implements IModel {
         date = this.dateAddTime(date,day);
       }
     }
-
+    
     this.get_route_schedule_available[id] = new Response("+RCH.WS13.0",null,schedule);
     return this.get_route_schedule_available[id];
   }
