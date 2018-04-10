@@ -58,7 +58,14 @@ export class ModelRestService implements IModel {
     return this.stdCall<boolean>(this.base+"/"+this.prefix+"/status");
   }
   getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Observable<Response<Schedule>>{
-    return this.stdCall<Schedule>(this.base+"/"+this.prefix+"/routes/"+id+"/schedule/available","get",null,query);
+    return this.stdCall<Schedule>(this.base+"/"+this.prefix+"/routes/"+id+"/schedule/available","get",null,{
+      'passengers':query.passengers,
+      'src':query.id_src,
+      'dst':query.id_dst,
+      'start':query.start,
+      'end':query.end,
+      'stops':JSON.stringify(query.stops)
+    });
   }
   saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     return this.stdCall<RouteBooking>(this.base+"/"+this.prefix+"/routes/booking","post",b,{},null,"put-booking");
