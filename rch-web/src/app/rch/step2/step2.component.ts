@@ -28,15 +28,16 @@ export class Step2Component implements OnInit {
   ngOnInit() {
     this.session.save();
     let query:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
-    let response:Response<Schedule> = this.model.getRouteScheduleAvailable(this.session.route.id,query);
-    if(response.success && response.data.travels.length>0){
-      this.schedule = response.data;
-      this.segments = this.makeSegments(this.schedule,query);
-      this.session.segments = this.segments;
-    }else{
-      alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
-      this.schedule = new Schedule();
-    }
+    this.model.getRouteScheduleAvailable(this.session.route.id,query).subscribe((response:Response<Schedule>)=>{
+      if(response.success && response.data.travels.length>0){
+        this.schedule = response.data;
+        this.segments = this.makeSegments(this.schedule,query);
+        this.session.segments = this.segments;
+      }else{
+        alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
+        this.schedule = new Schedule();
+      }
+    });
   }
   goBack(): void {
     this.location.back();

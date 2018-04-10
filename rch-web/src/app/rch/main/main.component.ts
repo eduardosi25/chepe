@@ -19,12 +19,13 @@ export class MainComponent implements OnInit {
   routes:Route[] = [];
   public selected_route:Route = null;
   ngOnInit() {
-    var r:Response<Route[]> = this.model.getRoutes();
-    if(r.success){
-      this.routes = r.data;
-    }else{
-      alert(r.status.toString());
-    }
+    this.model.getRoutes().subscribe((r:Response<Route[]>)=>{
+      if(r.success){
+        this.routes = r.data;
+      }else{
+        alert(r.status.toString());
+      }
+    });
   }
   public selectRoute(route:Route){
     this.selected_route = route;

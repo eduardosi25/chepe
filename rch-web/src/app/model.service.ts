@@ -11,7 +11,7 @@ import { Travel } from './model/travel';
 import { Response } from './model/response';
 import { AvailabilityQuery } from './model/availabilityquery';
 import { TrainStop } from './model/trainstop';
-
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -23,44 +23,41 @@ export class ModelService implements IModel {
   }
 
   private train_stops={};
-  getRoutes():Response<Route[]>{
-    let response:Response<Route[]> = this.impl.getRoutes();
-    for(var i=0;i<response.data.length;i++){
-      let route:Route = response.data[i];
-      for(var j=0;j<route.stops.length;j++){
-        let ts:TrainStop = route.stops[j];
-        this.train_stops[ts.id] = ts;
+  private route_by_name={};
+  getRoutes():Observable<Response<Route[]>>{
+    let a = this.impl.getRoutes();
+    a.subscribe((response:Response<Route[]>)=>{
+      for(var i=0;i<response.data.length;i++){
+        let route:Route = response.data[i];
+        this.route_by_name[route.name]=route;
+        for(var j=0;j<route.stops.length;j++){
+          let ts:TrainStop = route.stops[j];
+          this.train_stops[ts.id] = ts;
+        }
       }
-    }
-    return response;
+    });
+    return a;
   }
-  createIntent(type:string):Response<Intent>{
+  createIntent(type:string):Observable<Response<Intent>>{
     return this.impl.createIntent(type);
   }
-  createSession():Response<SessionToken>{
+  createSession():Observable<Response<SessionToken>>{
     return this.impl.createSession();
   }
-  getStatus():Response<boolean>{
+  getStatus():Observable<Response<boolean>>{
     return this.impl.getStatus();
   }
-  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Response<Schedule>{
+  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Observable<Response<Schedule>>{
     return this.impl.getRouteScheduleAvailable(id,query);
   }
-  saveRouteBooking(b:RouteBooking):Response<RouteBooking>{
+  saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     return this.impl.saveRouteBooking(b);
   }
-  getTravel(id:number):Response<Travel>{
+  getTravel(id:number):Observable<Response<Travel>>{
     return this.impl.getTravel(id);
   }
   public getRouteByName(route_name:string):Route{
-    let routes:Route[] = this.getRoutes().data;
-    for(var i=0;i<routes.length;i++){
-      let route = routes[i];
-      if(route.name == route_name){
-        return route;
-      }
-    }
-    return null;
+    return this.route_by_name[route_name];
   }
   public getTrainStopById(id:number):TrainStop{
     let ts:TrainStop = this.train_stops[id];

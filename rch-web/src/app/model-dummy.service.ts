@@ -17,6 +17,7 @@ import { AvailabilityQuery } from './model/availabilityquery';
 import { Direction } from './model/direction';
 import { SeatBooking } from './model/seatbooking';
 import { Cost } from './model/cost';
+import {Observable} from "rxjs/Rx";
 
 @Injectable()
 export class ModelDummyService implements IModel {
@@ -40,8 +41,11 @@ export class ModelDummyService implements IModel {
     return r2;
   }
   private get_routes:Response<Route[]> = null;
-  getRoutes():Response<Route[]>{
-    if(this.get_routes != null){return this.get_routes;}
+  getRoutes():Observable<Response<Route[]>>{
+    if(this.get_routes != null){
+      return Observable.of(this.get_routes);
+      //return this.get_routes;
+    }
     //wagon types
     var wt1 = new WagonType(1,"Premium",1);
     var wt2 = new WagonType(2,"Clásico",1);
@@ -96,7 +100,8 @@ export class ModelDummyService implements IModel {
     //response
     var response:Response<Route[]> = new Response<Route[]>("+RCH.WS12.0",null,[rexpress,rregional]);
     this.get_routes = response;
-    return response;
+    return Observable.of(response);
+    //return response;
   }
   wid:number = 1;
   sid:number = 1;
@@ -111,26 +116,26 @@ export class ModelDummyService implements IModel {
     this.wid++;
     return w;
   }
-  createIntent(type:string):Response<Intent>{
+  createIntent(type:string):Observable<Response<Intent>>{
     let intent:Intent = new Intent("xyz");
-    return new Response("+RCH.WS2.0",null,intent);
+    return Observable.of(new Response("+RCH.WS2.0",null,intent));
   }
-  createSession():Response<SessionToken>{
+  createSession():Observable<Response<SessionToken>>{
     let st:SessionToken = new SessionToken("abc");
-    return new Response("+RCH.WS3.0",null,st);
+    return Observable.of(new Response("+RCH.WS3.0",null,st));
   }
-  getStatus():Response<boolean>{
-    return new Response("+RCH.WS1.0",null,true);
+  getStatus():Observable<Response<boolean>>{
+    return Observable.of(new Response("+RCH.WS1.0",null,true));
   }
   private get_route_schedule_available={};
   private travels={};
-  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Response<Schedule>{
+  getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Observable<Response<Schedule>>{
     //if(this.get_route_schedule_available[id]){return this.get_route_schedule_available[id];}
     var schedule:Schedule = new Schedule();
     schedule.query = query;
     schedule.travels = [];
 
-    let routes:Route[] = this.getRoutes().data;
+    let routes:Route[] = this.get_routes.data;//this.getRoutes().data;
     var route:Route = routes[0];
     for(var i=0;i<routes.length;i++){
       let r:Route = routes[i];
@@ -195,7 +200,7 @@ export class ModelDummyService implements IModel {
     }
     
     this.get_route_schedule_available[id] = new Response("+RCH.WS13.0",null,schedule);
-    return this.get_route_schedule_available[id];
+    return Observable.of(this.get_route_schedule_available[id]);
   }
   dateAddTime(d:Date,time:number):Date{
     var tt:number = d.getTime();
@@ -203,7 +208,7 @@ export class ModelDummyService implements IModel {
     let d2:Date = new Date(tt);
     return d2;
   }
-  saveRouteBooking(b:RouteBooking):Response<RouteBooking>{
+  saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     var rb:RouteBooking = b;
     rb.status = Math.floor(Math.random()*5);;
     
@@ -215,7 +220,7 @@ export class ModelDummyService implements IModel {
       sb.cost.amount = Math.random()*1000;
     }
     var response:Response<RouteBooking> = new Response<RouteBooking>("+RCH.WS14.0",null,rb);
-    return response;
+    return Observable.of(response);
   }
   getRandomCurrency():string{
     let r:number = Math.floor(Math.random()*3);
@@ -229,8 +234,8 @@ export class ModelDummyService implements IModel {
       return "CAD";
     }
   }
-  getTravel(id:number):Response<Travel>{
-    if(this.travels[id]){return this.travels[id];}
+  getTravel(id:number):Observable<Response<Travel>>{
+    if(this.travels[id]){return Observable.of(this.travels[id]);}
     return null;
   }
 }

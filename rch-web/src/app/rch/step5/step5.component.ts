@@ -46,20 +46,21 @@ export class Step5Component implements OnInit {
     return (this.session.segments.length == segment.n);
   }
   setSelectedSegment(segment:Segment){
-    let response:Response<Travel> = this.model.getTravel(segment.selected_travel.id);
-    let i:number = segment.travels.indexOf(segment.selected_travel);
-    if(i != -1){
-      segment.travels[i] = response.data;
-    }
-    this.selected_segment = segment;
-    if(this.selected_segment.sbs == null){
-      this.selected_segment.sbs = [];
-      let j:number = this.session.segments.indexOf(segment);
-      if(j > 0){
-        //this.prePickSeats(segment,this.session.segments[i]);
+    this.model.getTravel(segment.selected_travel.id).subscribe((response:Response<Travel>)=>{
+      let i:number = segment.travels.indexOf(segment.selected_travel);
+      if(i != -1){
+        segment.travels[i] = response.data;
       }
-    }
-    window.scrollTo(0, 0)
+      this.selected_segment = segment;
+      if(this.selected_segment.sbs == null){
+        this.selected_segment.sbs = [];
+        let j:number = this.session.segments.indexOf(segment);
+        if(j > 0){
+          //this.prePickSeats(segment,this.session.segments[i]);
+        }
+      }
+      window.scrollTo(0, 0)
+    });
   }
   prePickSeats(segment:Segment,base:Segment){
     for(var i=0;i<base.sbs.length;i++){
