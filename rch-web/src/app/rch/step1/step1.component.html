@@ -101,8 +101,9 @@
                                         <label for="origen">Inicio del viaje</label>
                                         <div class="input-group date" id="inicio">
                                             <input type="text" class="form-control" value="09/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"
-                                                id="step1-start-dt" (click)="showStartDt($event)" />
-                                            <span class="input-group-addon">
+                                                id="step1-start-dt" 
+                                                placeholder="yyyy-mm-dd"  ngbDatepicker #d="ngbDatepicker" />
+                                            <span class="input-group-addon" (click)="d.toggle()">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </span>
                                         </div>
@@ -111,8 +112,9 @@
                                         <label for="origen">Fin del viaje</label>
                                         <div class="input-group date" id="fin">
                                             <input type="text" class="form-control" value="10/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"
-                                                id="step1-end-dt" (click)="showEndDt($event)" />
-                                            <span class="input-group-addon">
+                                                id="step1-end-dt" 
+                                                placeholder="yyyy-mm-dd"  ngbDatepicker #d2="ngbDatepicker"/>
+                                            <span class="input-group-addon" (click)="d2.toggle()">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </span>
                                         </div>

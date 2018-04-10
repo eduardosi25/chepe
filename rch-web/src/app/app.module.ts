@@ -24,6 +24,9 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { HttpClientModule } from '@angular/common/http';
+import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
+import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 
 
 
@@ -47,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    NgbModule.forRoot()
   ],
   providers: [ModelService,ModelDummyService,ModelRestService,SessionService,{
     provide: RECAPTCHA_SETTINGS,
@@ -55,7 +59,7 @@ import { HttpClientModule } from '@angular/common/http';
   },{
     provide: RECAPTCHA_LANGUAGE,
     useValue: 'es', 
-  }],
+  },{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

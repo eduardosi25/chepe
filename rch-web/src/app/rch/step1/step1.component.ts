@@ -9,7 +9,11 @@ import { AvailabilityQuery2 } from '../../model/availabilityquery2';
 import { PassengerType } from '../../model/passengertype';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Direction } from '../../model/direction';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
+
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
@@ -27,8 +31,8 @@ export class Step1Component implements OnInit {
   ngOnInit() {
     if(this.session.query == null){
       this.session.query = new AvailabilityQuery2();
-      this.session.query.start = (new Date((new Date()).getTime()+(1000*60*60*24))).toString();
-      this.session.query.end = (new Date((new Date()).getTime()+(1000*60*60*24))).toString();
+      this.session.query.start = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
+      this.session.query.end = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
     }
     //clean session
     this.session.rb = null;
