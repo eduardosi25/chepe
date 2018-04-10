@@ -82,6 +82,7 @@ export class CommitComponent implements OnInit {
     return costs2;
   }
   captchaSolved(captchaResponse: string){
+    this.is_captcha_solved=true;
     this.http.post('https://www.google.com/recaptcha/api/siteverify',{
       'secret':'6LfMUFIUAAAAADHKkgMSv6WKj8-PuuE6jgGHszpR',
       'response':captchaResponse
