@@ -34,13 +34,12 @@ export class CommitComponent implements OnInit {
     private http: HttpClient) { }
 
     public is_getting_quote:boolean = false;
-    private is_captcha_solved:boolean = false;
+    public is_captcha_solved:boolean = false;
   ngOnInit() {
     this.is_captcha_solved = false;
     this.is_getting_quote = true;
     this.session.rb.status = RouteBooking.editing;
     this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
-      console.log(response);
       this.session.rb = response.data;
       this.is_getting_quote = false;
     });
@@ -81,7 +80,6 @@ export class CommitComponent implements OnInit {
       }
       costs[b].amount+=a;
     }
-console.log(costs);
     var costs2:Cost[] = [];
     for(var j in costs){
       let c:Cost = costs[j];

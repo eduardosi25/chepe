@@ -91,9 +91,6 @@ export class Step2Component implements OnInit {
         segments2.push(s);
       }
     }
-    console.log(routets);
-    console.log(segments);
-    console.log(segments2);
     return segments2;
   }
   public onTravelSelected(segment:Segment,travel:Travel){
