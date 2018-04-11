@@ -157,6 +157,14 @@ export class Step5Component implements OnInit {
     let i:number = this.session.segments.indexOf(this.selected_segment);
     if(i==(this.session.segments.length-1)){
       if(confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")){
+        this.session.rb.seats = [];
+        for(var j=0;j<this.session.segments.length;j++){
+          let s:Segment = this.session.segments[j];
+          for(var k=0;k<s.sbs.length;k++){
+            let sb:SeatBooking = s.sbs[k];
+            this.session.rb.seats.push(sb);
+          }
+        }
         this.router.navigate(["/"+this.session.route.name+"/confirmar"]);
       }
     }else{

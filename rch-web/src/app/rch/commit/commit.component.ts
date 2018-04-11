@@ -40,6 +40,7 @@ export class CommitComponent implements OnInit {
     this.is_getting_quote = true;
     this.session.rb.status = RouteBooking.editing;
     this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
+      console.log(response);
       this.session.rb = response.data;
       this.is_getting_quote = false;
     });
@@ -76,6 +77,7 @@ export class CommitComponent implements OnInit {
       if(!costs[b]){
         costs[b] = new Cost();
         costs[b].currency = b;
+        costs[b].amount = 0;
       }
       costs[b].amount+=a;
     }
