@@ -60,11 +60,12 @@ export class ModelDummyService implements IModel {
     rexpress.max_stops = 3;
     rexpress.name = "Chepe Express";
     rexpress.passenger_types = this.getStdPassengerTypes();
+    let w1=610;let h1=610;
     rexpress.stops = [
-      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1),
-      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1),
-      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
-      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
+      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1,411/w1,44/h1),
+      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1,330/w1,105/h1),
+      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1,148/w1,388/h1),
+      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1,62/w1,530/h1)];
     rexpress.wagons = [
       this.mkWagon(wt1),
       this.mkWagon(wt2),
@@ -83,19 +84,19 @@ export class ModelDummyService implements IModel {
     rregional.name = "Chepe Regional";
     rregional.passenger_types = this.getStdPassengerTypes();
     rregional.stops = [
-      new TrainStop(1,"CHIHUAHUA",[new Departure(1,1,0,"00:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],28.61614,-106.07513,"",268,1),
-      new TrainStop(9,"CUAUHTEMOC",[new Departure(1,1,0,"23:00:00",Direction.down,1),new Departure(1,1,0,"08:00:00",Direction.up,1)],28.40865,-106.86975,"",401,1),
-      new TrainStop(18,"SAN JUANITO",[new Departure(1,1,0,"22:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],27.9704,-107.59967,"",533,1),
-      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1),
-      new TrainStop(21,"PITORREAL",[new Departure(1,1,0,"21:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],27.62885,-107.7686,"",602,1),
-      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1),
-      new TrainStop(23,"P. BARRANCAS",[new Departure(1,1,0,"20:00:00",Direction.down,1),new Departure(1,1,0,"11:00:00",Direction.up,1)],27.50991,-107.84014,"",626,1),
-      new TrainStop(24,"SAN RAFAEL",[new Departure(1,1,0,"19:00:00",Direction.down,1),new Departure(1,1,0,"12:00:00",Direction.up,1)],27.48831,-107.88949,"",636,1),
-      new TrainStop(25,"CUITECO",[new Departure(1,1,0,"18:00:00",Direction.down,1),new Departure(1,1,0,"13:00:00",Direction.up,1)],27.4397,-108.02283,"",662,1),
-      new TrainStop(26,"BAHUICHIVO",[new Departure(1,1,0,"17:00:00",Direction.down,1),new Departure(1,1,0,"14:00:00",Direction.up,1)],27.40669,-108.07234,"",669,1),
-      new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:40:00",Direction.down,1),new Departure(1,1,0,"14:20:00",Direction.up,1)],27.2551,-108.25694,"",708,1),
-      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
-      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
+      new TrainStop(1,"CHIHUAHUA",[new Departure(1,1,0,"00:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],28.61614,-106.07513,"",268,1,502/w1,32/h1),
+      new TrainStop(9,"CUAUHTEMOC",[new Departure(1,1,0,"23:00:00",Direction.down,1),new Departure(1,1,0,"08:00:00",Direction.up,1)],28.40865,-106.86975,"",401,1,370/w1,71/h1),
+      new TrainStop(18,"SAN JUANITO",[new Departure(1,1,0,"22:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],27.9704,-107.59967,"",533,1,316/w1,99/h1),
+      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1,301/w1,150/h1),
+      new TrainStop(21,"PITORREAL",[new Departure(1,1,0,"21:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],27.62885,-107.7686,"",602,1,269/w1,167/h1),
+      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1,240/w1,196/h1),
+      new TrainStop(23,"P. BARRANCAS",[new Departure(1,1,0,"20:00:00",Direction.down,1),new Departure(1,1,0,"11:00:00",Direction.up,1)],27.50991,-107.84014,"",626,1,210/w1,212/h1),
+      new TrainStop(24,"SAN RAFAEL",[new Departure(1,1,0,"19:00:00",Direction.down,1),new Departure(1,1,0,"12:00:00",Direction.up,1)],27.48831,-107.88949,"",636,1,209/w1,218/h1),
+      new TrainStop(25,"CUITECO",[new Departure(1,1,0,"18:00:00",Direction.down,1),new Departure(1,1,0,"13:00:00",Direction.up,1)],27.4397,-108.02283,"",662,1,204/w1,225/h1),
+      new TrainStop(26,"BAHUICHIVO",[new Departure(1,1,0,"17:00:00",Direction.down,1),new Departure(1,1,0,"14:00:00",Direction.up,1)],27.40669,-108.07234,"",669,1,194/w1,232/h1),
+      new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:40:00",Direction.down,1),new Departure(1,1,0,"14:20:00",Direction.up,1)],27.2551,-108.25694,"",708,1,163/w1,278/h1),
+      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1,101/w1,410/h1),
+      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1,37/w1,518/h1)];
     rregional.wagons = [
       this.mkWagon(wt1),
       this.mkWagon(wt2),

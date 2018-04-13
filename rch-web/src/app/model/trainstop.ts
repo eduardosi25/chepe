@@ -1,7 +1,10 @@
 import {Departure} from "./departure";
 import { FromJSONable } from "./FromJSONable";
 export class TrainStop implements FromJSONable{
-    public constructor(id:number=0,name:string="",departures:Departure[]=[],latitude:number=0.0,longitude:number=0.0,details:string="",km:number=0,status:number=1){
+    public constructor(id:number=0,name:string="",departures:Departure[]=[],
+    latitude:number=0.0,longitude:number=0.0,details:string="",
+    km:number=0,status:number=1,
+    px:number=-1,py:number=-1){
         this.id = id;
         this.name = name;
         this.departures = departures;
@@ -10,6 +13,8 @@ export class TrainStop implements FromJSONable{
         this.details = details;
         this.status = status;
         this.km = km;
+        this.px=px;
+        this.py=py;
     }
     parseJSONObject(object:Object){
         Object.assign(this,object);
@@ -27,6 +32,8 @@ export class TrainStop implements FromJSONable{
     details:string;
     status:number = 1;
     km:number = 0;
+    px:number = -1;
+    py:number = -1;
 
     public getDeparture(direction:number):Departure{
         for(var i=0;i<this.departures.length;i++){

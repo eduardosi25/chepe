@@ -126,6 +126,10 @@ export class Step1Component implements OnInit {
     return this.session.query.getPassengersString(this.route);
   }
   public getCoordinates(ts:TrainStop){
+    if(ts.px >= 0 && ts.py >= 0){
+      let styles:string = "left:"+(ts.px*100)+"%;top:"+(ts.py*100)+"%;";
+      return this.sanitizer.bypassSecurityTrustStyle(styles);  
+    }
     let map={
       x0:26.319957,
       y0:-106.379820,

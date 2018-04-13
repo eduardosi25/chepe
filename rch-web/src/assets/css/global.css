@@ -1503,6 +1503,8 @@ table.chepe.four tr:last-child{
 
 .select-map .check{
     position: absolute;
+    margin-left: -10px;
+    margin-top: -10px;
 }
 .select-map .check label{
     display:none;
