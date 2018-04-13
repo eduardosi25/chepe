@@ -5,9 +5,9 @@ import {Direction} from "./direction";
 export class Route {
     public id: number;
     public name: string;
-    public wagons: Wagon[];
-    public passenger_types: PassengerType[];
-    public stops: TrainStop[];
+    public wagons: Wagon[] = [];
+    public passenger_types: PassengerType[] = [];
+    public stops: TrainStop[] = [];
     public status: number = 1;
     public img_url:string = "";
     public img_map:string = "";

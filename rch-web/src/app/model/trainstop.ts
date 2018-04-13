@@ -12,7 +12,7 @@ export class TrainStop{
     }
     id:number;
     name:string;
-    departures:Departure[];
+    departures:Departure[] = [];
     latitude:number;
     longitude:number;
     details:string;

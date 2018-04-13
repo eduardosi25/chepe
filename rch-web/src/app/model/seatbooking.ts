@@ -14,10 +14,10 @@ export class SeatBooking{
         this.passenger_type = pt;
         this.cost = cost;
     }
-    seat:Seat;
-    wagon:Wagon;
-    travel:Travel;
-    route:Route;
-    cost:Cost;
-    passenger_type:PassengerType;
+    seat:Seat = new Seat();
+    wagon:Wagon = new Wagon();
+    travel:Travel = new Travel();
+    route:Route = new Route();
+    cost:Cost = new Cost();
+    passenger_type:PassengerType = new PassengerType();
 }

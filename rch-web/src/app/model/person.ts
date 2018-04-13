@@ -7,5 +7,5 @@ export class Person{
     lastname:string;
     lastname2:string;
     country:string;
-    type:PassengerType;
+    type:PassengerType = new PassengerType();
 }

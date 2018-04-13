@@ -16,9 +16,9 @@ export class Travel{
     id:number;
     id_src:number;
     id_dst:number;
-    departure:Departure;
-    arrival:Arrival;
-    wagons:Wagon[];
+    departure:Departure = new Departure();
+    arrival:Arrival = new Arrival();
+    wagons:Wagon[] = [];
     date:string;
 
     public getWeekday(n:number=-1,full:boolean = true):string{

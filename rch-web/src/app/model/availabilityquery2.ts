@@ -5,8 +5,8 @@ import { Route } from "./Route";
 
 export class AvailabilityQuery2{
     constructor(){}
-    public src:TrainStop = null;
-    public dst:TrainStop = null;
+    public src:TrainStop = new TrainStop();
+    public dst:TrainStop = new TrainStop();
     public start:string = (new Date()).toString();
     public end:string = (new Date()).toString();
     public passengers = [0,1,0,0,0,0,0,0,0];

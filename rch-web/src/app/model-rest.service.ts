@@ -31,19 +31,24 @@ export class ModelRestService implements IModel {
       }
       if(method == "get"){
         this.http.get<Response<T>>(url,{'headers':headers,'params':params0}).subscribe((data)=>{
-          observer.next(data);
+          observer.next(this.assign(data));
         },(error)=>{observer.error(error);});
       }else if(method == "post"){
         this.http.post<Response<T>>(url,data0,{'headers':headers}).subscribe((data)=>{
-          observer.next(data);
+          observer.next(this.assign(data));
         },(error)=>{observer.error(error);});
       }else if(method == "put"){
         this.http.put<Response<T>>(url,data0,{'headers':headers}).subscribe((data)=>{
-          observer.next(data);
+          observer.next(this.assign(data));
         },(error)=>{observer.error(error);});
       }
     });
     return obs;
+  }
+  assign<T>(data):Response<T>{
+    var r:Response<T> = new Response<T>();
+    Object.assign(r,data);
+    return r;
   }
   getRoutes():Observable<Response<Route[]>>{
     return this.stdCall<Route[]>(this.base+"/"+this.prefix+"/routes");

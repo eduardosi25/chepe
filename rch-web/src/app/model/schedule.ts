@@ -1,6 +1,6 @@
 import {AvailabilityQuery} from "./availabilityquery";
 import { Travel } from "./travel";
 export class Schedule{
-    query:AvailabilityQuery;
-    travels:Travel[];
+    query:AvailabilityQuery = new AvailabilityQuery();
+    travels:Travel[] = [];
 }

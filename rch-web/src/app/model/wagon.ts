@@ -10,10 +10,10 @@ export class Wagon {
         this.seats = seats;
     }
     id: number;
-    type: WagonType;
+    type: WagonType = new WagonType();
     name: string;
     status: number = 1;
-    seats: Seat[];
+    seats: Seat[] = [];
 
     private rows:WagonRow[] = null;
     public getRows():WagonRow[]{
