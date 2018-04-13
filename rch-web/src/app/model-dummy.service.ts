@@ -47,13 +47,13 @@ export class ModelDummyService implements IModel {
       //return this.get_routes;
     }
     //wagon types
-    var wt1 = new WagonType(1,"Premium",1);
-    var wt2 = new WagonType(2,"Clásico",1);
-    var wt3 = new WagonType(3,"Bar",1);
+    var wt1 = new WagonType(1,"Ejecutiva",1);
+    var wt2 = new WagonType(2,"Turista",1);
+    /*var wt3 = new WagonType(3,"Bar",1);
     var wt4 = new WagonType(4,"Terraza",1);
     var wt5 = new WagonType(5,"Restaurante Urike",1);
     var wt6 = new WagonType(6,"Turista",1);
-    var wt7 = new WagonType(7,"Cafetería",1);
+    var wt7 = new WagonType(7,"Cafetería",1);*/
     //chepe express
     var rexpress:Route = new Route();
     rexpress.id = 2;
@@ -61,18 +61,18 @@ export class ModelDummyService implements IModel {
     rexpress.name = "Chepe Express";
     rexpress.passenger_types = this.getStdPassengerTypes();
     rexpress.stops = [
-      new TrainStop(20,"CREEL",[new Departure(1,1,0,"15:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],27.75556,-107.6349,"",564,1),
-      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"14:00:00",Direction.down,1),new Departure(1,1,0,"08:00:00",Direction.up,1)],27.53413,-107.82507,"",622,1),
-      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"13:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
-      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"12:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
+      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1),
+      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1),
+      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
+      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
     rexpress.wagons = [
       this.mkWagon(wt1),
+      this.mkWagon(wt2),
       this.mkWagon(wt1),
       this.mkWagon(wt2),
+      this.mkWagon(wt1),
       this.mkWagon(wt2),
-      this.mkWagon(wt3),
-      this.mkWagon(wt4),
-      this.mkWagon(wt5)];
+      this.mkWagon(wt1)];
     rexpress.img_url="assets/img/reservacion/header-reserva-express.jpg";
     rexpress.img_map="assets/img/reservacion/map_express.jpg";
     rexpress.img_map_full="assets/img/reservacion/map_express_full.jpg";
@@ -86,14 +86,24 @@ export class ModelDummyService implements IModel {
       new TrainStop(1,"CHIHUAHUA",[new Departure(1,1,0,"00:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],28.61614,-106.07513,"",268,1),
       new TrainStop(9,"CUAUHTEMOC",[new Departure(1,1,0,"23:00:00",Direction.down,1),new Departure(1,1,0,"08:00:00",Direction.up,1)],28.40865,-106.86975,"",401,1),
       new TrainStop(18,"SAN JUANITO",[new Departure(1,1,0,"22:00:00",Direction.down,1),new Departure(1,1,0,"09:00:00",Direction.up,1)],27.9704,-107.59967,"",533,1),
+      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1),
       new TrainStop(21,"PITORREAL",[new Departure(1,1,0,"21:00:00",Direction.down,1),new Departure(1,1,0,"10:00:00",Direction.up,1)],27.62885,-107.7686,"",602,1),
+      new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1),
       new TrainStop(23,"P. BARRANCAS",[new Departure(1,1,0,"20:00:00",Direction.down,1),new Departure(1,1,0,"11:00:00",Direction.up,1)],27.50991,-107.84014,"",626,1),
       new TrainStop(24,"SAN RAFAEL",[new Departure(1,1,0,"19:00:00",Direction.down,1),new Departure(1,1,0,"12:00:00",Direction.up,1)],27.48831,-107.88949,"",636,1),
       new TrainStop(25,"CUITECO",[new Departure(1,1,0,"18:00:00",Direction.down,1),new Departure(1,1,0,"13:00:00",Direction.up,1)],27.4397,-108.02283,"",662,1),
       new TrainStop(26,"BAHUICHIVO",[new Departure(1,1,0,"17:00:00",Direction.down,1),new Departure(1,1,0,"14:00:00",Direction.up,1)],27.40669,-108.07234,"",669,1),
-      new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],27.2551,-108.25694,"",708,1)];
+      new TrainStop(30,"TEMORIS",[new Departure(1,1,0,"16:40:00",Direction.down,1),new Departure(1,1,0,"14:20:00",Direction.up,1)],27.2551,-108.25694,"",708,1),
+      new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1),
+      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1)];
     rregional.wagons = [
-      this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6),this.mkWagon(wt7),this.mkWagon(wt6)];
+      this.mkWagon(wt1),
+      this.mkWagon(wt2),
+      this.mkWagon(wt1),
+      this.mkWagon(wt2),
+      this.mkWagon(wt1),
+      this.mkWagon(wt2),
+      this.mkWagon(wt1)];
     rregional.img_url = "assets/img/reservacion/header-reserva-regional.jpg";
     rregional.img_map="assets/img/reservacion/map_regional.jpg";
     rregional.img_map_full="assets/img/reservacion/map_regional_full_select.jpg";

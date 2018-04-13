@@ -31,11 +31,12 @@ export class MainComponent implements OnInit {
     this.selected_route = route;
   }
   getRouteWagonTypes(route:Route){
-    var wts = [];
+    var wts = [];var wtnames:number[] = [];
     for(var i=0;i<route.wagons.length;i++){
       let wagon:Wagon = route.wagons[i];
       let wt:WagonType = wagon.type;
-      if(wts.indexOf(wt) == -1){
+      if(wtnames.indexOf(wt.id) == -1){
+        wtnames.push(wt.id);
         wts.push(wt);
       }
     }
