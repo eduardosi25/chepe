@@ -235,7 +235,7 @@ export class ModelDummyService implements IModel {
     }
   }
   getTravel(id:number):Observable<Response<Travel>>{
-    if(this.travels[id]){return Observable.of(this.travels[id]);}
+    if(this.travels[id]){return Observable.of(new Response("+RCH.WS15.0",null,this.travels[id]));}
     return null;
   }
 }

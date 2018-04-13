@@ -28,7 +28,6 @@ export class ModelService implements IModel {
     }else{
       this.impl = model_rest;
     }
-    this.impl = environment.model == "dummy"?model_dummy:model_rest;
   }
 
   private train_stops={};

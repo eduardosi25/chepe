@@ -1,13 +1,23 @@
 import {WagonType} from "./wagontype"
 import {Seat} from "./seat";
 import { WagonRow } from "./wagonrow";
-export class Wagon {
+import { FromJSONable } from "./FromJSONable";
+export class Wagon implements FromJSONable{
     public constructor(id:number=0,type:WagonType=null,name:string="",seats:Seat[]=[],status:number=1){
         this.id = id;
         this.type = type;
         this.name = name;
         this.status = status;
         this.seats = seats;
+    }
+    parseJSONObject(object:Object){
+        Object.assign(this,object);
+        this.type = new WagonType(); this.type.parseJSONObject(object["type"]);
+        this.seats = [];let x:Object[] = object["seats"];
+        for(var i=0;i<x.length;i++){
+            let y:Seat = new Seat();y.parseJSONObject(x[i]);
+            this.seats.push(y);
+        }
     }
     id: number;
     type: WagonType = new WagonType();

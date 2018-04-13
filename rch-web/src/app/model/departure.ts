@@ -1,4 +1,6 @@
-export class Departure{
+import { FromJSONable } from "./FromJSONable";
+
+export class Departure implements FromJSONable{
     public constructor(id:number=0,id_trainstop:number=0,weekday:number=0,time:string="1970-01-01 00:00:01",direction:number = 0,status:number=1){
         this.id = id;
         this.id_trainstop = id_trainstop;
@@ -6,6 +8,9 @@ export class Departure{
         this.time = time;
         this.status = status;
         this.direction = direction;
+    }
+    parseJSONObject(object: Object) {
+        Object.assign(this,object);
     }
     id:number;
     id_trainstop:number;

@@ -1,4 +1,6 @@
-export class WagonType{
+import { FromJSONable } from "./FromJSONable";
+
+export class WagonType implements FromJSONable{
     public constructor(id:number=0,name:string="",status:number=1,
     details:string="",img_banner:string="assets/img/regional-clasico.jpg",
     img_mobile:string = "assets/img/reservacion/vagon-clasico-regional.png",
@@ -10,6 +12,9 @@ export class WagonType{
         this.img_banner = img_banner;
         this.img_mobile = img_mobile;
         this.features = features;
+    }
+    parseJSONObject(object:Object){
+        Object.assign(this,object);
     }
     id:number;
     name:string;

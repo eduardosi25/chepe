@@ -1,6 +1,7 @@
 import { SeatBooking } from "./seatbooking";
+import { FromJSONable } from "./FromJSONable";
 
-export class Seat{
+export class Seat implements FromJSONable{
     //0 = unavailable 1 = available 2= taken 3= booked
     public static unavailable = 0;
     public static available = 1;
@@ -13,6 +14,9 @@ export class Seat{
         this.status = status;
         this.row = row;
         this.col = col;
+    }
+    parseJSONObject(object:Object){
+        Object.assign(this,object);
     }
     id:number;
     id_wagon:number;

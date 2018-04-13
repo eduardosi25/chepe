@@ -5,8 +5,9 @@ import { SeatBooking } from "./seatbooking";
 import { SessionService } from "../session.service";
 import { Segment } from "./segment";
 import { PassengerType } from "./passengertype";
+import { FromJSONable } from "./FromJSONable";
 //0 = inactive 1= editing 2= booked 3= paid 4= cancelled
-export class RouteBooking{
+export class RouteBooking implements FromJSONable{
     public static inactive:number = 0;
     public static editing:number = 1;
     public static booked:number = 2;
@@ -20,7 +21,24 @@ export class RouteBooking{
     public etickets_phone:string="";
     public travels:Travel[]=[];
     public pp:boolean=false;
-
+    parseJSONObject(object:Object){
+        Object.assign(this,object);
+        this.seats = []; var x:Object[] = object["seats"];
+        for(var i=0;i<x.length;i++){
+            let y:SeatBooking = new SeatBooking();y.parseJSONObject(x[i]);
+            this.seats.push(y);
+        }
+        this.persons = []; var x:Object[] = object["persons"];
+        for(var i=0;i<x.length;i++){
+            let y:Person = new Person();y.parseJSONObject(x[i]);
+            this.persons.push(y);
+        }
+        this.travels = []; var x:Object[] = object["travels"];
+        for(var i=0;i<x.length;i++){
+            let y:Travel = new Travel();y.parseJSONObject(x[i]);
+            this.travels.push(y);
+        }
+    }
     public setupFromSession(session:SessionService){
         //setup travels
         for(var i=0;i<session.segments.length;i++){

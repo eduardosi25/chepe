@@ -17,68 +17,75 @@ export class ModelDummyRestService implements IModel{
     return new Observable<Response<Route[]>>((observer)=>{
       this.dummies.getRoutes().subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<Route[]> = new Response<Route[]>();
-        Object.assign(r,x);
+        var r:Response<Route[]> = new Response<Route[]>(null,null,[]);
+        r.parseJSONObject2(x,Route);
+        /*r.data = [];let y:Object[] = x["data"];
+        for(var i=0;i<y.length;i++){
+          let yy:Object = y[i];
+          var xx:Route = new Route();xx.parseJSONObject(yy);
+          r.data.push(xx);
+        }*/
+        console.log(x,r);
         observer.next(r);
       });
     });
   }
   createIntent(type: string): Observable<Response<Intent>> {
     return new Observable<Response<Intent>>((observer)=>{
-      this.dummies.getRoutes().subscribe((data)=>{
+      this.dummies.createIntent(type).subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<Intent> = new Response<Intent>();
-        Object.assign(r,x);
+        var r:Response<Intent> = new Response<Intent>(null,null, new Intent());
+        r.parseJSONObject(x);
         observer.next(r);
       });
     });
   }
   createSession(): Observable<Response<SessionToken>> {
     return new Observable<Response<SessionToken>>((observer)=>{
-      this.dummies.getRoutes().subscribe((data)=>{
+      this.dummies.createSession().subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<SessionToken> = new Response<SessionToken>();
-        Object.assign(r,x);
+        var r:Response<SessionToken> = new Response<SessionToken>(null,null,new SessionToken());
+        r.parseJSONObject(x);
         observer.next(r);
       });
     });
   }
   getStatus(): Observable<Response<boolean>> {
     return new Observable<Response<boolean>>((observer)=>{
-      this.dummies.getRoutes().subscribe((data)=>{
+      this.dummies.getStatus().subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<boolean> = new Response<boolean>();
-        Object.assign(r,x);
+        var r:Response<boolean> = new Response<boolean>(null,null,false);
+        r.parseJSONObject(x);
         observer.next(r);
       });
     });
   }
   getRouteScheduleAvailable(id: number, query: AvailabilityQuery): Observable<Response<Schedule>> {
     return new Observable<Response<Schedule>>((observer)=>{
-      this.dummies.getRoutes().subscribe((data)=>{
+      this.dummies.getRouteScheduleAvailable(id,query).subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<Schedule> = new Response<Schedule>();
-        Object.assign(r,x);
+        var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
+        r.parseJSONObject(x);
         observer.next(r);
       });
     });
   }
   saveRouteBooking(b: RouteBooking): Observable<Response<RouteBooking>> {
     return new Observable<Response<RouteBooking>>((observer)=>{
-      this.dummies.getRoutes().subscribe((data)=>{
+      this.dummies.saveRouteBooking(b).subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<RouteBooking> = new Response<RouteBooking>();
-        Object.assign(r,x);
+        var r:Response<RouteBooking> = new Response<RouteBooking>(null,null,new RouteBooking());
+        r.parseJSONObject(x);
         observer.next(r);
       });
     });
   }
   getTravel(id: number): Observable<Response<Travel>> {
     return new Observable<Response<Travel>>((observer)=>{
-      this.dummies.getRoutes().subscribe((data)=>{
+      this.dummies.getTravel(id).subscribe((data)=>{
         let x = JSON.parse(JSON.stringify(data));
-        var r:Response<Travel> = new Response<Travel>();
-        Object.assign(r,x);
+        var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
+        r.parseJSONObject(x);
         observer.next(r);
       });
     });

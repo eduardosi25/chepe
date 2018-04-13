@@ -2,9 +2,15 @@ import { TrainStop } from "./trainstop";
 import { AvailabilityQuery } from "./availabilityquery";
 import { PassengerType } from "./passengertype";
 import { Route } from "./Route";
+import { FromJSONable } from "./FromJSONable";
 
-export class AvailabilityQuery2{
+export class AvailabilityQuery2 implements FromJSONable{
     constructor(){}
+    parseJSONObject(object: Object) {
+        Object.assign(this,object);
+        this.src = new TrainStop(); this.src.parseJSONObject(object["src"]);
+        this.dst = new TrainStop(); this.dst.parseJSONObject(object["dst"]);
+    }
     public src:TrainStop = new TrainStop();
     public dst:TrainStop = new TrainStop();
     public start:string = (new Date()).toString();

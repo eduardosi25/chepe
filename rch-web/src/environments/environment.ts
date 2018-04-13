@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   restws_base: "http://localhost:4200/rest",
-  model:"dummy"
+  model:"dummy-rest"
 };

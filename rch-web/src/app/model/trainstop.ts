@@ -1,5 +1,6 @@
 import {Departure} from "./departure";
-export class TrainStop{
+import { FromJSONable } from "./FromJSONable";
+export class TrainStop implements FromJSONable{
     public constructor(id:number=0,name:string="",departures:Departure[]=[],latitude:number=0.0,longitude:number=0.0,details:string="",km:number=0,status:number=1){
         this.id = id;
         this.name = name;
@@ -9,6 +10,14 @@ export class TrainStop{
         this.details = details;
         this.status = status;
         this.km = km;
+    }
+    parseJSONObject(object:Object){
+        Object.assign(this,object);
+        this.departures = []; var x:Object[] = object["departures"];
+        for(var i=0;i<x.length;i++){
+            let y:Departure = new Departure();y.parseJSONObject(x[i]);
+            this.departures.push(y);
+        }
     }
     id:number;
     name:string;
