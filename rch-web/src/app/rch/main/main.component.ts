@@ -55,5 +55,8 @@ export class MainComponent implements OnInit {
     }
     return str;
   }
+  isRegional(route:Route):boolean{
+    return (route.name.toLowerCase() == "chepe regional");
+  }
 
 }

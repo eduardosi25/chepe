@@ -26,13 +26,31 @@
                                 <td colspan="2">{{getRouteWagonTypes(route)}}</td>
                             </tr>
                             <tr>
-                                <th class="bg-three border2" scope="row" rowspan="2">SALIDAS<br> DIARIAS</th>
-                                <td class="c-one">{{route.getFirstTrainStop(1).getDeparture(1).time}} hrs <br> {{route.getLastTrainStop(1).getDeparture(1).time}} hrs</td>
-                                <td class="bg-one-light">Sale de {{route.getFirstTrainStop(1).name}} <br> Llega a {{route.getLastTrainStop(1).name}}</td>
+                                <td colspan="3"><span *ngIf="isRegional(route)">HORARIOS Y DÍAS DE SALIDA</span>&nbsp;</td>
                             </tr>
                             <tr>
-                                    <td class="c-one">{{route.getFirstTrainStop(2).getDeparture(2).time}} hrs <br> {{route.getLastTrainStop(2).getDeparture(2).time}} hrs</td>
-                                    <td class="bg-one-light">Sale de {{route.getFirstTrainStop(2).name}} <br> Llega a {{route.getLastTrainStop(2).name}}</td>
+                                <th class="bg-three border2" scope="row" rowspan="2">
+                                    <span *ngIf="isRegional(route)">HORARIO</span>
+                                    <span *ngIf="!isRegional(route)">SALIDAS <br/> DIARIAS</span>
+                                </th>
+                                <td class="c-one">{{route.getFirstTrainStop(1).getDeparture(1).time}} hrs 
+                                    <br> <br/> 
+                                    {{route.getLastTrainStop(1).getDeparture(1).time}} hrs</td>
+                                <td class="bg-one-light">
+                                    Sale de {{route.getFirstTrainStop(1).name}} <br>
+                                    <span *ngIf="isRegional(route)">Lunes, Jueves y Sábado</span>
+                                    <br/>
+                                    Llega a {{route.getLastTrainStop(1).name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="c-one">{{route.getFirstTrainStop(2).getDeparture(2).time}} hrs 
+                                    <br> <br/> 
+                                    {{route.getLastTrainStop(2).getDeparture(2).time}} hrs</td>
+                                <td class="bg-one-light">
+                                    Sale de {{route.getFirstTrainStop(2).name}} <br>
+                                    <span *ngIf="isRegional(route)">Martes, Viernes y Domingo</span>
+                                    <br/>
+                                    Llega a {{route.getLastTrainStop(2).name}}</td>
                             </tr>
                             
                         </tbody>
