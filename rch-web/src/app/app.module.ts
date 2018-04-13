@@ -17,6 +17,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ModelService} from "./model.service";
 import { ModelDummyService } from './model-dummy.service';
 import { ModelRestService } from './model-rest.service';
+import { ModelDummyRestService} from './model-dummy-rest.service';
 import { SessionService } from './session.service';
 import { FormsModule} from '@angular/forms';
 import { ReceiptComponent } from './rch/receipt/receipt.component';
@@ -53,7 +54,7 @@ import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
     RecaptchaModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [ModelService,ModelDummyService,ModelRestService,SessionService,{
+  providers: [ModelService,ModelDummyService,ModelRestService,ModelDummyRestService,SessionService,{
     provide: RECAPTCHA_SETTINGS,
     useValue: { siteKey: '6LfMUFIUAAAAAFDSA3zsQ7F_1q7Lv5Fb8hxNqZGP' } as RecaptchaSettings,
   },{

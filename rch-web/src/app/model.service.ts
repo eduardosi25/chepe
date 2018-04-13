@@ -13,13 +13,21 @@ import { AvailabilityQuery } from './model/availabilityquery';
 import { TrainStop } from './model/trainstop';
 import {Observable} from 'rxjs/Rx';
 import {environment} from "../environments/environment";
+import { ModelDummyRestService } from './model-dummy-rest.service';
 
 @Injectable()
 export class ModelService implements IModel {
 
   private impl:IModel;
 
-  constructor(private model_dummy:ModelDummyService,private model_rest:ModelRestService) { 
+  constructor(private model_dummy:ModelDummyService,private model_rest:ModelRestService,private model_dummy_rest:ModelDummyRestService) { 
+    if(environment.model == "dummy"){
+      this.impl = model_dummy;
+    }else if(environment.model == "dummy-rest"){
+      this.impl = model_dummy_rest;
+    }else{
+      this.impl = model_rest;
+    }
     this.impl = environment.model == "dummy"?model_dummy:model_rest;
   }
 
