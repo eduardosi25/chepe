@@ -9,6 +9,7 @@ export class PassengerType implements FromJSONable{
         this.max = max;
     }
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
     }
     id:number;

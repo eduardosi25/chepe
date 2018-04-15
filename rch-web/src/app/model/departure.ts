@@ -10,6 +10,7 @@ export class Departure implements FromJSONable{
         this.direction = direction;
     }
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
     }
     id:number;

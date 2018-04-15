@@ -7,6 +7,7 @@ export class StatusCode implements FromJSONable{
         return "["+this.code+"] "+this.message;
     }
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
     }
 }

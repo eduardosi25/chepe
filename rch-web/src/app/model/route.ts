@@ -5,21 +5,28 @@ import {Direction} from "./direction";
 import { FromJSONable } from "./FromJSONable";
 export class Route implements FromJSONable{
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
         this.wagons = []; var x:Object[] = object["wagons"];
-        for(var i=0;i<x.length;i++){
-            let y:Wagon = new Wagon();y.parseJSONObject(x[i]);
-            this.wagons.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Wagon = new Wagon();y.parseJSONObject(x[i]);
+                this.wagons.push(y);
+            }
         }
         this.passenger_types = []; var x:Object[] = object["passenger_types"];
-        for(var i=0;i<x.length;i++){
-            let y:PassengerType = new PassengerType();y.parseJSONObject(x[i]);
-            this.passenger_types.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:PassengerType = new PassengerType();y.parseJSONObject(x[i]);
+                this.passenger_types.push(y);
+            }
         }
         this.stops = []; var x:Object[] = object["stops"];
-        for(var i=0;i<x.length;i++){
-            let y:TrainStop = new TrainStop();y.parseJSONObject(x[i]);
-            this.stops.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:TrainStop = new TrainStop();y.parseJSONObject(x[i]);
+                this.stops.push(y);
+            }
         }
     }
     public id: number;

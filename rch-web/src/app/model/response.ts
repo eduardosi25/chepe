@@ -19,6 +19,7 @@ export class Response<T> implements FromJSONable{
         return true;
     }
     parseJSONObject(object: Object) {
+        if(!object){return;}
         let data = object["data"];
         this.success = object["success"];
         this.status = new StatusCode(); this.status.parseJSONObject(object["status"]);
@@ -27,6 +28,7 @@ export class Response<T> implements FromJSONable{
         }
     }
     parseJSONObject2(object:Object,cl:{new()}){
+        if(!object){return;}
         this.success = object["success"];
         this.status = new StatusCode(); this.status.parseJSONObject(object["status"]);
         let x:Object[] = object["data"];

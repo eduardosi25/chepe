@@ -2,6 +2,7 @@ import { FromJSONable } from "./FromJSONable";
 
 export class AvailabilityQuery implements FromJSONable{
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
     }
     id_route:number;

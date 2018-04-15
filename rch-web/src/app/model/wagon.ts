@@ -11,12 +11,15 @@ export class Wagon implements FromJSONable{
         this.seats = seats;
     }
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
         this.type = new WagonType(); this.type.parseJSONObject(object["type"]);
         this.seats = [];let x:Object[] = object["seats"];
-        for(var i=0;i<x.length;i++){
-            let y:Seat = new Seat();y.parseJSONObject(x[i]);
-            this.seats.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Seat = new Seat();y.parseJSONObject(x[i]);
+                this.seats.push(y);
+            }
         }
     }
     id: number;

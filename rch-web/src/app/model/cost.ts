@@ -1,6 +1,7 @@
 import {FromJSONable} from "./FromJSONable";
 export class Cost implements FromJSONable{
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
     }
     id:number;

@@ -7,6 +7,7 @@ import { FromJSONable } from "./FromJSONable";
 export class AvailabilityQuery2 implements FromJSONable{
     constructor(){}
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
         this.src = new TrainStop(); this.src.parseJSONObject(object["src"]);
         this.dst = new TrainStop(); this.dst.parseJSONObject(object["dst"]);

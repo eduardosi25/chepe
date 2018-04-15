@@ -10,6 +10,7 @@ export class Person implements FromJSONable{
     country:string;
     type:PassengerType = new PassengerType();
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
         this.type = new PassengerType();this.type.parseJSONObject(object["type"]);
     }

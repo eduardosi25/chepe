@@ -5,11 +5,14 @@ export class Schedule implements FromJSONable{
     query:AvailabilityQuery = new AvailabilityQuery();
     travels:Travel[] = [];
     parseJSONObject(object:Object){
+        if(!object){return;}
         this.query = new AvailabilityQuery(); this.query.parseJSONObject(object["query"]);
         this.travels = []; var x:Object[] = object["travels"];
-        for(var i=0;i<x.length;i++){
-            let y:Travel = new Travel();y.parseJSONObject(x[i]);
-            this.travels.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Travel = new Travel();y.parseJSONObject(x[i]);
+                this.travels.push(y);
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ export class WagonType implements FromJSONable{
         this.features = features;
     }
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
     }
     id:number;

@@ -16,6 +16,7 @@ export class Seat implements FromJSONable{
         this.col = col;
     }
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
     }
     id:number;

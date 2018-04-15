@@ -17,11 +17,14 @@ export class TrainStop implements FromJSONable{
         this.py=py;
     }
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
         this.departures = []; var x:Object[] = object["departures"];
-        for(var i=0;i<x.length;i++){
-            let y:Departure = new Departure();y.parseJSONObject(x[i]);
-            this.departures.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Departure = new Departure();y.parseJSONObject(x[i]);
+                this.departures.push(y);
+            }
         }
     }
     id:number;

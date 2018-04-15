@@ -22,21 +22,28 @@ export class RouteBooking implements FromJSONable{
     public travels:Travel[]=[];
     public pp:boolean=false;
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
         this.seats = []; var x:Object[] = object["seats"];
-        for(var i=0;i<x.length;i++){
-            let y:SeatBooking = new SeatBooking();y.parseJSONObject(x[i]);
-            this.seats.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:SeatBooking = new SeatBooking();y.parseJSONObject(x[i]);
+                this.seats.push(y);
+            }
         }
         this.persons = []; var x:Object[] = object["persons"];
-        for(var i=0;i<x.length;i++){
-            let y:Person = new Person();y.parseJSONObject(x[i]);
-            this.persons.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Person = new Person();y.parseJSONObject(x[i]);
+                this.persons.push(y);
+            }
         }
         this.travels = []; var x:Object[] = object["travels"];
-        for(var i=0;i<x.length;i++){
-            let y:Travel = new Travel();y.parseJSONObject(x[i]);
-            this.travels.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Travel = new Travel();y.parseJSONObject(x[i]);
+                this.travels.push(y);
+            }
         }
     }
     public setupFromSession(session:SessionService){

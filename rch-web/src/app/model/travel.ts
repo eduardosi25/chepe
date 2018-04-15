@@ -15,13 +15,16 @@ export class Travel implements FromJSONable{
         this.date = dt.getFullYear()+"-"+(dt.getMonth()+1)+"-"+dt.getDate();
     }
     parseJSONObject(object:Object){
+        if(!object){return;}
         Object.assign(this,object);
         this.departure = new Departure(); this.departure.parseJSONObject(object["departure"]);
         this.arrival = new Arrival(); this.arrival.parseJSONObject(object["arrival"]);
         this.wagons = [];let x:Object[] = object["wagons"];
-        for(var i=0;i<x.length;i++){
-            let y:Wagon = new Wagon();y.parseJSONObject(x[i]);
-            this.wagons.push(y);
+        if(x){
+            for(var i=0;i<x.length;i++){
+                let y:Wagon = new Wagon();y.parseJSONObject(x[i]);
+                this.wagons.push(y);
+            }
         }
     }
     id:number;

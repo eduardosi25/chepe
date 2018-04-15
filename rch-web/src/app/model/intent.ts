@@ -9,6 +9,7 @@ export class Intent implements FromJSONable{
         this.updated_at = now.toString();
     }
     parseJSONObject(object: Object) {
+        if(!object){return;}
         Object.assign(this,object);
     }
     token:string;
