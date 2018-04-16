@@ -86,14 +86,20 @@ export class ModelDummyRestService implements IModel{
     });
   }
   getTravel(id: number,id_src:number,id_dst:number): Observable<Response<Travel>> {
+    
     return new Observable<Response<Travel>>((observer)=>{
-      this.dummies.getTravel(id,id_src,id_dst).subscribe((data)=>{
+      this.http.get('/assets/mock/tr1.json').subscribe((data)=>{
+        var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
+        r.parseJSONObject(data);
+        observer.next(r);
+      });
+      /*this.dummies.getTravel(id,id_src,id_dst).subscribe((data)=>{
         let x0 = JSON.stringify(data); 
         let x = JSON.parse(x0);
         var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
         r.parseJSONObject(x);
         observer.next(r);
-      });
+      });*/
     });
   }
   

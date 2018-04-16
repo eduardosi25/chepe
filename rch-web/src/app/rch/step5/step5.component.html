@@ -112,7 +112,7 @@
              </div>
              
             <div class="col-xs-12 col-sm-3 center">
-                <a class="btn btn-link" (click)="onBack()" role="button">
+                <a class="btn btn-link" (click)="onBack()" role="button" *ngIf="selected_segment">
                     <div> <img src="assets/img/icon_left.png"></div>
                     <div *ngIf="isFirstNav()">Regresar</div>
                     <div *ngIf="!isFirstNav()">Regresar a escala {{selected_segment.n - 1}}</div>
@@ -120,7 +120,7 @@
             </div>
              
              <div class=" col-xs-12 col-sm-3 center">
-                <a class="btn btn-link c-one" (click)="onNext()" role="button">
+                <a class="btn btn-link c-one" (click)="onNext()" role="button" *ngIf="selected_segment">
                     <div> <img src="assets/img/icon_right.png"></div>
                     <div *ngIf="isLastNav()">Continuar</div>
                     <div *ngIf="!isLastNav()">Continuar a escala {{selected_segment.n + 1}}</div>

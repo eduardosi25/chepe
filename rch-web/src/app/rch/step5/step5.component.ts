@@ -34,6 +34,7 @@ export class Step5Component implements OnInit {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
       this.router.navigate(["/"]);return;
     }
+    console.log(this.session);
     if(this.session && this.session.segments && this.session.segments.length>0){
       this.setSelectedSegment(this.session.segments[0]);
     }else{
@@ -52,13 +53,22 @@ export class Step5Component implements OnInit {
     return (this.session.segments.length == segment.n);
   }
   setSelectedSegment(segment:Segment){
+    console.log("segment to be selected",segment);
     let travel0:Travel = segment.selected_travel;
+    console.log("travel of the segment to be selected",travel0);
     this.model.getTravel(travel0.id,travel0.id_src,travel0.id_dst).subscribe((response:Response<Travel>)=>{
-      let i:number = segment.travels.indexOf(segment.selected_travel);
-      if(i != -1){
-        segment.travels[i] = response.data;
+      console.log(response);
+      for(var i=0;i<segment.travels.length;i++){
+        let tt:Travel = segment.travels[i];
+        if(tt.id == response.data.id && tt.id_src == response.data.id_src && tt.id_dst == response.data.id_dst){
+          segment.travels[i] = response.data;
+          console.log("travel at",i,"is the response");
+          break;  
+        }
       }
       this.selected_segment = segment;
+      this.selected_segment.selected_travel = response.data;
+      console.log("at this point we select segment",this.selected_segment);
       if(this.selected_segment.sbs == null){
         this.selected_segment.sbs = [];
         let j:number = this.session.segments.indexOf(segment);
