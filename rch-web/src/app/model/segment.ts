@@ -71,7 +71,8 @@ export class Segment{
             var d:Date=null;
             for(var i=0;i<this.travels.length;i++){
                 let t:Travel = this.travels[i];
-                let dd:Date = new Date(t.date+" "+t.departure.time);
+                let tss:string = t.date+" "+t.departure.time;
+                let dd:Date = new Date(tss);
                 if(d == null){
                     d = dd;
                     continue;
