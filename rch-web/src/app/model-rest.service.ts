@@ -67,20 +67,16 @@ export class ModelRestService implements IModel {
     return this.stdCall<boolean>(Boolean,this.base+"/"+this.prefix+"/status");
   }
   getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Observable<Response<Schedule>>{
-    return this.stdCall<Schedule>(Schedule,this.base+"/"+this.prefix+"/routes/"+id+"/schedule/available","get",null,{
-      'passengers':query.passengers,
-      'src':query.id_src,
-      'dst':query.id_dst,
-      'start':query.start,
-      'end':query.end,
-      'stops':JSON.stringify(query.stops)
-    });
+    return this.stdCall<Schedule>(Schedule,this.base+"/"+this.prefix+"/routes/"+id+"/schedule/available","get",null,query.getForParams());
   }
   saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     return this.stdCall<RouteBooking>(RouteBooking,this.base+"/"+this.prefix+"/routes/booking","post",b,{},null,"put-booking");
   }
-  getTravel(id:number):Observable<Response<Travel>>{
-    return this.stdCall<Travel>(Travel,this.base+"/"+this.prefix+"/travel/"+id);
+  getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
+    return this.stdCall<Travel>(Travel,this.base+"/"+this.prefix+"/travel/"+id,"get",null,{
+      'src':id_src,
+      'dst':id_dst
+    });
   }
 
 }

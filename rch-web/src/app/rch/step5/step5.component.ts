@@ -46,7 +46,8 @@ export class Step5Component implements OnInit {
     return (this.session.segments.length == segment.n);
   }
   setSelectedSegment(segment:Segment){
-    this.model.getTravel(segment.selected_travel.id).subscribe((response:Response<Travel>)=>{
+    let travel0:Travel = segment.selected_travel;
+    this.model.getTravel(travel0.id,travel0.id_src,travel0.id_dst).subscribe((response:Response<Travel>)=>{
       let i:number = segment.travels.indexOf(segment.selected_travel);
       if(i != -1){
         segment.travels[i] = response.data;

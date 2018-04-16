@@ -245,7 +245,7 @@ export class ModelDummyService implements IModel {
       return "CAD";
     }
   }
-  getTravel(id:number):Observable<Response<Travel>>{
+  getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
     if(this.travels[id]){return Observable.of(new Response("+RCH.WS15.0",null,this.travels[id]));}
     return null;
   }

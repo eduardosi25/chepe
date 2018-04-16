@@ -12,4 +12,15 @@ export class AvailabilityQuery implements FromJSONable{
     start:string;
     end:string;
     passengers:number=1;
+
+    public getForParams():object{
+        return {
+            'passengers':this.passengers,
+            'src':this.id_src,
+            'dst':this.id_dst,
+            'start':this.start,
+            'end':this.end,
+            'stops':JSON.stringify(this.stops)
+          };
+    }
 }

@@ -61,8 +61,8 @@ export class ModelService implements IModel {
   saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     return this.impl.saveRouteBooking(b);
   }
-  getTravel(id:number):Observable<Response<Travel>>{
-    return this.impl.getTravel(id);
+  getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
+    return this.impl.getTravel(id,id_src,id_dst);
   }
   public getRouteByName(route_name:string):Route{
     return this.route_by_name[route_name];
