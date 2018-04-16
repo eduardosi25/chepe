@@ -108,9 +108,9 @@
                             {{session.query.getPassengersString(session.route)}}
                     </div>
                     <div class="col-xs-24 col-sm-7 equalheight">
-                            <input type="radio" id="travel_{{travel.id}}" name="segment_{{segment.n}}"
+                            <input type="radio" id="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}" name="segment_{{segment.n}}"
                             (click)="onTravelSelected(segment,travel)">
-                            <label for="travel_{{travel.id}}"><span class="check"></span> SELECCIONAR</label>
+                            <label for="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}"><span class="check"></span> SELECCIONAR</label>
                                     
                     </div>
 

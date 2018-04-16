@@ -61,16 +61,16 @@ export class ModelDummyRestService implements IModel{
   getRouteScheduleAvailable(id: number, query: AvailabilityQuery): Observable<Response<Schedule>> {
     return new Observable<Response<Schedule>>((observer)=>{
       this.dummies.getRouteScheduleAvailable(id,query).subscribe((data)=>{
-        /*this.http.get('/assets/mock/av1.json').subscribe((data)=>{
+        this.http.get('/assets/mock/av1.json').subscribe((data)=>{
           var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
           r.parseJSONObject(data);
           observer.next(r);
-        });*/
-        let x0 = JSON.stringify(data); 
+        });
+        /*let x0 = JSON.stringify(data); 
         let x = JSON.parse(x0);
         var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
         r.parseJSONObject(x);
-        observer.next(r);
+        observer.next(r);*/
       });
     });
   }
