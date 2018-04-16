@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
 import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
+import { StatusComponent } from './rch/status/status.component';
 
 
 
@@ -44,7 +45,8 @@ import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
     Step4Component,
     Step5Component,
     CommitComponent,
-    ReceiptComponent
+    ReceiptComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
