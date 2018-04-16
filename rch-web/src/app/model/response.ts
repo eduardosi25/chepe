@@ -23,9 +23,14 @@ export class Response<T> implements FromJSONable{
         let data = object["data"];
         this.success = object["success"];
         this.status = new StatusCode(); this.status.parseJSONObject(object["status"]);
-        if(this.instanceOfA(this.data)){
-            this.data.parseJSONObject(data);
+        if(typeof(data) == 'boolean'){
+            //this['data'] = Boolean(data);
+        }else{
+            if(this.instanceOfA(this.data)){
+                this.data.parseJSONObject(data);
+            }
         }
+        
     }
     parseJSONObject2(object:Object,cl:{new()}){
         if(!object){return;}

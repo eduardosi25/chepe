@@ -18,7 +18,7 @@ export class StatusComponent implements OnInit,OnDestroy {
     .takeWhile(() => this.alive) // only fires when component is alive
     .subscribe(() => {
       this.model.getStatus().subscribe((data)=>{
-        this.status_ok = data.data;
+        this.status_ok = data.success;
       });
     });
   }
