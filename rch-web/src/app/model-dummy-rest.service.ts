@@ -62,7 +62,6 @@ export class ModelDummyRestService implements IModel{
     return new Observable<Response<Schedule>>((observer)=>{
       this.dummies.getRouteScheduleAvailable(id,query).subscribe((data)=>{
         /*this.http.get('/assets/mock/av1.json').subscribe((data)=>{
-          console.log(data);
           var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
           r.parseJSONObject(data);
           observer.next(r);
