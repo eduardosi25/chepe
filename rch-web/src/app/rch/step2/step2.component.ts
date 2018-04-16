@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModelService } from '../../model.service';
 import { SessionService } from '../../session.service';
 import { BrowserModule }  from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Schedule } from '../../model/schedule';
 import { Segment } from '../../model/segment';
@@ -21,11 +21,15 @@ export class Step2Component implements OnInit {
 
   constructor(private location:Location, 
     private model:ModelService, 
-    public session:SessionService) { }
+    public session:SessionService,
+  private router:Router) { }
 
     public schedule:Schedule = null;
     public segments:Segment[] = [];
   ngOnInit() {
+    if(!this.session || !this.session.query || !this.session.route){
+      this.router.navigate(["/"]);return;
+    }
     this.session.save();
     let query:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
     this.model.getRouteScheduleAvailable(this.session.route.id,query).subscribe((response:Response<Schedule>)=>{

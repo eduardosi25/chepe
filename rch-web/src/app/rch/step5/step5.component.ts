@@ -31,8 +31,14 @@ export class Step5Component implements OnInit {
     public selected_segment:Segment = null;
     public selected_wagon_type:WagonType = null;
   ngOnInit() {
+    if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
+      this.router.navigate(["/"]);return;
+    }
     if(this.session && this.session.segments && this.session.segments.length>0){
       this.setSelectedSegment(this.session.segments[0]);
+    }else{
+      alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
+      this.router.navigate(["/"]);
     }
   }
   goBack(): void {

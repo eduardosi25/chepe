@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route } from '../../model/route';
 import { ModelService } from '../../model.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { TrainStop } from '../../model/trainstop';
 import { SessionService } from '../../session.service';
@@ -25,7 +25,8 @@ export class Step1Component implements OnInit {
     private location:Location, 
     private model:ModelService, 
     public session:SessionService,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+  private router:Router) { }
 
   public route:Route = null;
   ngOnInit() {
@@ -39,6 +40,9 @@ export class Step1Component implements OnInit {
     this.session.segments = null;
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);
+    if(!this.route){
+      this.router.navigate(["/"]);return;
+    }
     this.session.route = this.route;
   }
   public getRouteStops():TrainStop[]{

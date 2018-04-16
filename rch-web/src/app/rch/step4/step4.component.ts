@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModelService } from '../../model.service';
 import { SessionService } from '../../session.service';
 import { BrowserModule }  from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Schedule } from '../../model/schedule';
 import { Segment } from '../../model/segment';
@@ -22,9 +22,13 @@ export class Step4Component implements OnInit {
 
   constructor(private location:Location, 
     private model:ModelService, 
-    public session:SessionService) { }
+    public session:SessionService,
+  private router:Router) { }
 
   ngOnInit() {
+    if(!this.session || !this.session.query || !this.session.route || !this.session.segments){
+      this.router.navigate(["/"]);return;
+    }
     if(this.session.rb == null){
       this.session.rb = new RouteBooking();
       this.session.rb.setupFromSession(this.session);
