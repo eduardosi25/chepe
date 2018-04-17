@@ -37,8 +37,9 @@ export class Travel implements FromJSONable{
 
     public getWeekday(n:number=-1,full:boolean = true):string{
         if(n == -1){
-            let d:Date = new Date(this.date);
-            return this.getWeekday(d.getDay());
+            //let d:Date = new Date(this.date);
+            let d:Date = this.mkDate(this.date);
+            return this.getWeekday(d.getDay(),full);
         }
         if(!full){
             switch(n){
@@ -65,7 +66,8 @@ export class Travel implements FromJSONable{
 
     }
     public getDate(with_weekday:boolean = true):string{
-        let d:Date = new Date(this.date);
+        //let d:Date = new Date(this.date);
+        let d:Date = this.mkDate(this.date);
         var s:string = "";
         if(with_weekday){
             s+=this.getWeekday(d.getDay(),false)+" ";
