@@ -80,8 +80,8 @@ export class Travel implements FromJSONable{
         return this.arrival.time;
     }
     public getDuration():string{
-        let dd:Date = new Date(this.date+" "+this.departure.time);
-        let ad:Date = new Date(this.date+" "+this.arrival.time);
+        let dd:Date = this.mkDate(this.date+" "+this.departure.time);
+        let ad:Date = this.mkDate(this.date+" "+this.arrival.time);
         var dif:number = ad.getTime()-dd.getTime();
         let s:number = 1000;
         let m:number = s*60;
@@ -93,5 +93,25 @@ export class Travel implements FromJSONable{
         let minss:string = mins<10 ? '0'+mins:''+mins;
 
         return hrss+":"+minss;
+    }
+    mkDate(s:string):Date{
+        var mps:string[] = s.split(" ");
+        let now:Date = new Date();
+        if(mps.length==1){
+            mps.push("00:00:01");
+        }
+        let dps:string[] = mps[0].split("-");
+        let tps:string[] = mps[1].split(":");
+
+        let year:number  = dps.length>=1?parseInt(dps[0]):now.getFullYear();
+        let month:number  = dps.length>=2?parseInt(dps[1])-1:now.getMonth();
+        let day:number  = dps.length>=3?parseInt(dps[2]):now.getDate();
+
+        let hour:number = tps.length>=1?parseInt(tps[0]):now.getHours();
+        let minute:number = tps.length>=2?parseInt(tps[1]):now.getMinutes();
+        let second:number = tps.length>=3?parseInt(tps[2]):now.getSeconds();
+
+        let dd:Date = new Date(year,month,day,hour,minute,second);
+        return dd;
     }
 }
