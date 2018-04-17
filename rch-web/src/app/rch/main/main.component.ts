@@ -28,7 +28,13 @@ export class MainComponent implements OnInit {
       }else{
         alert(r.status.toString());
       }
+    },(r)=>{
+      this.loading = false;
+      this.routes = [];
     });
+  }
+  public noRoutes(){
+    return (!this.loading && (!this.routes || this.routes.length<=0));
   }
   public selectRoute(route:Route){
     this.selected_route = route;
