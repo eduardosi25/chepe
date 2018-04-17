@@ -13,6 +13,7 @@ import { Travel } from './model/travel';
 import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ModelDummyRestService implements IModel{
+  private use_mocks:boolean = false;
   constructor(private dummies:ModelDummyService,private http:HttpClient) { }
   getRoutes(): Observable<Response<Route[]>> {
     return new Observable<Response<Route[]>>((observer)=>{
@@ -60,18 +61,22 @@ export class ModelDummyRestService implements IModel{
   }
   getRouteScheduleAvailable(id: number, query: AvailabilityQuery): Observable<Response<Schedule>> {
     return new Observable<Response<Schedule>>((observer)=>{
-      this.dummies.getRouteScheduleAvailable(id,query).subscribe((data)=>{
+      if(this.use_mocks){
         this.http.get('/assets/mock/av1.json').subscribe((data)=>{
           var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
           r.parseJSONObject(data);
           observer.next(r);
         });
-        /*let x0 = JSON.stringify(data); 
-        let x = JSON.parse(x0);
-        var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
-        r.parseJSONObject(x);
-        observer.next(r);*/
-      });
+      }else{
+        this.dummies.getRouteScheduleAvailable(id,query).subscribe((data)=>{
+          let x0 = JSON.stringify(data); 
+          let x = JSON.parse(x0);
+          var r:Response<Schedule> = new Response<Schedule>(null,null,new Schedule());
+          r.parseJSONObject(x);
+          observer.next(r);
+        });
+      }
+      
     });
   }
   saveRouteBooking(b: RouteBooking): Observable<Response<RouteBooking>> {
@@ -88,18 +93,22 @@ export class ModelDummyRestService implements IModel{
   getTravel(id: number,id_src:number,id_dst:number): Observable<Response<Travel>> {
     
     return new Observable<Response<Travel>>((observer)=>{
-      this.http.get('/assets/mock/tr1.json').subscribe((data)=>{
-        var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
-        r.parseJSONObject(data);
-        observer.next(r);
-      });
-      /*this.dummies.getTravel(id,id_src,id_dst).subscribe((data)=>{
-        let x0 = JSON.stringify(data); 
-        let x = JSON.parse(x0);
-        var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
-        r.parseJSONObject(x);
-        observer.next(r);
-      });*/
+      if(this.use_mocks){
+        this.http.get('/assets/mock/tr1.json').subscribe((data)=>{
+          var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
+          r.parseJSONObject(data);
+          observer.next(r);
+        });
+      }else{
+        this.dummies.getTravel(id,id_src,id_dst).subscribe((data)=>{
+          let x0 = JSON.stringify(data); 
+          let x = JSON.parse(x0);
+          var r:Response<Travel> = new Response<Travel>(null,null,new Travel());
+          r.parseJSONObject(x);
+          observer.next(r);
+        });
+      }
+      
     });
   }
   
