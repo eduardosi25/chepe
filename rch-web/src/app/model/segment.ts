@@ -27,6 +27,26 @@ export class Segment{
     public selected_wagon:Wagon;
     public sbs:SeatBooking[] = null;
 
+    mkDate(s:string):Date{
+        var mps:string[] = s.split(" ");
+        let now:Date = new Date();
+        if(mps.length==1){
+            mps.push("00:00:01");
+        }
+        let dps:string[] = mps[0].split("-");
+        let tps:string[] = mps[1].split(":");
+
+        let year:number  = dps.length>=1?parseInt(dps[0]):now.getFullYear();
+        let month:number  = dps.length>=2?parseInt(dps[1])-1:now.getMonth();
+        let day:number  = dps.length>=3?parseInt(dps[2]):now.getDate();
+
+        let hour:number = tps.length>=1?parseInt(tps[0]):now.getHours();
+        let minute:number = tps.length>=2?parseInt(tps[1]):now.getMinutes();
+        let second:number = tps.length>=3?parseInt(tps[2]):now.getSeconds();
+
+        let dd:Date = new Date(year,month,day,hour,minute,second);
+        return dd;
+    }
     public getDuration():string{
         if(this.selected_travel == null){
             return "00:00:00";
@@ -48,7 +68,8 @@ export class Segment{
         var travels:Travel[] = [];
         for(var i=0;i<this.travels.length;i++){
             let t:Travel = this.travels[i];
-            let dd:Date = new Date(t.date+" "+t.departure.time);
+            //let dd:Date = new Date(t.date+" "+t.departure.time);
+            let dd:Date = this.mkDate(t.date+" "+t.departure.time);
             if(dd.getTime()>=d.getTime()){
                 travels.push(t);
             }
@@ -59,7 +80,8 @@ export class Segment{
         var travels:Travel[] = [];
         for(var i=0;i<this.travels.length;i++){
             let t:Travel = this.travels[i];
-            let dd:Date = new Date(t.date+" "+t.departure.time);
+            //let dd:Date = new Date(t.date+" "+t.departure.time);
+            let dd:Date = this.mkDate(t.date+" "+t.departure.time);
             if(dd.getTime()>=min.getTime() && dd.getTime()<=max.getTime()){
                 travels.push(t);
             }
@@ -72,7 +94,8 @@ export class Segment{
             for(var i=0;i<this.travels.length;i++){
                 let t:Travel = this.travels[i];
                 let tss:string = t.date+" "+t.departure.time;
-                let dd:Date = new Date(tss);
+                //let dd:Date = new Date(tss);
+                let dd:Date = this.mkDate(tss);
                 if(d == null){
                     d = dd;
                     continue;
@@ -90,7 +113,8 @@ export class Segment{
                 }
                 return dd;
             }else{
-                let dd:Date = new Date(this.previous.selected_travel.date+" "+this.previous.selected_travel.arrival.time);
+                //let dd:Date = new Date(this.previous.selected_travel.date+" "+this.previous.selected_travel.arrival.time);
+                let dd:Date = this.mkDate(this.previous.selected_travel.date+" "+this.previous.selected_travel.arrival.time);
                 if(this.previous.stops_at_dst){
                     dd = new Date(dd.getTime()+(1000*60*60*24));
                 }

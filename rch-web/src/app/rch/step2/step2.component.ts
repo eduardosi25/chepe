@@ -118,7 +118,6 @@ export class Step2Component implements OnInit {
     gral_max.setMinutes(59);
     gral_max.setSeconds(59);
     let ts:Travel[] = segment.getTravels2(gral_max,this.segments);
-    console.log("gralmax",gral_max,"travels",ts);
     if(ts.length==1){
       
       //  segment.selected_travel = ts[0];
