@@ -194,7 +194,7 @@
                             <div class="select-map regional">
                                 <div class="select-map-body">
                                     <img width="900px" src="{{route.img_map}}">
-                                    <div class="check" [style]="getCoordinates(ts)" *ngFor="let ts of getRouteStops(); let i = index">
+                                    <div class="check" [appStopcheck]="ts" *ngFor="let ts of getRouteStops(); let i = index">
                                         <input *ngIf="!isMiddle(i,ts)" disabled type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}">
                                         <input *ngIf="isMiddle(i,ts)" type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}" [ngModelOptions]="{standalone: true}" [ngModel]="session.query.stops[ts.id]" (click)="onPickTS(ts)">
                                         <label for="ts_{{ts.id}}">{{ts.name}}</label>

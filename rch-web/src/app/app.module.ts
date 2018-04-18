@@ -29,6 +29,7 @@ import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-boo
 import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
 import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StatusComponent } from './rch/status/status.component';
+import { StopcheckDirective } from './stopcheck.directive';
 
 
 
@@ -46,7 +47,8 @@ import { StatusComponent } from './rch/status/status.component';
     Step5Component,
     CommitComponent,
     ReceiptComponent,
-    StatusComponent
+    StatusComponent,
+    StopcheckDirective
   ],
   imports: [
     BrowserModule,
