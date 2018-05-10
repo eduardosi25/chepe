@@ -20,7 +20,7 @@ export class AvailabilityQuery2 implements FromJSONable{
     public passengers = [0,1,0,0,0,0,0,0,0];
     public stops = {};
     public round:boolean = false;
-    public class:String = "";
+    public class:string = "";
     /* Sólo obtiene la suma de pasajeros */
     public getTotalPassengers():number{
         var n:number = 0;
@@ -67,6 +67,8 @@ export class AvailabilityQuery2 implements FromJSONable{
         a.passengers = this.getTotalPassengers2();
         a.start = this.start;
         a.stops = [];
+        a.round = this.round;
+        a.class = this.class;
         for(var i in this.stops){
             var n:number = parseInt(i);
             a.stops.push(n);
