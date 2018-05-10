@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { RchComponent } from './rch/rch.component';
 import { Step1Component } from './rch/step1/step1.component';
 import { MainComponent } from './rch/main/main.component';
 import { Step2Component } from './rch/step2/step2.component';
