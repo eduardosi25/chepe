@@ -35,6 +35,17 @@ import { ChepeRegionalComponent } from './info/trains/chepe-regional/chepe-regio
 import { TimesFaresComponent } from './info/trains/times-fares/times-fares.component';
 import { GalleryComponent } from './info/trains/gallery/gallery.component';
 import { UrikeComponent } from './info/trains/urike/urike.component';
+import { DestinationsComponent } from './info/attractions/destinations/destinations.component';
+import { BahuichivoComponent } from './info/attractions/destinations/bahuichivo/bahuichivo.component';
+import { BarrancasCobreComponent } from './info/attractions/destinations/barrancas-cobre/barrancas-cobre.component';
+import { ChihuahuaComponent } from './info/attractions/destinations/chihuahua/chihuahua.component';
+import { NativeCommunitiesComponent } from './info/attractions/native-communities/native-communities.component';
+import { CreelComponent } from './info/attractions/destinations/creel/creel.component';
+import { CuauhtemocComponent } from './info/attractions/destinations/cuauhtemoc/cuauhtemoc.component';
+import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-fuerte.component';
+import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
+import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
+import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
 
 
 
@@ -58,7 +69,18 @@ import { UrikeComponent } from './info/trains/urike/urike.component';
     ChepeRegionalComponent,
     TimesFaresComponent,
     GalleryComponent,
-    UrikeComponent
+    UrikeComponent,
+    DestinationsComponent,
+    BahuichivoComponent,
+    BarrancasCobreComponent,
+    ChihuahuaComponent,
+    NativeCommunitiesComponent,
+    CreelComponent,
+    CuauhtemocComponent,
+    ElFuerteComponent,
+    LosMochisComponent,
+    ChepexploraComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

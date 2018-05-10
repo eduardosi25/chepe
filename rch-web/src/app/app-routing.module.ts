@@ -14,6 +14,17 @@ import { ChepeRegionalComponent } from './info/trains/chepe-regional/chepe-regio
 import { TimesFaresComponent } from './info/trains/times-fares/times-fares.component';
 import { GalleryComponent } from './info/trains/gallery/gallery.component';
 import { UrikeComponent } from './info/trains/urike/urike.component';
+import { DestinationsComponent } from './info/attractions/destinations/destinations.component';
+import { NativeCommunitiesComponent } from './info/attractions/native-communities/native-communities.component';
+import { BahuichivoComponent } from './info/attractions/destinations/bahuichivo/bahuichivo.component';
+import { BarrancasCobreComponent } from './info/attractions/destinations/barrancas-cobre/barrancas-cobre.component';
+import { ChihuahuaComponent } from './info/attractions/destinations/chihuahua/chihuahua.component';
+import { CreelComponent } from './info/attractions/destinations/creel/creel.component';
+import { CuauhtemocComponent } from './info/attractions/destinations/cuauhtemoc/cuauhtemoc.component';
+import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-fuerte.component';
+import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
+import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
+import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -22,6 +33,16 @@ const routes: Routes = [
   { path: 'trenes/horarios-tarifas', component: TimesFaresComponent },
   { path: 'trenes/galeria', component: GalleryComponent },
   { path: 'trenes/urike', component: UrikeComponent },
+  { path: 'atracciones/destinos-y-actividades', component: DestinationsComponent },
+  { path: 'atracciones/comunidades-indigenas', component: NativeCommunitiesComponent },
+  { path: 'atracciones/destinos-y-actividades/bahuichivo', component: BahuichivoComponent },
+  { path: 'atracciones/destinos-y-actividades/barrancas-cobre', component: BarrancasCobreComponent },
+  { path: 'atracciones/destinos-y-actividades/creel', component: CreelComponent },
+  { path: 'atracciones/destinos-y-actividades/cuauhtemoc', component: CuauhtemocComponent },
+  { path: 'atracciones/destinos-y-actividades/el-fuerte', component: ElFuerteComponent },
+  { path: 'atracciones/destinos-y-actividades/los-mochis', component: LosMochisComponent },
+  { path: 'atracciones/chepexplora', component: ChepexploraComponent },
+  { path: 'atracciones/chepexplora/detalles', component: DetailsComponent },
   { path: 'reservaciones', component: MainComponent },
   { path: ':route_name/paso1', component: Step1Component },
   { path: ':route_name/paso2', component: Step2Component },
