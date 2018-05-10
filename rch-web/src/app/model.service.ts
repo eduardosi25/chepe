@@ -14,6 +14,7 @@ import { TrainStop } from './model/trainstop';
 import {Observable} from 'rxjs/Rx';
 import {environment} from "../environments/environment";
 import { ModelDummyRestService } from './model-dummy-rest.service';
+import { PassengerType } from './model/passengertype';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -32,6 +33,7 @@ export class ModelService implements IModel {
 
   private train_stops={};
   private route_by_name={};
+  private passenger_types_by_id=[];
   getRoutes():Observable<Response<Route[]>>{
     let a = this.impl.getRoutes();
     a.subscribe((response:Response<Route[]>)=>{
@@ -41,6 +43,11 @@ export class ModelService implements IModel {
         for(var j=0;j<route.stops.length;j++){
           let ts:TrainStop = route.stops[j];
           this.train_stops[ts.id] = ts;
+        }
+        let pts:PassengerType[] = route.passenger_types;
+        for(var j=0;j<pts.length;j++){
+          let pt:PassengerType = pts[j];
+          this.passenger_types_by_id[j] = pt;
         }
       }
     });
@@ -70,6 +77,12 @@ export class ModelService implements IModel {
   public getTrainStopById(id:number):TrainStop{
     let ts:TrainStop = this.train_stops[id];
     return ts;
+  }
+  public getPassengerTypeById(id:number):PassengerType{
+    if(this.passenger_types_by_id.length>id){
+      return this.passenger_types_by_id[id];
+    }
+    return null;
   }
 
 }

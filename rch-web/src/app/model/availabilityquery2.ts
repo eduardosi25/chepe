@@ -3,9 +3,10 @@ import { AvailabilityQuery } from "./availabilityquery";
 import { PassengerType } from "./passengertype";
 import { Route } from "./Route";
 import { FromJSONable } from "./FromJSONable";
+import { ModelService } from "../model.service";
 
 export class AvailabilityQuery2 implements FromJSONable{
-    constructor(){}
+    constructor(private model:ModelService){}
     parseJSONObject(object: Object) {
         if(!object){return;}
         Object.assign(this,object);
@@ -18,6 +19,9 @@ export class AvailabilityQuery2 implements FromJSONable{
     public end:string = (new Date()).toString();
     public passengers = [0,1,0,0,0,0,0,0,0];
     public stops = {};
+    public round:boolean = false;
+    public class:String = "";
+    /* Sólo obtiene la suma de pasajeros */
     public getTotalPassengers():number{
         var n:number = 0;
 
@@ -27,6 +31,21 @@ export class AvailabilityQuery2 implements FromJSONable{
         }
 
         return n;
+    }
+    /* Obtiene un PassengerType por cada passenger, regresando asi un array con N pasajeros, donde los elementos son PassengerType.
+    Esto en efecto implica que el array devuelto puede tener PassengerTypes repetidos: Uno por cada pasajero de ese tipo */
+    public getTotalPassengers2():PassengerType[]{
+        var r:PassengerType[] = [];
+        for(var i=0;i<this.passengers.length;i++){
+            let n2:number = this.passengers[i];
+            let pt:PassengerType = this.model.getPassengerTypeById(i);
+            if(n2 > 0 && pt != null){
+                for(var j=0;j<n2;j++){
+                    r.push(pt);
+                }
+            }
+        }
+        return r;
     }
     public getPassengersString(route:Route):string{
         var pps:string[] = [];
@@ -45,7 +64,7 @@ export class AvailabilityQuery2 implements FromJSONable{
         a.id_dst = this.dst.id;
         a.id_route = route.id;
         a.id_src = this.src.id;
-        a.passengers = this.getTotalPassengers();
+        a.passengers = this.getTotalPassengers2();
         a.start = this.start;
         a.stops = [];
         for(var i in this.stops){

@@ -1,4 +1,5 @@
 import { FromJSONable } from "./FromJSONable";
+import { PassengerType } from "./passengertype";
 
 export class AvailabilityQuery implements FromJSONable{
     parseJSONObject(object: Object) {
@@ -11,7 +12,10 @@ export class AvailabilityQuery implements FromJSONable{
     stops:number[];
     start:string;
     end:string;
-    passengers:number=1;
+    //passengers:number=1;
+    passengers:PassengerType[]=[];
+    round:boolean=false;
+    class:string;
 
     public getForParams():object{
         return {
@@ -20,7 +24,9 @@ export class AvailabilityQuery implements FromJSONable{
             'dst':this.id_dst,
             'start':this.start,
             'end':this.end,
-            'stops':JSON.stringify(this.stops)
+            'stops':JSON.stringify(this.stops),
+            'round':this.round,
+            'class':this.class
           };
     }
 }
