@@ -1,38 +1,40 @@
-<div class="row">
-        <div class="col-sm-16 no-gutter-left">
-            <div class="row">
-                <div class=" col-sm-20 gap-left">
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-16 no-gutter-left">
+                <div class="row">
+                    <div class=" col-sm-20 gap-left">
                         <h1 class="c-two">{{session.route.name}}</h1>
-                </div>
+                    </div>
 
-                <div class="col-sm-24 no-gutter-left-mobile">
-                    <span class="title-underline c-border-two"></span>
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-two"></span>
+                    </div>
+
                 </div>
-                
+            </div>
+            <div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.rb">
+                <table class="table uppercase">
+                    <tbody>
+                        <tr>
+                            <th class="bg-three border2 c-one" scope="row">Total</th>
+                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-three c-one" scope="row">Pasajeros</th>
+                            <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.rb">
-            <table class="table uppercase">
-                <tbody>
-                    <tr>
-                        <th class="bg-three border2 c-one" scope="row">Total</th>
-                        <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
-                    </tr>
-                    <tr>
-                        <th class="bg-three c-one" scope="row">Pasajeros</th>
-                        <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-20 no-gutter-left">
-            <div class="row">
-                <div class="col-sm-24 gap-left">
-                    <div class="table-responsive">
-                        <table class="table chepe three center">
+
+        <div class="row">
+            <div class="col-sm-20 no-gutter-left">
+                <div class="row">
+                    <div class="col-sm-24 gap-left">
+                        <div class="table-responsive">
+                            <table class="table chepe three center">
 
                                 <thead class="uppercase">
                                     <tr>
@@ -56,14 +58,14 @@
                                         <td class="bg-three">{{segment.selected_travel.getDuration()}}</td>
                                     </tr>
                                 </tbody>
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
-    </div>
-    <br/>
-    <!--<div class="col-sm-24 no-gutter-left">
+        <br/>
+        <!--<div class="col-sm-24 no-gutter-left">
         <div class="row">
             
             <div class=" col-sm-24 gap-left">
@@ -95,39 +97,45 @@
             </div>
         </div>
     </div>-->
-    <div class="row margintop40 marginbot40">
-        <div class="col-sm-24 no-gutter-left">
-            <div class="row">
-                
-                <div class="col-sm-18 gap-left">
+        <div class="row margintop40 marginbot40">
+            <div class="col-sm-24 no-gutter-left">
+                <div class="row">
+
+                    <div class="col-sm-18 gap-left">
                         <re-captcha (resolved)="captchaSolved($event)"></re-captcha>
+                    </div>
+
                 </div>
-                
+            </div>
+        </div>
+        <div class="row margintop20 marginbot40">
+            <div class="col-sm-24 no-gutter-left">
+                <div class="row">
+
+                    <div class="col-sm-15 gap-left">
+                        <img width="120px" src="assets/img/secured-by-rapidssl.png">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 center">
+                        <a class="btn btn-link" (click)="goBack()" role="button">
+                            <div>
+                                <img src="assets/img/icon_left.png">
+                            </div>
+                            <div>Regresar</div>
+                        </a>
+                    </div>
+
+                    <div class=" col-xs-12 col-sm-3 center">
+                        <a class="btn btn-link c-one card" (click)="bookIt()" role="button" *ngIf="is_captcha_solved">
+                            <div>
+                                <img src="assets/img/icon_card.png">
+                            </div>
+                            <div>Reservar</div>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-     <div class="row margintop20 marginbot40">
-         <div class="col-sm-24 no-gutter-left">
-             <div class="row">
-                 
-                 <div class="col-sm-15 gap-left">
-                     <img width="120px" src="assets/img/secured-by-rapidssl.png">
-                 </div>
-                 
-                <div class="col-xs-12 col-sm-3 center">
-                    <a class="btn btn-link" (click)="goBack()" role="button">
-                        <div> <img src="assets/img/icon_left.png"></div>
-                        <div>Regresar</div>
-                    </a>
-                </div>
-                 
-                 <div class=" col-xs-12 col-sm-3 center">
-                    <a class="btn btn-link c-one card" (click)="bookIt()" role="button" *ngIf="is_captcha_solved">
-                        <div> <img src="assets/img/icon_card.png"></div>
-                        <div>Reservar</div>
-                    </a>
-                </div>
-                 
-             </div>
-         </div>
-    </div>
+</div>

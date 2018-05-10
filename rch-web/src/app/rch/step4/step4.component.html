@@ -1,19 +1,21 @@
-<div class="row" >
-                    
-    <div class="col-sm-16 no-gutter-left">
+<div class="main-content">
+    <div class="container">
         <div class="row">
-            <div class=" col-sm-20 gap-left">
-                    <h1 class="c-two">{{session.route.name}}</h1>
-            </div>
 
-            <div class="col-sm-24 no-gutter-left-mobile">
-                <span class="title-underline c-border-two"></span>
+            <div class="col-sm-16 no-gutter-left">
+                <div class="row">
+                    <div class=" col-sm-20 gap-left">
+                        <h1 class="c-two">{{session.route.name}}</h1>
+                    </div>
+
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-two"></span>
+                    </div>
+
+                </div>
             </div>
-            
-        </div>
-    </div>
-    <rch-status></rch-status>
-    <!--<div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right">
+            <rch-status></rch-status>
+            <!--<div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right">
         <table class="table uppercase">
             <tbody>
                 <tr>
@@ -27,169 +29,181 @@
             </tbody>
         </table>
     </div>-->
-</div>
-
-<div class="row">
-    <div class="col-sm-20 no-gutter-left">
-        <div class="row">
-            <div class="col-sm-24 gap-left">
-                <div class="table-responsive">
-                    <table class="table chepe three center">
-
-                        <thead class="uppercase">
-                            <tr>
-                                <th>Escalas</th>
-                                <th>Origen</th>
-                                <th>Fecha</th>
-                                <th>Salida</th>
-                                <th>Destino</th>
-                                <th>Llegada</th>
-                                <th>Duración</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let segment of session.segments">
-                                <td>{{segment.n}}</td>
-                                <td class="bg-two-medium">{{segment.src.name}}</td>
-                                <td>{{segment.selected_travel.getDate()}}</td>
-                                <td class="bg-three">{{segment.selected_travel.departure.time}} hrs</td>
-                                <td class="bg-two-medium">{{segment.dst.name}}</td>
-                                <td>{{segment.selected_travel.arrival.time}} hrs</td>
-                                <td class="bg-three">{{segment.selected_travel.getDuration()}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
-    </div>
-</div>
-<br/>
-<div class="row">                    
-    <div class="col-sm-20 no-gutter-left">
+
         <div class="row">
-            <div class="col-sm-24 gap-left">
-                <h3 class="no-mar-top">Agregar datos de los pasajeros</h3>
-            </div>
-
-            <div class="col-sm-24 no-gutter-left-mobile">
-                <span class="title-underline c-border-one"></span>
-            </div>
-            
-            <div class="col-sm-24 gap-left bg-three">
-                <div *ngFor="let person of session.rb.persons;let i = index;">
-                    <div class="row">
-                        <div class="col-sm-24">
-                            <p class="fontweight700">Tipo de pasajero: <span class="c-one">{{person.type.name}}</span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-2">
-                            <div class="form-group">
-                                <label for="nombre1">Nombre*</label> 
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-md-4">
-                            <div class="form-group">
-                                    <input type="text" class="form-control" [(ngModel)]="person.name" id="p_{{i}}_name">
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-2">
-                            <div class="form-group">
-                                <label for="apellido1">Apellido*</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-md-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="person.lastname" id="p_{{i}}_lastname">
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 padd5">
-                            <div class="form-group">
-                                <label for="pais-residencia2">País de residencia</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-md-4 padd5">
-                            <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            
-        </div>
-    </div>
-</div>
-
-<div class="row">                    
-    <div class="col-sm-20 no-gutter-left">
-        <div class="row">
-            <div class=" col-sm-24 gap-left">
-                <h3>Ingresar datos de contacto para entrega de eTICKETS</h3>
-            </div>
-
-            <div class="col-sm-24 no-gutter-left-mobile">
-                <span class="title-underline c-border-one"></span>
-            </div>
-            
-            <div class="col-sm-24 gap-left bg-three paddingtop20 paddingbot10">
+            <div class="col-sm-20 no-gutter-left">
                 <div class="row">
-                    <div class="col-sm-12 col-md-8">
-                        <div class="form-group">
-                            <label for="correos">Cuenta(s) de correo*</label>
-                            <input type="text" class="form-control" aria-describedby="helpBlock" [(ngModel)]="session.rb.etickets_email" id="etickets_email">
-                            <span id="helpBlock" class="help-block">Ej.: ana@dominio.com, pepe@yahoo.com, etc.</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-8">
-                        <div class="form-group">
-                            <label for="celular">Celular para envío de SMS</label>
-                            <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_phone" id="etickets_phone">
+                    <div class="col-sm-24 gap-left">
+                        <div class="table-responsive">
+                            <table class="table chepe three center">
+
+                                <thead class="uppercase">
+                                    <tr>
+                                        <th>Escalas</th>
+                                        <th>Origen</th>
+                                        <th>Fecha</th>
+                                        <th>Salida</th>
+                                        <th>Destino</th>
+                                        <th>Llegada</th>
+                                        <th>Duración</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let segment of session.segments">
+                                        <td>{{segment.n}}</td>
+                                        <td class="bg-two-medium">{{segment.src.name}}</td>
+                                        <td>{{segment.selected_travel.getDate()}}</td>
+                                        <td class="bg-three">{{segment.selected_travel.departure.time}} hrs</td>
+                                        <td class="bg-two-medium">{{segment.dst.name}}</td>
+                                        <td>{{segment.selected_travel.arrival.time}} hrs</td>
+                                        <td class="bg-three">{{segment.selected_travel.getDuration()}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-sm-20 no-gutter-left">
+                <div class="row">
+                    <div class="col-sm-24 gap-left">
+                        <h3 class="no-mar-top">Agregar datos de los pasajeros</h3>
+                    </div>
+
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-one"></span>
+                    </div>
+
+                    <div class="col-sm-24 gap-left bg-three">
+                        <div *ngFor="let person of session.rb.persons;let i = index;">
+                            <div class="row">
+                                <div class="col-sm-24">
+                                    <p class="fontweight700">Tipo de pasajero:
+                                        <span class="c-one">{{person.type.name}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 col-md-2">
+                                    <div class="form-group">
+                                        <label for="nombre1">Nombre*</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="person.name" id="p_{{i}}_name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <div class="form-group">
+                                        <label for="apellido1">Apellido*</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="person.lastname" id="p_{{i}}_lastname">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 padd5">
+                                    <div class="form-group">
+                                        <label for="pais-residencia2">País de residencia</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 col-md-4 padd5">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-20 no-gutter-left">
+                <div class="row">
+                    <div class=" col-sm-24 gap-left">
+                        <h3>Ingresar datos de contacto para entrega de eTICKETS</h3>
+                    </div>
+
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-one"></span>
+                    </div>
+
+                    <div class="col-sm-24 gap-left bg-three paddingtop20 paddingbot10">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    <label for="correos">Cuenta(s) de correo*</label>
+                                    <input type="text" class="form-control" aria-describedby="helpBlock" [(ngModel)]="session.rb.etickets_email" id="etickets_email">
+                                    <span id="helpBlock" class="help-block">Ej.: ana@dominio.com, pepe@yahoo.com, etc.</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    <label for="celular">Celular para envío de SMS</label>
+                                    <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_phone" id="etickets_phone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row margintop20 marginbot40">
+            <div class="col-sm-24 no-gutter-left">
+                <div class="row">
+
+                    <div class="col-sm-14 gap-left marginbot20">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="pp" [(ngModel)]="session.rb.pp">
+                                <span class="c-two">AVISO DE PRIVACIDAD
+                                    <br>Acepto las
+                                    <a class="underline c-two" href="terminos-condiciones.html">políticas de servicio</a> y
+                                    <a class="underline c-two" href="aviso-legal.html">aviso de privacidad</a>
+                                </span>
+                            </label>
+                        </div>
+                        <small>* Campos obligatorios.</small>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 center">
+                        <a class="btn btn-link" (click)="goBack()" role="button">
+                            <div>
+                                <img src="assets/img/icon_left.png">
+                            </div>
+                            <div>Regresar</div>
+                        </a>
+                    </div>
+
+                    <div class=" col-xs-12 col-sm-3 center">
+                        <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso5" *ngIf="readyToGoNext()" role="button">
+                            <div>
+                                <img src="assets/img/icon_right.png">
+                            </div>
+                            <div>Continuar</div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-
-
-
-
-
-
- <div class="row margintop20 marginbot40">
-     <div class="col-sm-24 no-gutter-left">
-         <div class="row">
-             
-             <div class="col-sm-14 gap-left marginbot20">
-                <div class="checkbox">
-                    <label>
-                      <input type="checkbox" id="pp" 
-                      [(ngModel)]="session.rb.pp"> <span class="c-two">AVISO DE PRIVACIDAD <br>Acepto las <a class="underline c-two" href="terminos-condiciones.html">políticas de servicio</a> y <a class="underline c-two" href="aviso-legal.html">aviso de privacidad</a></span>
-                    </label>
-                </div>
-                 <small>* Campos obligatorios.</small>
-             </div>
-             
-            <div class="col-xs-12 col-sm-3 center">
-                <a class="btn btn-link" (click)="goBack()" role="button">
-                    <div> <img src="assets/img/icon_left.png"></div>
-                    <div>Regresar</div>
-                </a>
-            </div>
-             
-             <div class=" col-xs-12 col-sm-3 center">
-                <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso5" *ngIf="readyToGoNext()" role="button">
-                    <div> <img src="assets/img/icon_right.png"></div>
-                    <div>Continuar</div>
-                </a>
-            </div>
-             
-         </div>
-     </div>
 </div>

@@ -1,27 +1,29 @@
-<div class="row">
-
-    <div class="col-sm-10 no-gutter-left">
+<div class="main-content">
+    <div class="container">
         <div class="row">
-            <div class=" col-sm-20 gap-left">
-                <h1 class="c-two">{{session.route.name}}</h1>
-            </div>
 
-            <div class="col-sm-24 no-gutter-left-mobile">
-                <span class="title-underline c-border-two"></span>
-            </div>
+            <div class="col-sm-10 no-gutter-left">
+                <div class="row">
+                    <div class=" col-sm-20 gap-left">
+                        <h1 class="c-two">{{session.route.name}}</h1>
+                    </div>
 
-        </div>
-    </div>
-    <rch-status></rch-status>
-    <div class="col-sm-5 center margintop10">
-        <a class="btn btn-link search" routerLink="/{{session.route.name}}/paso1" role="button">
-            <div>
-                <img src="assets/img/icon_search.png">
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-two"></span>
+                    </div>
+
+                </div>
             </div>
-            <div>Cambiar de búsqueda</div>
-        </a>
-    </div>
-    <!--<div class="col-sm-7 col-sm-offset-2 col-md-offset-3 col-md-6 paddingtop20 no-gutter-right">
+            <rch-status></rch-status>
+            <div class="col-sm-5 center margintop10">
+                <a class="btn btn-link search" routerLink="/{{session.route.name}}/paso1" role="button">
+                    <div>
+                        <img src="assets/img/icon_search.png">
+                    </div>
+                    <div>Cambiar de búsqueda</div>
+                </a>
+            </div>
+            <!--<div class="col-sm-7 col-sm-offset-2 col-md-offset-3 col-md-6 paddingtop20 no-gutter-right">
         <table class="table uppercase">
 
                 <tbody>
@@ -36,102 +38,102 @@
                 </tbody>
         </table>
     </div>-->
-</div>
-<div class="row">
-
-    <div class="col-md-24 no-gutter-left">
+        </div>
         <div class="row">
 
-            <div class="col-sm-24  gap-left">
-                <h3 class=" c-two">Resultados de búsqueda</h3>
-                <p>Elige una opción en cada uno de los tramos del tren encontrados para formar tu itinerario final.</p>
+            <div class="col-md-24 no-gutter-left">
+                <div class="row">
+
+                    <div class="col-sm-24  gap-left">
+                        <h3 class=" c-two">Resultados de búsqueda</h3>
+                        <p>Elige una opción en cada uno de los tramos del tren encontrados para formar tu itinerario final.</p>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
-    </div>
+        <div class="row marginbot20" *ngFor="let segment of segments">
 
-</div>
+            <div class="col-md-24 no-gutter-left ">
 
-<div class="row marginbot20" *ngFor="let segment of segments">
+                <div class="row">
 
-    <div class="col-md-24 no-gutter-left ">
+                    <div class="col-md-24 gap-left">
+                        <h3 class="uppercase c-two">
+                            <span class="fontweight700">Escala {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}
+                            <span *ngIf="isStop(segment.dst)">(Baja del tren)</span>
+                        </h3>
+                    </div>
+                    <div class="col-sm-18 no-gutter-left-mobile">
+                        <span class="title-underline-full c-border-two"></span>
+                    </div>
+                </div>
 
-        <div class="row">
+                <div class="table-escala regional gap-left">
 
-            <div class="col-md-24 gap-left">
-                <h3 class="uppercase c-two">
-                    <span class="fontweight700">Escala {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}
-                    <span *ngIf="isStop(segment.dst)">(Baja del tren)</span>
-                </h3>
-            </div>
-            <div class="col-sm-18 no-gutter-left-mobile">
-                <span class="title-underline-full c-border-two"></span>
+                    <div class="row hidden-xs table-escala-header">
+
+                        <div class="col-sm-4 equalheight">
+                            Fecha
+                        </div>
+                        <div class="col-sm-3 equalheight">
+                            Salida
+                        </div>
+                        <div class="col-sm-3 equalheight">
+                            Llegada
+                        </div>
+                        <div class="col-sm-3 equalheight">
+                            Duración
+                        </div>
+                        <div class="col-sm-4  equalheight">
+                            Pasajeros {{session.query.getTotalPassengers(session.route)}}
+                        </div>
+
+
+                    </div>
+                    <div class="row table-escala-line" *ngFor="let travel of getSegmentTravels(segment)">
+                        <div class=" col-xs-12 col-sm-4  equalheight">
+                            <span class="visible-xs-block">Fecha </span>
+                            {{travel.getDate()}}
+                        </div>
+                        <div class="col-xs-12 col-sm-3 equalheight">
+                            <span class="visible-xs-block">Salida </span>
+                            {{travel.getDepartureTime()}}
+                        </div>
+                        <div class="col-xs-12 col-sm-3 equalheight">
+                            <span class="visible-xs-block">LLEGADA </span>
+                            {{travel.getArrivalTime()}}
+                        </div>
+                        <div class="col-xs-12 col-sm-3 equalheight">
+                            <span class="visible-xs-block">Duración </span>
+                            {{travel.getDuration()}}
+                        </div>
+                        <div class="col-xs-24 col-sm-4  equalheight">
+                            <span class="visible-xs-block">Pasajeros {{session.query.getTotalPassengers(session.route)}} </span>
+                            {{session.query.getPassengersString(session.route)}}
+                        </div>
+                        <div class="col-xs-24 col-sm-7 equalheight">
+                            <input type="radio" id="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}" name="segment_{{segment.n}}" (click)="onTravelSelected(segment,travel)">
+                            <label for="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}">
+                                <span class="check"></span> SELECCIONAR</label>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
             </div>
         </div>
-
-        <div class="table-escala regional gap-left">
-
-            <div class="row hidden-xs table-escala-header">
-
-                <div class="col-sm-4 equalheight">
-                    Fecha
-                </div>
-                <div class="col-sm-3 equalheight">
-                    Salida
-                </div>
-                <div class="col-sm-3 equalheight">
-                    Llegada
-                </div>
-                <div class="col-sm-3 equalheight">
-                    Duración
-                </div>
-                <div class="col-sm-4  equalheight">
-                    Pasajeros {{session.query.getTotalPassengers(session.route)}}
-                </div>
-
-
-            </div>
-            <div class="row table-escala-line" *ngFor="let travel of getSegmentTravels(segment)">
-                <div class=" col-xs-12 col-sm-4  equalheight">
-                    <span class="visible-xs-block">Fecha </span>
-                    {{travel.getDate()}}
-                </div>
-                <div class="col-xs-12 col-sm-3 equalheight">
-                    <span class="visible-xs-block">Salida </span>
-                    {{travel.getDepartureTime()}}
-                </div>
-                <div class="col-xs-12 col-sm-3 equalheight">
-                    <span class="visible-xs-block">LLEGADA </span>
-                    {{travel.getArrivalTime()}}
-                </div>
-                <div class="col-xs-12 col-sm-3 equalheight">
-                    <span class="visible-xs-block">Duración </span>
-                    {{travel.getDuration()}}
-                </div>
-                <div class="col-xs-24 col-sm-4  equalheight">
-                    <span class="visible-xs-block">Pasajeros {{session.query.getTotalPassengers(session.route)}} </span>
-                    {{session.query.getPassengersString(session.route)}}
-                </div>
-                <div class="col-xs-24 col-sm-7 equalheight">
-                    <input type="radio" id="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}" name="segment_{{segment.n}}" (click)="onTravelSelected(segment,travel)">
-                    <label for="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}">
-                        <span class="check"></span> SELECCIONAR</label>
-
-                </div>
-
-            </div>
-
-
-
+        <div class="row marginbot20" *ngIf="!schedule">
+            <i class="fa fa-spinner"></i> Cargando opciones de viaje, espere un poco por favor.
         </div>
-    </div>
-</div>
-<div class="row marginbot20" *ngIf="!schedule">
-    <i class="fa fa-spinner"></i> Cargando opciones de viaje, espere un poco por favor.
-</div>
 
-<!-- <div class="row margintop40 marginbot40">
+        <!-- <div class="row margintop40 marginbot40">
      <div class="col-sm-24 no-gutter-left">
          <div class="row">
              
@@ -143,28 +145,30 @@
      </div>
 </div>-->
 
-<div class="row margintop40 marginbot40">
-    <div class="col-sm-24 no-gutter-left">
-        <div class="row">
+        <div class="row margintop40 marginbot40">
+            <div class="col-sm-24 no-gutter-left">
+                <div class="row">
 
-            <div class="col-xs-12 col-sm-3 col-sm-offset-15 center margintop30">
-                <a class="btn btn-link" (click)="goBack()" role="button">
-                    <div>
-                        <img src="assets/img/icon_left.png">
+                    <div class="col-xs-12 col-sm-3 col-sm-offset-15 center margintop30">
+                        <a class="btn btn-link" (click)="goBack()" role="button">
+                            <div>
+                                <img src="assets/img/icon_left.png">
+                            </div>
+                            <div>Regresar</div>
+                        </a>
                     </div>
-                    <div>Regresar</div>
-                </a>
-            </div>
 
-            <div class=" col-xs-12 col-sm-3 center margintop30">
-                <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso3" *ngIf="canContinueNext()" role="button">
-                    <div>
-                        <img src="assets/img/icon_right.png">
+                    <div class=" col-xs-12 col-sm-3 center margintop30">
+                        <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso3" *ngIf="canContinueNext()" role="button">
+                            <div>
+                                <img src="assets/img/icon_right.png">
+                            </div>
+                            <div>Continuar</div>
+                        </a>
                     </div>
-                    <div>Continuar</div>
-                </a>
-            </div>
 
+                </div>
+            </div>
         </div>
     </div>
 </div>

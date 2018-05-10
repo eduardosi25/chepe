@@ -1,25 +1,29 @@
-<div class="row" >
-                    
-    <div class="col-sm-10 no-gutter-left">
+<div class="main-content">
+    <div class="container">
         <div class="row">
-            <div class=" col-sm-20 gap-left">
-                <h1 class="c-two">{{session.route.name}}</h1>
-            </div>
 
-            <div class="col-sm-24 no-gutter-left-mobile">
-                <span class="title-underline c-border-two"></span>
+            <div class="col-sm-10 no-gutter-left">
+                <div class="row">
+                    <div class=" col-sm-20 gap-left">
+                        <h1 class="c-two">{{session.route.name}}</h1>
+                    </div>
+
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-two"></span>
+                    </div>
+
+                </div>
             </div>
-            
-        </div>
-    </div>
-    <rch-status></rch-status>
-    <div class="col-sm-5 center margintop10">
-        <a class="btn btn-link search" routerLink="/{{session.route.name}}/paso1" role="button">
-            <div><img src="assets/img/icon_search.png"></div>
-            <div>Cambiar de búsqueda</div>
-        </a>
-    </div>
-    <!--<div class="col-sm-7 col-sm-offset-2 col-md-offset-3 col-md-6 paddingtop20 no-gutter-right">
+            <rch-status></rch-status>
+            <div class="col-sm-5 center margintop10">
+                <a class="btn btn-link search" routerLink="/{{session.route.name}}/paso1" role="button">
+                    <div>
+                        <img src="assets/img/icon_search.png">
+                    </div>
+                    <div>Cambiar de búsqueda</div>
+                </a>
+            </div>
+            <!--<div class="col-sm-7 col-sm-offset-2 col-md-offset-3 col-md-6 paddingtop20 no-gutter-right">
         <table class="table uppercase">
             <tbody>
                 <tr>
@@ -33,189 +37,201 @@
             </tbody>
         </table>
     </div>-->
-</div>
-<div class="row" >
-    
-    <div class="col-md-24 no-gutter-left">
-        <div class="row"> 
-            <div class="col-sm-24  gap-left">
-                <h3 class="c-two subti">Itinerario final</h3>
-                <p class="psub">Te presentamos tu itinerario de viaje. Si estás de acuerdo haz click en continuar.</p>
-            </div>
         </div>
-    </div>
-    
-</div>
+        <div class="row">
 
-
-<div class="final-summary regional margintop30">
-    
-    <!-- escala -->
-    <div *ngFor="let segment of session.segments">
-        <div class="row final-summary-header">
-            <div class=" col-xs-3 col-sm-8 col-md-8 timeline equalheight">
-                <h3 class="c-two hidden-xs orange-t" *ngIf="isFirstSegment(segment)">Origen</h3>
-            </div>
-            <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
-                <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t" *ngIf="isFirstSegment(segment)">Origen</h3>
-                <h3 class="c-two orange-t">{{segment.src.name}}</h3>
-                <div class="hidden-sm hidden-md hidden-lg">
-                    <h4>ESCALA {{segment.n}}</h4>
-                    DURACIÓN<br>{{segment.getDuration()}} hrs
-                </div>
-                <div class="dot">
-                </div>
-            </div>
-        </div>
-            
-        <div class="row final-summary-body">
-            <div class="col-xs-3 col-sm-8 col-md-8 timeline equalheight">
-                <div class="hidden-xs">
-                    <h4>ESCALA {{segment.n}}</h4>
-                    DURACIÓN<br>{{segment.getDuration()}} hrs
-                </div>
-            </div>
-            <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
+            <div class="col-md-24 no-gutter-left">
                 <div class="row">
-                    <div class="col-sm-24 col-md-14">
-                        <table class="table chepe" *ngIf="segment.previous">
-                            <tbody>
-                                <tr>
-                                    <th class="bg-two-medium border2 fontup" colspan="2">LLEGADA</th>
-                                </tr>
-                                <tr>
-                                    <th class="bg-three ">{{segment.previous.selected_travel.getWeekday()}}</th>
-                                    <td class="">{{segment.previous.selected_travel.getDate(false)}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="bg-three " >HORA</th>
-                                    <td class="">{{segment.previous.selected_travel.arrival.time}} hrs</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table chepe">
-                            <tbody>
-                                <tr>
-                                    <th class="bg-two-medium border2 fontup" colspan="2">SALIDA</th>
-                                </tr>
-                                <tr>
-                                    <th class="bg-three ">{{segment.selected_travel.getWeekday()}}</th>
-                                    <td class="">{{segment.selected_travel.getDate(false)}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="bg-three " >HORA</th>
-                                    <td class="">{{segment.selected_travel.departure.time}} hrs</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
+                    <div class="col-sm-24  gap-left">
+                        <h3 class="c-two subti">Itinerario final</h3>
+                        <p class="psub">Te presentamos tu itinerario de viaje. Si estás de acuerdo haz click en continuar.</p>
                     </div>
-                    
                 </div>
             </div>
+
         </div>
-        <div class="row final-summary-header" *ngIf="isLastSegment(segment)">
-            <div class=" col-xs-3 col-sm-8 col-md-8 timeline equalheight">
-                <h3 class="c-two hidden-xs orange-t">Destino</h3>
-            </div>
-            <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
-                <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t">Destino</h3>
-                <h3 class="c-two orange-t">{{segment.dst.name}}</h3>
-                <!--<div class="hidden-sm hidden-md hidden-lg">
+
+
+        <div class="final-summary regional margintop30">
+
+            <!-- escala -->
+            <div *ngFor="let segment of session.segments">
+                <div class="row final-summary-header">
+                    <div class=" col-xs-3 col-sm-8 col-md-8 timeline equalheight">
+                        <h3 class="c-two hidden-xs orange-t" *ngIf="isFirstSegment(segment)">Origen</h3>
+                    </div>
+                    <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
+                        <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t" *ngIf="isFirstSegment(segment)">Origen</h3>
+                        <h3 class="c-two orange-t">{{segment.src.name}}</h3>
+                        <div class="hidden-sm hidden-md hidden-lg">
+                            <h4>ESCALA {{segment.n}}</h4>
+                            DURACIÓN
+                            <br>{{segment.getDuration()}} hrs
+                        </div>
+                        <div class="dot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row final-summary-body">
+                    <div class="col-xs-3 col-sm-8 col-md-8 timeline equalheight">
+                        <div class="hidden-xs">
+                            <h4>ESCALA {{segment.n}}</h4>
+                            DURACIÓN
+                            <br>{{segment.getDuration()}} hrs
+                        </div>
+                    </div>
+                    <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
+                        <div class="row">
+                            <div class="col-sm-24 col-md-14">
+                                <table class="table chepe" *ngIf="segment.previous">
+                                    <tbody>
+                                        <tr>
+                                            <th class="bg-two-medium border2 fontup" colspan="2">LLEGADA</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three ">{{segment.previous.selected_travel.getWeekday()}}</th>
+                                            <td class="">{{segment.previous.selected_travel.getDate(false)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three ">HORA</th>
+                                            <td class="">{{segment.previous.selected_travel.arrival.time}} hrs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table chepe">
+                                    <tbody>
+                                        <tr>
+                                            <th class="bg-two-medium border2 fontup" colspan="2">SALIDA</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three ">{{segment.selected_travel.getWeekday()}}</th>
+                                            <td class="">{{segment.selected_travel.getDate(false)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three ">HORA</th>
+                                            <td class="">{{segment.selected_travel.departure.time}} hrs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row final-summary-header" *ngIf="isLastSegment(segment)">
+                    <div class=" col-xs-3 col-sm-8 col-md-8 timeline equalheight">
+                        <h3 class="c-two hidden-xs orange-t">Destino</h3>
+                    </div>
+                    <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
+                        <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t">Destino</h3>
+                        <h3 class="c-two orange-t">{{segment.dst.name}}</h3>
+                        <!--<div class="hidden-sm hidden-md hidden-lg">
                     <h4>ESCALA {{segment.n}}</h4>
                     DURACIÓN<br>{{segment.getDuration()}} hrs
                 </div>-->
-                <div class="dot">
+                        <div class="dot">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row final-summary-body"  *ngIf="isLastSegment(segment)">
-            <div class="col-xs-3 col-sm-8 col-md-8 timeline equalheight">
-                <!--<div class="hidden-xs">
+                <div class="row final-summary-body" *ngIf="isLastSegment(segment)">
+                    <div class="col-xs-3 col-sm-8 col-md-8 timeline equalheight">
+                        <!--<div class="hidden-xs">
                     <h4>ESCALA {{segment.n}}</h4>
                     DURACIÓN<br>{{segment.getDuration()}} hrs
                 </div>-->
-            </div>
-            <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
-                <div class="row">
-                    <div class="col-sm-24 col-md-14">
-                        <table class="table chepe">
-                            <tbody>
-                                <tr>
-                                    <th class="bg-two-medium border2 fontup" colspan="2">LLEGADA</th>
-                                </tr>
-                                <tr>
-                                    <th class="bg-three ">{{segment.selected_travel.getWeekday()}}</th>
-                                    <td class="">{{segment.selected_travel.getDate(false)}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="bg-three " >HORA</th>
-                                    <td class="">{{segment.selected_travel.arrival.time}} hrs</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
-                    
+                    <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
+                        <div class="row">
+                            <div class="col-sm-24 col-md-14">
+                                <table class="table chepe">
+                                    <tbody>
+                                        <tr>
+                                            <th class="bg-two-medium border2 fontup" colspan="2">LLEGADA</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three ">{{segment.selected_travel.getWeekday()}}</th>
+                                            <td class="">{{segment.selected_travel.getDate(false)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three ">HORA</th>
+                                            <td class="">{{segment.selected_travel.arrival.time}} hrs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- end escala -->
+
+        </div>
+
+
+
+        <div class="row margintop40 marginbot40">
+            <div class="col-sm-24 no-gutter-left">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-3 col-sm-offset-15 center margintop30">
+                        <a class="btn btn-link" (click)="goBack()" role="button">
+                            <div>
+                                <img src="assets/img/icon_left.png">
+                            </div>
+                            <div>Regresar</div>
+                        </a>
+                    </div>
+
+                    <div class=" col-xs-12 col-sm-3 center margintop30">
+                        <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso4" role="button">
+                            <div>
+                                <img src="assets/img/icon_right.png">
+                            </div>
+                            <div>Continuar</div>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-    
-    
-    <!-- end escala -->
-    
-</div>
 
-
-
- <div class="row margintop40 marginbot40">
-     <div class="col-sm-24 no-gutter-left">
-         <div class="row">
-             
-            <div class="col-xs-12 col-sm-3 col-sm-offset-15 center margintop30">
-                <a class="btn btn-link" (click)="goBack()" role="button">
-                    <div> <img src="assets/img/icon_left.png"></div>
-                    <div>Regresar</div>
-                </a>
+        <!-- modal menu 1 -->
+        <div id="menu1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Menú 1</h4>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                </div>
             </div>
-             
-             <div class=" col-xs-12 col-sm-3 center margintop30">
-                <a class="btn btn-link c-one" routerLink="/{{session.route.name}}/paso4" role="button">
-                    <div> <img src="assets/img/icon_right.png"></div>
-                    <div>Continuar</div>
-                </a>
-            </div>
-             
-         </div>
-     </div>
-</div>
+        </div>
 
-<!-- modal menu 1 -->  
-<div id="menu1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Menú 1</h4>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        </div>
-    </div>
-</div>
-    
-    <!-- modal menu 2 -->  
-<div id="menu2" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Menú 2</h4>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
+        <!-- modal menu 2 -->
+        <div id="menu2" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Menú 2</h4>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

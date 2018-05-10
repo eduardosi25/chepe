@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd,ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +7,8 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  constructor(private router: Router) { }
+  constructor(private activated_route:ActivatedRoute,
+              private router: Router) { }
   ngOnInit() {
     
     this.router.events.subscribe((evt) => {
@@ -16,5 +17,8 @@ export class AppComponent implements OnInit {
           }
           window.scrollTo(0, 0)
       });
+  }
+  public showMainFooter():boolean{
+    return (this.router.url != "");
   }
 }
