@@ -30,6 +30,7 @@ import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
 import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StatusComponent } from './rch/status/status.component';
 import { StopcheckDirective } from './stopcheck.directive';
+import { IndexComponent } from './info/index/index.component';
 
 
 
@@ -48,7 +49,8 @@ import { StopcheckDirective } from './stopcheck.directive';
     CommitComponent,
     ReceiptComponent,
     StatusComponent,
-    StopcheckDirective
+    StopcheckDirective,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
