@@ -30,6 +30,7 @@ import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StatusComponent } from './rch/status/status.component';
 import { StopcheckDirective } from './stopcheck.directive';
 import { IndexComponent } from './info/index/index.component';
+import { ChepeExpressComponent } from './info/trains/chepe-express/chepe-express.component';
 
 
 
@@ -48,7 +49,8 @@ import { IndexComponent } from './info/index/index.component';
     ReceiptComponent,
     StatusComponent,
     StopcheckDirective,
-    IndexComponent
+    IndexComponent,
+    ChepeExpressComponent
   ],
   imports: [
     BrowserModule,

@@ -105,10 +105,33 @@
         </div>
       </div>
     </div>
-    <footer></footer>
   </div>
 
 
+
+  <!-- modal altitudes -->
+  <div class="modal mapa fade" id="modal-altitudes" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="assets/img/chepe_altitudes.png" class="img-responsive">
+        </div>
+
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+
+
+  <footer></footer>
 </div>
 <!-- Modal video -->
 <div id="modal-video" class="modal-video">
@@ -117,7 +140,7 @@
     <i class="fa fa-times" aria-hidden="true"></i>
   </a>
 
-  <video poster="assets/img/bg/mountain-water.jpg" id="bgvid" playsinline autoplay muted loop>
+  <video poster="assets/img/bg/mountain-water.jpg" id="bgvid" playsinline autoplay muted>
     <source src="assets/img/chepe.webm" type="video/webm">
     <source src="assets/img/chepe.mp4" type="video/mp4">
   </video>
@@ -129,25 +152,7 @@
     </div>
   </div>
 </div>
-<!-- modal altitudes -->
-<div class="modal mapa fade" id="modal-altitudes" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="assets/img/chepe_altitudes.png" class="img-responsive">
-      </div>
 
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
 <div class="modal galeria promocion" tabindex="-1" role="dialog" id="modal-promocion">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -172,13 +177,24 @@
       $('#modal-promocion').modal();
 
       $('.modal-video').click(function () {
-        $(this).remove(); 
+        $(this).remove();
 
         $("body").css("overflow", "auto");
       });
 
       $('#modal-promocion').click(function () {
         $(this).modal('hide');
+      });
+
+      // Video player load
+      $(document).ready(function () {
+        $('#bgvid').on('ended', function () {
+          console.log('Video has ended!');
+          $("#modal-video").fadeOut();
+        });
+        $("#modal-promocion").click(function () {
+          $("body").addClass("active");
+        });
       });
     });
   })(jQuery);
