@@ -38,7 +38,6 @@ import { IndexComponent } from './info/index/index.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    RchComponent,
     Step1Component,
     MainComponent,
     Step2Component,
