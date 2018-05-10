@@ -9,9 +9,11 @@ import {Step5Component} from './rch/step5/step5.component';
 import {CommitComponent} from './rch/commit/commit.component';
 import {ReceiptComponent} from './rch/receipt/receipt.component';
 import {IndexComponent} from './info/index/index.component';
+import { ChepeExpressComponent } from './info/trains/chepe-express/chepe-express.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
+  { path: 'trenes/chepe-express', component: ChepeExpressComponent },
   { path: 'reservaciones', component: MainComponent },
   { path: ':route_name/paso1', component: Step1Component },
   { path: ':route_name/paso2', component: Step2Component },
