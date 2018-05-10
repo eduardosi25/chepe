@@ -31,6 +31,7 @@ import { StatusComponent } from './rch/status/status.component';
 import { StopcheckDirective } from './stopcheck.directive';
 import { IndexComponent } from './info/index/index.component';
 import { ChepeExpressComponent } from './info/trains/chepe-express/chepe-express.component';
+import { ChepeRegionalComponent } from './info/trains/chepe-regional/chepe-regional.component';
 
 
 
@@ -50,7 +51,8 @@ import { ChepeExpressComponent } from './info/trains/chepe-express/chepe-express
     StatusComponent,
     StopcheckDirective,
     IndexComponent,
-    ChepeExpressComponent
+    ChepeExpressComponent,
+    ChepeRegionalComponent
   ],
   imports: [
     BrowserModule,
