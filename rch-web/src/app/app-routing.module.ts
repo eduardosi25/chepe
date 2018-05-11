@@ -38,11 +38,7 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'trenes/chepe-express', component: ChepeExpressComponent },
-  { path: 'trenes/chepe-regional', component: ChepeRegionalComponent },
-  { path: 'trenes/horarios-tarifas', component: TimesFaresComponent },
-  { path: 'trenes/galeria', component: GalleryComponent },
-  { path: 'trenes/restaurante-urike', component: UrikeComponent },
+  { path: 'trenes', loadChildren:'app/trains.module#TrainsModule' },
   { path: 'atracciones/destinos-y-actividades', component: DestinationsComponent },
   { path: 'atracciones/comunidades-indigenas', component: NativeCommunitiesComponent },
   { path: 'atracciones/destinos-y-actividades/bahuichivo', component: BahuichivoComponent },

@@ -30,11 +30,6 @@ import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StatusComponent } from './rch/status/status.component';
 import { StopcheckDirective } from './stopcheck.directive';
 import { IndexComponent } from './info/index/index.component';
-import { ChepeExpressComponent } from './info/trains/chepe-express/chepe-express.component';
-import { ChepeRegionalComponent } from './info/trains/chepe-regional/chepe-regional.component';
-import { TimesFaresComponent } from './info/trains/times-fares/times-fares.component';
-import { GalleryComponent } from './info/trains/gallery/gallery.component';
-import { UrikeComponent } from './info/trains/urike/urike.component';
 import { DestinationsComponent } from './info/attractions/destinations/destinations.component';
 import { BahuichivoComponent } from './info/attractions/destinations/bahuichivo/bahuichivo.component';
 import { BarrancasCobreComponent } from './info/attractions/destinations/barrancas-cobre/barrancas-cobre.component';
@@ -75,11 +70,6 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
     StatusComponent,
     StopcheckDirective,
     IndexComponent,
-    ChepeExpressComponent,
-    ChepeRegionalComponent,
-    TimesFaresComponent,
-    GalleryComponent,
-    UrikeComponent,
     DestinationsComponent,
     BahuichivoComponent,
     BarrancasCobreComponent,
