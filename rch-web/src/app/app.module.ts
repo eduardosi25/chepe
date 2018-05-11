@@ -55,6 +55,7 @@ import { ScheduleComponent } from './info/guide/schedule/schedule.component';
 import { ScheduleRegionalComponent } from './info/guide/schedule-regional/schedule-regional.component';
 import { FaqComponent } from './info/faq/faq.component';
 import { TestimonialsComponent } from './info/guide/testimonials/testimonials.component';
+import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component';
 
 
 
@@ -98,7 +99,8 @@ import { TestimonialsComponent } from './info/guide/testimonials/testimonials.co
     ScheduleComponent,
     ScheduleRegionalComponent,
     FaqComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    LegalAdviceComponent
   ],
   imports: [
     BrowserModule,

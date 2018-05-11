@@ -34,6 +34,7 @@ import { ScheduleComponent } from './info/guide/schedule/schedule.component';
 import { ScheduleRegionalComponent } from './info/guide/schedule-regional/schedule-regional.component';
 import { TestimonialsComponent } from './info/guide/testimonials/testimonials.component';
 import { FaqComponent } from './info/faq/faq.component';
+import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -68,7 +69,8 @@ const routes: Routes = [
   { path: 'preguntas-frecuentes', component: FaqComponent },
   { path: 'contacto', component: ContactComponent },
   { path: 'historia', component: HistoryComponent },
-  { path: 'terminos-y-condiciones', component: TacComponent }
+  { path: 'terminos-y-condiciones', component: TacComponent },
+  { path: 'aviso-legal', component: LegalAdviceComponent }
 ];
 
 @NgModule({
