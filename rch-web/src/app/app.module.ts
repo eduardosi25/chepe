@@ -49,6 +49,12 @@ import { DetailsComponent } from './info/attractions/chepexplora/details/details
 import { ContactComponent } from './info/contact/contact.component';
 import { HistoryComponent } from './info/history/history.component';
 import { TacComponent } from './info/tac/tac.component';
+import { AirlinesComponent } from './info/guide/airlines/airlines.component';
+import { HotelsComponent } from './info/guide/hotels/hotels.component';
+import { ScheduleComponent } from './info/guide/schedule/schedule.component';
+import { ScheduleRegionalComponent } from './info/guide/schedule-regional/schedule-regional.component';
+import { FaqComponent } from './info/faq/faq.component';
+import { TestimonialsComponent } from './info/guide/testimonials/testimonials.component';
 
 
 
@@ -86,7 +92,13 @@ import { TacComponent } from './info/tac/tac.component';
     DetailsComponent,
     ContactComponent,
     HistoryComponent,
-    TacComponent
+    TacComponent,
+    AirlinesComponent,
+    HotelsComponent,
+    ScheduleComponent,
+    ScheduleRegionalComponent,
+    FaqComponent,
+    TestimonialsComponent
   ],
   imports: [
     BrowserModule,

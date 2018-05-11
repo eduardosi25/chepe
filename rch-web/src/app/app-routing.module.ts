@@ -28,6 +28,12 @@ import { DetailsComponent } from './info/attractions/chepexplora/details/details
 import { ContactComponent } from './info/contact/contact.component';
 import { HistoryComponent } from './info/history/history.component';
 import { TacComponent } from './info/tac/tac.component';
+import { AirlinesComponent } from './info/guide/airlines/airlines.component';
+import { HotelsComponent } from './info/guide/hotels/hotels.component';
+import { ScheduleComponent } from './info/guide/schedule/schedule.component';
+import { ScheduleRegionalComponent } from './info/guide/schedule-regional/schedule-regional.component';
+import { TestimonialsComponent } from './info/guide/testimonials/testimonials.component';
+import { FaqComponent } from './info/faq/faq.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -54,7 +60,12 @@ const routes: Routes = [
   { path: ':route_name/paso5', component: Step5Component },
   { path: ':route_name/confirmar', component: CommitComponent },
   { path: ':route_name/reservación-exitosa', component:ReceiptComponent},
-  //{ path: 'guia-de-viaje/', component: CommitComponent },
+  { path: 'guia-de-viaje/conexiones-aereas', component: AirlinesComponent },
+  { path: 'guia-de-viaje/hoteles', component: HotelsComponent },
+  { path: 'guia-de-viaje/itinerarios-sugeridos', component: ScheduleComponent },
+  { path: 'guia-de-viaje/itinerarios-sugeridos/regional', component: ScheduleRegionalComponent },
+  { path: 'guia-de-viaje/testimonios', component: TestimonialsComponent },
+  { path: 'preguntas-frecuentes', component: FaqComponent },
   { path: 'contacto', component: ContactComponent },
   { path: 'historia', component: HistoryComponent },
   { path: 'terminos-y-condiciones', component: TacComponent }
