@@ -1,10 +1,21 @@
-$(function () { 
+$(function () {
+    
+    
+    
 
-
+$(document).on('click touchstart','body', function(e)
+{
+    var container = $("#popover-content-passengers");        
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0 && !$(e.target).is("#btn-passenger-total")) 
+    {
+        container.removeClass( "in" );
+    }
+});
 
 //plugin bootstrap minus and plus
 //http://jsfiddle.net/laelitenetwork/puJ6G/
-$(document).on('click','.btn-number', function(e){
+$(document).on('click touchstart','.btn-number', function(e){
     e.preventDefault();
     
     fieldName = $(this).attr('data-field');
