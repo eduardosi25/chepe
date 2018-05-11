@@ -169,31 +169,3 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-<script>
-  window.innerScript = function() {
-    // Video player load
-    $(document).ready(function () {
-      $('#bgvid').on('ended', function () {
-        $("#modal-video").fadeOut();
-        $("body").css("overflow", "auto");
-        $('#modal-promocion').modal();
-      });
-      $('#bgvid').on('started', function () {
-        $("body").css("overflow", "hidden");
-      });
-      $("#modal-promocion").click(function () {
-        $("body").addClass("active");
-      });
-    });
-
-    $('.modal-video').click(function () {
-      $(this).remove();
-
-      $("body").css("overflow", "auto");
-    });
-
-    $('#modal-promocion').click(function () {
-      $(this).modal('hide');
-    });
-  }
-</script>
