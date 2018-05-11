@@ -11,12 +11,12 @@ import { TestimonialsComponent } from './info/guide/testimonials/testimonials.co
   imports: [
     CommonModule,
     GuideRoutingModule,
+  ],
+  declarations: [
     AirlinesComponent,
     HotelsComponent,
     ScheduleComponent,
     ScheduleRegionalComponent,
-    TestimonialsComponent
-  ],
-  declarations: []
+    TestimonialsComponent]
 })
 export class GuideModule { }

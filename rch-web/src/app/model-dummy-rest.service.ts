@@ -3,7 +3,7 @@ import { IModel } from './model/imodel';
 import { ModelDummyService } from './model-dummy.service';
 import {Observable} from 'rxjs/Rx';
 import { Response } from './model/response';
-import { Route } from './model/route';
+import { Route2 } from './model/route2';
 import { Intent } from './model/intent';
 import { SessionToken } from './model/sessiontoken';
 import { AvailabilityQuery } from './model/availabilityquery';
@@ -15,13 +15,13 @@ import { HttpClient } from '@angular/common/http';
 export class ModelDummyRestService implements IModel{
   private use_mocks:boolean = false;
   constructor(private dummies:ModelDummyService,private http:HttpClient) { }
-  getRoutes(): Observable<Response<Route[]>> {
-    return new Observable<Response<Route[]>>((observer)=>{
+  getRoutes(): Observable<Response<Route2[]>> {
+    return new Observable<Response<Route2[]>>((observer)=>{
       this.dummies.getRoutes().subscribe((data)=>{
         let x0 = JSON.stringify(data); 
         let x = JSON.parse(x0);
-        var r:Response<Route[]> = new Response<Route[]>(null,null,[]);
-        r.parseJSONObject2(x,Route);
+        var r:Response<Route2[]> = new Response<Route2[]>(null,null,[]);
+        r.parseJSONObject2(x,Route2);
         observer.next(r);
       });
     });

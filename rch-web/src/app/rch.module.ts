@@ -11,10 +11,29 @@ import { Step5Component } from './rch/step5/step5.component';
 import { CommitComponent } from './rch/commit/commit.component';
 import { ReceiptComponent } from './rch/receipt/receipt.component';
 import { StatusComponent } from './rch/status/status.component';
+import { ModelService} from "./model.service";
+import { ModelDummyService } from './model-dummy.service';
+import { ModelRestService } from './model-rest.service';
+import { ModelDummyRestService} from './model-dummy-rest.service';
+import { SessionService } from './session.service';
+import { FormsModule} from '@angular/forms';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+import { HttpClientModule } from '@angular/common/http';
+import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
+import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
+import { StopcheckDirective } from './stopcheck.directive';
+
 @NgModule({
   imports: [
     CommonModule,
-    RchRoutingModule
+    RchRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    RecaptchaModule.forRoot(),
+    NgbModule.forRoot()
   ],
   declarations: [
     Step1Component,
@@ -26,6 +45,14 @@ import { StatusComponent } from './rch/status/status.component';
     CommitComponent,
     ReceiptComponent,
     StatusComponent,
-  ]
+    StopcheckDirective
+  ],
+  providers: [ModelService,ModelDummyService,ModelRestService,ModelDummyRestService,SessionService,{
+    provide: RECAPTCHA_SETTINGS,
+    useValue: { siteKey: '6LfMUFIUAAAAAFDSA3zsQ7F_1q7Lv5Fb8hxNqZGP' } as RecaptchaSettings,
+  },{
+    provide: RECAPTCHA_LANGUAGE,
+    useValue: 'es', 
+  },{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class RchModule { }

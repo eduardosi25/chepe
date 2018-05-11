@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IModel } from './model/imodel';
-import { Route } from './model/route';
+import { Route2 } from './model/route2';
 import { Intent } from './model/intent';
 import { SessionToken } from './model/sessiontoken';
 import { Schedule } from './model/schedule';
@@ -40,8 +40,8 @@ export class ModelDummyService implements IModel {
     }
     return r2;
   }
-  private get_routes:Response<Route[]> = null;
-  getRoutes():Observable<Response<Route[]>>{
+  private get_routes:Response<Route2[]> = null;
+  getRoutes():Observable<Response<Route2[]>>{
     if(this.get_routes != null){
       return Observable.of(this.get_routes);
       //return this.get_routes;
@@ -55,7 +55,7 @@ export class ModelDummyService implements IModel {
     var wt6 = new WagonType(6,"Turista",1);
     var wt7 = new WagonType(7,"Cafetería",1);*/
     //chepe express
-    var rexpress:Route = new Route();
+    var rexpress:Route2 = new Route2();
     rexpress.id = 2;
     rexpress.max_stops = 3;
     rexpress.name = "Chepe Express";
@@ -78,7 +78,7 @@ export class ModelDummyService implements IModel {
     rexpress.img_map="assets/img/reservacion/map_express.jpg";
     rexpress.img_map_full="assets/img/reservacion/map_express_full.jpg";
     //chepe regional
-    var rregional:Route = new Route();
+    var rregional:Route2 = new Route2();
     rregional.id = 1;
     rregional.max_stops = 3;
     rregional.name = "Chepe Regional";
@@ -109,7 +109,7 @@ export class ModelDummyService implements IModel {
     rregional.img_map="assets/img/reservacion/map_regional.jpg";
     rregional.img_map_full="assets/img/reservacion/map_regional_full_select.jpg";
     //response
-    var response:Response<Route[]> = new Response<Route[]>("+RCH.WS12.0",null,[rexpress,rregional]);
+    var response:Response<Route2[]> = new Response<Route2[]>("+RCH.WS12.0",null,[rexpress,rregional]);
     this.get_routes = response;
     return Observable.of(response);
     //return response;
@@ -146,10 +146,10 @@ export class ModelDummyService implements IModel {
     schedule.query = query;
     schedule.travels = [];
 
-    let routes:Route[] = this.get_routes.data;//this.getRoutes().data;
-    var route:Route = routes[0];
+    let routes:Route2[] = this.get_routes.data;//this.getRoutes().data;
+    var route:Route2 = routes[0];
     for(var i=0;i<routes.length;i++){
-      let r:Route = routes[i];
+      let r:Route2 = routes[i];
       if(r.id == id){
         route = r;
         break;

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModelService } from '../../model.service';
-import { Route } from '../../model/route';
 import { Response } from '../../model/response';
 import { Wagon } from '../../model/wagon';
 import { WagonType } from '../../model/wagontype';
+import { Route2 } from '../../model/route2';
 
 @Component({
   selector: 'app-main',
@@ -16,12 +16,12 @@ export class MainComponent implements OnInit {
 
   }
 
-  routes:Route[] = [];
+  routes:Route2[] = [];
   public loading:boolean = false;
-  public selected_route:Route = null;
+  public selected_route:Route2 = null;
   ngOnInit() {
     this.loading = true;
-    this.model.getRoutes().subscribe((r:Response<Route[]>)=>{
+    this.model.getRoutes().subscribe((r:Response<Route2[]>)=>{
       this.loading = false;
       if(r.success){
         this.routes = r.data;
@@ -36,10 +36,10 @@ export class MainComponent implements OnInit {
   public noRoutes(){
     return (!this.loading && (!this.routes || this.routes.length<=0));
   }
-  public selectRoute(route:Route){
+  public selectRoute(route:Route2){
     this.selected_route = route;
   }
-  getRouteWagonTypes(route:Route){
+  getRouteWagonTypes(route:Route2){
     var wts = [];var wtnames:number[] = [];
     for(var i=0;i<route.wagons.length;i++){
       let wagon:Wagon = route.wagons[i];
@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
     }
     return str;
   }
-  isRegional(route:Route):boolean{
+  isRegional(route:Route2):boolean{
     return (route.name.toLowerCase() == "chepe regional");
   }
 

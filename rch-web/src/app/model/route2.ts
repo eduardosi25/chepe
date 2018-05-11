@@ -3,7 +3,7 @@ import {PassengerType} from "./passengertype";
 import {TrainStop} from "./trainstop";
 import {Direction} from "./direction";
 import { FromJSONable } from "./FromJSONable";
-export class Route implements FromJSONable{
+export class Route2 implements FromJSONable{
     parseJSONObject(object: Object) {
         if(!object){return;}
         Object.assign(this,object);

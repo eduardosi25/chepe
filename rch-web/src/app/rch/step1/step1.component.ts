@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Route } from '../../model/route';
 import { ModelService } from '../../model.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -12,6 +11,7 @@ import { Direction } from '../../model/direction';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import { Route2 } from '../../model/route2';
 declare var $: any;
 
 @Component({
@@ -28,7 +28,7 @@ export class Step1Component implements OnInit {
     private sanitizer: DomSanitizer,
   private router:Router) { }
 
-  public route:Route = null;
+  public route:Route2 = null;
   ngOnInit() {
     if(this.session.query == null){
       this.session.query = new AvailabilityQuery2(this.model);

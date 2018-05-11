@@ -1,4 +1,4 @@
-import { Route } from "./Route";
+import { Route2 } from "./route2";
 import { Intent } from "./intent";
 import { SessionToken } from "./sessiontoken";
 import { Schedule } from "./schedule";
@@ -9,7 +9,7 @@ import { AvailabilityQuery } from "./availabilityquery";
 import {Observable} from "rxjs/Rx";
 
 export interface IModel{
-    getRoutes():Observable<Response<Route[]> >;
+    getRoutes():Observable<Response<Route2[]> >;
     createIntent(type:string):Observable<Response<Intent> >;
     createSession():Observable<Response<SessionToken> >;
     getStatus():Observable<Response<boolean> >;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IModel } from './model/imodel';
-import { Route } from './model/route';
+import { Route2 } from './model/route2';
 import { Intent } from './model/intent';
 import { SessionToken } from './model/sessiontoken';
 import { Schedule } from './model/schedule';
@@ -54,8 +54,8 @@ export class ModelRestService implements IModel {
     }
     return r;
   }
-  getRoutes():Observable<Response<Route[]>>{
-    return this.stdCall<Route[]>(Route,this.base+"/"+this.prefix+"/routes","get",null,{},null,null,true);
+  getRoutes():Observable<Response<Route2[]>>{
+    return this.stdCall<Route2[]>(Route2,this.base+"/"+this.prefix+"/routes","get",null,{},null,null,true);
   }
   createIntent(type:string):Observable<Response<Intent>>{
     return this.stdCall<Intent>(Intent,this.base+"/"+this.prefix+"/intent/"+type,"post");

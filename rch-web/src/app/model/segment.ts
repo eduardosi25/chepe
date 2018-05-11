@@ -5,7 +5,7 @@ import { Wagon } from "./wagon";
 import { SeatBooking } from "./seatbooking";
 import { PassengerType } from "./passengertype";
 import { AvailabilityQuery2 } from "./availabilityquery2";
-import { Route } from "./Route";
+import { Route2 } from "./route2";
 
 export class Segment{
     constructor(n:number = 0,src:TrainStop=null,dst:TrainStop=null,travels:Travel[]=[],query:AvailabilityQuery=null){
@@ -141,7 +141,7 @@ export class Segment{
             return max;
         }
     }
-    public getNextPT(route:Route,query:AvailabilityQuery2):PassengerType{
+    public getNextPT(route:Route2,query:AvailabilityQuery2):PassengerType{
         for(var i=0;i<route.passenger_types.length;i++){
             let pt:PassengerType = route.passenger_types[i];
             var max:number = query.passengers[pt.id];

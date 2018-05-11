@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ModelDummyService} from './model-dummy.service';
 import {ModelRestService} from './model-rest.service';
 import { IModel } from './model/imodel';
-import { Route } from './model/route';
+import { Route2 } from './model/route2';
 import { Intent } from './model/intent';
 import { SessionToken } from './model/sessiontoken';
 import { Schedule } from './model/schedule';
@@ -34,11 +34,11 @@ export class ModelService implements IModel {
   private train_stops={};
   private route_by_name={};
   private passenger_types_by_id=[];
-  getRoutes():Observable<Response<Route[]>>{
+  getRoutes():Observable<Response<Route2[]>>{
     let a = this.impl.getRoutes();
-    a.subscribe((response:Response<Route[]>)=>{
+    a.subscribe((response:Response<Route2[]>)=>{
       for(var i=0;i<response.data.length;i++){
-        let route:Route = response.data[i];
+        let route:Route2 = response.data[i];
         this.route_by_name[route.name]=route;
         for(var j=0;j<route.stops.length;j++){
           let ts:TrainStop = route.stops[j];
@@ -71,7 +71,7 @@ export class ModelService implements IModel {
   getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
     return this.impl.getTravel(id,id_src,id_dst);
   }
-  public getRouteByName(route_name:string):Route{
+  public getRouteByName(route_name:string):Route2{
     return this.route_by_name[route_name];
   }
   public getTrainStopById(id:number):TrainStop{

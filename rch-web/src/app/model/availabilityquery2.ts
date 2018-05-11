@@ -1,9 +1,9 @@
 import { TrainStop } from "./trainstop";
 import { AvailabilityQuery } from "./availabilityquery";
 import { PassengerType } from "./passengertype";
-import { Route } from "./Route";
 import { FromJSONable } from "./FromJSONable";
 import { ModelService } from "../model.service";
+import { Route2 } from "./route2";
 
 export class AvailabilityQuery2 implements FromJSONable{
     constructor(private model:ModelService){}
@@ -47,7 +47,7 @@ export class AvailabilityQuery2 implements FromJSONable{
         }
         return r;
     }
-    public getPassengersString(route:Route):string{
+    public getPassengersString(route:Route2):string{
         var pps:string[] = [];
         for(var i=0;i<route.passenger_types.length;i++){
         let pt:PassengerType = route.passenger_types[i];
@@ -58,7 +58,7 @@ export class AvailabilityQuery2 implements FromJSONable{
         }
         return pps.join(", ");
     }
-    public toAvailabilityQuery(route:Route):AvailabilityQuery{
+    public toAvailabilityQuery(route:Route2):AvailabilityQuery{
         var a:AvailabilityQuery = new AvailabilityQuery();
         a.end = this.end;
         a.id_dst = this.dst.id;

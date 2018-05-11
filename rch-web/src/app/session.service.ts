@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AvailabilityQuery } from './model/availabilityquery';
 import { AvailabilityQuery2 } from './model/availabilityquery2';
-import { Route } from './model/Route';
+import { Route2 } from './model/Route2';
 import { Segment } from './model/segment';
 import { RouteBooking } from './model/routebooking';
 
@@ -12,7 +12,7 @@ export class SessionService {
   constructor() {
   }
   public query:AvailabilityQuery2;
-  public route:Route;
+  public route:Route2;
   public segments:Segment[];
   public rb:RouteBooking;
   public save(){
