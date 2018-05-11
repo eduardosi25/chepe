@@ -30,17 +30,6 @@ import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StatusComponent } from './rch/status/status.component';
 import { StopcheckDirective } from './stopcheck.directive';
 import { IndexComponent } from './info/index/index.component';
-import { DestinationsComponent } from './info/attractions/destinations/destinations.component';
-import { BahuichivoComponent } from './info/attractions/destinations/bahuichivo/bahuichivo.component';
-import { BarrancasCobreComponent } from './info/attractions/destinations/barrancas-cobre/barrancas-cobre.component';
-import { ChihuahuaComponent } from './info/attractions/destinations/chihuahua/chihuahua.component';
-import { NativeCommunitiesComponent } from './info/attractions/native-communities/native-communities.component';
-import { CreelComponent } from './info/attractions/destinations/creel/creel.component';
-import { CuauhtemocComponent } from './info/attractions/destinations/cuauhtemoc/cuauhtemoc.component';
-import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-fuerte.component';
-import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
-import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
-import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
 import { ContactComponent } from './info/contact/contact.component';
 import { HistoryComponent } from './info/history/history.component';
 import { TacComponent } from './info/tac/tac.component';
@@ -70,17 +59,6 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
     StatusComponent,
     StopcheckDirective,
     IndexComponent,
-    DestinationsComponent,
-    BahuichivoComponent,
-    BarrancasCobreComponent,
-    ChihuahuaComponent,
-    NativeCommunitiesComponent,
-    CreelComponent,
-    CuauhtemocComponent,
-    ElFuerteComponent,
-    LosMochisComponent,
-    ChepexploraComponent,
-    DetailsComponent,
     ContactComponent,
     HistoryComponent,
     TacComponent,
