@@ -46,6 +46,9 @@ import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-
 import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
 import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
 import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
+import { ContactComponent } from './info/contact/contact.component';
+import { HistoryComponent } from './info/history/history.component';
+import { TacComponent } from './info/tac/tac.component';
 
 
 
@@ -80,7 +83,10 @@ import { DetailsComponent } from './info/attractions/chepexplora/details/details
     ElFuerteComponent,
     LosMochisComponent,
     ChepexploraComponent,
-    DetailsComponent
+    DetailsComponent,
+    ContactComponent,
+    HistoryComponent,
+    TacComponent
   ],
   imports: [
     BrowserModule,
