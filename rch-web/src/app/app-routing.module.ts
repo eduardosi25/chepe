@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'trenes/chepe-regional', component: ChepeRegionalComponent },
   { path: 'trenes/horarios-tarifas', component: TimesFaresComponent },
   { path: 'trenes/galeria', component: GalleryComponent },
-  { path: 'trenes/urike', component: UrikeComponent },
+  { path: 'trenes/restaurante-urike', component: UrikeComponent },
   { path: 'atracciones/destinos-y-actividades', component: DestinationsComponent },
   { path: 'atracciones/comunidades-indigenas', component: NativeCommunitiesComponent },
   { path: 'atracciones/destinos-y-actividades/bahuichivo', component: BahuichivoComponent },

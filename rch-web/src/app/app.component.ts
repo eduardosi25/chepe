@@ -21,4 +21,16 @@ export class AppComponent implements OnInit {
   public showMainFooter():boolean{
     return (this.router.url != "");
   }
+  public getRoutedClass():string[]{
+    var arr:string[] = [];
+    let parts = this.router.url.split("/");
+    for(var i=0;i<parts.length;i++){
+      let part = parts[i];
+      if(part != ""){
+        part = "c-"+part;
+        arr.push(part);
+      }
+    }
+    return arr;
+  }
 }
