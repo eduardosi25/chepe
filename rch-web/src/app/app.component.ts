@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
       });
   }
   public showMainFooter():boolean{
-    return (this.router.url != "");
+    return (this.router.url != "/");
   }
   public getRoutedClass():string[]{
     var arr:string[] = [];

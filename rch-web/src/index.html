@@ -12,7 +12,7 @@
   <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
   <meta http-equiv="pragma" content="no-cache" />
 
-  <base href="/"/>
+  <base href="/" />
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Chepe - Ferrocarril Barrancas del Cobre</title>
 
@@ -55,7 +55,7 @@
   </script>
 </head>
 
-<body class="reserva r-express">
+<body>
   <app-root></app-root>
 
 
@@ -86,6 +86,12 @@
         $('.equalheight').matchHeight();
       });
     })(jQuery);
+  </script>
+  <script>
+    if(window.hasOwnProperty('innerScript')){
+      window.innerScript();
+    }
+    
   </script>
 </body>
 
