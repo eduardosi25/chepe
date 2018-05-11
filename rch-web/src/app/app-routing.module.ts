@@ -25,6 +25,9 @@ import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-
 import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
 import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
 import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
+import { ContactComponent } from './info/contact/contact.component';
+import { HistoryComponent } from './info/history/history.component';
+import { TacComponent } from './info/tac/tac.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -50,7 +53,11 @@ const routes: Routes = [
   { path: ':route_name/paso4', component: Step4Component },
   { path: ':route_name/paso5', component: Step5Component },
   { path: ':route_name/confirmar', component: CommitComponent },
-  { path: ':route_name/reservación-exitosa', component:ReceiptComponent}
+  { path: ':route_name/reservación-exitosa', component:ReceiptComponent},
+  //{ path: 'guia-de-viaje/', component: CommitComponent },
+  { path: 'contacto', component: ContactComponent },
+  { path: 'historia', component: HistoryComponent },
+  { path: 'terminos-y-condiciones', component: TacComponent }
 ];
 
 @NgModule({
