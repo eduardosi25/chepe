@@ -41,7 +41,7 @@ export class Step1Component implements OnInit {
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);
     if(!this.route){
-      this.router.navigate(["/"]);return;
+      this.router.navigate(["/reservaciones"]);return;
     }
     this.session.route = this.route;
   }

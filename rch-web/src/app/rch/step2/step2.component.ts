@@ -28,7 +28,7 @@ export class Step2Component implements OnInit {
     public segments:Segment[] = [];
   ngOnInit() {
     if(!this.session || !this.session.query || !this.session.route){
-      this.router.navigate(["/"]);return;
+      this.router.navigate(["/reservaciones/"]);return;
     }
     this.session.save();
     let query:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);

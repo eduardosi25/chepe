@@ -24,7 +24,7 @@ export class Step3Component implements OnInit {
 
   ngOnInit() {
     if(!this.session || !this.session.query || !this.session.segments || !this.session.route){
-      this.router.navigate(["/"]);return;
+      this.router.navigate(["/reservaciones"]);return;
     }
   }
   goBack(): void {

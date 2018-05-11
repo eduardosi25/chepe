@@ -53,12 +53,12 @@ export class CommitComponent implements OnInit {
       this.session.rb.status = RouteBooking.booked;
       this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
         this.session.rb = response.data;
-        this.router.navigate(["/"+this.session.route.name+"/reservación-exitosa"]);
+        this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
 
         /*
         if(this.session.rb.status == RouteBooking.booked){
           //alert("Reservación realizada exitósamente, recibirá un correo electrónico con la confirmación de su reservación");
-          this.router.navigate(["/"+this.session.route.name+"/reservación-exitosa"]);
+          this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
         }else{
           alert("No se pudo concretar su reservación, inténtelo de nuevo luego de algunos segundos.");
         }*/

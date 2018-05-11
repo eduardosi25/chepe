@@ -32,14 +32,14 @@ export class Step5Component implements OnInit {
     public selected_wagon_type:WagonType = null;
   ngOnInit() {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
-      this.router.navigate(["/"]);return;
+      this.router.navigate(["/reservaciones"]);return;
     }
     console.log(this.session);
     if(this.session && this.session.segments && this.session.segments.length>0){
       this.setSelectedSegment(this.session.segments[0]);
     }else{
       alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
-      this.router.navigate(["/"]);
+      this.router.navigate(["/reservaciones"]);
     }
   }
   goBack(): void {
@@ -177,7 +177,7 @@ export class Step5Component implements OnInit {
             this.session.rb.seats.push(sb);
           }
         }
-        this.router.navigate(["/"+this.session.route.name+"/confirmar"]);
+        this.router.navigate(["/reservaciones/"+this.session.route.name+"/confirmar"]);
       }
     }else{
       let r:number = this.getRemainingSbs();
@@ -192,7 +192,7 @@ export class Step5Component implements OnInit {
     let i:number = this.session.segments.indexOf(this.selected_segment);
     if(i==0){
       if(confirm("¿Desea regresar a la pantalla anterior?")){
-        this.router.navigate(["/"+this.session.route.name+"/paso4"]);
+        this.router.navigate(["/reservaciones/"+this.session.route.name+"/paso4"]);
       }
     }else{
       this.setSelectedSegment(this.session.segments[i-1]);

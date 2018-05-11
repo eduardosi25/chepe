@@ -27,7 +27,7 @@ export class Step4Component implements OnInit {
 
   ngOnInit() {
     if(!this.session || !this.session.query || !this.session.route || !this.session.segments){
-      this.router.navigate(["/"]);return;
+      this.router.navigate(["/reservaciones"]);return;
     }
     if(this.session.rb == null){
       this.session.rb = new RouteBooking();

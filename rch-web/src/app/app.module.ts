@@ -27,7 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
 import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
-import { StatusComponent } from './rch/status/status.component';
 import { StopcheckDirective } from './stopcheck.directive';
 import { IndexComponent } from './info/index/index.component';
 import { ContactComponent } from './info/contact/contact.component';
@@ -48,15 +47,6 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    Step1Component,
-    MainComponent,
-    Step2Component,
-    Step3Component,
-    Step4Component,
-    Step5Component,
-    CommitComponent,
-    ReceiptComponent,
-    StatusComponent,
     StopcheckDirective,
     IndexComponent,
     ContactComponent,
