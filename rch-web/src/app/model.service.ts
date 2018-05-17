@@ -15,6 +15,8 @@ import {Observable} from 'rxjs/Rx';
 import {environment} from "../environments/environment";
 import { ModelDummyRestService } from './model-dummy-rest.service';
 import { PassengerType } from './model/passengertype';
+import { Wagon } from './model/wagon';
+import { WagonType } from './model/wagontype';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -36,6 +38,7 @@ export class ModelService implements IModel {
   private train_stops={};
   private route_by_name={};
   private passenger_types_by_id=[];
+  private wagon_types_by_id={};
   getRoutes():Observable<Response<Route2[]>>{
     let a = this.impl.getRoutes();
     a.subscribe((response:Response<Route2[]>)=>{
@@ -49,7 +52,13 @@ export class ModelService implements IModel {
         let pts:PassengerType[] = route.passenger_types;
         for(var j=0;j<pts.length;j++){
           let pt:PassengerType = pts[j];
-          this.passenger_types_by_id[j] = pt;
+          this.passenger_types_by_id[pt.id] = pt;
+        }
+        let ws:Wagon[] = route.wagons;
+        for(var j=0;j<ws.length;j++){
+          let w:Wagon = ws[j];
+          let wt:WagonType = w.type;
+          this.wagon_types_by_id[""+wt.id] = wt;
         }
       }
     });
@@ -85,6 +94,10 @@ export class ModelService implements IModel {
       return this.passenger_types_by_id[id];
     }
     return null;
+  }
+  public getWagonTypeById(id:number):WagonType{
+    console.log(this.wagon_types_by_id);
+    return this.wagon_types_by_id[""+id];
   }
 
 }

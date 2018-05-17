@@ -23,8 +23,10 @@ export class AvailabilityQuery2 implements FromJSONable{
     public round:boolean = false;
     public class:WagonType = null;
     public isReady():boolean{
-        if(this.src.id == -1){return false;}
-        if(this.dst.id == -1){return false;}
+        if(this.src == null || this.src.id == -1){return false;}
+        if(this.dst == null  || this.dst.id == -1){return false;}
+        if(this.start == null){return false;}
+        if(this.end == null){return false;}
         if(this.class == null){return false;}
         return true;
     }
@@ -75,7 +77,7 @@ export class AvailabilityQuery2 implements FromJSONable{
         a.start = this.start;
         a.stops = [];
         a.round = this.round;
-        a.id_class = this.class.id;
+        a.id_class = this.class != null ? this.class.id : 0;
         for(var i in this.stops){
             var n:number = parseInt(i);
             a.stops.push(n);

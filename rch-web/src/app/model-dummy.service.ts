@@ -49,6 +49,8 @@ export class ModelDummyService implements IModel {
     //wagon types
     var wt1 = new WagonType(1,"Ejecutiva",1);
     var wt2 = new WagonType(2,"Turista",1);
+    var wt3 = new WagonType(3,"Ejecutiva",1);
+    var wt4 = new WagonType(4,"Turista",1);
     /*var wt3 = new WagonType(3,"Bar",1);
     var wt4 = new WagonType(4,"Terraza",1);
     var wt5 = new WagonType(5,"Restaurante Urike",1);
@@ -67,12 +69,12 @@ export class ModelDummyService implements IModel {
       new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1,148/w1,388/h1),
       new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1,62/w1,530/h1)];
     rexpress.wagons = [
-      this.mkWagon(wt1),
-      this.mkWagon(wt1),
-      this.mkWagon(wt2),
-      this.mkWagon(wt2),
-      this.mkWagon(wt2),
-      this.mkWagon(wt2)
+      this.mkWagon(wt3),
+      this.mkWagon(wt3),
+      this.mkWagon(wt4),
+      this.mkWagon(wt4),
+      this.mkWagon(wt4),
+      this.mkWagon(wt4)
       ];
     rexpress.img_url="assets/img/reservacion/header-reserva-express.jpg";
     rexpress.img_map="assets/img/reservacion/map_express.jpg";
