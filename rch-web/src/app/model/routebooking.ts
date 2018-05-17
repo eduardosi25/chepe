@@ -22,6 +22,7 @@ export class RouteBooking implements FromJSONable{
     public etickets_phone:string="";
     public travels:Travel[]=[];
     public pp:boolean=false;
+    public round:boolean=false;
     parseJSONObject(object:Object){
         if(!object){return;}
         Object.assign(this,object);
@@ -59,6 +60,7 @@ export class RouteBooking implements FromJSONable{
                 this.travels.push(s.selected_travel);
             }   
         }
+        this.round = session.query.round;
         //setup persons
         for(var i=0;i<session.route.passenger_types.length;i++){
             let pt:PassengerType = session.route.passenger_types[i];
