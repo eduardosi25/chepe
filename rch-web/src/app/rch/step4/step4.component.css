@@ -5,12 +5,8 @@ border:2px solid #f18a21;
     appearance: none;
     width: 20px;
     height:20px;
-    margin-right:5px;
-    border:4px solid #f18a21;
+    margin-right:10px;
+    border:2px solid #f18a21;
     background-color: white;
     border-radius:10px;
-}
-#pp:checked{
-    border-color:#0099ff;
-    background-color: #0099ff
 }
