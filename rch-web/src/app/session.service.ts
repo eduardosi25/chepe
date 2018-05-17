@@ -34,6 +34,9 @@ export class SessionService {
     if(this.query.round && this.segments2 != null){
       for(var i=0;i<this.segments2.length;i++){
         let s0:Segment = this.segments2[i];
+        if(i == 0){
+          s0.previous = s[s.length-1];
+        }
         s0.n=this.segments.length+(i+1);
         s.push(s0);
       }
