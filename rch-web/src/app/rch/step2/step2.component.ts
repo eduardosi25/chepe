@@ -19,10 +19,10 @@ import { Direction } from '../../model/direction';
 })
 export class Step2Component implements OnInit {
 
-  constructor(private location:Location, 
-    private model:ModelService, 
+  constructor(protected location:Location, 
+    protected model:ModelService, 
     public session:SessionService,
-  private router:Router) { }
+  protected router:Router) { }
 
     public schedule:Schedule = null;
     public segments:Segment[] = [];

@@ -15,12 +15,29 @@ export class SessionService {
   }
   public query:AvailabilityQuery2;
   public route:Route2;
+  /** Segmentos para el viaje de ida */
   public segments:Segment[];
+  /** Segmentos para el viaje de regreso */
+  public segments2:Segment[];
   public rb:RouteBooking;
   public schedule:Schedule = null; //Último schedule obtenido (para mostrar costos)
   public preflight:Subscription = null; //Subscription to a prefligh
   public save(){
     //let x = JSON.stringify(this.query);
     //localStorage.setItem(SessionService.ls_query_key,x);
+  }
+  public mkUnifiedSegments():Segment[]{
+    var s:Segment[] = [];
+    for(var i=0;i<this.segments.length;i++){
+      s.push(this.segments[i]);
+    }
+    if(this.query.round && this.segments2 != null){
+      for(var i=0;i<this.segments2.length;i++){
+        let s0:Segment = this.segments2[i];
+        s0.n=this.segments.length+(i+1);
+        s.push(s0);
+      }
+    }
+    return s;
   }
 }

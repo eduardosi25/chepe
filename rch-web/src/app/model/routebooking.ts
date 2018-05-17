@@ -53,6 +53,12 @@ export class RouteBooking implements FromJSONable{
             let s:Segment = session.segments[i];
             this.travels.push(s.selected_travel);
         }
+        if(session.query.round && session.segments2!=null){
+            for(var i=0;i<session.segments2.length;i++){
+                let s:Segment = session.segments2[i];
+                this.travels.push(s.selected_travel);
+            }   
+        }
         //setup persons
         for(var i=0;i<session.route.passenger_types.length;i++){
             let pt:PassengerType = session.route.passenger_types[i];

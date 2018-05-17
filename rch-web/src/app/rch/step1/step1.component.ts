@@ -47,6 +47,7 @@ export class Step1Component implements OnInit {
     this.wts = null;
     this.session.rb = null;
     this.session.segments = null;
+    this.session.segments2 = null;
     this.session.schedule = null;
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);

@@ -8,11 +8,13 @@ import { Step4Component } from './rch/step4/step4.component';
 import { Step5Component } from './rch/step5/step5.component';
 import { CommitComponent } from './rch/commit/commit.component';
 import { ReceiptComponent } from './rch/receipt/receipt.component';
+import { Step2bComponent } from './rch/step2b/step2b.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: ':route_name/paso1', component: Step1Component },
   { path: ':route_name/paso2', component: Step2Component },
+  { path: ':route_name/paso2b', component: Step2bComponent },
   { path: ':route_name/paso3', component: Step3Component },
   { path: ':route_name/paso4', component: Step4Component },
   { path: ':route_name/paso5', component: Step5Component },

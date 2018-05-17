@@ -159,7 +159,7 @@
                         </a>
                     </div>
 
-                    <div class=" col-xs-12 col-sm-3 center margintop30" *ngIf="!session.query.round">
+                    <div class=" col-xs-12 col-sm-3 center margintop30">
                         <a class="btn btn-link c-one" routerLink="/reservaciones/{{session.route.name}}/paso3" *ngIf="canContinueNext()" role="button">
                             <div>
                                 <img src="assets/img/icon_right.png">
@@ -167,14 +167,7 @@
                             <div>Continuar</div>
                         </a>
                     </div>
-                    <div class=" col-xs-12 col-sm-3 center margintop30" *ngIf="session.query.round">
-                        <a class="btn btn-link c-one" routerLink="/reservaciones/{{session.route.name}}/paso2b" *ngIf="canContinueNext()" role="button">
-                            <div>
-                                <img src="assets/img/icon_right.png">
-                            </div>
-                            <div>Continuar</div>
-                        </a>
-                    </div>
+
                 </div>
             </div>
         </div>

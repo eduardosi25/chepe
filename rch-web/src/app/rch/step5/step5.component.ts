@@ -30,13 +30,14 @@ export class Step5Component implements OnInit {
     private router:Router) { }
     public selected_segment:Segment = null;
     public selected_wagon_type:WagonType = null;
+    public segments:Segment[] = [];
   ngOnInit() {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
       this.router.navigate(["/reservaciones"]);return;
     }
-    console.log(this.session);
-    if(this.session && this.session.segments && this.session.segments.length>0){
-      this.setSelectedSegment(this.session.segments[0]);
+    this.segments = this.session.mkUnifiedSegments();
+    if(this.session && this.segments && this.segments.length>0){
+      this.setSelectedSegment(this.segments[0]);
     }else{
       alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
       this.router.navigate(["/reservaciones"]);
@@ -50,7 +51,7 @@ export class Step5Component implements OnInit {
   }
   
   isLastSegment(segment:Segment):boolean{
-    return (this.session.segments.length == segment.n);
+    return (this.segments.length == segment.n);
   }
   setSelectedSegment(segment:Segment){
     let travel0:Travel = segment.selected_travel;
@@ -66,9 +67,9 @@ export class Step5Component implements OnInit {
       this.selected_segment.selected_travel = response.data;
       if(this.selected_segment.sbs == null){
         this.selected_segment.sbs = [];
-        let j:number = this.session.segments.indexOf(segment);
+        let j:number = this.segments.indexOf(segment);
         if(j > 0){
-          //this.prePickSeats(segment,this.session.segments[i]);
+          //this.prePickSeats(segment,this.segments[i]);
         }
       }
       window.scrollTo(0, 0)
@@ -95,10 +96,10 @@ export class Step5Component implements OnInit {
 
   public auto_pick_wagon:boolean = true;
   getWagons(segment:Segment):Wagon[]{
-    if(this.auto_pick_wagon && segment != this.session.segments[0]){
-      if(this.session.segments[0].selected_wagon){
+    if(this.auto_pick_wagon && segment != this.segments[0]){
+      if(this.segments[0].selected_wagon){
         var wagons:Wagon[] = [];
-        let wt:WagonType = this.session.segments[0].selected_wagon.type;
+        let wt:WagonType = this.segments[0].selected_wagon.type;
         for(var i=0;i<segment.selected_travel.wagons.length;i++){
           let w:Wagon = segment.selected_travel.wagons[i];
           if(w.type.id = wt.id){
@@ -174,20 +175,20 @@ export class Step5Component implements OnInit {
     }
   }
   isFirstNav():boolean{
-    let i:number = this.session.segments.indexOf(this.selected_segment);
+    let i:number = this.segments.indexOf(this.selected_segment);
     return (i == 0);
   }
   isLastNav():boolean{
-    let i:number = this.session.segments.indexOf(this.selected_segment);
-    return (i==(this.session.segments.length-1));
+    let i:number = this.segments.indexOf(this.selected_segment);
+    return (i==(this.segments.length-1));
   }
   onNext(){
-    let i:number = this.session.segments.indexOf(this.selected_segment);
-    if(i==(this.session.segments.length-1)){
+    let i:number = this.segments.indexOf(this.selected_segment);
+    if(i==(this.segments.length-1)){
       if(confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")){
         this.session.rb.seats = [];
-        for(var j=0;j<this.session.segments.length;j++){
-          let s:Segment = this.session.segments[j];
+        for(var j=0;j<this.segments.length;j++){
+          let s:Segment = this.segments[j];
           for(var k=0;k<s.sbs.length;k++){
             let sb:SeatBooking = s.sbs[k];
             this.session.rb.seats.push(sb);
@@ -200,18 +201,18 @@ export class Step5Component implements OnInit {
       if(r > 0){
         alert("Aun debe elegir "+r+" asientos más.");
       }else{
-        this.setSelectedSegment(this.session.segments[i+1]);
+        this.setSelectedSegment(this.segments[i+1]);
       }
     }
   }
   onBack(){
-    let i:number = this.session.segments.indexOf(this.selected_segment);
+    let i:number = this.segments.indexOf(this.selected_segment);
     if(i==0){
       if(confirm("¿Desea regresar a la pantalla anterior?")){
         this.router.navigate(["/reservaciones/"+this.session.route.name+"/paso4"]);
       }
     }else{
-      this.setSelectedSegment(this.session.segments[i-1]);
+      this.setSelectedSegment(this.segments[i-1]);
     }
   }
   fly_max:number = -1;

@@ -22,11 +22,15 @@ export class Step3Component implements OnInit {
     public session:SessionService,
     private router:Router) { }
 
+    public segments:Segment[] = [];
   ngOnInit() {
     if(!this.session || !this.session.query || !this.session.segments || !this.session.route){
       this.router.navigate(["/reservaciones"]);return;
     }
+    this.segments = this.session.mkUnifiedSegments();
+    
   }
+  
   goBack(): void {
     this.location.back();
   }
@@ -34,7 +38,7 @@ export class Step3Component implements OnInit {
     return (segment.n == 1);
   }
   public isLastSegment(segment:Segment):boolean{
-    return (segment.n == this.session.segments.length);
+    return (segment.n == this.segments.length);
   }
   
 

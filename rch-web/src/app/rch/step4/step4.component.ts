@@ -25,6 +25,7 @@ export class Step4Component implements OnInit {
     public session:SessionService,
   private router:Router) { }
 
+  public segments:Segment[] = [];
   ngOnInit() {
     if(!this.session || !this.session.query || !this.session.route || !this.session.segments){
       this.router.navigate(["/reservaciones"]);return;
@@ -33,7 +34,7 @@ export class Step4Component implements OnInit {
       this.session.rb = new RouteBooking();
       this.session.rb.setupFromSession(this.session);
     }
-    
+    this.segments = this.session.mkUnifiedSegments();
     
     
   }

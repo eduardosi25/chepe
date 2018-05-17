@@ -81,9 +81,15 @@ export class Travel implements FromJSONable{
     public getArrivalTime():string{
         return this.arrival.time;
     }
+    public getDepartureDateTime():string{
+        return this.date+" "+this.departure.time;
+    }
+    public getArrivalDateTime():string{
+        return this.date+" "+this.arrival.time;
+    }
     public getDuration():string{
-        let dd:Date = this.mkDate(this.date+" "+this.departure.time);
-        let ad:Date = this.mkDate(this.date+" "+this.arrival.time);
+        let dd:Date = this.mkDate(this.getDepartureDateTime());
+        let ad:Date = this.mkDate(this.getArrivalDateTime());
         var dif:number = ad.getTime()-dd.getTime();
         let s:number = 1000;
         let m:number = s*60;

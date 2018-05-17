@@ -35,7 +35,9 @@ export class CommitComponent implements OnInit {
 
     public is_getting_quote:boolean = false;
     public is_captcha_solved:boolean = false;
+    public segments:Segment[] = [];
   ngOnInit() {
+    this.segments = this.session.mkUnifiedSegments();
     this.is_captcha_solved = false;
     this.is_getting_quote = true;
     this.session.rb.status = RouteBooking.editing;
