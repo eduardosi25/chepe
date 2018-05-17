@@ -86,8 +86,24 @@ export class Step2Component implements OnInit {
             }else{
               aq.end = params.end;
             }
+            
+            aq.stops = {};
+            if(params.stops){
+              var aaa = params.stops;
+              if(typeof(aaa)=='string'){
+                aaa = [aaa];
+              }
+              for(var i=0;i<aaa.length;i++){
+                var bbb = aaa[i];
+                let ccc = parseInt(bbb);
+                let ts:TrainStop = this.model.getTrainStopById(ccc);
+                if(ts != null){
+                  aq.stops[ts.id] = ts;
+                }
+              }
+            }
             this.session.query = aq;
-            console.log(this.session.query);
+            console.log(aq);
             observer.next(true);
           })
           
