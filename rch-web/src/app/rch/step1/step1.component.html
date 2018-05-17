@@ -18,6 +18,7 @@
                     </div>
                 </div>
             </div>
+            <app-cost-box></app-cost-box>
             <rch-status></rch-status>
             <div class="col-md-15  marginbot80 no-gutter-left">
 
@@ -39,18 +40,25 @@
                                         <div class="col-sm-8">
                                             <div class="form-group">
                                                 <label for="origen">Origen</label>
-                                                <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src">
+                                                <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src" (ngModelChange)="preflight()">
                                                     <option [ngValue]="null">Elige una opción</option>
                                                     <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="origen">Destino</label>
-                                                <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst">
+                                                <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst" (ngModelChange)="preflight()">
                                                     <option [ngValue]="null">Elige una opción</option>
                                                     <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">{{ts.name}}</option>
                                                 </select>
                                             </div>
+                                            <div class="form-group" *ngIf="session.route.pick_class">
+                                                    <label for="origen">Clase</label>
+                                                    <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
+                                                        <option [ngValue]="null">Elige una opción</option>
+                                                        <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
+                                                    </select>
+                                                </div>
                                             <label>Total de pasajeros</label>
                                             <div class="box-passenger">
                                                 <div class="row">
@@ -78,7 +86,7 @@
                                                                         <span class="glyphicon glyphicon-minus"></span>
                                                                     </button>
                                                                 </span>
-                                                                <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"
+                                                                <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
                                                                     min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
                                                                 <span class="input-group-btn">
                                                                     <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
@@ -101,9 +109,17 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="form-group">
+                                                <label for="origen">Viaje redondo</label>
+                                                <div class="input-group date" id="round">
+                                                    <input type="checkbox" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.round"  (ngModelChange)="preflight()"
+                                                        id="step1-round"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="origen">Inicio del viaje</label>
                                                 <div class="input-group date" id="inicio">
-                                                    <input type="text" class="form-control" value="09/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"
+                                                    <input type="text" class="form-control" value="09/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"  (ngModelChange)="preflight()"
                                                         id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
                                                     />
                                                     <span class="input-group-addon" (click)="d.toggle()">
@@ -114,7 +130,7 @@
                                             <div class="form-group">
                                                 <label for="origen">Fin del viaje</label>
                                                 <div class="input-group date" id="fin">
-                                                    <input type="text" class="form-control" value="10/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"
+                                                    <input type="text" class="form-control" value="10/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"  (ngModelChange)="preflight()"
                                                         id="step1-end-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker"
                                                     />
                                                     <span class="input-group-addon" (click)="d2.toggle()">
@@ -173,7 +189,7 @@
                             <div>
                                 <img src="assets/img/icon_train.png">
                             </div>
-                            <div>Buscar trenes</div>
+                            <div>RESERVAR TRENES</div>
                         </a>
                     </div>
                     <div class="col-sm-8 col-sm-offset-6 center margintop30" *ngIf="last_failure_motive">

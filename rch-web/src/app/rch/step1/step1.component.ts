@@ -12,6 +12,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import { Route2 } from '../../model/route2';
+import { AvailabilityQuery } from '../../model/availabilityquery';
+import { Response } from '../../model/response';
+import { Schedule } from '../../model/schedule';
+import {Observable, Subscription} from 'rxjs/Rx';
+import { WagonType } from '../../model/wagontype';
+import { Wagon } from '../../model/wagon';
 declare var $: any;
 
 @Component({
@@ -36,8 +42,10 @@ export class Step1Component implements OnInit {
       this.session.query.end = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
     }
     //clean session
+    this.wts = null;
     this.session.rb = null;
     this.session.segments = null;
+    this.session.schedule = null;
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);
     if(!this.route){
@@ -117,6 +125,7 @@ export class Step1Component implements OnInit {
     if(start_dt.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('inicio','orange');return false;}
     if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){this.last_failure_motive = "Elige un fin válido.";this.a1('fin','orange');return false;}
     if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
+    if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
     return true;
   }
   public add(pt:PassengerType,d:number){
@@ -164,5 +173,46 @@ export class Step1Component implements OnInit {
   }
   public showEndDt(event){
     $(event.target.id).datepicker();
+  }
+
+  
+  public preflight(){
+    if(this.session.preflight != null){
+      this.session.preflight.unsubscribe();
+    }
+    if(this.session.query.isReady()){
+      let aq:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
+      var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
+      this.session.preflight = a.subscribe(((r:Response<Schedule>)=>{
+        this.session.schedule = r.data;
+      }));
+    }
+    
+  }
+  public wts:WagonType[] = null;
+  public getClasses(route:Route2):WagonType[]{
+    if(this.wts != null){
+      return this.wts;
+    }
+    this.wts = [];
+    var wtsi = {};
+    if(route != null){
+      if(route.wagons != null){
+        if(route.wagons.length>0){
+          for(var i=0;i<route.wagons.length;i++){
+            let w:Wagon = route.wagons[i];
+            if(w != null){
+              if(w.type != null){
+                if(wtsi[w.type.id] == null){
+                  wtsi[w.type.id] = w.type;
+                  this.wts.push(w.type);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return this.wts;
   }
 }

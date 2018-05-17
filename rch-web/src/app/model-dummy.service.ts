@@ -145,6 +145,7 @@ export class ModelDummyService implements IModel {
     var schedule:Schedule = new Schedule();
     schedule.query = query;
     schedule.travels = [];
+    schedule.cost = Math.random()*20000;
 
     let routes:Route2[] = this.get_routes.data;//this.getRoutes().data;
     var route:Route2 = routes[0];

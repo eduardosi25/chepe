@@ -39,6 +39,7 @@ export class Route2 implements FromJSONable{
     public img_map:string = "";
     public img_map_full:string = "";
     public max_stops:number = 3;
+    public pick_class:boolean = true;
 
     private first:TrainStop = null;
     private last:TrainStop = null;

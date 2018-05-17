@@ -25,6 +25,7 @@ import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-boo
 import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
 import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StopcheckDirective } from './stopcheck.directive';
+import { CostBoxComponent } from './rch/cost-box/cost-box.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { StopcheckDirective } from './stopcheck.directive';
     CommitComponent,
     ReceiptComponent,
     StatusComponent,
-    StopcheckDirective
+    StopcheckDirective,
+    CostBoxComponent
   ],
   providers: [ModelService,ModelDummyService,ModelRestService,ModelDummyRestService,SessionService,{
     provide: RECAPTCHA_SETTINGS,

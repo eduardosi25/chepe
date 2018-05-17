@@ -18,6 +18,7 @@ export class RouteBooking implements FromJSONable{
     public seats:SeatBooking[]=[];
     public persons:Person[]=[];
     public etickets_email:string="";
+    public etickets_email2:string="";
     public etickets_phone:string="";
     public travels:Travel[]=[];
     public pp:boolean=false;

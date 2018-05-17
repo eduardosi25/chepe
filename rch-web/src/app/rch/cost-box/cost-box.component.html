@@ -1,0 +1,14 @@
+<div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.schedule">
+    <table class="table uppercase">
+        <tbody>
+            <tr>
+                <th class="bg-three border2 c-one" scope="row">Total</th>
+                <td class="bg-two-darker border2 c-one">{{session.schedule.cost | currency}} {{session.schedule.currency}}</td>
+            </tr>
+            <tr>
+                <th class="bg-three c-one" scope="row">Pasajeros</th>
+                <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

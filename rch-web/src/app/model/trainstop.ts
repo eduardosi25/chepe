@@ -27,7 +27,7 @@ export class TrainStop implements FromJSONable{
             }
         }
     }
-    id:number;
+    id:number=-1;
     name:string;
     departures:Departure[] = [];
     latitude:number;

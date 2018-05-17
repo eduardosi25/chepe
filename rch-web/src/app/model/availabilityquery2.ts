@@ -4,6 +4,7 @@ import { PassengerType } from "./passengertype";
 import { FromJSONable } from "./FromJSONable";
 import { ModelService } from "../model.service";
 import { Route2 } from "./route2";
+import { WagonType } from "./wagontype";
 
 export class AvailabilityQuery2 implements FromJSONable{
     constructor(private model:ModelService){}
@@ -20,7 +21,13 @@ export class AvailabilityQuery2 implements FromJSONable{
     public passengers = [0,1,0,0,0,0,0,0,0];
     public stops = {};
     public round:boolean = false;
-    public class:string = "";
+    public class:WagonType = null;
+    public isReady():boolean{
+        if(this.src.id == -1){return false;}
+        if(this.dst.id == -1){return false;}
+        if(this.class == null){return false;}
+        return true;
+    }
     /* Sólo obtiene la suma de pasajeros */
     public getTotalPassengers():number{
         var n:number = 0;
@@ -68,7 +75,7 @@ export class AvailabilityQuery2 implements FromJSONable{
         a.start = this.start;
         a.stops = [];
         a.round = this.round;
-        a.class = this.class;
+        a.id_class = this.class.id;
         for(var i in this.stops){
             var n:number = parseInt(i);
             a.stops.push(n);

@@ -16,7 +16,7 @@ export class AvailabilityQuery implements FromJSONable{
     //passengers:number=1;
     passengers:PassengerType[]=[];
     round:boolean=false;
-    class:string;
+    id_class:number;
 
     public getForParams():object{
         let pts = environment.avmode == 1 ? this.passengers:this.getPTsIds();
@@ -28,7 +28,7 @@ export class AvailabilityQuery implements FromJSONable{
             'end':this.end,
             'stops':JSON.stringify(this.stops),
             'round':this.round,
-            'class':this.class
+            'class':this.id_class
           };
     }
     getPTsIds():number[]{

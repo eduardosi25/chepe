@@ -4,6 +4,8 @@ import { FromJSONable } from "./FromJSONable";
 export class Schedule implements FromJSONable{
     query:AvailabilityQuery = new AvailabilityQuery();
     travels:Travel[] = [];
+    cost:number = -1;
+    currency:string = "MXN";
     parseJSONObject(object:Object){
         if(!object){return;}
         this.query = new AvailabilityQuery(); this.query.parseJSONObject(object["query"]);
@@ -13,6 +15,12 @@ export class Schedule implements FromJSONable{
                 let y:Travel = new Travel();y.parseJSONObject(x[i]);
                 this.travels.push(y);
             }
+        }
+        if(object.hasOwnProperty('cost')){
+            this.cost = Number.parseFloat(object["cost"]);
+        }
+        if(object.hasOwnProperty('currency')){
+            this.currency = object['currency'];
         }
     }
 }

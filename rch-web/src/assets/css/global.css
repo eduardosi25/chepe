@@ -2582,3 +2582,10 @@ FIXES
 .modal-backdrop{
     z-index:0 !important;
 }
+
+app-cost-box{
+    position: absolute;
+}
+app-cost-box>div{
+    width:100% !important;
+}

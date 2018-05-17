@@ -14,6 +14,7 @@
 
                 </div>
             </div>
+            <app-cost-box></app-cost-box>
             <rch-status></rch-status>
             <!--<div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right">
         <table class="table uppercase">
@@ -142,15 +143,16 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-8">
                                 <div class="form-group">
-                                    <label for="correos">Cuenta(s) de correo*</label>
+                                    <label for="correos">Cuenta de correo*</label>
                                     <input type="text" class="form-control" aria-describedby="helpBlock" [(ngModel)]="session.rb.etickets_email" id="etickets_email">
                                     <span id="helpBlock" class="help-block">Ej.: ana@dominio.com, pepe@yahoo.com, etc.</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-8">
                                 <div class="form-group">
-                                    <label for="celular">Celular para envío de SMS</label>
-                                    <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_phone" id="etickets_phone">
+                                    <label for="celular">Confirmar correo</label>
+                                    <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_email2" id="etickets_email2">
+                                    <span id="helpBlock" class="help-block">Confirma el correo electrónico.</span>
                                 </div>
                             </div>
                         </div>

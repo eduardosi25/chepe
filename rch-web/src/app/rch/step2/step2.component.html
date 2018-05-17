@@ -14,6 +14,7 @@
 
                 </div>
             </div>
+            <app-cost-box></app-cost-box>
             <rch-status></rch-status>
             <div class="col-sm-5 center margintop10">
                 <a class="btn btn-link search" routerLink="/reservaciones/{{session.route.name}}/paso1" role="button">
@@ -64,7 +65,7 @@
                     <div class="col-md-24 gap-left">
                         <h3 class="uppercase c-two">
                             <span class="fontweight700">Escala {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}
-                            <span *ngIf="isStop(segment.dst)">(Baja del tren)</span>
+                            <!-- <span *ngIf="isStop(segment.dst)">(Baja del tren)</span>-->
                         </h3>
                     </div>
                     <div class="col-sm-18 no-gutter-left-mobile">
