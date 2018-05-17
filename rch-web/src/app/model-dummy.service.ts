@@ -57,7 +57,7 @@ export class ModelDummyService implements IModel {
     //chepe express
     var rexpress:Route2 = new Route2();
     rexpress.id = 2;
-    rexpress.max_stops = 3;
+    rexpress.max_stops = 2;
     rexpress.name = "Chepe Express";
     rexpress.passenger_types = this.getStdPassengerTypes();
     let w1=610;let h1=610;
@@ -80,7 +80,7 @@ export class ModelDummyService implements IModel {
     //chepe regional
     var rregional:Route2 = new Route2();
     rregional.id = 1;
-    rregional.max_stops = 3;
+    rregional.max_stops = 2;
     rregional.name = "Chepe Regional";
     rregional.passenger_types = this.getStdPassengerTypes();
     rregional.stops = [

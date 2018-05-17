@@ -40,6 +40,8 @@ export class Step1Component implements OnInit {
       this.session.query = new AvailabilityQuery2(this.model);
       this.session.query.start = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
       this.session.query.end = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
+      this.session.query.src = null;
+      this.session.query.dst = null;
     }
     //clean session
     this.wts = null;
@@ -111,7 +113,7 @@ export class Step1Component implements OnInit {
   }
   public readyToGoNext():boolean{
     this.last_failure_motive = null;
-    this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');
+    this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');this.a1('clase');
     if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
     if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
     var start_dt:Date = new Date(this.session.query.start);
@@ -121,11 +123,22 @@ export class Step1Component implements OnInit {
     for(var i in this.session.query.stops){
       if(this.session.query.stops[i]){nstops++;}
     }
-    var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
-    if(start_dt.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('inicio','orange');return false;}
-    if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){this.last_failure_motive = "Elige un fin válido.";this.a1('fin','orange');return false;}
-    if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
     if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
+    var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
+    if(this.session.query.round){
+      let t = min_end_dt.getTime();
+      t+=((nstops+0)*1000*60*60*24);
+      min_end_dt = new Date(t);
+    }
+    if(start_dt.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('inicio','orange');return false;}
+    $('#end-warning').text('');
+    if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){
+      this.last_failure_motive = "Elige un fin válido.";
+      this.a1('fin','orange');
+      $('#end-warning').text('Elige una fecha posterior o igual a '+min_end_dt.getFullYear()+"-"+(min_end_dt.getMonth()+1)+"-"+min_end_dt.getDate());
+      return false;
+    }
+    if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
     return true;
   }
   public add(pt:PassengerType,d:number){
@@ -134,6 +147,7 @@ export class Step1Component implements OnInit {
     a = a<pt.min ? pt.min : a;
     a = a>pt.max ? pt.max : a;
     this.session.query.passengers[pt.id] = a;
+    this.preflight();
   }
   public getTotalPassengers():string{
     return this.session.query.getPassengersString(this.route);
