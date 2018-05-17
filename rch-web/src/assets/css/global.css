@@ -2583,9 +2583,15 @@ FIXES
     z-index:0 !important;
 }
 
+
+/*** FIXES DEV ****/
 app-cost-box{
     position: absolute;
 }
 app-cost-box>div{
     width:100% !important;
+}
+.ngb-dp-day[_ngcontent-c10], .ngb-dp-weekday[_ngcontent-c10], .ngb-dp-week-number[_ngcontent-c10] {
+    width: 3rem;
+    height: 3rem;
 }
