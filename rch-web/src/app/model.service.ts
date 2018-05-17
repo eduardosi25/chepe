@@ -21,7 +21,9 @@ export class ModelService implements IModel {
 
   private impl:IModel;
 
-  constructor(private model_dummy:ModelDummyService,private model_rest:ModelRestService,private model_dummy_rest:ModelDummyRestService) { 
+  constructor(private model_dummy:ModelDummyService,
+    private model_rest:ModelRestService,
+    private model_dummy_rest:ModelDummyRestService) { 
     if(environment.model == "dummy"){
       this.impl = model_dummy;
     }else if(environment.model == "dummy-rest"){

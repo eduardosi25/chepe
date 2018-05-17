@@ -1,5 +1,6 @@
 import { FromJSONable } from "./FromJSONable";
 import { PassengerType } from "./passengertype";
+import {environment} from "../../environments/environment";
 
 export class AvailabilityQuery implements FromJSONable{
     parseJSONObject(object: Object) {
@@ -18,8 +19,9 @@ export class AvailabilityQuery implements FromJSONable{
     class:string;
 
     public getForParams():object{
+        let pts = environment.avmode == 1 ? this.passengers:this.getPTsIds();
         return {
-            'passengers':this.passengers,
+            'passengers':pts,
             'src':this.id_src,
             'dst':this.id_dst,
             'start':this.start,
@@ -28,5 +30,13 @@ export class AvailabilityQuery implements FromJSONable{
             'round':this.round,
             'class':this.class
           };
+    }
+    getPTsIds():number[]{
+        var a : number[] = [];
+        for(var i=0;i<this.passengers.length;i++){
+            let pt:PassengerType = this.passengers[i];
+            a.push(pt.id);
+        }
+        return a;
     }
 }
