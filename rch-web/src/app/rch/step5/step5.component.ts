@@ -105,13 +105,29 @@ export class Step5Component implements OnInit {
             wagons.push(w);
           }
         }
-        return wagons;
+        return this.filterWagons(wagons);
       }else{
-        return segment.selected_travel.wagons;
+        return this.filterWagons(segment.selected_travel.wagons);
       }
     }else{
-      return segment.selected_travel.wagons;
+      return this.filterWagons(segment.selected_travel.wagons);
     }
+  }
+  filterWagons(wagons:Wagon[]):Wagon[]{
+    if(this.session.route.pick_class && this.session.query.class != null){
+      return this.filterWagonsByWagonType(wagons,this.session.query.class);
+    }
+    return wagons;
+  }
+  filterWagonsByWagonType(wagons:Wagon[],wt:WagonType):Wagon[]{
+    var wagons2:Wagon[] = [];
+    for(var i=0;i<wagons.length;i++){
+      let wagon:Wagon = wagons[i];
+      if(wagon.type.id == wt.id){
+        wagons2.push(wagon);
+      }
+    }
+    return wagons2;
   }
   getRemainingSbs():number{
     let remaining:number = this.session.query.getTotalPassengers()-this.selected_segment.sbs.length;

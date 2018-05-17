@@ -68,12 +68,12 @@ export class ModelDummyService implements IModel {
       new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1,62/w1,530/h1)];
     rexpress.wagons = [
       this.mkWagon(wt1),
-      this.mkWagon(wt2),
       this.mkWagon(wt1),
       this.mkWagon(wt2),
-      this.mkWagon(wt1),
       this.mkWagon(wt2),
-      this.mkWagon(wt1)];
+      this.mkWagon(wt2),
+      this.mkWagon(wt2)
+      ];
     rexpress.img_url="assets/img/reservacion/header-reserva-express.jpg";
     rexpress.img_map="assets/img/reservacion/map_express.jpg";
     rexpress.img_map_full="assets/img/reservacion/map_express_full.jpg";
@@ -99,12 +99,11 @@ export class ModelDummyService implements IModel {
       new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1,37/w1,518/h1)];
     rregional.wagons = [
       this.mkWagon(wt1),
-      this.mkWagon(wt2),
       this.mkWagon(wt1),
       this.mkWagon(wt2),
-      this.mkWagon(wt1),
       this.mkWagon(wt2),
-      this.mkWagon(wt1)];
+      this.mkWagon(wt2),
+      this.mkWagon(wt2)];
     rregional.img_url = "assets/img/reservacion/header-reserva-regional.jpg";
     rregional.img_map="assets/img/reservacion/map_regional.jpg";
     rregional.img_map_full="assets/img/reservacion/map_regional_full_select.jpg";
@@ -117,7 +116,7 @@ export class ModelDummyService implements IModel {
   wid:number = 1;
   sid:number = 1;
   mkWagon(wt:WagonType,rows:number=15):Wagon{
-    var w:Wagon = new Wagon(1,wt,"00"+this.wid,[],1);
+    var w:Wagon = new Wagon(1,wt,""+this.wid,[],1);
     for(var i=0;i<rows;i++){
       w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"0",this.rss(),i,0));
       w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"1",this.rss(),i,1));
