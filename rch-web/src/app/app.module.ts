@@ -11,6 +11,9 @@ import { HistoryComponent } from './info/history/history.component';
 import { TacComponent } from './info/tac/tac.component';
 import { FaqComponent } from './info/faq/faq.component';
 import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -28,8 +31,19 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
