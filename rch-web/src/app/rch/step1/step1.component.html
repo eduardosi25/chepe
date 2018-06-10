@@ -1,8 +1,8 @@
 <div class="main-content">
     <div class="container">
-        <div class="row" *ngIf="route">
+        <div class="row row--relative" *ngIf="route">
 
-            <div class="col-md-20 no-gutter-left">
+            <div class="col-md-16 no-gutter-left">
                 <div class="row">
                     <div class=" col-sm-20 gap-left">
                         <h1 class="c-two">Reservaciones del {{route.name}}</h1>
@@ -120,8 +120,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="origen">Inicio del viaje</label>
-                                                <div class="input-group date" id="inicio">
-                                                    <input type="text" class="form-control" value="09/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"  (ngModelChange)="preflight()"
+                                                <div class="input-group date datepick--ui" id="inicio">
+                                                    <input type="text" class="form-control" value="09/11/2017" name="start"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"  (ngModelChange)="preflight()"
                                                         id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
                                                     />
                                                     <span class="input-group-addon" (click)="d.toggle()">
@@ -131,8 +131,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="origen">Fin del viaje</label>
-                                                <div class="input-group date" id="fin">
-                                                    <input type="text" class="form-control" value="10/11/2017" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"  (ngModelChange)="preflight()"
+                                                <div class="input-group date datepick--ui" id="fin">
+                                                    <input type="text" class="form-control" value="10/11/2017"  name="end"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"  (ngModelChange)="preflight()"
                                                         id="step1-end-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker"
                                                     />
                                                     <span class="input-group-addon" (click)="d2.toggle()">
