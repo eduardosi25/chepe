@@ -5,7 +5,7 @@
             <div class="container">
 
                 <div class="header-topbar small-top-bar transparent-topbar">
-                    <span class="lang"><a (click)="switchLanguage('es')" class="active">Esp</a> / <a (click)="switchLanguage('en')">Eng</a></span>
+                    <span class="lang"><a (click)="switchLanguage('es')" >Esp</a> / <a (click)="switchLanguage('en')" class="active">Eng</a></span>
                     <!--<span class="chat bold"><a href="#"><img src="assets/img/chat-white.png"> CHAT</a></span>-->
                     <!-- Start of ferromex Zendesk Widget script -->
                     <!-- 
@@ -37,69 +37,69 @@ n.set = function (e) { n.set._.push(e) }, n._ = [], n.set._ = [], a.async = true
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trenes
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{'Dropdown-menu1-P0' | translate}}
                                 <span class="caret hidden-md hidden-lg"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a routerLink="/trenes/chepe-express">Chepe Express</a>
-                                </li>
-                                <li>
-                                    <a routerLink="/trenes/chepe-regional">Chepe Regional</a>
-                                </li>
-                                <li>
-                                    <a routerLink="/trenes/horarios-tarifas">Horarios y Tarifas</a>
-                                </li>
-                                <!--<li><a routerLink="/trenes/restaurante-urike">Restaurante Urike</a></li>-->
-                                <li>
-                                    <a routerLink="/trenes/galeria">Galería</a>
-                                </li>
-                                <li>
-                                    <a routerLink="/reservaciones">Reservaciones</a>
-                                </li>
+                              <li>
+                                <a routerLink="/trenes/chepe-express">{{'Dropdown-menu1-P1' | translate}}</a>
+                              </li>
+                              <li>
+                                <a routerLink="/trenes/chepe-regional">{{'Dropdown-menu1-P2' | translate}}</a>
+                              </li>
+                              <li>
+                                <a routerLink="/trenes/horarios-tarifas">{{'Dropdown-menu1-P3' | translate}}</a>
+                              </li>
+                              <!--<li><a routerLink="/trenes/restaurante-urike">{{'Dropdown-menu1-P4' | translate}}</a></li>-->
+                              <li>
+                                <a routerLink="/trenes/galeria">{{'Dropdown-menu1-P5' | translate}}</a>
+                              </li>
+                              <li>
+                                <a routerLink="/reservaciones">{{'Dropdown-menu1-P6' | translate}}</a>
+                              </li>
                             </ul>
                         </li>
                         <li>
-                            <a routerLink="/reservaciones">Reservaciones</a>
+                          <a routerLink="/reservaciones">{{'Dropdown-menu2-P0' | translate}}</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Atracciones
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{'Dropdown-menu3-P0' | translate}}
                                 <span class="caret hidden-md hidden-lg"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a routerLink="/atracciones/destinos-y-actividades">Destinos y actividades</a>
+                                    <a routerLink="/atracciones/destinos-y-actividades">{{'Dropdown-menu3-P1' | translate}}</a>
                                 </li>
                                 <!--<li><a href="atracciones-chepexplora.html">ChepeXplora</a></li>-->
                                 <li>
-                                    <a routerLink="/atracciones/comunidades-indigenas">Comunidades indígenas</a>
+                                    <a routerLink="/atracciones/comunidades-indigenas">{{'Dropdown-menu3-P2' | translate}}</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Guía de Viaje
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{'Dropdown-menu4-P0' | translate}}
                                 <span class="caret hidden-md hidden-lg"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a routerLink="/guia-de-viaje/itinerarios-sugeridos">Itinerarios sugeridos</a>
+                                    <a routerLink="/guia-de-viaje/itinerarios-sugeridos">{{'Dropdown-menu4-P1' | translate}}</a>
                                 </li>
                                 <li>
-                                    <a routerLink="/guia-de-viaje/conexiones-aereas">Conexiones aéreas</a>
+                                    <a routerLink="/guia-de-viaje/conexiones-aereas">{{'Dropdown-menu4-P2' | translate}}</a>
                                 </li>
                                 <li>
-                                    <a routerLink="/guia-de-viaje/hoteles">Directorio de hoteles</a>
+                                    <a routerLink="/guia-de-viaje/hoteles">{{'Dropdown-menu4-P3' | translate}}</a>
                                 </li>
                                 <li>
-                                    <a routerLink="/guia-de-viaje/testimonios">Testimonios</a>
+                                    <a routerLink="/guia-de-viaje/testimonios">{{'Dropdown-menu4-P4' | translate}}</a>
                                 </li>
                                 <li>
-                                    <a routerLink="/preguntas-frecuentes">Preguntas frecuentes</a>
+                                    <a routerLink="/preguntas-frecuentes">{{'Dropdown-menu4-P5' | translate}}</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a routerLink="/contacto">Contacto</a>
+                            <a routerLink="/contacto">{{'Dropdown-menu5-P0' | translate}}</a>
                         </li>
                     </ul>
                 </div>
