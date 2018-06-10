@@ -2582,7 +2582,12 @@ FIXES
 .modal-backdrop{
     z-index:0 !important;
 }
-
+.trip-check {
+    height: 40px;
+}
+.trip-check label {
+    font-weight: 300;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
