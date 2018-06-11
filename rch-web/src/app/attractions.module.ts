@@ -13,10 +13,20 @@ import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-
 import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
 import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
 import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
+import { HttpClient } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
-    AttractionsRoutingModule
+    AttractionsRoutingModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [DestinationsComponent,
     BahuichivoComponent,

@@ -7,11 +7,21 @@ import { ChepeRegionalComponent } from './info/trains/chepe-regional/chepe-regio
 import { TimesFaresComponent } from './info/trains/times-fares/times-fares.component';
 import { GalleryComponent } from './info/trains/gallery/gallery.component';
 import { UrikeComponent } from './info/trains/urike/urike.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    TrainsRoutingModule
+    TrainsRoutingModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     ChepeExpressComponent,

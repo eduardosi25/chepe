@@ -20,13 +20,15 @@ import { FormsModule} from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {NgbModule, NgbDateAdapter, NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateNativeAdapter } from './NgbDateNativeAdapter';
 import { I18n, CustomDatepickerI18n } from './i18ndatepicker';
 import { StopcheckDirective } from './stopcheck.directive';
 import { CostBoxComponent } from './rch/cost-box/cost-box.component';
 import { Step2bComponent } from './rch/step2b/step2b.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
 
 
 @NgModule({
@@ -36,7 +38,14 @@ import { Step2bComponent } from './rch/step2b/step2b.component';
     FormsModule,
     HttpClientModule,
     RecaptchaModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     Step1Component,

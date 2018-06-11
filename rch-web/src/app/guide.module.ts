@@ -7,10 +7,20 @@ import { HotelsComponent } from './info/guide/hotels/hotels.component';
 import { ScheduleComponent } from './info/guide/schedule/schedule.component';
 import { ScheduleRegionalComponent } from './info/guide/schedule-regional/schedule-regional.component';
 import { TestimonialsComponent } from './info/guide/testimonials/testimonials.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
+import { HttpClient } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
     GuideRoutingModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     AirlinesComponent,
