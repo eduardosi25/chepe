@@ -37,6 +37,9 @@ export class CommitComponent implements OnInit {
     public is_captcha_solved:boolean = false;
     public segments:Segment[] = [];
   ngOnInit() {
+    if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
+      this.router.navigate(["/reservaciones"]);return;
+    }
     this.segments = this.session.mkUnifiedSegments();
     this.is_captcha_solved = false;
     this.is_getting_quote = true;
@@ -51,20 +54,21 @@ export class CommitComponent implements OnInit {
     this.location.back();
   }
   public bookIt(){
-    if(confirm("¿Desea proceder a reservar?")){
-      this.session.rb.status = RouteBooking.booked;
-      this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
-        this.session.rb = response.data;
-        this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
+    if(confirm("¿Desea proceder al pago?")){
+      this.router.navigate(["/reservaciones/"+this.session.route.name+"/pago"]);
+      // this.session.rb.status = RouteBooking.booked; 
+      // this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
+      //   this.session.rb = response.data;
+      //   this.router.navigate(["/reservaciones/"+this.session.route.name+"/pago"]);
 
-        /*
-        if(this.session.rb.status == RouteBooking.booked){
-          //alert("Reservación realizada exitósamente, recibirá un correo electrónico con la confirmación de su reservación");
-          this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
-        }else{
-          alert("No se pudo concretar su reservación, inténtelo de nuevo luego de algunos segundos.");
-        }*/
-      });
+      //   /*
+      //   if(this.session.rb.status == RouteBooking.booked){
+      //     //alert("Reservación realizada exitósamente, recibirá un correo electrónico con la confirmación de su reservación");
+      //     this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
+      //   }else{
+      //     alert("No se pudo concretar su reservación, inténtelo de nuevo luego de algunos segundos.");
+      //   }*/
+      // });
       
     }
   }

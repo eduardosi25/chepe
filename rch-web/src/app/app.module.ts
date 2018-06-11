@@ -11,6 +11,7 @@ import { HistoryComponent } from './info/history/history.component';
 import { TacComponent } from './info/tac/tac.component';
 import { FaqComponent } from './info/faq/faq.component';
 import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component';
+import { PaymentComponent } from './rch/payment/payment.component';
 
 
 
@@ -24,7 +25,8 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
     HistoryComponent,
     TacComponent,
     FaqComponent,
-    LegalAdviceComponent
+    LegalAdviceComponent,
+    //PaymentComponent
   ],
   imports: [
     BrowserModule,

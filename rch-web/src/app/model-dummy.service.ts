@@ -18,6 +18,7 @@ import { Direction } from './model/direction';
 import { SeatBooking } from './model/seatbooking';
 import { Cost } from './model/cost';
 import {Observable} from "rxjs/Rx";
+import { UrlWebPay } from './model/url';
 
 @Injectable()
 export class ModelDummyService implements IModel {
@@ -251,4 +252,9 @@ export class ModelDummyService implements IModel {
     if(this.travels[id]){return Observable.of(new Response("+RCH.WS15.0",null,this.travels[id]));}
     return null;
   }
+
+  getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
+    return Observable.of(new Response<UrlWebPay>("+RCH.WS17.0",null,new UrlWebPay("http://wpp.sandbox.mit.com.mx/i/5RA7JKMS")));
+  }
+
 }
