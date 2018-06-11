@@ -2600,6 +2600,14 @@ FIXES
 .row--relative {
     position: relative;
 }
+.table-escala .table-escala-line div {
+    display: initial;
+    font-size: 14px;
+    letter-spacing: -.5px;
+}
+.table-escala.regional .table-escala-line {
+    display: flex;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
