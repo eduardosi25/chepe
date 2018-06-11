@@ -20,6 +20,7 @@ export class ContactComponent implements OnInit {
         orientation: "bottom left",
         todayHighlight: true
       });
+      
       var enviado = GetURLParameter('enviado');
   
       if (enviado == "1") {
