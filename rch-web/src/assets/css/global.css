@@ -2582,11 +2582,38 @@ FIXES
 .modal-backdrop{
     z-index:0 !important;
 }
-
+.trip-check {
+    height: 40px;
+}
+.trip-check label {
+    font-weight: 300;
+}
+.datepick--ui .btn-light{
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 13px;
+}
+.datepick--ui .btn-light.bg-primary{
+    background: #66baaf;
+}
+.row--relative {
+    position: relative;
+}
+.table-escala .table-escala-line div {
+    display: initial;
+    font-size: 14px;
+    letter-spacing: -.5px;
+}
+.table-escala.regional .table-escala-line {
+    display: flex;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
     position: absolute;
+    right: 15px;
+    top: 15px;
 }
 app-cost-box>div{
     width:100% !important;
@@ -2595,3 +2622,36 @@ app-cost-box>div{
     width: 3rem !important;
     height: 3rem !important;
 }
+
+/*** RESPONSIVE FIX ****/
+@media (max-width:992px) {
+    app-cost-box {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding: 0 15px;
+        top: 0;
+        right: 0;
+        margin: 20px 0;
+    }
+    app-cost-box .table {
+        margin-bottom: 0;
+    }
+    app-cost-box>div {
+        padding: 0;
+        width: 400px !important;
+        left: 50%;
+        position: relative;
+        margin-left: -200px;
+    }
+}
+@media (max-width:480px) {
+    app-cost-box>div {
+        padding: 0 !important;
+        width: 100% !important;
+        left: 0;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}
+

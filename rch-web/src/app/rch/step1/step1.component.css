@@ -16,3 +16,17 @@ border:2px solid #f18a21;
 .check input[disabled]{
     background-color:#f18a21;
 }
+
+.select-map {
+    position: relative;
+}
+
+.select-map .check {
+    position: absolute;
+}
+
+#check_22 {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}

@@ -184,10 +184,14 @@ export class Step1Component implements OnInit {
     
   }
   public showStartDt(event){
-    $(event.target.id).datepicker();
+    $(event.target.id).datepicker({
+      todayHighlight: true
+    });
   }
   public showEndDt(event){
-    $(event.target.id).datepicker();
+    $(event.target.id).datepicker({
+      todayHighlight: true
+    });
   }
 
   
