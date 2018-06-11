@@ -2574,6 +2574,7 @@ FIXES
 }
 .modal-video {
     z-index: 99999;
+    top: 0;
 }
 .body.active {
     overflow: inherit !important;
