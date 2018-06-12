@@ -660,6 +660,23 @@
 	"Airl-P03":"AEROLÍNEA",
 	"Airl-P04":"Internacionales",
 	"Airl-P05":"ORIGEN",
-	"Airl-P06":"AEROLÍNEA"
-	
+	"Airl-P06":"AEROLÍNEA",
+	"Hot-P00":"Directorio de hoteles",
+	"Hot-P01":"(incluye 3 alimentos por persona)",
+	"Hot-P02":"(incluye 3 alimentos por persona)",
+	"Hot-P03":"(incluye 3 alimentos por persona)",
+	"Hot-P04":"(incluye 3 alimentos por persona)",
+	"Test-P00":"Testimonios",
+	"Iti-P00":"Itinerarios Sugerido",
+	"Iti-P01":"Tours 3 días 2 noches",
+	"Iti-P02":"Día",
+	"Iti-P03":"Origen",
+	"Iti-P04":"Destino",
+	"Iti-P05":"Salida",
+	"Iti-P06":"Llegada",
+	"Iti-P07":"Pernocta en Divisadero",
+	"Iti-P08":"Reservar",
+	"Iti-P09":"Pernocta en Creel",
+	"Iti-P10":"Tours 4 días 3 noches",
+	"Iti-P11":"Tours 5 días 4 noches"
 }
