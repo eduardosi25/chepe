@@ -2608,6 +2608,16 @@ FIXES
 .table-escala.regional .table-escala-line {
     display: flex;
 }
+.checkbox input[type="checkbox"]:checked:after  {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #f08a33;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    border-radius: 50%;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
