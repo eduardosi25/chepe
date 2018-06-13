@@ -17,6 +17,8 @@ import { ModelDummyRestService } from './model-dummy-rest.service';
 import { PassengerType } from './model/passengertype';
 import { Wagon } from './model/wagon';
 import { WagonType } from './model/wagontype';
+import { Url } from 'url';
+import { UrlWebPay } from './model/url';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -81,6 +83,9 @@ export class ModelService implements IModel {
   }
   getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
     return this.impl.getTravel(id,id_src,id_dst);
+  }
+  getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
+    return this.impl.getPaymentUrl(amount,mail);
   }
   public getRouteByName(route_name:string):Route2{
     return this.route_by_name[route_name];

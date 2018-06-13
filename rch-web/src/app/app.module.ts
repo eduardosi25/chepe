@@ -14,6 +14,7 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PaymentComponent } from './rch/payment/payment.component';
 
 
 
@@ -27,7 +28,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     HistoryComponent,
     TacComponent,
     FaqComponent,
-    LegalAdviceComponent
+    LegalAdviceComponent,
+    //PaymentComponent
   ],
   imports: [
     BrowserModule,

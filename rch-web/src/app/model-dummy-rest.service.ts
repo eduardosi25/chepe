@@ -11,6 +11,7 @@ import { Schedule } from './model/schedule';
 import { RouteBooking } from './model/routebooking';
 import { Travel } from './model/travel';
 import { HttpClient } from '@angular/common/http';
+import { UrlWebPay } from './model/url';
 @Injectable()
 export class ModelDummyRestService implements IModel{
   private use_mocks:boolean = false;
@@ -111,6 +112,12 @@ export class ModelDummyRestService implements IModel{
       
     });
   }
-  
+  getPaymentUrl(amount:number,mail:string): Observable<Response<UrlWebPay>> {
+    
+    return new Observable<Response<UrlWebPay>>((observer)=>{ 
+      "http://wpp.sandbox.mit.com.mx/i/5RA7JKMS";      
+      
+    });
+  }
 
 }
