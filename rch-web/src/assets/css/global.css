@@ -2609,6 +2609,13 @@ FIXES
 .table-escala.regional .table-escala-line {
     display: flex;
 }
+.modal.galeria .modal-header .close {
+    opacity: 1;
+}
+.close {
+    color: #fff !important;
+    font-size: 40px;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
