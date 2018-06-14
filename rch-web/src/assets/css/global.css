@@ -2574,6 +2574,7 @@ FIXES
 }
 .modal-video {
     z-index: 99999;
+    top: 0;
 }
 .body.active {
     overflow: inherit !important;
@@ -2720,6 +2721,13 @@ FIXES
 
 
 
+.modal.galeria .modal-header .close {
+    opacity: 1;
+}
+.close {
+    color: #fff !important;
+    font-size: 40px;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
