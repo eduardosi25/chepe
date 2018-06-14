@@ -2728,6 +2728,16 @@ FIXES
     color: #fff !important;
     font-size: 40px;
 }
+.wagon_info {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #b8b09c;
+    color: #202861;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 20px;
+}
 
 /*** FIXES DEV ****/
 app-cost-box{
