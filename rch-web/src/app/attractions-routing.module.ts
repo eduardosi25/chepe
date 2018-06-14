@@ -10,6 +10,7 @@ import { ElFuerteComponent } from './info/attractions/destinations/el-fuerte/el-
 import { LosMochisComponent } from './info/attractions/destinations/los-mochis/los-mochis.component';
 import { ChepexploraComponent } from './info/attractions/chepexplora/chepexplora.component';
 import { DetailsComponent } from './info/attractions/chepexplora/details/details.component';
+import { ChihuahuaComponent } from './info/attractions/destinations/chihuahua/chihuahua.component';
 
 const routes: Routes = [
   { path: 'destinos-y-actividades', component: DestinationsComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'destinos-y-actividades/bahuichivo', component: BahuichivoComponent },
   { path: 'destinos-y-actividades/barrancas-cobre', component: BarrancasCobreComponent },
   { path: 'destinos-y-actividades/creel', component: CreelComponent },
+  { path: 'destinos-y-actividades/chihuahua', component: ChihuahuaComponent },
   { path: 'destinos-y-actividades/cuauhtemoc', component: CuauhtemocComponent },
   { path: 'destinos-y-actividades/el-fuerte', component: ElFuerteComponent },
   { path: 'destinos-y-actividades/los-mochis', component: LosMochisComponent },
