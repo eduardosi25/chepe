@@ -2619,6 +2619,108 @@ FIXES
     border-radius: 50%;
 }
 
+/* map checkbox */
+.modal-body.Chepe.Regional label,
+.modal-body.Chepe.Express label {
+    display: none;
+    font-size: 14px;
+    color: #4e595a;
+}
+
+/*::Chepe regional ::*/
+
+/* Cuauhtemoc */
+.modal-body.Chepe.Regional #check_9 {
+    left: 57.9557% !important;
+    top: 8.6393% !important;
+}
+/* San juanito */
+.modal-body.Chepe.Regional #check_18 {
+    left: 48.633% !important;
+    top: 14.2295% !important;
+}
+/* Creel */
+.modal-body.Chepe.Regional #check_20 {
+    left: 46.3443% !important;
+    top: 21.5902% !important;
+}
+/* Pitorreal */
+.modal-body.Chepe.Regional #check_21 {
+    left: 43.5984% !important;
+    top: 25.377% !important;
+}
+.modal-body.Chepe.Regional #check_21 label {
+    display: inline-block;
+}
+/* Divisadero */
+.modal-body.Chepe.Regional #check_22 {
+    left: 36.3443% !important;
+    top: 28.4311% !important;
+}
+/* Barrancas */
+.modal-body.Chepe.Regional #check_23 {
+    left: 34.4262% !important;
+    top: 30.7541% !important;
+}
+.modal-body.Chepe.Regional #check_23 label {
+    display: inline-block;
+}
+/* san rafael */
+.modal-body.Chepe.Regional #check_24 {
+    left: 31.7623% !important;
+    top: 30.7377% !important;
+
+}
+.modal-body.Chepe.Regional #check_24 label {
+    display: block;
+    float: left;
+    width: 100px;
+    position: absolute;
+    left: -92px;
+    top: 1px;
+    max-width: inherit;
+}
+/* Ciuteco */
+.modal-body.Chepe.Regional #check_25 {
+    left: 30.6426% !important;
+    top: 32.8852% !important;
+}
+.modal-body.Chepe.Regional #check_25 label {
+    display: inline-block;
+}
+/* Bahuichivo */
+.modal-body.Chepe.Regional #check_26 {
+    left: 28.8033% !important;
+    top: 35.0328% !important;
+}
+/* Temoris */
+.modal-body.Chepe.Regional #check_30 {
+    left: 23.7213% !important;
+    top: 41.9738% !important;
+}
+/* El fuerte */
+.modal-body.Chepe.Regional #check_39 {
+    left: 13.5574% !important;
+    top: 64.1131% !important;
+}
+
+/*::Chepe express ::*/
+
+/* Divisadero */
+.modal-body.Chepe.Express #check_22 {
+    left: 61.5984% !important;
+    top: 16.3131% !important;
+}
+
+/* El fuerte */
+.modal-body.Chepe.Express #check_39 {
+    left: 34.4623% !important;
+    top: 58.6066% !important;
+}
+
+
+
+
 /*** FIXES DEV ****/
 app-cost-box{
     position: absolute;

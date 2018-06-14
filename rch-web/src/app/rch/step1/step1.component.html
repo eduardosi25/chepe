@@ -211,11 +211,11 @@
                                 <!--<div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>-->
-                                <div class="modal-body">
+                                <div class="modal-body {{route.name}}">
                                     <div class="select-map regional">
                                         <div class="select-map-body">
                                             <img width="900px" src="{{route.img_map}}">
-                                            <div class="check" [appStopcheck]="ts" id="check_{{ts.id}}" *ngFor="let ts of getRouteStops(); let i = index">
+                                            <div class="check {{ts.name}}" [appStopcheck]="ts" id="check_{{ts.id}}" *ngFor="let ts of getRouteStops(); let i = index">
                                                 <input *ngIf="!isMiddle(i,ts)" disabled type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}">
                                                 <input *ngIf="isMiddle(i,ts)" type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}" [ngModelOptions]="{standalone: true}"
                                                     [ngModel]="session.query.stops[ts.id]" (click)="onPickTS(ts)">
