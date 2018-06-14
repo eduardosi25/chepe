@@ -121,10 +121,10 @@ export class ModelDummyService implements IModel {
   mkWagon(wt:WagonType,rows:number=15):Wagon{
     var w:Wagon = new Wagon(1,wt,""+this.wid,[],1);
     for(var i=0;i<rows;i++){
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"0",this.rss(),i,0));
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"1",this.rss(),i,1));
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"2",this.rss(),i,2));
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"3",this.rss(),i,3));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"1",this.rss(),i,0));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"2",this.rss(),i,1));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"3",this.rss(),i,2));
+      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"4",this.rss(),i,3));
     }
     this.wid++;
     return w;
