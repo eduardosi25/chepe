@@ -92,36 +92,16 @@
                     </div>
                     <div class="col-sm-24">
                         <div class="bg-base-light center">
-                            <div class="select-seat classic" id="VC" *ngIf="wagon.type.id != 3">
+                            <div class="select-seat {{getWagonType2(wagon)}}" id="VC">
                                 <div class="wagon-img-classic">
                                     <img class="img-responsive" src="{{wagon.type.img_mobile}}">
                                 </div>
                                 <div class="block-seats">
-                                    <div class="row-seats clearfix" id="VC1" *ngFor="let row of wagon.getRows()">
-                                        <div class="{{row.getSeatClasses(i,seat)}}" id="seat_{{seat.id}}" *ngFor="let seat of row.cols; let i = index" (click)="onSeatClicked(seat,wagon,selected_segment)">
+                                    <div class="row-seats clearfix {{getRowClasses(i)}}" id="VC1" *ngFor="let row of wagon.getRows(); let i = index">
+                                        <div class="{{row.getSeatClasses(j,seat)}}" id="seat_{{seat.id}}" *ngFor="let seat of row.cols; let j = index" (click)="onSeatClicked(seat,wagon,selected_segment)">
                                             <label>{{seat.name}}</label>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="select-seat premium" id="VC" *ngIf="wagon.type.id === 3">
-                                <div class="wagon-img-classic">
-                                    <img class="img-responsive" src="assets/img/reservacion/vagon-premium.png">
-                                </div>
-                                <div class="block-seats">
-                                    <ng-container *ngFor="let row of wagon.getRows(); let i = index">
-                                        <div class="row-seats clearfix" id="VC1"  *ngIf="i === 0 || i === 2 || i === 4 || i === 6 || i === 8 || i === 10">
-                                            <div class="{{row.getSeatClasses(i,seat)}}" id="seat_{{seat.id}}" *ngFor="let seat of row.cols; let i = index" (click)="onSeatClicked(seat,wagon,selected_segment)">
-                                                <label>{{seat.name}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="row-seats flip clearfix" id="VC1" *ngIf="i === 1 || i === 3 || i === 5 || i === 6 || i === 9 || i === 11">
-                                            <div class="{{row.getSeatClasses(i,seat)}}" id="seat_{{seat.id}}" *ngFor="let seat of row.cols; let i = index" (click)="onSeatClicked(seat,wagon,selected_segment)">
-                                                <label>{{seat.name}}</label>
-                                            </div>
-                                        </div>
-                                    </ng-container>
                                 </div>
                             </div>
                         </div>

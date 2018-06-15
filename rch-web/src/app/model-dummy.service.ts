@@ -50,7 +50,7 @@ export class ModelDummyService implements IModel {
     //wagon types
     var wt1 = new WagonType(1,"Ejecutiva",1);
     var wt2 = new WagonType(2,"Turista",1);
-    var wt3 = new WagonType(3,"Ejecutiva",1);
+    var wt3 = new WagonType(3,"Ejecutiva",1,"","assets/img/reservacion/vagon-premium.png");
     var wt4 = new WagonType(4,"Turista",1);
     /*var wt3 = new WagonType(3,"Bar",1);
     var wt4 = new WagonType(4,"Terraza",1);
@@ -121,10 +121,17 @@ export class ModelDummyService implements IModel {
   mkWagon(wt:WagonType,rows:number=15):Wagon{
     var w:Wagon = new Wagon(1,wt,""+this.wid,[],1);
     for(var i=0;i<rows;i++){
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"1",this.rss(),i,0));
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"2",this.rss(),i,1));
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"3",this.rss(),i,2));
-      w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+"4",this.rss(),i,3));
+      if(wt.id == 3){
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+Math.floor(i/2))+((i%2==0)?1:4+1),this.rss(),i,0));
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+Math.floor(i/2))+((i%2==0)?2:4+2),this.rss(),i,1));
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+Math.floor(i/2))+((i%2==0)?3:4+3),this.rss(),i,2));
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+Math.floor(i/2))+((i%2==0)?4:4+4),this.rss(),i,3));
+      }else{
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+((true)?1:4+1),this.rss(),i,0));
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+((true)?2:4+2),this.rss(),i,1));
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+((true)?3:4+3),this.rss(),i,2));
+        w.seats.push(new Seat(this.sid++,w.id,String.fromCharCode("A".charCodeAt(0)+i)+((true)?4:4+4),this.rss(),i,3));
+      }
     }
     this.wid++;
     return w;

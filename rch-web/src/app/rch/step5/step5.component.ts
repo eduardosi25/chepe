@@ -215,6 +215,14 @@ export class Step5Component implements OnInit {
       this.setSelectedSegment(this.segments[i-1]);
     }
   }
+  getWagonType2(wagon:Wagon):string{
+    if(wagon.type.id != 3){return "classic";}
+    if(wagon.type.id == 3){return "premium";}
+    return "classic";
+  }
+  getRowClasses(i:number):string{
+    return (i%2 == 0)?"":"flip";
+  }
   fly_max:number = -1;
   public shouldFly():boolean{
     return false;
