@@ -53,15 +53,15 @@
 
                         <div class="express-vagones">
                             <p>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-premium" target="_self" href="javascript:void(0);">{{'Chex-P04' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-premium" target="_self" href="javascript:void(0);" id="vagon-premium">{{'Chex-P04' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-clasico" target="_self" href="javascript:void(0);">{{'Chex-P05' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-clasico" target="_self" href="javascript:void(0);" id="vagon-clasico">{{'Chex-P05' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-bar" target="_self" href="javascript:void(0);">{{'Chex-P06' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-bar" target="_self" href="javascript:void(0);" id="vagon-bar">{{'Chex-P06' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-urike" target="_self" href="javascript:void(0);">{{'Chex-P07' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-urike" target="_self" href="javascript:void(0);" id="vagon-urike">{{'Chex-P07' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-terraza" target="_self" href="javascript:void(0);">{{'Chex-P08' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-terraza" target="_self" href="javascript:void(0);" id="vagon-terraza">{{'Chex-P08' | translate}}</a>
                             </p>
                             <img src="assets/img/trenes/express_tren_illu.png" class="img-responsive">
                         </div>
@@ -365,19 +365,15 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="col-sm-17 col-sm-offset-7">
+                    <div class="col-sm-17 col-sm-offset-7">
                   <div class="row">
                       <div class="col-sm-17 center margintop30">
-                              <a class="btn btn-link c-five" href="#" data-toggle="modal" data-target="#urike-menu-1">
-                              <div><img class="big" src="assets/img/icon_menu1.png"></div>
-                              <div>MENÚ 1</div>
-                              </a>
-                              <a class="btn btn-link c-five" href="#" data-toggle="modal" data-target="#urike-menu-1">
-                              <div><img class="big" src="assets/img/icon_menu2.png"></div>
-                              <div>MENÚ 2</div>
-                              </a>
+                            <a class="btn btn-link c-five" href="{{icon.pdf}}" target="_blank" *ngFor="let icon of kind">
+                              <div><img class="big" src="{{icon.rute}}"></div>
+                              <div>{{icon.text}}</div>
+                            </a>
                       </div>
-                       <div class="col-sm-17 center margintop20">
+                       <!--div class="col-sm-17 center margintop20">
                               <a class="btn btn-link c-five" href="trenes-reservaciones-urike.html" role="button">
                               <div><img class="small" src="assets/img/icon_urike.png"></div>
                                   <div>RESERVACIONES <br> <span class="lowercase">Urike</span></div>
@@ -390,7 +386,7 @@
                               </a>
                       </div> 
                   </div>
-              </div>-->
+              </div-->
                 </div>
             </div>
         </div>
