@@ -53,15 +53,15 @@
 
                         <div class="express-vagones">
                             <p>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-premium" target="_self" href="javascript:void(0);">{{'Chex-P04' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-premium" target="_self" href="javascript:void(0);" id="vagon-premium">{{'Chex-P04' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-clasico" target="_self" href="javascript:void(0);">{{'Chex-P05' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-clasico" target="_self" href="javascript:void(0);" id="vagon-clasico">{{'Chex-P05' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-bar" target="_self" href="javascript:void(0);">{{'Chex-P06' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-bar" target="_self" href="javascript:void(0);" id="vagon-bar">{{'Chex-P06' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-urike" target="_self" href="javascript:void(0);">{{'Chex-P07' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-urike" target="_self" href="javascript:void(0);" id="vagon-urike">{{'Chex-P07' | translate}}</a>
                                 <span class="c-one">&nbsp;|&nbsp;</span>
-                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-terraza" target="_self" href="javascript:void(0);">{{'Chex-P08' | translate}}</a>
+                                <a [routerLink]="['/trenes/chepe-express']"  fragment="vagon-terraza" target="_self" href="javascript:void(0);" id="vagon-terraza">{{'Chex-P08' | translate}}</a>
                             </p>
                             <img src="assets/img/trenes/express_tren_illu.png" class="img-responsive">
                         </div>
@@ -367,14 +367,10 @@
                     </div>
                     <div class="col-sm-17 col-sm-offset-7">
                   <div class="row">
-                      <div class="col-sm-17 center margintop30" *ngFor="let icon of kind">
-                            <a class="btn btn-link c-five" href="{{icon.pdf}}" target="_blank">
+                      <div class="col-sm-17 center margintop30">
+                            <a class="btn btn-link c-five" href="{{icon.pdf}}" target="_blank" *ngFor="let icon of kind">
                               <div><img class="big" src="{{icon.rute}}"></div>
                               <div>{{icon.text}}</div>
-                            </a>
-                            <a class="btn btn-link c-five" href="#">
-                              <div><img class="big" src="assets/img/icon_menu2.png"></div>
-                              <div>COMIDA</div>
                             </a>
                       </div>
                        <!--div class="col-sm-17 center margintop20">

@@ -1049,6 +1049,7 @@ table.chepe.secondary tr:last-child{
 
 .header-topbar a{
     color: inherit;
+    cursor: pointer;
 }
 
 .header-topbar a:hover, .header-topbar a.active{
@@ -2751,6 +2752,16 @@ app-cost-box>div{
 .ngb-dp-day, .ngb-dp-weekday, .ngb-dp-week-number {
     width: 3rem !important;
     height: 3rem !important;
+}
+
+/*-- Changes --*/
+.link__orange,
+.link__orange:hover {
+    color: #EA871F;
+}
+
+.text-20 {
+    font-size: 20px;
 }
 
 /*** RESPONSIVE FIX ****/

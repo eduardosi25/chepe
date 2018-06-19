@@ -11,7 +11,12 @@ export class ChepeExpressComponent implements OnInit {
     {
       "rute" : "assets/img/icon_menu1.png",
       "text" : "DESAYUNO",
-      "pdf" : ""
+      "pdf" : "/assets/pdf/Desayuno.pdf"
+    },
+        {
+      "rute" : "assets/img/icon_menu2.png",
+      "text" : "COMIDA",
+      "pdf" : "/assets/pdf/Comida.pdf"
     }
   ]
 
