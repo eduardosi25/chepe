@@ -365,19 +365,19 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="col-sm-17 col-sm-offset-7">
+                    <div class="col-sm-17 col-sm-offset-7">
                   <div class="row">
-                      <div class="col-sm-17 center margintop30">
-                              <a class="btn btn-link c-five" href="#" data-toggle="modal" data-target="#urike-menu-1">
-                              <div><img class="big" src="assets/img/icon_menu1.png"></div>
-                              <div>MENÚ 1</div>
-                              </a>
-                              <a class="btn btn-link c-five" href="#" data-toggle="modal" data-target="#urike-menu-1">
+                      <div class="col-sm-17 center margintop30" *ngFor="let icon of kind">
+                            <a class="btn btn-link c-five" href="{{icon.pdf}}" target="_blank">
+                              <div><img class="big" src="{{icon.rute}}"></div>
+                              <div>{{icon.text}}</div>
+                            </a>
+                            <a class="btn btn-link c-five" href="#">
                               <div><img class="big" src="assets/img/icon_menu2.png"></div>
-                              <div>MENÚ 2</div>
-                              </a>
+                              <div>COMIDA</div>
+                            </a>
                       </div>
-                       <div class="col-sm-17 center margintop20">
+                       <!--div class="col-sm-17 center margintop20">
                               <a class="btn btn-link c-five" href="trenes-reservaciones-urike.html" role="button">
                               <div><img class="small" src="assets/img/icon_urike.png"></div>
                                   <div>RESERVACIONES <br> <span class="lowercase">Urike</span></div>
@@ -390,7 +390,7 @@
                               </a>
                       </div> 
                   </div>
-              </div>-->
+              </div-->
                 </div>
             </div>
         </div>
