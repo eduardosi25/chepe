@@ -2184,7 +2184,7 @@ table.chepe.secondary tr:last-child{
 }
 
 .select-seat.premium .block-seats{
-    margin-top: 288px;
+    margin-top: 173px;
     margin-right: 26px;
     margin-left: 4px;
 }
@@ -2765,6 +2765,14 @@ app-cost-box>div{
 
 .text-20 {
     font-size: 20px;
+}
+
+.icon__cross {
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%)
 }
 
 /*** RESPONSIVE FIX ****/
