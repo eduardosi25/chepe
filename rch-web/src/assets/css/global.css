@@ -1441,9 +1441,12 @@ table.chepe.secondary tr:last-child{
 }
 
 .footer .left .social a{
+    width: 38px;
+    height: auto;
     border: 1px solid #fff;
     border-radius: 200px;
     margin: 0 13px;
+    display: inline-block;
 }
 
 .social .facebook{
