@@ -81,6 +81,10 @@ export class PaymentComponent implements OnInit {
     return costs2;
   }
   public bookIt(){
-    this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
+    this.session.rb.status = RouteBooking.booked;
+      this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
+        this.session.rb = response.data;
+        this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
+      });
   }
 }
