@@ -2776,7 +2776,7 @@ app-cost-box>div{
 }
 
 /*** RESPONSIVE FIX ****/
-@media (max-width: 1089) {
+@media (max-width: 1089px) {
     .navbar.small-nav .navbar-toggle {
         position: relative;
         margin: 0;
@@ -2784,9 +2784,9 @@ app-cost-box>div{
         right: 40px;
     }
 
-    .header-topbar.transparent-topbar {
-        right: 60px;
-        top: 10px;
+    .header-topbar {
+        right: 90px;
+        top: 20px;
     }
 }
 @media (max-width:992px) {
@@ -2808,6 +2808,14 @@ app-cost-box>div{
         left: 50%;
         position: relative;
         margin-left: -200px;
+    }
+
+    .navbar.small-nav .navbar-toggle {
+        margin-top: 0 !important;
+        top: 18px;
+    }
+    .header-topbar {
+        top: 9px;
     }
 }
 @media (max-width:480px) {
