@@ -2776,6 +2776,19 @@ app-cost-box>div{
 }
 
 /*** RESPONSIVE FIX ****/
+@media (max-width: 1089) {
+    .navbar.small-nav .navbar-toggle {
+        position: relative;
+        margin: 0;
+        top: 30px;
+        right: 40px;
+    }
+
+    .header-topbar.transparent-topbar {
+        right: 60px;
+        top: 10px;
+    }
+}
 @media (max-width:992px) {
     app-cost-box {
         position: relative;
