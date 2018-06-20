@@ -30,6 +30,7 @@ import { Step2bComponent } from './rch/step2b/step2b.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
 import { PaymentComponent } from './rch/payment/payment.component';
+import { ConfirmComponent } from './rch/confirm/confirm.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { PaymentComponent } from './rch/payment/payment.component';
     StopcheckDirective,
     CostBoxComponent,
     Step2bComponent,
-    PaymentComponent
+    PaymentComponent,
+    ConfirmComponent
   ],
   providers: [ModelService,ModelDummyService,ModelRestService,ModelDummyRestService,SessionService,{
     provide: RECAPTCHA_SETTINGS,

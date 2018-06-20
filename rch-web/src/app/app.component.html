@@ -1,5 +1,5 @@
 <div class="main-wrapper" [ngClass]="getRoutedClass()">
-    <app-header></app-header>
+    <app-header *ngIf="showMainHeader()"></app-header>
     <router-outlet></router-outlet>
     <app-footer *ngIf="showMainFooter()"></app-footer>
 </div>

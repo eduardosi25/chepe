@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
     });
   }
   public showMainFooter(): boolean {
-    return (this.router.url != "/");
+    return (this.router.url != "/" && this.router.url.indexOf('/reservaciones/confirmacion') < 0 );
+  }
+  public showMainHeader(): boolean {
+    return (this.router.url.indexOf('/reservaciones/confirmacion') < 0);
   }
   public getRoutedClass(): string[] {
     var arr: string[] = [];

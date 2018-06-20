@@ -10,6 +10,7 @@ import { CommitComponent } from './rch/commit/commit.component';
 import { ReceiptComponent } from './rch/receipt/receipt.component';
 import { Step2bComponent } from './rch/step2b/step2b.component';
 import { PaymentComponent } from './rch/payment/payment.component';
+import { ConfirmComponent } from './rch/confirm/confirm.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: ':route_name/paso4', component: Step4Component },
   { path: ':route_name/paso5', component: Step5Component },
   { path: ':route_name/confirmar', component: CommitComponent },
-  { path: ':route_name/pago', component:PaymentComponent},
-  { path: ':route_name/reservación-exitosa', component:ReceiptComponent}
+  { path: ':route_name/pago', component: PaymentComponent },
+  { path: ':route_name/reservación-exitosa', component: ReceiptComponent },
+  { path: 'confirmacion', component: ConfirmComponent }
 ];
 
 @NgModule({
