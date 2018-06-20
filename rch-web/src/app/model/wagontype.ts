@@ -1,11 +1,12 @@
 import { FromJSONable } from "./FromJSONable";
 
-export class WagonType implements FromJSONable{
-    public constructor(id:number=0,name:string="",status:number=1,
-    details:string="",img_banner:string="assets/img/regional-clasico.jpg",
-    img_mobile:string = "assets/img/reservacion/vagon-clasico-regional.png",
-    features:string[]=[]){
+export class WagonType implements FromJSONable {
+    public constructor(id: number = 0, name: string = "", status: number = 1,
+        details: string = "", img_banner: string = "assets/img/regional-clasico.jpg",
+        img_mobile: string = "assets/img/reservacion/vagon-clasico-regional.png",
+        features: string[] = [], id_clase: number = 0) {
         this.id = id;
+        this.id_clase = id_clase;
         this.name = name;
         this.status = status;
         this.details = details;
@@ -13,15 +14,16 @@ export class WagonType implements FromJSONable{
         this.img_mobile = img_mobile;
         this.features = features;
     }
-    parseJSONObject(object:Object){
-        if(!object){return;}
-        Object.assign(this,object);
+    parseJSONObject(object: Object) {
+        if (!object) { return; }
+        Object.assign(this, object);
     }
-    id:number;
-    name:string;
-    status:number=1;
-    public img_banner:string = "assets/img/regional-clasico.jpg";
-    public img_mobile:string = "assets/img/reservacion/vagon-clasico-regional.png";
-    public details:string = "";
-    public features:string[] = [];
+    id: number;
+    id_clase: number;
+    name: string;
+    status: number = 1;
+    public img_banner: string = "assets/img/regional-clasico.jpg";
+    public img_mobile: string = "assets/img/reservacion/vagon-clasico-regional.png";
+    public details: string = "";
+    public features: string[] = [];
 }

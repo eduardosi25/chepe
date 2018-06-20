@@ -3,9 +3,8 @@ import { Seat } from "./seat";
 import { WagonRow } from "./wagonrow";
 import { FromJSONable } from "./FromJSONable";
 export class Wagon implements FromJSONable {
-    public constructor(id: number = 0, type: WagonType = null, name: string = "", seats: Seat[] = [], status: number = 1, id_clase: number = 0) {
+    public constructor(id: number = 0, type: WagonType = null, name: string = "", seats: Seat[] = [], status: number = 1) {
         this.id = id;
-        this.id_clase = id_clase;
         this.type = type;
         this.name = name;
         this.status = status;
@@ -24,7 +23,6 @@ export class Wagon implements FromJSONable {
         }
     }
     id: number;
-    id_clase: number;
     type: WagonType = new WagonType();
     name: string;
     status: number = 1;
