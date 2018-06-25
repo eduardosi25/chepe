@@ -11,6 +11,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     this.scriptInit();
+    var vid = document.getElementById("bgvid");
   }
   scriptInit(){
     // Video player load
@@ -26,6 +27,7 @@ export class IndexComponent implements OnInit {
       $("#modal-promocion").click(function () {
         $("body").addClass("active");
       });
+
     });
 
     $('.modal-video').click(function () {
