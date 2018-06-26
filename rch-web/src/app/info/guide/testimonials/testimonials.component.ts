@@ -12,10 +12,6 @@ export class TestimonialsComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-
-=======
->>>>>>> 3bf9aaa9cca25979be816d7ebb39a9a877deefdb
   }
 
 }
