@@ -12,6 +12,7 @@ import { RouteBooking } from './model/routebooking';
 import { Travel } from './model/travel';
 import { HttpClient } from '@angular/common/http';
 import { UrlWebPay } from './model/url';
+import { WebPay } from './model/webpay';
 @Injectable()
 export class ModelDummyRestService implements IModel{
   private use_mocks:boolean = false;
@@ -91,6 +92,17 @@ export class ModelDummyRestService implements IModel{
       });
     });
   }
+  getWebPayUrl(b: RouteBooking): Observable<Response<WebPay>> {
+    return new Observable<Response<WebPay>>((observer)=>{
+      this.dummies.saveRouteBooking(b).subscribe((data)=>{
+        let x0 = JSON.stringify(data); 
+        let x = JSON.parse(x0);
+        var r:Response<WebPay> = new Response<WebPay>(null,null,new WebPay());
+        r.parseJSONObject(x);
+        observer.next(r);
+      });
+    });
+  }
   getTravel(id: number,id_src:number,id_dst:number): Observable<Response<Travel>> {
     
     return new Observable<Response<Travel>>((observer)=>{
@@ -112,12 +124,10 @@ export class ModelDummyRestService implements IModel{
       
     });
   }
-  getPaymentUrl(amount:number,mail:string): Observable<Response<UrlWebPay>> {
-    
-    return new Observable<Response<UrlWebPay>>((observer)=>{ 
-      "http://wpp.sandbox.mit.com.mx/i/5RA7JKMS";      
-      
-    });
-  }
+  // getPaymentUrl(amount:number,mail:string): Observable<Response<UrlWebPay>> {    
+  //   return new Observable<Response<UrlWebPay>>((observer)=>{ 
+  //     "http://wpp.sandbox.mit.com.mx/i/5RA7JKMS";           
+  //   });
+  // }
 
 }

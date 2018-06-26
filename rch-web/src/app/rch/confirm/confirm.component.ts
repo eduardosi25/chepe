@@ -13,7 +13,9 @@ export class ConfirmComponent implements OnInit {
     'extra': '',
     'reference': '',
     'operation_num': '',
-    'auth_num': ''
+    'auth_num': '',
+    'code_resp': '',
+    'nbError' : ''
   };
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,12 +29,14 @@ export class ConfirmComponent implements OnInit {
       const referencia = params['referencia'];
       const operacion = params['operacion'];
       const nuAut = params['nuAut'];
+      const nbError = params['nb_error'];
+      const cdResponse = params['cdResponse'];
 
       // Si no se reciben los parámetros necesarios, redirect a reservaciones
-      if (nbResponse === undefined || nuAut === undefined) {
-        this.router.navigate(['/reservaciones']);
-        return;
-      }
+      //if (nbResponse === undefined || nuAut === undefined) {
+        //this.router.navigate(['/reservaciones']);
+        //return;
+      //}
 
       // Si nbResponse = “Aprobado” y nuAut != “”
       if (nbResponse === 'Aprobado' && nuAut !== '') {
@@ -45,14 +49,17 @@ export class ConfirmComponent implements OnInit {
       }
 
       // Si nbResponse = “Rechazado”
-      if (nbResponse === 'Rechazado') {
+      else if (nbResponse === 'Rechazado') {
         this.content.title = 'Tu pago ha sido rechazado';
         this.content.main = 'Favor de comprobar con el banco emisor o intentar con otra tarjeta';
         this.content.extra = '';
+        this.content.code_resp = cdResponse;
+        this.content.nbError = nbError;
       }
 
       // Si no es rechazado o aprobado
-      if ((nbResponse !== 'Rechazado' && nbResponse !== 'Aprobado') || nuAut === '' ) {
+      //if ((nbResponse !== 'Rechazado' && nbResponse !== 'Aprobado') || nuAut === '' ) {
+      else{
         this.content.title = 'Lo sentimos, no podemos procesar el pago.';
         this.content.main = 'Favor de intentar mas tarde o contactar a nuestra área de Atención al Cliente.';
         this.content.extra = '';

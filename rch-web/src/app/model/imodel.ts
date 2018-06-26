@@ -8,6 +8,7 @@ import { Response } from "./response";
 import { AvailabilityQuery } from "./availabilityquery";
 import {Observable} from "rxjs/Rx";
 import { UrlWebPay } from "./url";
+import { WebPay } from "./webpay";
 
 export interface IModel{
     getRoutes():Observable<Response<Route2[]> >;
@@ -16,6 +17,7 @@ export interface IModel{
     getStatus():Observable<Response<boolean> >;
     getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Observable<Response<Schedule> >;
     saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking> >;
+    getWebPayUrl(b:RouteBooking):Observable<Response<WebPay> >;
     getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel> >;
-    getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>;
+    //getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>;
 }

@@ -19,6 +19,8 @@ import { SeatBooking } from './model/seatbooking';
 import { Cost } from './model/cost';
 import {Observable} from "rxjs/Rx";
 import { UrlWebPay } from './model/url';
+import { WebPay } from './model/webpay';
+import { Referencia } from './model/referencia';
 
 @Injectable()
 export class ModelDummyService implements IModel {
@@ -242,6 +244,17 @@ export class ModelDummyService implements IModel {
     }
     var response:Response<RouteBooking> = new Response<RouteBooking>("+RCH.WS14.0",null,rb);
     return Observable.of(response);
+  }  
+  getWebPayUrl(b:RouteBooking):Observable<Response<WebPay>>{    
+    var wp:WebPay = new WebPay();
+    wp.descripcion = "";
+    wp.estatus = "";
+    var ref:Referencia = new Referencia();
+    ref.id = "12345";
+    ref.liga = "http://wpp.sandbox.mit.com.mx/i/5RA7JKMS"
+    wp.referencia = ref;
+    var response:Response<WebPay> = new Response<WebPay>("+RCH.WS14.0",null,wp);
+    return Observable.of(response);
   }
   getRandomCurrency():string{
     let r:number = Math.floor(Math.random()*3);
@@ -260,8 +273,8 @@ export class ModelDummyService implements IModel {
     return null;
   }
 
-  getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
-    return Observable.of(new Response<UrlWebPay>("+RCH.WS17.0",null,new UrlWebPay("http://wpp.sandbox.mit.com.mx/i/5RA7JKMS")));
-  }
+  // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
+  //   return Observable.of(new Response<UrlWebPay>("+RCH.WS17.0",null,new UrlWebPay("http://wpp.sandbox.mit.com.mx/i/5RA7JKMS")));
+  // }
 
 }

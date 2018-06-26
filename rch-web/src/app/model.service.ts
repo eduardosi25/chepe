@@ -18,7 +18,7 @@ import { PassengerType } from './model/passengertype';
 import { Wagon } from './model/wagon';
 import { WagonType } from './model/wagontype';
 import { Url } from 'url';
-import { UrlWebPay } from './model/url';
+import { WebPay } from './model/webpay';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -81,12 +81,15 @@ export class ModelService implements IModel {
   saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     return this.impl.saveRouteBooking(b);
   }
+  getWebPayUrl(b:RouteBooking):Observable<Response<WebPay>>{
+    return this.impl.getWebPayUrl(b);
+  }
   getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
     return this.impl.getTravel(id,id_src,id_dst);
   }
-  getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
-    return this.impl.getPaymentUrl(amount,mail);
-  }
+  // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
+  //   return this.impl.getPaymentUrl(amount,mail);
+  // }
   public getRouteByName(route_name:string):Route2{
     return this.route_by_name[route_name];
   }

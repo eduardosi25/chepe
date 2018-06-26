@@ -13,6 +13,7 @@ import {Observable} from "rxjs/Rx";
 import {FromJSONable} from "./model/FromJSONable";
 import {environment} from "../environments/environment";
 import { UrlWebPay } from './model/url';
+import { WebPay } from './model/webpay';
 @Injectable()
 export class ModelRestService implements IModel {
 
@@ -73,16 +74,19 @@ export class ModelRestService implements IModel {
   saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking>>{
     return this.stdCall<RouteBooking>(RouteBooking,this.base+"/"+this.prefix+"/routes/booking","post",b,{},null,"put-booking");
   }
+  getWebPayUrl(b:RouteBooking):Observable<Response<WebPay>>{
+    return this.stdCall<WebPay>(WebPay,this.base+"/"+this.prefix+"/routes/booking","post",b,{},null,"put-booking");
+  }
   getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
     return this.stdCall<Travel>(Travel,this.base+"/"+this.prefix+"/travel/"+id,"get",null,{
       'src':id_src,
       'dst':id_dst
     });
   }
-  getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
-    return this.stdCall<UrlWebPay>(UrlWebPay,this.base+"/"+this.prefix+"/payment/url","get",null,{
-      'amount':amount,
-      'mail':mail
-    });
-  }
+  // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
+  //   return this.stdCall<UrlWebPay>(UrlWebPay,this.base+"/"+this.prefix+"/payment/url","get",null,{
+  //     'amount':amount,
+  //     'mail':mail
+  //   });
+  // }
 }

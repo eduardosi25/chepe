@@ -19,6 +19,7 @@ import { SeatBooking } from '../../model/seatbooking';
 import { Cost } from '../../model/cost';
 import { Url } from 'url';
 import { UrlWebPay } from '../../model/url';
+import { WebPay } from '../../model/webpay';
 declare var $: any;
 
 @Component({
@@ -45,15 +46,23 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     console.log(this.session.schedule.cost);
     console.log(this.session.rb.etickets_email);
-    this.model.getPaymentUrl(this.session.schedule.cost,this.session.rb.etickets_email).subscribe(
-      (response1:Response<UrlWebPay>)=>{
-      console.log(response1.data);
-    if(response1.success && response1.data != null){
-      console.log(response1.data);
-      //this.url = this.sanitizer.bypassSecurityTrustHtml(response.data);
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response1.data.toString());
-      //this.routes = response.data;
-  }});
+  //   this.model.getPaymentUrl(this.session.schedule.cost,this.session.rb.etickets_email).subscribe(
+  //     (response1:Response<UrlWebPay>)=>{
+  //     console.log(response1.data);
+  //   if(response1.success && response1.data != null){
+  //     console.log(response1.data);
+  //     //this.url = this.sanitizer.bypassSecurityTrustHtml(response.data);
+  //     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response1.data.toString());
+  //     //this.routes = response.data;
+  // }});
+  this.session.rb.status = RouteBooking.booked;
+      this.model.getWebPayUrl(this.session.rb).subscribe((response:Response<WebPay>)=>{
+        //this.session.rb = response.data.;
+        console.log("Llamado");
+        console.log(response.data);
+        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response.data.referencia.liga);
+        //this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
+      });
   // this.session.rb.status = RouteBooking.booked;
   //     this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
 
@@ -81,10 +90,10 @@ export class PaymentComponent implements OnInit {
     return costs2;
   }
   public bookIt(){
-    this.session.rb.status = RouteBooking.booked;
-      this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
-        this.session.rb = response.data;
-        this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
-      });
+    // this.session.rb.status = RouteBooking.booked;
+    //   this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
+    //     this.session.rb = response.data;
+    //     this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
+    //   });
   }
 }

@@ -4,9 +4,6 @@
       <div class="col-sm-14 col-sm-offset-5 col-md-10 col-md-offset-7">
         <h3 class="orange-t">{{content.title}}</h3>
         <hr class="orange-hr" />
-        <p class="blue-express fontweight600" [innerHTML]="content.main"></p>
-        <p class="blue-express fontweight600" [innerHTML]="content.extra"></p>
-        <br/>
         <h5 class="c-one" *ngIf="content.reference !== undefined && content.reference !== ''">
           <b>Referencia: {{content.reference}}</b>
         </h5>
@@ -16,7 +13,12 @@
         <h5 class="c-one" *ngIf="content.auth_num !== undefined && content.auth_num !== ''">
           <b>Número de autorización: {{content.auth_num}}</b>
         </h5>
-        <br/><br/>
+        <h5 class="c-one" *ngIf="content.code_resp !== undefined && content.nbError !== ''">
+          <b>{{content.code_resp}} / {{content.nbError}}</b>
+        </h5>
+        <p class="blue-express fontweight600" [innerHTML]="content.main"></p>
+        <p class="blue-express fontweight600" [innerHTML]="content.extra"></p>
+        <br/>
         <h5 class="c-one">
           <b>Gracias por tu preferencia</b>
         </h5>
