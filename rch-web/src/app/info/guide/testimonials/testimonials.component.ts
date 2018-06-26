@@ -7,12 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestimonialsComponent implements OnInit {
 
-  constructor() { 
-    
+  constructor() {
+
   }
 
   ngOnInit() {
-    
   }
 
 }

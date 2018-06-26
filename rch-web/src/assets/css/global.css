@@ -2743,7 +2743,11 @@ FIXES
     line-height: 20px;
 }
 
-/*** FIXES DEV ****/
+/*:::::::::::
+
+FIXES DEV 
+
+:::::::::::*/
 app-cost-box{
     position: absolute;
     right: 15px;
@@ -2774,8 +2778,27 @@ app-cost-box>div{
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%)
 }
+#CDSWIDSSP {
+    width: 100% !important;
+}
+.TA_selfserveprop > img {
+    display: none;
+}
 
-/*** RESPONSIVE FIX ****/
+/*:::::::::::
+
+FIXES FRONT 
+
+:::::::::::*/
+.modal-video video {
+    object-fit: cover;
+}
+
+/*:::::::::::
+
+FIXES RESPONSIVE 
+
+:::::::::::*/
 @media (max-width: 1089px) {
     .navbar.small-nav .navbar-toggle {
         position: relative;

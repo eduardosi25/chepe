@@ -747,7 +747,7 @@
 
               <div class="row">
                 <div class="col-sm-24 center">
-                  <div class="bg-five uppercase panel-separator">Tours 4 días 3 noches
+                  <div class="bg-five uppercase panel-separator">{{'Iti-P10' | translate}}
                     <span class="arrow">
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </span>
@@ -781,39 +781,44 @@
                           <table class="table itinerarios-sugeridos chepe uppercase ">
                             <thead>
                               <tr>
-                                <th>Día</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Salida</th>
-                                <th>Llegada</th>
+                                <th></th>
+                                <th>{{'Iti-P02' | translate}}</th>
+                                <th>{{'Iti-P03' | translate}}</th>
+                                <th>{{'Iti-P04' | translate}}</th>
+                                <th>{{'Iti-P05' | translate}}</th>
+                                <th>{{'Iti-P06' | translate}}</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
                                 <td>1</td>
+                                <td>{{'Iti-P17' | translate}}</td>
                                 <td>Los Mochis</td>
                                 <td>Divisadero</td>
-                                <td>07:00 hrs</td>
+                                <td>06:00 hrs</td>
                                 <td>15:25 hrs</td>
                               </tr>
                               <tr>
                                 <td>2</td>
-                                <td colspan="2" class="center">Divisadero </td>
-                                <td colspan="2" class="bg-transparent center">Pernocta en Divisadero</td>
+                                <td>{{'Iti-P18' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P07' | translate}}</td>
                               </tr>
                               <tr>
                                 <td>3</td>
+                                <td>{{'Iti-P12' | translate}}</td>
                                 <td>Divisadero</td>
                                 <td>Creel</td>
-                                <td>15:40 hrs</td>
+                                <td>14:25 hrs</td>
                                 <td>16:45 hrs</td>
                               </tr>
                               <tr>
                                 <td>4</td>
+                                <td>{{'Iti-P13' | translate}}</td>
                                 <td>Creel</td>
                                 <td>Los Mochis</td>
-                                <td>12:50 hrs</td>
-                                <td>22:30 hrs</td>
+                                <td>11:50 hrs</td>
+                                <td>20:30 hrs</td>
                               </tr>
 
 
@@ -832,7 +837,7 @@
                              routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:42,dst:20,start:'today',end:'3',stops:[22],round:true,class:2}" 
                             role="button">
                                 <div> <img src="assets/img/icon_calendar.png"></div>
-                                <div>Reservar</div>
+                                <div>{{'Iti-P08' | translate}}</div>
                             </a>
                         </div>
                     </div>
@@ -841,273 +846,11 @@
               </div>
               <!-- end panel -->
 
-              <!-- panel -->
-              <div class="panel panel-alternative">
-                <a class="panel-link collapsed" role="button" data-toggle="collapse" data-parent="#ChepeRegionalAccordion" href="#ChepeRegionalTwo"
-                  aria-expanded="true" aria-controls="ChepeRegionalTwo">
-                  <div class="panel-heading" role="tab" id="ChepeRegionalHeadingTwo">
-                    <div class="row uppercase">
-
-                      <div class="col-md-3 col-md-offset-2">
-                        TOUR 2
-                      </div>
-
-                      <div class="col-sm-19">
-                        Los Mochis - Bahuichivo - Divisadero - Creel - Los Mochis
-
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <div id="ChepeRegionalTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ChepeRegionalHeadingTwo">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-22 col-md-offset-2">
-                        <div class="table-responsive">
-                          <table class="table itinerarios-sugeridos chepe uppercase ">
-                            <thead>
-                              <tr>
-                                <th>Día</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Salida</th>
-                                <th>Llegada</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Los Mochis</td>
-                                <td>Bahuichivo</td>
-                                <td>07:00 hrs</td>
-                                <td>13:25 hrs</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Bahuichivo</td>
-                                <td>Divisadero</td>
-                                <td>13:25 hrs</td>
-                                <td>15:25 hrs</td>
-                              </tr>
-
-                              <tr>
-                                <td>3</td>
-                                <td>Divisadero</td>
-                                <td>Creel</td>
-                                <td>15:40 hrs</td>
-                                <td>16:45 hrs</td>
-                              </tr>
-
-
-                              <tr>
-                                <td>4</td>
-                                <td>Creel</td>
-                                <td>Los Mochis</td>
-                                <td>12:50 hrs</td>
-                                <td>22:30 hrs</td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row margintop20">
-
-                          <div class=" col-xs-12 col-sm-4  col-sm-offset-20 center">
-                            <a class="btn btn-link c-one"
-                             routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:42,dst:20,start:'today',end:'3',round:true,class:2}" 
-                            role="button">
-                                <div> <img src="assets/img/icon_calendar.png"></div>
-                                <div>Reservar</div>
-                            </a>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- end panel -->
-
-              <!-- panel -->
-              <div class="panel panel-alternative">
-                <a class="panel-link collapsed" role="button" data-toggle="collapse" data-parent="#ChepeRegionalAccordion" href="#ChepeRegionalThree"
-                  aria-expanded="true" aria-controls="ChepeRegionalThree">
-                  <div class="panel-heading" role="tab" id="ChepeRegionalHeadingThree">
-                    <div class="row uppercase">
-
-                      <div class="col-md-3 col-md-offset-2">
-                        TOUR 3
-                      </div>
-
-                      <div class="col-sm-19">
-                        Los Mochis - El Fuerte - Divisadero - Creel - Chihuahua
-
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <div id="ChepeRegionalThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ChepeRegionalHeadingThree">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-22 col-md-offset-2">
-                        <div class="table-responsive">
-                          <table class="table itinerarios-sugeridos chepe uppercase ">
-                            <thead>
-                              <tr>
-                                <th>Día</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Salida</th>
-                                <th>Llegada</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Los Mochis</td>
-                                <td>El Fuerte</td>
-                                <td>07:00 hrs</td>
-                                <td>09:20 hrs</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>El Fuerte</td>
-                                <td>Divisadero</td>
-                                <td>09:20 hrs</td>
-                                <td>15:25 hrs</td>
-                              </tr>
-
-                              <tr>
-                                <td>3</td>
-                                <td>Divisadero</td>
-                                <td>Creel</td>
-                                <td>15:40 hrs</td>
-                                <td>16:45 hrs</td>
-                              </tr>
-
-
-                              <tr>
-                                <td>4</td>
-                                <td>Creel</td>
-                                <td>Chihuahua</td>
-                                <td>16:45 hrs</td>
-                                <td>22:35 hrs</td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row margintop20">
-
-                          <div class=" col-xs-12 col-sm-4  col-sm-offset-20 center">
-                            <a class="btn btn-link c-one"
-                             routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:42,dst:1,start:'today',end:'3',round:true,class:2}" 
-                            role="button">
-                                <div> <img src="assets/img/icon_calendar.png"></div>
-                                <div>Reservar</div>
-                            </a>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- end panel -->
-
-              <!-- panel -->
-              <div class="panel panel-alternative">
-                <a class="panel-link collapsed" role="button" data-toggle="collapse" data-parent="#ChepeRegionalAccordion" href="#ChepeRegionalFour"
-                  aria-expanded="true" aria-controls="ChepeRegionalFour">
-                  <div class="panel-heading" role="tab" id="ChepeRegionalHeadingFour">
-                    <div class="row uppercase">
-
-                      <div class="col-md-3 col-md-offset-2">
-                        TOUR 4
-                      </div>
-
-                      <div class="col-sm-19">
-                        Chihuahua - Creel - Divisadero - El Fuerte - Los Mochis
-
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <div id="ChepeRegionalFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ChepeRegionalHeadingFour">
-                  <div class="panel-body">
-                    <div class="row">
-                      <div class="col-md-22 col-md-offset-2">
-                        <div class="table-responsive">
-                          <table class="table itinerarios-sugeridos chepe uppercase ">
-                            <thead>
-                              <tr>
-                                <th>Día</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Salida</th>
-                                <th>Llegada</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Chihuahua</td>
-                                <td>Creel</td>
-                                <td>07:00 hrs</td>
-                                <td>12:50 hrs</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Creel</td>
-                                <td>Divisadero</td>
-                                <td>12:50 hrs</td>
-                                <td>14:45 hrs</td>
-                              </tr>
-
-                              <tr>
-                                <td>3</td>
-                                <td>Divisadero</td>
-                                <td>El Fuerte</td>
-                                <td>15:00 hrs</td>
-                                <td>20:20 hrs</td>
-                              </tr>
-
-
-                              <tr>
-                                <td>4</td>
-                                <td>El Fuerte</td>
-                                <td>Los Mochis</td>
-                                <td>20:20 hrs</td>
-                                <td>22:30 hrs</td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row margintop20">
-
-                          <div class=" col-xs-12 col-sm-4  col-sm-offset-20 center">
-                            <a class="btn btn-link c-one"
-                             routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:1,dst:42,start:'today',end:'3',round:true,class:2}" 
-                            role="button">
-                                <div> <img src="assets/img/icon_calendar.png"></div>
-                                <div>Reservar</div>
-                            </a>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- end panel -->
+             
 
               <div class="row">
                 <div class="col-sm-24 center">
-                  <div class="bg-five uppercase panel-separator">Tours 5 días 4 noches
+                  <div class="bg-five uppercase panel-separator">{{'Iti-P11' | translate}}
                     <span class="arrow">
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </span>
@@ -1123,7 +866,7 @@
                     <div class="row uppercase">
 
                       <div class="col-md-3 col-md-offset-2">
-                        TOUR 5
+                        TOUR 2
                       </div>
 
                       <div class="col-sm-19">
@@ -1141,48 +884,54 @@
                           <table class="table itinerarios-sugeridos chepe uppercase ">
                             <thead>
                               <tr>
-                                <th>Día</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Salida</th>
-                                <th>Llegada</th>
+                                <th></th>
+                                <th>{{'Iti-P02' | translate}}</th>
+                                <th>{{'Iti-P03' | translate}}</th>
+                                <th>{{'Iti-P04' | translate}}</th>
+                                <th>{{'Iti-P05' | translate}}</th>
+                                <th>{{'Iti-P06' | translate}}</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
                                 <td>1</td>
+                                <td>{{'Iti-P17' | translate}}</td>
                                 <td>Los Mochis</td>
                                 <td>Divisadero</td>
-                                <td>07:00 hrs</td>
-                                <td>15:25 hrs</td>
+                                <td>06:00 hrs</td>
+                                <td>13:45 hrs</td>
                               </tr>
                               <tr>
                                 <td>2</td>
-                                <td colspan="2" class="center">Divisadero </td>
-                                <td colspan="2" class="bg-transparent center">Pernocta en Divisadero</td>
+                                <td>{{'Iti-P18' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P20' | translate}}</td>
                               </tr>
 
                               <tr>
                                 <td>3</td>
+                                <td>{{'Iti-P12' | translate}}</td>
                                 <td>Divisadero</td>
                                 <td>Creel</td>
-                                <td>15:40 hrs</td>
-                                <td>16:45 hrs</td>
+                                <td>13:45 hrs</td>
+                                <td>15:45 hrs</td>
                               </tr>
 
                               <tr>
                                 <td>4</td>
-                                <td colspan="2" class="center">Creel </td>
-                                <td colspan="2" class="bg-transparent center">Pernocta en Creel</td>
+                                <td>{{'Iti-P13' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P07' | translate}}</td>
                               </tr>
 
 
                               <tr>
                                 <td>5</td>
+                                <td>{{'Iti-P14' | translate}}</td>
                                 <td>Creel</td>
                                 <td>Chihuahua</td>
-                                <td>16:45 hrs</td>
-                                <td>22:35 hrs</td>
+                                <td>15:45 hrs</td>
+                                <td>21:50 hrs</td>
                               </tr>
 
 
@@ -1198,7 +947,7 @@
                              routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:42,dst:1,start:'today',end:'4',stops:[22,20],round:true,class:2}" 
                             role="button">
                                 <div> <img src="assets/img/icon_calendar.png"></div>
-                                <div>Reservar</div>
+                                <div>{{'Iti-P08' | translate}}</div>
                             </a>
                         </div>
                     </div>
@@ -1215,7 +964,7 @@
                     <div class="row uppercase">
 
                       <div class="col-md-3 col-md-offset-2">
-                        TOUR 6
+                        TOUR 3
                       </div>
 
                       <div class="col-sm-19">
@@ -1233,48 +982,54 @@
                           <table class="table itinerarios-sugeridos chepe uppercase ">
                             <thead>
                               <tr>
-                                <th>Día</th>
-                                <th>Origen</th>
-                                <th>Destino</th>
-                                <th>Salida</th>
-                                <th>Llegada</th>
+                                <th></th>
+                                <th>{{'Iti-P02' | translate}}</th>
+                                <th>{{'Iti-P03' | translate}}</th>
+                                <th>{{'Iti-P04' | translate}}</th>
+                                <th>{{'Iti-P05' | translate}}</th>
+                                <th>{{'Iti-P06' | translate}}</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
                                 <td>1</td>
+                                <td>{{'Iti-P16' | translate}}</td>
                                 <td>Chihuahua</td>
                                 <td>Creel</td>
-                                <td>07:00 hrs</td>
-                                <td>12:50 hrs</td>
+                                <td>06:00 hrs</td>
+                                <td>11:50 hrs</td>
                               </tr>
                               <tr>
                                 <td>2</td>
-                                <td colspan="2" class="center">Creel </td>
-                                <td colspan="2" class="bg-transparent center">Pernocta en Creel</td>
+                                <td>{{'Iti-P17' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P09' | translate}}</td>
                               </tr>
 
                               <tr>
                                 <td>3</td>
+                                <td>{{'Iti-P18' | translate}}</td>
                                 <td>Creel</td>
                                 <td>Divisadero</td>
-                                <td>12:50 hrs</td>
-                                <td>14:45 hrs</td>
+                                <td>11:50 hrs</td>
+                                <td>13:45 hrs</td>
                               </tr>
 
                               <tr>
                                 <td>4</td>
-                                <td colspan="2" class="center">Divisadero </td>
-                                <td colspan="2" class="bg-transparent center">Pernocta en Divisadero</td>
+                                <td>{{'Iti-P12' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P07' | translate}}</td>
                               </tr>
 
 
                               <tr>
                                 <td>5</td>
+                                <td>{{'Iti-P13' | translate}}</td>
                                 <td>Divisadero</td>
                                 <td>Los Mochis</td>
-                                <td>15:00 hrs</td>
-                                <td>22:30 hrs</td>
+                                <td>13:45 hrs</td>
+                                <td>21:30 hrs</td>
                               </tr>
 
 
@@ -1289,7 +1044,7 @@
                                routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:1,dst:42,start:'today',end:'4',stops:[20,22],round:true,class:2}" 
                               role="button">
                                   <div> <img src="assets/img/icon_calendar.png"></div>
-                                  <div>Reservar</div>
+                                  <div>{{'Iti-P08' | translate}}</div>
                               </a>
                           </div>
                       </div>
@@ -1298,6 +1053,391 @@
                 </div>
               </div>
               <!-- end panel -->
+
+              <div class="row">
+                <div class="col-sm-24 center">
+                  <div class="bg-five uppercase panel-separator">{{'Iti-P21' | translate}}
+                    <span class="arrow">
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+               <!-- panel -->
+               <div class="panel panel-alternative">
+                <a class="panel-link collapsed" role="button" data-toggle="collapse" data-parent="#ChepeRegionalAccordion" href="#ChepeRegionalTwo"
+                  aria-expanded="true" aria-controls="ChepeRegionalTwo">
+                  <div class="panel-heading" role="tab" id="ChepeRegionalHeadingTwo">
+                    <div class="row uppercase">
+
+                      <div class="col-md-3 col-md-offset-2">
+                        TOUR 4
+                      </div>
+
+                      <div class="col-sm-19"> 
+                        LOS MOCHIS - BAHUICHIVO - DIVISADERO - CREEL - CHIHUAHUA
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <div id="ChepeRegionalTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ChepeRegionalHeadingTwo">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-22 col-md-offset-2">
+                        <div class="table-responsive">
+                          <table class="table itinerarios-sugeridos chepe uppercase ">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>{{'Iti-P02' | translate}}</th>
+                                <th>{{'Iti-P03' | translate}}</th>
+                                <th>{{'Iti-P04' | translate}}</th>
+                                <th>{{'Iti-P05' | translate}}</th>
+                                <th>{{'Iti-P06' | translate}}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>{{'Iti-P17' | translate}}</td>
+                                <td>Los Mochis</td>
+                                <td>Bahuichivo</td>
+                                <td>06:00 hrs</td>
+                                <td>12:25 hrs</td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>{{'Iti-P18' | translate}}</td>
+                                <td>Bahuichivo</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P19' | translate}}</td>
+                              </tr>
+
+                              <tr>
+                                <td>3</td>
+                                <td>{{'Iti-P12' | translate}}</td>
+                                <td>Bahuichivo</td>
+                                <td>Divisadero</td>
+                                <td>12:25 hrs</td>
+                                <td>14:25 hrs</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>4</td>
+                                <td>{{'Iti-P13' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P07' | translate}}</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>5</td>
+                                <td>{{'Iti-P14' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td>Creel</td>
+                                <td>14:25 hrs</td>
+                                <td>15:45 hrs</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>6</td>
+                                <td>{{'Iti-P15' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P09' | translate}}</td>
+                              </tr>
+
+                              <tr>
+                                <td>7</td>
+                                <td>{{'Iti-P16' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P09' | translate}}</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>8</td>
+                                <td>{{'Iti-P17' | translate}}</td>
+                                <td>Creel</td>
+                                <td>Chihuahua</td>
+                                <td>15:45 hrs</td>
+                                <td>20:50 hrs</td>
+                              </tr>
+                              
+
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row margintop20">
+
+                          <div class=" col-xs-12 col-sm-4  col-sm-offset-20 center">
+                            <a class="btn btn-link c-one"
+                             routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:42,dst:20,start:'today',end:'3',round:true,class:2}" 
+                            role="button">
+                                <div> <img src="assets/img/icon_calendar.png"></div>
+                                <div>{{'Iti-P08' | translate}}</div>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end panel -->
+
+              <!-- panel -->
+              <div class="panel panel-alternative">
+                <a class="panel-link collapsed" role="button" data-toggle="collapse" data-parent="#ChepeRegionalAccordion" href="#ChepeRegionalThree"
+                  aria-expanded="true" aria-controls="ChepeRegionalThree">
+                  <div class="panel-heading" role="tab" id="ChepeRegionalHeadingThree">
+                    <div class="row uppercase">
+
+                      <div class="col-md-3 col-md-offset-2">
+                        TOUR 5
+                      </div>
+
+                      <div class="col-sm-19">
+                        LOS MOCHIS - EL FUERTE - DIVISADERO - CREEL - CHIHUAHUA
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <div id="ChepeRegionalThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ChepeRegionalHeadingThree">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-22 col-md-offset-2">
+                        <div class="table-responsive">
+                          <table class="table itinerarios-sugeridos chepe uppercase ">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>{{'Iti-P02' | translate}}</th>
+                                <th>{{'Iti-P03' | translate}}</th>
+                                <th>{{'Iti-P04' | translate}}</th>
+                                <th>{{'Iti-P05' | translate}}</th>
+                                <th>{{'Iti-P06' | translate}}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>{{'Iti-P17' | translate}}</td>
+                                <td>Los Mochis</td>
+                                <td>El Fuerte</td>
+                                <td>06:00 hrs</td>
+                                <td>08:20 hrs</td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>{{'Iti-P18' | translate}}</td>
+                                <td>El Fuerte</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P20' | translate}}</td>
+                              </tr>
+
+                              <tr>
+                                <td>3</td>
+                                <td>{{'Iti-P12' | translate}}</td>
+                                <td>El Fuerte</td>
+                                <td>Divisadero</td>
+                                <td>08:20 hrs</td>
+                                <td>14:25 hrs</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>4</td>
+                                <td>{{'Iti-P13' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P07' | translate}}</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>5</td>
+                                <td>{{'Iti-P14' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td>Creel</td>
+                                <td>14:25 hrs</td>
+                                <td>15:45 hrs</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>6</td>
+                                <td>{{'Iti-P15' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P09' | translate}}</td>
+                              </tr>
+
+                              <tr>
+                                <td>7</td>
+                                <td>{{'Iti-P16' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P09' | translate}}</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>8</td>
+                                <td>{{'Iti-P17' | translate}}</td>
+                                <td>Creel</td>
+                                <td>Chihuahua</td>
+                                <td>15:45 hrs</td>
+                                <td>20:50 hrs</td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row margintop20">
+
+                          <div class=" col-xs-12 col-sm-4  col-sm-offset-20 center">
+                            <a class="btn btn-link c-one"
+                             routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:42,dst:1,start:'today',end:'3',round:true,class:2}" 
+                            role="button">
+                                <div> <img src="assets/img/icon_calendar.png"></div>
+                                <div>{{'Iti-P08' | translate}}</div>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end panel -->
+
+              <!-- panel -->
+              <div class="panel panel-alternative">
+                <a class="panel-link collapsed" role="button" data-toggle="collapse" data-parent="#ChepeRegionalAccordion" href="#ChepeRegionalFour"
+                  aria-expanded="true" aria-controls="ChepeRegionalFour">
+                  <div class="panel-heading" role="tab" id="ChepeRegionalHeadingFour">
+                    <div class="row uppercase">
+
+                      <div class="col-md-3 col-md-offset-2">
+                        TOUR 6
+                      </div>
+
+                      <div class="col-sm-19">
+                        CHIHUAHUA - CREEL- DIVISADERO- EL FUERTE- LOS MOCHIS
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <div id="ChepeRegionalFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ChepeRegionalHeadingFour">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-22 col-md-offset-2">
+                        <div class="table-responsive">
+                          <table class="table itinerarios-sugeridos chepe uppercase ">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>{{'Iti-P02' | translate}}</th>
+                                <th>{{'Iti-P03' | translate}}</th>
+                                <th>{{'Iti-P04' | translate}}</th>
+                                <th>{{'Iti-P05' | translate}}</th>
+                                <th>{{'Iti-P06' | translate}}</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>{{'Iti-P16' | translate}}</td>
+                                <td>Chihuahua</td>
+                                <td>Creel</td>
+                                <td>06:00 hrs</td>
+                                <td>11:30 hrs</td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>{{'Iti-P17' | translate}}</td>
+                                <td>Creel</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P09' | translate}}</td>
+                              </tr>
+
+                              <tr>
+                                <td>3</td>
+                                <td>{{'Iti-P18' | translate}}</td>
+                                <td>Creel</td>
+                                <td>Divisadero</td>
+                                <td>11:50 hrs</td>
+                                <td>13:45 hrs</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>4</td>
+                                <td>{{'Iti-P12' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P07' | translate}}</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>5</td>
+                                <td>{{'Iti-P13' | translate}}</td>
+                                <td>Divisadero</td>
+                                <td>El Fuerte</td>
+                                <td>15:45 hrs</td>
+                                <td>19:20 hrs</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>6</td>
+                                <td>{{'Iti-P14' | translate}}</td>
+                                <td>El Fuerte</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P20' | translate}}</td>
+                              </tr>
+
+                              <tr>
+                                <td>7</td>
+                                <td>{{'Iti-P15' | translate}}</td>
+                                <td>El Fuerte</td>
+                                <td colspan="3" class="bg-transparent center">{{'Iti-P20' | translate}}</td>
+                              </tr>
+
+
+                              <tr>
+                                <td>8</td>
+                                <td>{{'Iti-P16' | translate}}</td>
+                                <td>El Fuerte</td>
+                                <td>Los Mochis</td>
+                                <td>19:20 hrs</td>
+                                <td>21:30 hrs</td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row margintop20">
+
+                          <div class=" col-xs-12 col-sm-4  col-sm-offset-20 center">
+                            <a class="btn btn-link c-one"
+                             routerLink="/reservaciones/Chepe Regional/paso2" [queryParams]="{passengers:1,src:1,dst:42,start:'today',end:'3',round:true,class:2}" 
+                            role="button">
+                                <div> <img src="assets/img/icon_calendar.png"></div>
+                                <div>{{'Iti-P08' | translate}}</div>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end panel -->
+
+              
 
             </div>
 
