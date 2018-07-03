@@ -14,6 +14,7 @@ import {FromJSONable} from "./model/FromJSONable";
 import {environment} from "../environments/environment";
 import { UrlWebPay } from './model/url';
 import { WebPay } from './model/webpay';
+import { Country } from './model/country';
 @Injectable()
 export class ModelRestService implements IModel {
 
@@ -82,6 +83,9 @@ export class ModelRestService implements IModel {
       'src':id_src,
       'dst':id_dst
     });
+  }
+  getCountries():Observable<Response<Country[]>>{
+    return this.stdCall<Country[]>(Country,this.base+"/"+this.prefix+"/countries","get",null,{},null,null,true);
   }
   // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
   //   return this.stdCall<UrlWebPay>(UrlWebPay,this.base+"/"+this.prefix+"/payment/url","get",null,{

@@ -19,6 +19,7 @@ import { Wagon } from './model/wagon';
 import { WagonType } from './model/wagontype';
 import { Url } from 'url';
 import { WebPay } from './model/webpay';
+import { Country } from './model/country';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -107,5 +108,7 @@ export class ModelService implements IModel {
     console.log(this.wagon_types_by_id);
     return this.wagon_types_by_id[""+id];
   }
-
+  getCountries():Observable<Response<Country[]>>{
+    return this.impl.getCountries();
+  }
 }

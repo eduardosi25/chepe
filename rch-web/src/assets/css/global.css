@@ -93,7 +93,8 @@
 }
 
 .affix{
-    z-index}
+    z-index:1;
+}
 
 .col.transparent{
     padding-bottom: 60px;
@@ -2793,6 +2794,17 @@ FIXES FRONT
 .modal-video video {
     object-fit: cover;
 }
+.select-seat.premium .block-seats {
+    margin-top: 284px;
+}
+.select-seat.classic,
+.select-seat.premium {
+    height: 1450px;
+}
+#webpay_sframe {
+    margin: 0 auto;
+    display: block;
+}
 
 /*:::::::::::
 
@@ -2839,6 +2851,11 @@ FIXES RESPONSIVE
     }
     .header-topbar {
         top: 9px;
+    }
+}
+@media (max-width:600px) {
+    #webpay_sframe {
+        width: 100% !important;
     }
 }
 @media (max-width:480px) {

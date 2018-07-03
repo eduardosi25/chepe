@@ -12,6 +12,7 @@ export class Segment{
         this.n = n;
         this.src = src;
         this.dst = dst;
+        console.log(dst)
         this.travels = travels;
         if(query != null && this.dst != null){
             this.stops_at_dst = (query.stops.indexOf(this.dst.id) != -1);
@@ -81,7 +82,7 @@ export class Segment{
         for(var i=0;i<this.travels.length;i++){
             let t:Travel = this.travels[i];
             //let dd:Date = new Date(t.date+" "+t.departure.time);
-            let dd:Date = this.mkDate(t.date+" "+t.departure.time);
+            let dd:Date = this.mkDate(t.date+" "+t.departure.time);   
             if(dd.getTime()>=min.getTime() && dd.getTime()<=max.getTime()){
                 travels.push(t);
             }

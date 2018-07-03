@@ -13,6 +13,7 @@ import { Travel } from './model/travel';
 import { HttpClient } from '@angular/common/http';
 import { UrlWebPay } from './model/url';
 import { WebPay } from './model/webpay';
+import { Country } from './model/country';
 @Injectable()
 export class ModelDummyRestService implements IModel{
   private use_mocks:boolean = false;
@@ -129,5 +130,15 @@ export class ModelDummyRestService implements IModel{
   //     "http://wpp.sandbox.mit.com.mx/i/5RA7JKMS";           
   //   });
   // }
-
+  getCountries(): Observable<Response<Country[]>> {
+    return new Observable<Response<Country[]>>((observer)=>{
+      this.dummies.getCountries().subscribe((data)=>{
+        let x0 = JSON.stringify(data); 
+        let x = JSON.parse(x0);
+        var r:Response<Country[]> = new Response<Country[]>();
+        r.parseJSONObject(x);
+        observer.next(r);
+      });
+    });
+  }
 }

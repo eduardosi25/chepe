@@ -7,10 +7,10 @@ export class WagonRow{
         var cls:string[] = [];
         cls.push("seat");
         switch(i){
-            case 0:cls.push("left");cls.push("regseatlb");break;
-            case 1:cls.push("left");cls.push("regseatrb");break;
-            case 3:cls.push("right");cls.push("regseatlb");break;
+            case 1:cls.push("left");cls.push("regseatlb");break;
+            case 0:cls.push("left");cls.push("regseatrb");break;
             case 2:cls.push("right");cls.push("regseatrb");break;
+            case 3:cls.push("right");cls.push("regseatlb");break;
         }
         cls.push(seat.getStatusClass());
         return cls.join(" ");
