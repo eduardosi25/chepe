@@ -208,8 +208,8 @@ export class Step1Component implements OnInit {
     }
     
   }
-  public wts:WagonType[] = null;
-  public getClasses(route:Route2):WagonType[]{
+  public wts:Wagon[] = null;
+  public getClasses(route:Route2):Wagon[]{
     if(this.wts != null){
       return this.wts;
     }
@@ -221,11 +221,8 @@ export class Step1Component implements OnInit {
           for(var i=0;i<route.wagons.length;i++){
             let w:Wagon = route.wagons[i];
             if(w != null){
-              if(w.type != null){
-                if(wtsi[w.type.id] == null){
-                  wtsi[w.type.id] = w.type;
-                  this.wts.push(w.type);
-                }
+              if(w.name != null){
+                this.wts.push(w);
               }
             }
           }

@@ -118,7 +118,9 @@
                                     <div class="form-group">
                                         <!--<input type="text" class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">-->
                                         <select class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">
-                                            <option value="AFG">Afghanistan</option>
+                                                <option [ngValue]="null">Elige una opción</option>
+                                                <option *ngFor="let c of this.paises" [ngValue]="c">{{c.nombre_es}}</option>
+                                            <!-- <option value="AFG">Afghanistan</option>
                                             <option value="ALB">Albania</option>
                                             <option value="ATA">Antarctica</option>
                                             <option value="DZA">Algeria</option>
@@ -366,7 +368,7 @@
                                             <option value="WLF">Wallis and Futuna</option>
                                             <option value="WSM">Samoa</option>
                                             <option value="YEM">Yemen</option>
-                                            <option value="ZMB">Zambia</option>
+                                            <option value="ZMB">Zambia</option> -->
                                         </select>
                                     </div>
                                 </div>

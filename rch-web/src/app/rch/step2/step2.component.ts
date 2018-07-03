@@ -43,7 +43,6 @@ export class Step2Component implements OnInit {
           this.session.schedule = response.data;
           this.segments = this.makeSegments(this.schedule, query);
           this.session.segments = this.segments;
-
         } else {
           alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
           this.schedule = new Schedule();
@@ -123,27 +122,30 @@ export class Step2Component implements OnInit {
     var segments_by_ts = {};
 
     var routets: TrainStop[] = [];
+    var routets01: TrainStop[] = [];
     var direction = Direction.up;
     var fromkm = 0; var tokm = 0;
     for (var i = 0; i < this.session.route.stops.length; i++) {
       let ts: TrainStop = this.session.route.stops[i];
       if (ts.id == query.id_src) {
         fromkm = ts.km;
+        routets.push(ts);
       }
       if (ts.id == query.id_dst) {
         tokm = ts.km;
+        routets.push(ts);
       }
+    if (query.stops.toString().search(ts.id.toString()) >= 0)
       routets.push(ts);
-    }
+    }   
     if (fromkm > tokm) {
       routets.reverse();
     }
 
-
     for (var i = 0; i < (routets.length - 1); i++) {
-      let ts0: TrainStop = routets[i];
-      let ts1: TrainStop = routets[i + 1];
-      var segment: Segment = new Segment(i + 1, ts0, ts1, [], query);
+      let ts0: TrainStop = routets[i];    
+      let ts1: TrainStop = routets[i+1];
+      var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
       segments_by_ts[ts0.id] = segment;
       if (i > 0) {
         let prev: Segment = segments[i - 1];

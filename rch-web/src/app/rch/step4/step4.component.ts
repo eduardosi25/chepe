@@ -12,6 +12,7 @@ import { Travel } from '../../model/travel';
 import { AvailabilityQuery } from '../../model/availabilityquery';
 import { RouteBooking } from '../../model/routebooking';
 import { Person } from '../../model/person';
+import { Country } from '../../model/country';
 declare var $: any;
 @Component({
   selector: 'app-step4',
@@ -24,6 +25,8 @@ export class Step4Component implements OnInit {
     private model: ModelService,
     public session: SessionService,
     private router: Router) { }
+    public paises: Country[] = [];
+    
 
   public segments: Segment[] = [];
   ngOnInit() {
@@ -35,7 +38,12 @@ export class Step4Component implements OnInit {
       this.session.rb.setupFromSession(this.session);
     }
     this.segments = this.session.mkUnifiedSegments();
-
+    
+    this.model.getCountries().subscribe((response:Response<Country[]>) => { 
+      response.data.forEach(item => {
+        this.paises.push(item);
+      });
+  });
 
   }
   goBack(): void {
@@ -59,4 +67,9 @@ export class Step4Component implements OnInit {
     //if(this.session.rb.etickets_phone == ""){$('#etickets_phone').addClass('orange');return false;}
     return this.session.rb.pp;
   }
+  //  public getCountry(){
+  //     this.model.getCountries().subscribe((response:Response<Country>) => {
+  //        return response.data;
+  //    });
+  //  }
 }

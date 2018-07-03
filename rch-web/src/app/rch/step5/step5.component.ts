@@ -220,8 +220,20 @@ export class Step5Component implements OnInit {
     if (wagon.type.id == 3) { return "premium"; }
     return "classic";
   }
-  getRowClasses(i: number): string {
-    return (i % 2 == 0) ? "" : "flip";
+  getRowClasses(i: number, vagonId: number): string {
+    switch (vagonId) {
+      case 1:
+        if (i == 0 || i == 6 ) return ""; 
+        else return "flip";
+      case 3:
+        if (i % 2 == 0) return ""; 
+        else return "flip";
+      case 4:
+        if (i < 7) return ""; 
+        else return "flip";
+      default:
+        return "";
+    }
   }
   fly_max: number = -1;
   public shouldFly(): boolean {

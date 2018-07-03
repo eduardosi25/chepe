@@ -97,7 +97,7 @@
                                     <img class="img-responsive" src="{{wagon.type.img_mobile}}">
                                 </div>
                                 <div class="block-seats">
-                                    <div class="row-seats clearfix {{getRowClasses(i)}}" id="VC1" *ngFor="let row of wagon.getRows(); let i = index">
+                                    <div class="row-seats clearfix {{getRowClasses(i, wagon.type.id)}}" id="VC1" *ngFor="let row of wagon.getRows(); let i = index;">
                                         <div class="{{row.getSeatClasses(j,seat)}}" id="seat_{{seat.id}}" *ngFor="let seat of row.cols; let j = index" (click)="onSeatClicked(seat,wagon,selected_segment)">
                                             <label>{{seat.name}}</label>
                                         </div>
