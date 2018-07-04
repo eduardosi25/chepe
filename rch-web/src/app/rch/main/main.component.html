@@ -32,37 +32,37 @@
 
                                 <tbody>
                                     <tr>
-                                        <th class="bg-three border2" scope="row">VAGONES</th>
-                                        <td colspan="2">{{getRouteWagonTypes(route)}}</td>
+                                        <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>
+                                        <td colspan="2">{{'Main-P10' | translate}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <span *ngIf="isRegional(route)">HORARIOS Y DÍAS DE SALIDA</span>&nbsp;</td>
+                                            <span *ngIf="isRegional(route)">{{'Main-P01' | translate}}</span>&nbsp;</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-three border2" scope="row" rowspan="2">
                                             <span *ngIf="isRegional(route)">HORARIO</span>
-                                            <span *ngIf="!isRegional(route)">SALIDAS
-                                                <br/> DIARIAS</span>
+                                            <span *ngIf="!isRegional(route)">{{'Main-P03' | translate}}
+                                                <br/> {{'Main-P04' | translate}}</span>
                                         </th>
                                         <td class="c-one">{{route.getFirstTrainStop(1).getDeparture(1).time}} hrs
                                             <br>
                                             <br/> {{route.getLastTrainStop(1).getDeparture(1).time}} hrs</td>
                                         <td class="bg-one-light">
-                                            Sale de {{route.getFirstTrainStop(1).name}}
+                                            {{'Main-P05' | translate}} {{route.getFirstTrainStop(1).name}}
                                             <br>
-                                            <span *ngIf="isRegional(route)">Lunes, Jueves y Sábado</span>
-                                            <br/> Llega a {{route.getLastTrainStop(1).name}}</td>
+                                            <span *ngIf="isRegional(route)">{{'Main-P06' | translate}}</span>
+                                            <br/> {{'Main-P07' | translate}} {{route.getLastTrainStop(1).name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="c-one">{{route.getFirstTrainStop(2).getDeparture(2).time}} hrs
                                             <br>
                                             <br/> {{route.getLastTrainStop(2).getDeparture(2).time}} hrs</td>
                                         <td class="bg-one-light">
-                                            Sale de {{route.getFirstTrainStop(2).name}}
+                                            {{'Main-P05' | translate}} {{route.getFirstTrainStop(2).name}}
                                             <br>
-                                            <span *ngIf="isRegional(route)">Martes, Viernes y Domingo</span>
-                                            <br/> Llega a {{route.getLastTrainStop(2).name}}</td>
+                                            <span *ngIf="isRegional(route)">{{'Main-P08' | translate}}</span>
+                                            <br/> {{'Main-P07' | translate}} {{route.getLastTrainStop(2).name}}</td>
                                     </tr>
 
                                 </tbody>
@@ -79,7 +79,7 @@
                             <div>
                                 <img src="assets/img/icon_train.png">
                             </div>
-                            <div>RESERVAR TRENES</div>
+                            <div>{{'Main-P09' | translate}}</div>
                         </a>
                     </div>
                 </div>
