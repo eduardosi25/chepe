@@ -46,8 +46,8 @@
                 <div class="row">
 
                     <div class="col-sm-24  gap-left">
-                        <h3 class=" c-two">Resultados de búsqueda</h3>
-                        <p>Elige una opción en cada uno de los tramos del tren encontrados para formar tu itinerario final.</p>
+                        <h3 class=" c-two">{{'Step2-P00' | translate}}</h3>
+                        <p>{{'Step2-P01' | translate}}</p>
                     </div>
 
                 </div>
@@ -64,7 +64,7 @@
 
                     <div class="col-md-24 gap-left">
                         <h3 class="uppercase c-two">
-                            <span class="fontweight700">Escala {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}
+                            <span class="fontweight700">{{'Step2-P02' | translate}} {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}
                             <!-- <span *ngIf="isStop(segment.dst)">(Baja del tren)</span>-->
                         </h3>
                     </div>
@@ -78,48 +78,48 @@
                     <div class="row hidden-xs table-escala-header">
 
                         <div class="col-sm-4 equalheight">
-                            Fecha
+                            {{'Step2-P03' | translate}}
                         </div>
                         <div class="col-sm-3 equalheight">
-                            Salida
+                            {{'Step2-P04' | translate}}
                         </div>
                         <div class="col-sm-3 equalheight">
-                            Llegada
+                            {{'Step2-P05' | translate}}
                         </div>
                         <div class="col-sm-3 equalheight">
-                            Duración
+                            {{'Step2-P06' | translate}}
                         </div>
                         <div class="col-sm-4  equalheight">
-                            Pasajeros {{session.query.getTotalPassengers(session.route)}}
+                            {{'Step2-P07' | translate}} {{session.query.getTotalPassengers(session.route)}}
                         </div>
 
 
                     </div>
                     <div class="row table-escala-line" *ngFor="let travel of getSegmentTravels(segment)">
                         <div class=" col-xs-12 col-sm-4  equalheight">
-                            <span class="visible-xs-block">Fecha </span>
+                            <span class="visible-xs-block">{{'Step2-P03' | translate}} </span>
                             {{travel.getDate()}}
                         </div>
                         <div class="col-xs-12 col-sm-3 equalheight">
-                            <span class="visible-xs-block">Salida </span>
+                            <span class="visible-xs-block">{{'Step2-P04' | translate}} </span>
                             {{travel.getDepartureTime()}}
                         </div>
                         <div class="col-xs-12 col-sm-3 equalheight">
-                            <span class="visible-xs-block">LLEGADA </span>
+                            <span class="visible-xs-block">{{'Step2-P05' | translate}} </span>
                             {{travel.getArrivalTime()}}
                         </div>
                         <div class="col-xs-12 col-sm-3 equalheight">
-                            <span class="visible-xs-block">Duración </span>
+                            <span class="visible-xs-block">{{'Step2-P06' | translate}} </span>
                             {{travel.getDuration()}}
                         </div>
                         <div class="col-xs-24 col-sm-4  equalheight">
-                            <span class="visible-xs-block">Pasajeros {{session.query.getTotalPassengers(session.route)}} </span>
+                            <span class="visible-xs-block">{{'Step2-P07' | translate}} {{session.query.getTotalPassengers(session.route)}} </span>
                             {{session.query.getPassengersString(session.route)}}
                         </div>
                         <div class="col-xs-24 col-sm-7 equalheight">
                             <input type="radio" id="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}" name="segment_{{segment.n}}" (click)="onTravelSelected(segment,travel)">
                             <label for="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}">
-                                <span class="check"></span> SELECCIONAR</label>
+                                <span class="check"></span> {{'Step2-P08' | translate}}</label>
 
                         </div>
 
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="row marginbot20" *ngIf="!schedule">
-            <i class="fa fa-spinner"></i> Cargando opciones de viaje, espere un poco por favor.
+            <i class="fa fa-spinner"></i> {{'Step2-P09' | translate}}
         </div>
 
         <!-- <div class="row margintop40 marginbot40">
@@ -155,7 +155,7 @@
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>
-                            <div>Regresar</div>
+                            <div>{{'Step2-P10' | translate}}</div>
                         </a>
                     </div>
 
@@ -164,7 +164,7 @@
                             <div>
                                 <img src="assets/img/icon_right.png">
                             </div>
-                            <div>Continuar</div>
+                            <div>{{'Step2-P11' | translate}}</div>
                         </a>
                     </div>
 

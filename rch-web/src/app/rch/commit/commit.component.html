@@ -21,7 +21,7 @@
                             <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
                         </tr>
                         <tr>
-                            <th class="bg-three c-one" scope="row">Pasajeros</th>
+                            <th class="bg-three c-one" scope="row">{{'Com1-P00' | translate}}</th>
                             <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
                         </tr>
                     </tbody>
@@ -38,13 +38,13 @@
 
                                 <thead class="uppercase">
                                     <tr>
-                                        <th>Escalas</th>
-                                        <th>Origen</th>
-                                        <th>Fecha</th>
-                                        <th>Salida</th>
-                                        <th>Destino</th>
-                                        <th>Llegada</th>
-                                        <th>Duración</th>
+                                        <th>{{'Com1-P01' | translate}}</th>
+                                        <th>{{'Com1-P02' | translate}}</th>
+                                        <th>{{'Com1-P03' | translate}}</th>
+                                        <th>{{'Com1-P04' | translate}}</th>
+                                        <th>{{'Com1-P05' | translate}}</th>
+                                        <th>{{'Com1-P06' | translate}}</th>
+                                        <th>{{'Com1-P07' | translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -121,7 +121,7 @@
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>
-                            <div>Regresar</div>
+                            <div>{{'Com1-P08' | translate}}</div>
                         </a>
                     </div>
 
@@ -130,7 +130,7 @@
                             <div>
                                 <img src="assets/img/icon_card.png">
                             </div>
-                            <div>Pagar</div>
+                            <div>{{'Com1-P09' | translate}}</div>
                         </a>
                     </div>
 

@@ -44,8 +44,8 @@
             <div class="col-md-24 no-gutter-left">
                 <div class="row">
                     <div class="col-sm-24  gap-left">
-                        <h3 class="c-two subti">Itinerario final</h3>
-                        <p class="psub">Te presentamos tu itinerario de viaje. Si estás de acuerdo haz click en continuar.</p>
+                        <h3 class="c-two subti">{{'Step3-P00' | translate}}</h3>
+                        <p class="psub">{{'Step3-P01' | translate}}</p>
                     </div>
                 </div>
             </div>
@@ -59,14 +59,14 @@
             <div *ngFor="let segment of segments">
                 <div class="row final-summary-header">
                     <div class=" col-xs-3 col-sm-8 col-md-8 timeline equalheight">
-                        <h3 class="c-two hidden-xs orange-t" *ngIf="isFirstSegment(segment)">Origen</h3>
+                        <h3 class="c-two hidden-xs orange-t" *ngIf="isFirstSegment(segment)">{{'Step3-P02' | translate}}</h3>
                     </div>
                     <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
-                        <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t" *ngIf="isFirstSegment(segment)">Origen</h3>
+                        <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t" *ngIf="isFirstSegment(segment)">{{'Step3-P02' | translate}}</h3>
                         <h3 class="c-two orange-t">{{segment.src.name}}</h3>
                         <div class="hidden-sm hidden-md hidden-lg">
-                            <h4>ESCALA {{segment.n}}</h4>
-                            DURACIÓN
+                            <h4>{{'Step3-P03' | translate}} {{segment.n}}</h4>
+                            {{'Step3-P04' | translate}}
                             <br>{{segment.getDuration()}} hrs
                         </div>
                         <div class="dot">
@@ -77,8 +77,8 @@
                 <div class="row final-summary-body">
                     <div class="col-xs-3 col-sm-8 col-md-8 timeline equalheight">
                         <div class="hidden-xs">
-                            <h4>ESCALA {{segment.n}}</h4>
-                            DURACIÓN
+                            <h4>{{'Step3-P03' | translate}} {{segment.n}}</h4>
+                            {{'Step3-P04' | translate}}
                             <br>{{segment.getDuration()}} hrs
                         </div>
                     </div>
@@ -88,14 +88,14 @@
                                 <table class="table chepe" *ngIf="segment.previous">
                                     <tbody>
                                         <tr>
-                                            <th class="bg-two-medium border2 fontup" colspan="2">LLEGADA</th>
+                                            <th class="bg-two-medium border2 fontup" colspan="2">{{'Step3-P05' | translate}}</th>
                                         </tr>
                                         <tr>
                                             <th class="bg-three ">{{segment.previous.selected_travel.getWeekday()}}</th>
                                             <td class="">{{segment.previous.selected_travel.getDate(false)}}</td>
                                         </tr>
                                         <tr>
-                                            <th class="bg-three ">HORA</th>
+                                            <th class="bg-three ">{{'Step3-P06' | translate}}</th>
                                             <td class="">{{segment.previous.selected_travel.arrival.time}} hrs</td>
                                         </tr>
                                     </tbody>
@@ -103,14 +103,14 @@
                                 <table class="table chepe">
                                     <tbody>
                                         <tr>
-                                            <th class="bg-two-medium border2 fontup" colspan="2">SALIDA</th>
+                                            <th class="bg-two-medium border2 fontup" colspan="2">{{'Step3-P07' | translate}}</th>
                                         </tr>
                                         <tr>
                                             <th class="bg-three ">{{segment.selected_travel.getWeekday()}}</th>
                                             <td class="">{{segment.selected_travel.getDate(false)}}</td>
                                         </tr>
                                         <tr>
-                                            <th class="bg-three ">HORA</th>
+                                            <th class="bg-three ">{{'Step3-P06' | translate}}</th>
                                             <td class="">{{segment.selected_travel.departure.time}} hrs</td>
                                         </tr>
                                     </tbody>
@@ -123,10 +123,10 @@
                 </div>
                 <div class="row final-summary-header" *ngIf="isLastSegment(segment)">
                     <div class=" col-xs-3 col-sm-8 col-md-8 timeline equalheight">
-                        <h3 class="c-two hidden-xs orange-t">Destino</h3>
+                        <h3 class="c-two hidden-xs orange-t">{{'Step3-P08' | translate}}</h3>
                     </div>
                     <div class=" col-xs-21 col-sm-16 col-md-16 timeline-right equalheight">
-                        <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t">Destino</h3>
+                        <h3 class="c-two hidden-sm hidden-md hidden-lg orange-t">{{'Step3-P08' | translate}}</h3>
                         <h3 class="c-two orange-t">{{segment.dst.name}}</h3>
                         <!--<div class="hidden-sm hidden-md hidden-lg">
                     <h4>ESCALA {{segment.n}}</h4>
@@ -149,14 +149,14 @@
                                 <table class="table chepe">
                                     <tbody>
                                         <tr>
-                                            <th class="bg-two-medium border2 fontup" colspan="2">LLEGADA</th>
+                                            <th class="bg-two-medium border2 fontup" colspan="2">{{'Step3-P05' | translate}}</th>
                                         </tr>
                                         <tr>
                                             <th class="bg-three ">{{segment.selected_travel.getWeekday()}}</th>
                                             <td class="">{{segment.selected_travel.getDate(false)}}</td>
                                         </tr>
                                         <tr>
-                                            <th class="bg-three ">HORA</th>
+                                            <th class="bg-three ">{{'Step3-P06' | translate}}</th>
                                             <td class="">{{segment.selected_travel.arrival.time}} hrs</td>
                                         </tr>
                                     </tbody>
@@ -184,7 +184,7 @@
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>
-                            <div>Regresar</div>
+                            <div>{{'Step3-P09' | translate}}</div>
                         </a>
                     </div>
 
@@ -193,7 +193,7 @@
                             <div>
                                 <img src="assets/img/icon_right.png">
                             </div>
-                            <div>Continuar</div>
+                            <div>{{'Step3-P10' | translate}}</div>
                         </a>
                     </div>
 
@@ -209,7 +209,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Menú 1</h4>
+                        <h4 class="modal-title" id="myModalLabel">{{'Step3-P11' | translate}}</h4>
                     </div>
                     <div class="modal-body">
                         ...
@@ -226,7 +226,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Menú 2</h4>
+                        <h4 class="modal-title" id="myModalLabel">{{'Step3-P12' | translate}}</h4>
                     </div>
                     <div class="modal-body">
                         ...
