@@ -13,7 +13,7 @@
                     </div>
 
                     <div class=" col-sm-20 gap-left">
-                        <h3 class=" c-two fontweight400">Selecciona tus asientos</h3>
+                        <h3 class=" c-two fontweight400">{{'Step5-P00' | translate}}</h3>
                     </div>
 
                 </div>
@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-xs-24 timeline-seats-box center">
                         <h6 class="uppercase" id="assigned-passengers">
-                            <span class="bg-two-light no-pasaje">Pasajeros asignados: {{getAssignedSbs()}}/{{session.query.getTotalPassengers()}}</span>
+                            <span class="bg-two-light no-pasaje">{{'Step5-P01' | translate}} {{getAssignedSbs()}}/{{session.query.getTotalPassengers()}}</span>
                         </h6>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-xs-12 timeline-seats-box">
                         <div class="timeline-seats-title">
-                            <h5 class="fontweight700">Escala {{selected_segment.n}}</h5>
+                            <h5 class="fontweight700">{{'Step5-P02' | translate}} {{selected_segment.n}}</h5>
                         </div>
                         <div class="timeline-seats-line">
                             <span class="dot"></span>
@@ -60,13 +60,13 @@
                     <div class=" col-sm-24 seat-color gap-left">
                         <div class="row">
                             <div class="col-xs-24 col-sm-7 col-md-6 col-lg-5 seat-color-box">
-                                <span class="seat-color-code selected"></span>ASIENTO SELECCIONADO
+                                <span class="seat-color-code selected"></span>{{'Step5-P03' | translate}}
                             </div>
                             <div class="col-xs-24 col-sm-7 col-md-6 col-lg-5 seat-color-box">
-                                <span class="seat-color-code available">ASIENTOS DISPONIBLES</span>
+                                <span class="seat-color-code available">{{'Step5-P04' | translate}}</span>
                             </div>
                             <div class="col-xs-24 col-sm-7 col-md-6 col-lg-5 seat-color-box">
-                                <span class="seat-color-code occupied">ASIENTOS NO DISPONIBLES</span>
+                                <span class="seat-color-code occupied">{{'Step5-P05' | translate}}</span>
                             </div>
                         </div>
                     </div>
@@ -125,8 +125,8 @@
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>
-                            <div *ngIf="isFirstNav()">Regresar</div>
-                            <div *ngIf="!isFirstNav()">Regresar a escala {{selected_segment.n - 1}}</div>
+                            <div *ngIf="isFirstNav()">{{'Step5-P06' | translate}}</div>
+                            <div *ngIf="!isFirstNav()">{{'Step5-P07' | translate}} {{selected_segment.n - 1}}</div>
                         </a>
                     </div>
 
@@ -135,8 +135,8 @@
                             <div>
                                 <img src="assets/img/icon_right.png">
                             </div>
-                            <div *ngIf="isLastNav()">Continuar</div>
-                            <div *ngIf="!isLastNav()">Continuar a escala {{selected_segment.n + 1}}</div>
+                            <div *ngIf="isLastNav()">{{'Step5-P08' | translate}}</div>
+                            <div *ngIf="!isLastNav()">{{'Step5-P09' | translate}} {{selected_segment.n + 1}}</div>
                         </a>
                     </div>
 

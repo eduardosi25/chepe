@@ -5,7 +5,7 @@
             <div class="col-md-16 no-gutter-left">
                 <div class="row">
                     <div class=" col-sm-20 gap-left">
-                        <h1 class="c-two">Reservaciones del {{route.name}}</h1>
+                        <h1 class="c-two">{{'Step1-P00' | translate}} {{route.name}}</h1>
                     </div>
 
                     <div class="col-sm-24 no-gutter-left-mobile">
@@ -13,8 +13,7 @@
                     </div>
 
                     <div class="col-sm-15 gap-left ">
-                        <p>Tu boleto incluye la opción de realizar hasta {{route.max_stops}} escalas intermedias para vivir
-                            de cerca esta increíble experiencia*.</p>
+                        <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>
                     </div>
                 </div>
             </div>
@@ -25,7 +24,7 @@
                 <div class="row">
 
                     <div class=" col-sm-20 gap-left">
-                        <h3 class="c-two fontweight300">¿A dónde viajas?</h3>
+                        <h3 class="c-two fontweight300">{{'Step1-P03' | translate}}</h3>
                     </div>
 
                     <div class="col-sm-24 no-gutter-left-mobile">
@@ -39,27 +38,27 @@
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label for="origen">Origen</label>
+                                                <label for="origen">{{'Step1-P031' | translate}}</label>
                                                 <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src" (ngModelChange)="preflight()">
-                                                    <option [ngValue]="null">Elige una opción</option>
+                                                    <option [ngValue]="null">{{'Step1-P04' | translate}}</option>
                                                     <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="origen">Destino</label>
+                                                <label for="origen">{{'Step1-P05' | translate}}</label>
                                                 <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst" (ngModelChange)="preflight()">
-                                                    <option [ngValue]="null">Elige una opción</option>
+                                                    <option [ngValue]="null">{{'Step1-P06' | translate}}</option>
                                                     <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">{{ts.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group" *ngIf="session.route.pick_class">
-                                                    <label for="origen">Clase</label>
+                                                    <label for="origen">{{'Step1-P07' | translate}}</label>
                                                     <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
-                                                        <option [ngValue]="null">Elige una opción</option>
+                                                        <option [ngValue]="null">{{'Step1-P08' | translate}}</option>
                                                         <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
                                                     </select>
                                                 </div>
-                                            <label>Total de pasajeros</label>
+                                            <label>{{'Step1-P09' | translate}}</label>
                                             <div class="box-passenger">
                                                 <div class="row">
                                                     <div class="col-xs-24 passenger-total">
@@ -109,17 +108,17 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label for="origen">Viaje redondo</label>
+                                                <label for="origen">{{'Step1-P10' | translate}}</label>
                                                 <div class="form-check trip-check">
                                                     <input type="checkbox" class="form-check-input"  id="step1-round"
                                                     [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.round"  (ngModelChange)="preflight()"
                                                     />
-                                                    <label class="form-check-label">Seleccionar</label>
+                                                    <label class="form-check-label">{{'Step1-P11' | translate}}</label>
                                                   </div>
 
                                             </div>
                                             <div class="form-group">
-                                                <label for="origen">Inicio del viaje</label>
+                                                <label for="origen">{{'Step1-P12' | translate}}</label>
                                                 <div class="input-group date datepick--ui" id="inicio">
                                                     <input type="text" class="form-control" value="09/11/2017" name="start"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"  (ngModelChange)="preflight()"
                                                         id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
@@ -130,7 +129,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="origen">Fin del viaje</label>
+                                                <label for="origen">{{'Step1-P13' | translate}}</label>
                                                 <div class="input-group date datepick--ui" id="fin">
                                                     <input type="text" class="form-control" value="10/11/2017"  name="end"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"  (ngModelChange)="preflight()"
                                                         id="step1-end-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker"
@@ -145,7 +144,7 @@
 
                                         <div class="col-sm-24 paddingtop20">
                                             <small>
-                                                * El hospedaje en hoteles y vuelos de avión de los destinos y noches que elijas, se reservan por separado.
+                                                {{'Step1-P14' | translate}}
                                             </small>
                                         </div>
                                     </div>
@@ -165,7 +164,7 @@
 
 
                     <div class=" col-sm-21 col-sm-offset-3">
-                        <h3 class="c-two">Ruta {{route.name}}</h3>
+                        <h3 class="c-two">{{'Step1-P15' | translate}} {{route.name}}</h3>
                     </div>
 
                     <div class="col-sm-21 col-sm-offset-3 no-gutter-right-mobile">
@@ -176,7 +175,7 @@
                         <a href="#" data-toggle="modal" (click)="onMap()">
                             <img src="{{route.img_map}}" class="img-responsive">
                         </a>
-                        <p class="center bold">Elige las {{route.max_stops}} escalas intermedias sobre el mapa</p>
+                        <p class="center bold">{{'Step1-P16' | translate}} {{route.max_stops}} {{'Step1-P17' | translate}}</p>
                     </div>
                     <!--
             <div class="col-sm-8 col-sm-offset-3 center margintop30">
@@ -192,7 +191,7 @@
                             <div>
                                 <img src="assets/img/icon_train.png">
                             </div>
-                            <div>RESERVAR TRENES</div>
+                            <div>{{'Step1-P18' | translate}}</div>
                         </a>
                     </div>
                     <div class="col-sm-8 col-sm-offset-6 center margintop30" *ngIf="last_failure_motive">
