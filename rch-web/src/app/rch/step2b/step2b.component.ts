@@ -24,7 +24,7 @@ export class Step2bComponent extends Step2Component implements OnInit{
     this.model.getRouteScheduleAvailable(this.session.route.id,query).subscribe((response:Response<Schedule>)=>{
       if(response.success && response.data.travels.length>0){
         this.schedule = response.data;
-        //this.session.schedule2 = response.data;
+        this.session.schedule = response.data;
         this.segments = this.makeSegments(this.schedule,query);
         this.session.segments2 = this.segments;
         

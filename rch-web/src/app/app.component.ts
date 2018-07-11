@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('es');
   }
   ngOnInit() {
-
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -24,10 +23,11 @@ export class AppComponent implements OnInit {
     });
   }
   public showMainFooter(): boolean {
-    return (this.router.url != "/" && this.router.url.indexOf('/reservaciones/confirmacion') < 0 );
+    return (this.router.url != '/reservaciones/confirmacion' && this.router.url.indexOf('/reservaciones/confirmacion') == -1 && this.router.url != '/' );
+    
   }
   public showMainHeader(): boolean {
-    return (this.router.url.indexOf('/reservaciones/confirmacion') < 0);
+    return (this.router.url != '/reservaciones/confirmacion' && this.router.url.indexOf('/reservaciones/confirmacion') == -1 && this.router.url != '/' );
   }
   public getRoutedClass(): string[] {
     var arr: string[] = [];

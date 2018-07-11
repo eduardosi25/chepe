@@ -33,18 +33,16 @@ export class Step4Component implements OnInit {
     if (!this.session || !this.session.query || !this.session.route || !this.session.segments) {
       this.router.navigate(["/reservaciones"]); return;
     }
-    if (this.session.rb == null) {
-      this.session.rb = new RouteBooking();
-      this.session.rb.setupFromSession(this.session);
-    }
-    this.segments = this.session.mkUnifiedSegments();
-    
     this.model.getCountries().subscribe((response:Response<Country[]>) => { 
       response.data.forEach(item => {
         this.paises.push(item);
       });
   });
-
+    if (this.session.rb == null) {
+      this.session.rb = new RouteBooking();
+      this.session.rb.setupFromSession(this.session);
+    }
+    this.segments = this.session.mkUnifiedSegments();
   }
   goBack(): void {
     this.location.back();

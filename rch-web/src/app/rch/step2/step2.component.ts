@@ -127,6 +127,7 @@ export class Step2Component implements OnInit {
     var fromkm = 0; var tokm = 0;
     for (var i = 0; i < this.session.route.stops.length; i++) {
       let ts: TrainStop = this.session.route.stops[i];
+      console.log("ts id: " + ts.id + " id_src: " + query.id_src);
       if (ts.id == query.id_src) {
         fromkm = ts.km;
         routets.push(ts);
@@ -137,6 +138,7 @@ export class Step2Component implements OnInit {
       }
     if (query.stops.toString().search(ts.id.toString()) >= 0)
       routets.push(ts);
+      console.log(routets);
     }   
     if (fromkm > tokm) {
       routets.reverse();
@@ -153,9 +155,16 @@ export class Step2Component implements OnInit {
       }
       segments.push(segment);
     }
+    console.log(schedule);
     for (var i = 0; i < schedule.travels.length; i++) {
       let t: Travel = schedule.travels[i];
-      let segment: Segment = segments_by_ts[t.id_src];
+      if (direction == 1) {        
+        let segment: Segment = segments_by_ts[t.id_src];
+      }
+      else if (direction == 2)
+      {        
+        let segment: Segment = segments_by_ts[t.id_dst];
+      }
       if (segment == null) { continue; }
       segment.travels.push(t);
     }
@@ -169,6 +178,7 @@ export class Step2Component implements OnInit {
         segments2.push(s);
       }
     }
+    console.log(segments2);
     return segments2;
   }
   public onTravelSelected(segment: Segment, travel: Travel) {

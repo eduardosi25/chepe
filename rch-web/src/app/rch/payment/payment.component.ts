@@ -20,6 +20,9 @@ import { Cost } from '../../model/cost';
 import { Url } from 'url';
 import { UrlWebPay } from '../../model/url';
 import { WebPay } from '../../model/webpay';
+import { AvailabilityQuery2 } from '../../model/availabilityquery2';
+import { Route } from '@angular/compiler/src/core';
+import { Route2 } from '../../model/route2';
 declare var $: any;
 
 @Component({
@@ -43,50 +46,39 @@ export class PaymentComponent implements OnInit {
     this.location.back();
   }
   
-  ngOnInit() {
-    console.log(this.session.schedule.cost);
-    console.log(this.session.rb.etickets_email);
-  //   this.model.getPaymentUrl(this.session.schedule.cost,this.session.rb.etickets_email).subscribe(
-  //     (response1:Response<UrlWebPay>)=>{
-  //     console.log(response1.data);
-  //   if(response1.success && response1.data != null){
-  //     console.log(response1.data);
-  //     //this.url = this.sanitizer.bypassSecurityTrustHtml(response.data);
-  //     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response1.data.toString());
-  //     //this.routes = response.data;
-  // }});
+  ngOnInit() {    
   this.session.rb.status = RouteBooking.booked;
-      this.model.getWebPayUrl(this.session.rb).subscribe((response:Response<WebPay>)=>{
-        //this.session.rb = response.data.;
-        console.log("Llamado");
-        console.log(response.data);
-        this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response.data.referencia.liga);
-        //this.router.navigate(["/reservaciones/"+this.session.route.name+"/reservación-exitosa"]);
-      });
-  // this.session.rb.status = RouteBooking.booked;
-  //     this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
-
-  //       });
+    this.model.getWebPayUrl(this.session.rb).subscribe((response:Response<WebPay>)=>{        
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response.data.referencia.liga);        
+      // this.session = null;
+      let q2 : AvailabilityQuery2;
+       this.session.query = q2;
+       let r : Route2;
+      this.session.route = r;
+      let s : Segment[];
+      this.session.segments = s;
+    });
   }
+
   public getCosts():Cost[]{
     var costs={};
 
-    for(var i=0;i<this.session.rb.seats.length;i++){
-      let sb:SeatBooking = this.session.rb.seats[i];
-      let a:number = sb.cost.amount;
-      let b:string = sb.cost.currency;
-      if(!costs[b]){
-        costs[b] = new Cost();
-        costs[b].currency = b;
-        costs[b].amount = 0;
-      }
-      costs[b].amount+=a;
-    }
+    // for(var i=0;i<this.session.rb.seats.length;i++){
+    //   let sb:SeatBooking = this.session.rb.seats[i];
+    //   let a:number = sb.cost.amount;
+    //   let b:string = sb.cost.currency;
+    //   if(!costs[b]){
+    //     costs[b] = new Cost();
+    //     costs[b].currency = b;
+    //     costs[b].amount = 0;
+    //   }
+    //   costs[b].amount+=a;
+    // }
     var costs2:Cost[] = [];
-    for(var j in costs){
-      let c:Cost = costs[j];
-      costs2.push(c);
-    }
+    // for(var j in costs){
+    //   let c:Cost = costs[j];
+    //   costs2.push(c);
+    // }
     return costs2;
   }
   public bookIt(){

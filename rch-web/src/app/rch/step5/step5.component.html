@@ -83,7 +83,7 @@
             <div class="col-sm-24 " *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
                 <div class="row">
                     <div class="col-sm-24 center">
-                        <h3 class="c-two fontweight400">{{wagon.type.name}} ({{wagon.name}}) {{wagon.type.id}}
+                        <h3 class="c-two fontweight400"> {{wagon.name}} {{wagon.type.numero_carro}}
                             <a href="#" data-toggle="modal" data-target="#wagon-details" (click)="selectWagonType(wagon.type)" class="wagon_info">
                                 <div class="info-vagon">i</div>
                             </a>
