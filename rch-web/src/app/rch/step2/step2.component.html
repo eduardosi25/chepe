@@ -14,7 +14,6 @@
 
                 </div>
             </div>
-            <app-cost-box></app-cost-box>
             <rch-status></rch-status>
             <!-- <div class="col-md-5 col-sm-32 center margintop10">
                 <a class="btn btn-link search" routerLink="/reservaciones/{{session.route.name}}/paso1" role="button">
@@ -145,7 +144,11 @@
          </div>
      </div>
 </div>-->
-
+        <div class="cost--fix cost--right col-md-18 col-xs-24">
+            <div class="row">
+                <app-cost-box></app-cost-box>
+            </div>
+        </div>
         <div class="row margintop40 marginbot40" *ngIf="session.query">
             <div class="col-sm-24 no-gutter-left">
                 <div class="row">

@@ -140,6 +140,8 @@ export class Step2Component implements OnInit {
       routets.push(ts);
       console.log(routets);
     }   
+    console.log(fromkm);
+    console.log(tokm);
     if (fromkm > tokm) {
       routets.reverse();
     }
@@ -148,7 +150,17 @@ export class Step2Component implements OnInit {
       let ts0: TrainStop = routets[i];    
       let ts1: TrainStop = routets[i+1];
       var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
-      segments_by_ts[ts0.id] = segment;
+      console.log(ts0.id);
+      console.log(ts1.id);
+      console.log(segment);
+      //segments_by_ts[ts0.id] = segment;
+      if (direction == 1) {        
+        segments_by_ts[ts0.id] = segment;
+      }
+      else if (fromkm < tokm)
+      {        
+        segments_by_ts[ts1.id] = segment;
+      }
       if (i > 0) {
         let prev: Segment = segments[i - 1];
         segment.previous = prev;
@@ -158,13 +170,15 @@ export class Step2Component implements OnInit {
     console.log(schedule);
     for (var i = 0; i < schedule.travels.length; i++) {
       let t: Travel = schedule.travels[i];
-      if (direction == 1) {        
-        let segment: Segment = segments_by_ts[t.id_src];
-      }
-      else if (direction == 2)
-      {        
-        let segment: Segment = segments_by_ts[t.id_dst];
-      }
+      let segment = segments_by_ts[t.id_src];
+      //let segment: Segment;
+      // if (direction == 1) {        
+      //   segment = segments_by_ts[t.id_src];
+      // }
+      // else if (direction == 2)
+      // {        
+      //   segment = segments_by_ts[t.id_dst];
+      // }
       if (segment == null) { continue; }
       segment.travels.push(t);
     }
@@ -172,6 +186,8 @@ export class Step2Component implements OnInit {
     var segments2: Segment[] = [];
     for (var j = 0; j < segments.length; j++) {
       let s: Segment = segments[j];
+      console.log("segment s");
+      console.log(s);
       if (s.travels.length > 0) {
         s.n = k++;
         s.previous = segments2.length > 0 ? segments2[segments2.length - 1] : null;
