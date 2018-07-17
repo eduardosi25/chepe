@@ -1,267 +1,157 @@
 <div class="main-content">
     <div class="container">
-        <div class="row row--relative" *ngIf="route">
-
-            <div class="col-md-16 no-gutter-left">
-                <div class="row">
-                    <div class=" col-sm-20 gap-left">
-                        <h1 class="c-two">{{'Step1-P00' | translate}} {{route.name}}</h1>
-                    </div>
-
-                    <div class="col-sm-24 no-gutter-left-mobile">
-                        <span class="title-underline c-border-two"></span>
-                    </div>
-
-                    <div class="col-sm-15 gap-left ">
-                        <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>
-                    </div>
+       <div class="row row--relative" *ngIf="route">
+          <div class="col-md-24 no-gutter-left">
+             <div class="row">
+                <div class=" col-sm-20 gap-left">
+                   <h1 class="c-two">{{'Step1-P00' | translate}} {{route.name}}</h1>
                 </div>
-            </div>
-            
-            <rch-status></rch-status>
-            <div class="col-md-15  marginbot80 no-gutter-left">
-
-                <div class="row">
-
-                    <div class=" col-sm-20 gap-left">
-                        <h3 class="c-two fontweight300">{{'Step1-P03' | translate}}</h3>
-                    </div>
-
-                    <div class="col-sm-24 no-gutter-left-mobile">
-                        <span class="title-underline c-border-two"></span>
-                    </div>
-
-                    <div class="col-sm-24 bg-three paddingtop20 paddingbot20">
-                        <div class="row">
-                            <div class="col-sm-24 gap-left">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label for="origen">{{'Step1-P031' | translate}}</label>
-                                                <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src" (ngModelChange)="preflight()">
-                                                    <option [ngValue]="null">{{'Step1-P04' | translate}}</option>
-                                                    <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="origen">{{'Step1-P05' | translate}}</label>
-                                                <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst" (ngModelChange)="preflight()">
-                                                    <option [ngValue]="null">{{'Step1-P06' | translate}}</option>
-                                                    <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">{{ts.name}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group" *ngIf="session.route.pick_class">
-                                                    <label for="origen">{{'Step1-P07' | translate}}</label>
-                                                    <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
-                                                        <option [ngValue]="null">{{'Step1-P08' | translate}}</option>
-                                                        <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
-                                                    </select>
-                                                </div>
-                                            <label>{{'Step1-P09' | translate}}</label>
-                                            <div class="box-passenger">
-                                                <div class="row">
-                                                    <div class="col-xs-24 passenger-total">
-                                                        <a class="btn btn-block bg-white c-base text-left" style="display:inline;" role="button" data-toggle="collapse" href="#popover-content-passengers"
-                                                            aria-expanded="false" aria-controls="collapseExample">
-                                                            <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
-                                                        </a>
-                                                    </div>
-
-                                                </div>
-                                                <div class="popover passengers collapse" id="popover-content-passengers">
-
-                                                    <div class="row" *ngFor="let pt of route.passenger_types">
-                                                        <div class="col-xs-12 passenger-label">
-                                                            <label>{{pt.name}}
-                                                                <span *ngIf="pt.details">
-                                                                    <br/>{{pt.details}}</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-xs-12">
-                                                            <div class="input-group">
-                                                                <span class="input-group-btn">
-                                                                    <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
-                                                                        <span class="glyphicon glyphicon-minus"></span>
-                                                                    </button>
-                                                                </span>
-                                                                <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
-                                                                    min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
-                                                                <span class="input-group-btn">
-                                                                    <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
-                                                                        <span class="glyphicon glyphicon-plus"></span>
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="form-group">
-                                                <label for="origen">{{'Step1-P10' | translate}}</label>
-                                                <div class="form-check trip-check">
-                                                    <input type="checkbox" class="form-check-input"  id="step1-round"
-                                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.round"  (ngModelChange)="preflight()"
-                                                    />
-                                                    <label class="form-check-label">{{'Step1-P11' | translate}}</label>
-                                                  </div>
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="origen">{{'Step1-P12' | translate}}</label>
-                                                <div class="input-group date datepick--ui" id="inicio">
-                                                    <input type="text" class="form-control" value="09/11/2017" name="start"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"  (ngModelChange)="preflight()"
-                                                        id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
-                                                    />
-                                                    <span class="input-group-addon" (click)="d.toggle()">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="origen">{{'Step1-P13' | translate}}</label>
-                                                <div class="input-group date datepick--ui" id="fin">
-                                                    <input type="text" class="form-control" value="10/11/2017"  name="end"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"  (ngModelChange)="preflight()"
-                                                        id="step1-end-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker"
-                                                    />
-                                                    <span class="input-group-addon" (click)="d2.toggle()">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>
-                                                </div>
-                                                <div id="end_warning"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-24 paddingtop20">
-                                            <small>
-                                                {{'Step1-P14' | translate}}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cost--fix col-xs-24">
-                        <app-cost-box></app-cost-box>
-                    </div>
+                <div class="col-sm-24 no-gutter-left-mobile">
+                   <span class="title-underline c-border-two"></span>
                 </div>
-
-
-            </div>
-            <div class="col-md-9 marginbot80 no-gutter-right">
-
-                <div class="row">
-
-
-
-                    <div class=" col-sm-21 col-sm-offset-3">
-                        <h3 class="c-two">{{'Step1-P15' | translate}} {{route.name | translate}}</h3>
-                    </div>
-
-                    <div class="col-sm-21 col-sm-offset-3 no-gutter-right-mobile">
-                        <span class="title-underline-full c-border-two"></span>
-                    </div>
-
-                    <div class=" col-sm-17 col-sm-offset-3">
-                        <a href="#" data-toggle="modal" (click)="onMap()">
-                            <img src="{{route.img_map}}" class="img-responsive">
-                        </a>
-                        <p class="center bold">{{'Step1-P16' | translate}} {{route.max_stops}} {{'Step1-P17' | translate}}</p>
-                    </div>
-                    <!--
-            <div class="col-sm-8 col-sm-offset-3 center margintop30">
-                <a class="btn btn-link" href="reservaciones.html" role="button">
-                    <div> <img src="assets/img/icon_left.png"></div>
-                    <div>Regresar</div>
-                </a>
-            </div>
-            -->
-
-                    <div class="col-sm-8 col-sm-offset-6 center margintop30" *ngIf="readyToGoNext()">
-                        <a class="btn btn-link c-one" routerLink="/reservaciones/{{route.name}}/paso2" role="button">
-                            <div>
-                                <img src="assets/img/icon_train.png">
-                            </div>
-                            <div>{{'Step1-P18' | translate}}</div>
-                        </a>
-                    </div>
-                    <div class="col-sm-8 col-sm-offset-6 center margintop30" *ngIf="last_failure_motive">
-                        <a class="btn btn-link c-one" role="button">
-                            <div style="opacity:0.5;">
-                                <img src="assets/img/icon_train.png">
-                            </div>
-                            <div>{{last_failure_motive}}</div>
-                        </a>
-                    </div>
-
-                    <!-- modal -->
-                    <div class="modal mapa fade" id="map-stops" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <!--<div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>-->
-                                <div class="modal-body {{route.name}}">
-                                    <div class="select-map regional">
-                                        <div class="select-map-body">
-                                            <img width="900px" src="{{route.img_map}}">
-                                            <div class="check {{ts.name}}" [appStopcheck]="ts" id="check_{{ts.id}}" *ngFor="let ts of getRouteStops(); let i = index">
-                                                <input *ngIf="!isMiddle(i,ts)" disabled type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}">
-                                                <input *ngIf="isMiddle(i,ts)" type="checkbox" id="ts_{{ts.id}}" name="ts_{{ts.id}}" [ngModelOptions]="{standalone: true}"
-                                                    [ngModel]="session.query.stops[ts.id]" (click)="onPickTS(ts)">
-                                                <label for="ts_{{ts.id}}">{{ts.name}}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <!--
-                    <div class="mapa-info paddingleft c-two bg-one">
-                        Elige tus tres escalas sobre el mapa.
-                    </div>
-                    <div class="mapa-info clearfix c-one bg-two">
-                        <div class="pull-left"><img width="28px" src="assets/img/reservacion/climber.png"></div>
-                        <div class="climb-text">Escalas más visitadas y de mayor atractivo turístico.</div>
-                    </div>
-
-                    <a class="btn btn-link" href="#" role="button" data-dismiss="modal" aria-label="Close">
-                        <div> <img src="assets/img/icon_left.png"></div>
-                        <div>Regresar</div>
-                    </a>
-                    
-                    <a class="btn btn-link c-one" href="reservaciones-regional2.html">
-                        <div> <img src="assets/img/icon_train.png"></div>
-                        <div>Continuar</div>
-                    </a>
-                  -->
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
-
-
+                <div class="col-sm-15 gap-left ">
+                   <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>
                 </div>
-
-
-
-
-
-            </div>
-        </div>
+             </div>
+          </div>
+          <rch-status></rch-status>
+          <!-- Searchblock -->
+          <div class="col-md-24 no-gutter-left">
+             <div class="row">
+                 <!-- title -->
+                <div class=" col-sm-20 gap-left">
+                   <h3 class="c-two fontweight300">{{'Step1-P03' | translate}}</h3>
+                </div>
+                <!-- line -->
+                <div class="col-sm-24 no-gutter-left-mobile">
+                   <span class="title-underline c-border-two"></span>
+                </div>
+                <div class="col-sm-24 bg-three paddingtop20 paddingbot20">
+                   <div class="row">
+                      <div class="col-sm-24 gap-left">
+                         <form>
+                            <div class="row">
+                                <!-- columnas-->
+                               <div class="col-sm-8">
+                                  <div class="form-group">
+                                     <label for="origen">{{'Step1-P031' | translate}}</label>
+                                     <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src" (ngModelChange)="preflight()">
+                                     <option [ngValue]="null">{{'Step1-P04' | translate}}</option>
+                                     <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                     </select>
+                                  </div>
+                                  <div class="form-group">
+                                     <label for="origen">{{'Step1-P05' | translate}}</label>
+                                     <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst" (ngModelChange)="preflight()">
+                                     <option [ngValue]="null">{{'Step1-P06' | translate}}</option>
+                                     <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">{{ts.name}}</option>
+                                     </select>
+                                  </div>
+                                  <div class="form-group" *ngIf="session.route.pick_class">
+                                     <label for="origen">{{'Step1-P07' | translate}}</label>
+                                     <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
+                                     <option [ngValue]="null">{{'Step1-P08' | translate}}</option>
+                                     <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
+                                     </select>
+                                  </div>
+                                  <label>{{'Step1-P09' | translate}}</label>
+                                  <div class="box-passenger">
+                                     <div class="row">
+                                        <div class="col-xs-24 passenger-total">
+                                           <a class="btn btn-block bg-white c-base text-left" style="display:inline;" role="button" data-toggle="collapse" href="#popover-content-passengers"
+                                              aria-expanded="false" aria-controls="collapseExample">
+                                           <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
+                                           </a>
+                                        </div>
+                                     </div>
+                                     <div class="popover passengers collapse" id="popover-content-passengers">
+                                        <div class="row" *ngFor="let pt of route.passenger_types">
+                                           <div class="col-xs-12 passenger-label">
+                                              <label>{{pt.name}}
+                                              <span *ngIf="pt.details">
+                                              <br/>{{pt.details}}</span>
+                                              </label>
+                                           </div>
+                                           <div class="col-xs-12">
+                                              <div class="input-group">
+                                                 <span class="input-group-btn">
+                                                 <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
+                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                 </button>
+                                                 </span>
+                                                 <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
+                                                 min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
+                                                 <span class="input-group-btn">
+                                                 <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
+                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                 </button>
+                                                 </span>
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-sm-8">
+                                  <div class="form-group">
+                                     <label for="origen">{{'Step1-P10' | translate}}</label>
+                                     <div class="form-check trip-check">
+                                        <input type="checkbox" class="form-check-input"  id="step1-round"
+                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.round"  (ngModelChange)="preflight()"
+                                        />
+                                        <label class="form-check-label">{{'Step1-P11' | translate}}</label>
+                                     </div>
+                                  </div>
+                                  <div class="form-group">
+                                     <label for="origen">{{'Step1-P12' | translate}}</label>
+                                     <div class="input-group date datepick--ui" id="inicio">
+                                        <input type="text" class="form-control" value="09/11/2017" name="start"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.start"  (ngModelChange)="preflight()"
+                                        id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"
+                                        />
+                                        <span class="input-group-addon" (click)="d.toggle()">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </span>
+                                     </div>
+                                  </div>
+                                  <div class="form-group">
+                                     <label for="origen">{{'Step1-P13' | translate}}</label>
+                                     <div class="input-group date datepick--ui" id="fin">
+                                        <input type="text" class="form-control" value="10/11/2017"  name="end"[ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.end"  (ngModelChange)="preflight()"
+                                        id="step1-end-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker"
+                                        />
+                                        <span class="input-group-addon" (click)="d2.toggle()">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </span>
+                                     </div>
+                                     <div id="end_warning"></div>
+                                  </div>
+                               </div>
+                               <div class="col-sm-24 paddingtop20">
+                                  <small>
+                                  {{'Step1-P14' | translate}}
+                                  </small>
+                               </div>
+                            </div>
+                         </form>
+                      </div>
+                   </div>
+                </div>
+                <!-- Caja de costo -->
+                <div class="cost--fix col-xs-24">
+                   <app-cost-box></app-cost-box>
+                </div>
+             </div>
+          </div>
+          
+          <div class="center" *ngIf="readyToGoNext()">
+             <a class="btn btn-link c-one" routerLink="/reservaciones/{{route.name}}/paso2" role="button">
+                <div>
+                   <img src="assets/img/icon_train.png">
+                </div>
+                <div>{{'Step1-P18' | translate}}</div>
+             </a>
+          </div>
+          <!-- img src="{{route.img_map}}" class="img-responsive" -->
+       </div>
     </div>
-</div>
+ </div>
