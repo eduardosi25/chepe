@@ -2884,6 +2884,9 @@ FIXES
     width: 39px;
     display: block;
 }
+.delete-item span {
+    display:none;
+}
 .search--round-trip {
     border-top: 1px solid #a09797;
 }
@@ -2983,6 +2986,24 @@ FIXES RESPONSIVE
         margin: 0 auto !important;
         display: block;
     }
+    .search__item label {
+        font-size: 14px;
+    }
+    .search__block .form-control {
+        font-size: 12px;
+    }
+    .delete-item {
+        width: 100%;
+    }
+    .delete-item i {
+        margin-left: 10px;
+    }
+    .delete-item span{
+        display: inline-block;
+    }
+    .search__item.hide-item label {
+        display:none;
+    }
 }
 @media (max-width: 1089px) {
     .navbar.small-nav .navbar-toggle {
@@ -3041,6 +3062,9 @@ FIXES RESPONSIVE
         left: 0;
         margin-left: 0;
         margin-top: 20px;
+    }
+    .search__box {
+        padding: 0;
     }
 }
 
