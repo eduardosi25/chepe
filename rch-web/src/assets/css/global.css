@@ -2795,6 +2795,9 @@ FIXES
 .search__block .form-control  {
     font-size: 14px;
 }
+.search__row:first-child .hide-item {
+    display: none;
+}
 .search__title h4{
     margin: 0;
     padding: 0;
@@ -2812,6 +2815,13 @@ FIXES
     background:  linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
     z-index: 1;
     pointer-events: none;
+}
+.search__item.input-daterange {
+    float: left;
+}
+.search__item label {
+    display: block;
+    width: 100%;
 }
 .input-daterange input {
     text-align: left;
@@ -2852,6 +2862,30 @@ FIXES
 .datepicker table tr td.selected.disabled:hover {
     background-color: #1a2741 !important;
     background-image: inherit;
+}
+.add-block {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px #67baaf;
+    padding: 11px;
+    border-style: dashed;
+}
+.add-block:hover {
+    background: #ded9d3;
+}
+.add-block img {
+    width: 100%;
+}
+.delete-item {
+    height: 39px;
+    line-height: 39px;
+    width: 39px;
+    display: block;
+}
+.search--round-trip {
+    border-top: 1px solid #a09797;
 }
 
 /*:::::::::::

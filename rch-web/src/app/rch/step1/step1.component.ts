@@ -16,6 +16,7 @@ import { Schedule } from '../../model/schedule';
 import {Observable, Subscription} from 'rxjs/Rx';
 import { WagonType } from '../../model/wagontype';
 import { Wagon } from '../../model/wagon';
+import { $$ } from '../../../../node_modules/protractor';
 declare var $: any;
 
 @Component({
@@ -54,25 +55,48 @@ export class Step1Component implements OnInit {
     }
     this.session.route = this.route;
 
-    // Frontend
-      $.fn.datepicker.dates['es'] = {
-        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-        today: "Hoy",
-        monthsTitle: "Meses",
-        clear: "Borrar",
-        weekStart: 1,
-        format: "dd/mm/yyyy"
-      };
-      setTimeout(function(){
-        $('.input-daterange').datepicker({
-          todayHighlight: true, 
-          language:'es',
-        });
-      }, 1000);
+    // Funcion de calendario
+    $.fn.datepicker.dates['es'] = {
+      days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+      daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+      today: "Hoy",
+      monthsTitle: "Meses",
+      clear: "Borrar",
+      weekStart: 1,
+      format: "dd/mm/yyyy"
+    };
+    
+    setTimeout(function(){
+
+      // Datarange
+      $('.input-daterange').datepicker({
+        todayHighlight: true, 
+        language:'es',
+      });
+
+      // Funcion de agregar / eliminar escalas
+      $(".js-clone").on('click', function(e){
+        e.preventDefault(); 
+        var myParents = $(this).parents('.search__block')
+        var miSons = $(this).parents('.search__block').find(".search__inside")
+        myParents.find(".search__row:first-child").clone().appendTo(miSons);
+      });
+      $("body").delegate('.js-delete', 'click', function(e){
+        e.preventDefault(); 
+        $(this).parents('.search__row').remove();
+      });
+
+      // Función de cambio de viaje redondo/sencillo
+      $("input[name=trip]").on( "change", function() {
+          $(".search--round-trip").toggle();
+      });
+
+    }, 1000);
+
+
   }
   public getRouteStops():TrainStop[]{
     var tss:TrainStop[] = [];
