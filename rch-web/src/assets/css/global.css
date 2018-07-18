@@ -2792,7 +2792,7 @@ FIXES
 .search__item {
     height: 90px;
 }
-.search__box .form-control  {
+.search__block .form-control  {
     font-size: 14px;
 }
 .search__title h4{
@@ -2813,8 +2813,46 @@ FIXES
     z-index: 1;
     pointer-events: none;
 }
-
-
+.input-daterange input {
+    text-align: left;
+}
+.input-calendar {
+    position: relative;
+}
+.input-calendar  input {
+    border-radius: 5px;
+}
+.input-calendar .input-group-addon{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    z-index: 3;
+    pointer-events: none;
+    line-height: 30px;
+}
+.datepicker-days {
+    font-size: 12px;
+}
+.datepicker td,
+.datepicker th {
+    line-height: 16px;
+}
+.datepicker table tr td.today,
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today.disabled:hover {
+    background-color: #67baaf;
+    color: #fff;
+}
+.datepicker table tr td.selected,
+.datepicker table tr td.selected:hover,
+.datepicker table tr td.selected.disabled,
+.datepicker table tr td.selected.disabled:hover {
+    background-color: #1a2741 !important;
+    background-image: inherit;
+}
 
 /*:::::::::::
 

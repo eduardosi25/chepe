@@ -28,9 +28,9 @@
                 </div>
                 <div class="col-sm-24 bg-three paddingtop30 paddingbot30">
                    <div class="row">
-                      <div class="col-sm-24 gap-left search__box">
-                         <form>
-                            <div class="row">
+                        <!-- search wrapp-->
+                        <section class="col-xs-24 gap-left search__wrapp">
+                            <div class="col-xs-24 no-gutter search__switch">
                                 <div class="col-md-6">
                                     <div class="input-block clearfix">
                                         <label>Redondo</label>
@@ -43,104 +43,113 @@
                                         <input type="radio" class="special-radio">
                                     </div>
                                 </div>
-                                <div class="col-xs-24 no-gutter search__block">
-                                    <div class="search__title col-xs-24 paddingtop30 paddingbot30">
-                                        <h4>Viaje de ida</h4>
-                                    </div>
-                                    <div class="col-md-2 search__item">
-                                        <div class="form-group" *ngIf="session.route.pick_class">
-                                            <label for="origen">{{'Step1-P07' | translate}}</label>
-                                            <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
-                                                <option [ngValue]="null">{{'Step1-P08' | translate}}</option>
-                                                <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 search__item">
-                                        <div class="form-group">
-                                            <label for="origen">{{'Step1-P031' | translate}}</label>
-                                            <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src" (ngModelChange)="preflight()">
-                                                <option [ngValue]="null">{{'Step1-P04' | translate}}</option>
-                                                <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 search__item">
-                                        <div class="form-group">
-                                            <label for="origen">{{'Step1-P05' | translate}}</label>
-                                            <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst" (ngModelChange)="preflight()">
-                                                <option [ngValue]="null">{{'Step1-P06' | translate}}</option>
-                                                <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">{{ts.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 search__item">
-                                        <label>{{'Step1-P09' | translate}}</label>
-                                        <div class="box-passenger">
-                                            <div class="row">
-                                                <div class="col-xs-24 passenger-total">
-                                                    <div class="passsenger__hide">
-                                                        <a class="btn btn-block bg-white c-base text-left passenger__btn" role="button" data-toggle="collapse" href="#popover-content-passengers"
-                                                        aria-expanded="false" aria-controls="collapseExample">
-                                                        <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="popover passengers collapse" id="popover-content-passengers">
-                                                <div class="row" *ngFor="let pt of route.passenger_types">
-                                                    <div class="col-xs-12 passenger-label">
-                                                    <label>{{pt.name}}
-                                                    <span *ngIf="pt.details">
-                                                    <br/>{{pt.details}}</span>
-                                                    </label>
-                                                    </div>
-                                                    <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                        <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
-                                                        <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                        </span>
-                                                        <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
-                                                        min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
-                                                        <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
-                                                        <span class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                        </span>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 search__item">
-                                        <div class="input-daterange input-group">
-                                            <input type="text" class="input-sm form-control" name="start" />
-                                            <span class="input-group-addon">to</span>
-                                            <input type="text" class="input-sm form-control" name="end" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="origen">{{'Step1-P12' | translate}}</label>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 search__item">
-                                        <div class="form-group">
-                                            <label for="origen">{{'Step1-P13' | translate}}</label>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                               <div class="col-sm-24 paddingtop20">
-                                  <small>
-                                  {{'Step1-P14' | translate}}
-                                  </small>
-                               </div>
                             </div>
-                         </form>
-                      </div>
+                            <!-- Search block >> VIADE DE IDA -->
+                            <section class="col-xs-24 search__box">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-xs-24 no-gutter search__block">
+                                            <div class="search__title col-xs-24 paddingtop30 paddingbot30">
+                                                <h4>Viaje de ida</h4>
+                                            </div>
+                                            <section class="col-xs-24 no-gutter search__inside">
+                                                <section class="col-xs-24 no-gutter search__row">
+                                                    <div class="col-md-2 search__item">
+                                                            <div class="form-group" *ngIf="session.route.pick_class">
+                                                                <label for="origen">{{'Step1-P07' | translate}}</label>
+                                                                <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
+                                                                    <option [ngValue]="null">{{'Step1-P08' | translate}}</option>
+                                                                    <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-md-4 search__item">
+                                                        <div class="form-group">
+                                                            <label for="origen">{{'Step1-P031' | translate}}</label>
+                                                            <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.src" (ngModelChange)="preflight()">
+                                                                <option [ngValue]="null">{{'Step1-P04' | translate}}</option>
+                                                                <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 search__item">
+                                                        <div class="form-group">
+                                                            <label for="origen">{{'Step1-P05' | translate}}</label>
+                                                            <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.dst" (ngModelChange)="preflight()">
+                                                                <option [ngValue]="null">{{'Step1-P06' | translate}}</option>
+                                                                <option *ngFor="let ts of getDsts(0,session.query.src)" [ngValue]="ts">{{ts.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 search__item">
+                                                        <label>{{'Step1-P09' | translate}}</label>
+                                                        <div class="box-passenger">
+                                                            <div class="row">
+                                                                <div class="col-xs-24 passenger-total">
+                                                                    <div class="passsenger__hide">
+                                                                        <a class="btn btn-block bg-white c-base text-left passenger__btn" role="button" data-toggle="collapse" href="#popover-content-passengers"
+                                                                        aria-expanded="false" aria-controls="collapseExample">
+                                                                        <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="popover passengers collapse" id="popover-content-passengers">
+                                                                <div class="row" *ngFor="let pt of route.passenger_types">
+                                                                    <div class="col-xs-12 passenger-label">
+                                                                    <label>{{pt.name}}
+                                                                    <span *ngIf="pt.details">
+                                                                    <br/>{{pt.details}}</span>
+                                                                    </label>
+                                                                    </div>
+                                                                    <div class="col-xs-12">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
+                                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                                        </button>
+                                                                        </span>
+                                                                        <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
+                                                                        min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
+                                                                        <span class="input-group-btn">
+                                                                        <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
+                                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                                        </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-daterange input-group col-md-8 no-gutter">
+                                                        <div class="col-md-12 search__item">
+                                                            <label for="origen">{{'Step1-P12' | translate}}</label>
+                                                            <div class="input-calendar col-xs-24 no-gutter">
+                                                                <input type="text" class="form-control" name="start" />
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="col-md-12 search__item">
+                                                            <label for="origen">{{'Step1-P13' | translate}}</label>
+                                                            <div class="input-calendar col-xs-24 no-gutter">
+                                                                <input type="text" class="form-control" name="end" />
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </form>
+                            </section>
+                            <div class="col-sm-24 paddingtop20">
+                                <small> {{'Step1-P14' | translate}}</small>
+                            </div>
+                        </section>
+
                    </div>
                 </div>
                 <!-- Caja de costo -->

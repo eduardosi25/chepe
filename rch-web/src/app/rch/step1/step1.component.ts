@@ -9,8 +9,6 @@ import { PassengerType } from '../../model/passengertype';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Direction } from '../../model/direction';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import { Route2 } from '../../model/route2';
 import { AvailabilityQuery } from '../../model/availabilityquery';
 import { Response } from '../../model/response';
@@ -55,6 +53,26 @@ export class Step1Component implements OnInit {
       this.router.navigate(["/reservaciones"]);return;
     }
     this.session.route = this.route;
+
+    // Frontend
+      $.fn.datepicker.dates['es'] = {
+        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+        today: "Hoy",
+        monthsTitle: "Meses",
+        clear: "Borrar",
+        weekStart: 1,
+        format: "dd/mm/yyyy"
+      };
+      setTimeout(function(){
+        $('.input-daterange').datepicker({
+          todayHighlight: true, 
+          language:'es',
+        });
+      }, 1000);
   }
   public getRouteStops():TrainStop[]{
     var tss:TrainStop[] = [];
@@ -183,18 +201,6 @@ export class Step1Component implements OnInit {
     }
     
   }
-  public showStartDt(event){
-    $(event.target.id).datepicker({
-      todayHighlight: true
-    });
-  }
-  public showEndDt(event){
-    $(event.target.id).datepicker({
-      todayHighlight: true
-    });
-  }
-
-  
   public preflight(){
     if(this.session.preflight != null){
       this.session.preflight.unsubscribe();
