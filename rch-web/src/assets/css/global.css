@@ -2912,6 +2912,17 @@ FIXES
     font-size: 27px;
     color: #f18a21;
 }
+.modal.mapa.active {
+    display: block;
+    opacity: 1;
+}
+.modal.fade.active .modal-dialog {
+    transform: translate(0, -8%);
+    -webkit-transform: translate(0, -8%);
+    -moz-transform: translate(0, -8%);
+    -ms-transform: translate(0, -8%);
+    -o-transform: translate(0, -8%);
+}
 
 /*:::::::::::
 
@@ -3075,6 +3086,10 @@ FIXES RESPONSIVE
     }
     .cost--fix-cost--right {
         padding-right: 0px;
+    }
+    .mini-map {
+        right: 15px;
+        top: 58px;
     }
 }
 @media (max-width:480px) {

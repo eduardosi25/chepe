@@ -94,6 +94,16 @@ export class Step1Component implements OnInit {
           $(".search--round-trip").toggle();
       });
 
+      // Function temporal de modal
+      $(".js-open-modal").click(function(e){
+        e.preventDefault();
+        $("#mapa-full").addClass("active");
+      });
+      $(".js-close-modal").click(function(e){
+        e.preventDefault();
+        $("#mapa-full").removeClass("active");
+      });
+
     }, 1000);
 
 

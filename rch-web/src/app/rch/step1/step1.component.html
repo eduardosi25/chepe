@@ -30,7 +30,7 @@
                    <div class="row">
                         <!-- search wrapp-->
                         <section class="col-xs-24 gap-left search__wrapp">
-                            <a href="#" class="mini-map">
+                            <a href="#" class="mini-map js-open-modal">
                                 <i class="glyphicon glyphicon-search"></i>
                                 <img src="assets/img/reservacion/map_express.jpg">
                             </a>
@@ -303,16 +303,16 @@
        </div>
     </div>
     <!-- modal map Chepe Express -->
-    <div class="modal mapa fade" id="mapa-full" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document" *ngIf="selected_route">
+    <div class="modal mapa fade" id="mapa-full">
+        <div class="modal-dialog modal-lg" role="document" >
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close js-close-modal" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{selected_route.img_map_full}}" class="img-responsive" />
+                    <img src="assets/img/reservacion/map_express_full_2.jpg" class="img-responsive" />
                 </div>
 
             </div>
