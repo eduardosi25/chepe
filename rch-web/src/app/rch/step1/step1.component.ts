@@ -9,8 +9,6 @@ import { PassengerType } from '../../model/passengertype';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Direction } from '../../model/direction';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDateAdapter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 import { Route2 } from '../../model/route2';
 import { AvailabilityQuery } from '../../model/availabilityquery';
 import { Response } from '../../model/response';
@@ -20,6 +18,7 @@ import { WagonType } from '../../model/wagontype';
 import { Wagon } from '../../model/wagon';
 import { PreviousRouteService } from '../../previous-route.service';
 import { HttpClient } from '@angular/common/http';
+import { $$ } from '../../../../node_modules/protractor';
 declare var $: any;
 @NgModule({
   imports: [HttpClient ]
@@ -61,6 +60,59 @@ export class Step1Component implements OnInit {
       this.router.navigate(["/reservaciones"]);return;
     }
     this.session.route = this.route;
+
+    // Funcion de calendario
+    $.fn.datepicker.dates['es'] = {
+      days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+      daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+      today: "Hoy",
+      monthsTitle: "Meses",
+      clear: "Borrar",
+      weekStart: 1,
+      format: "dd/mm/yyyy"
+    };
+    
+    setTimeout(function(){
+
+      // Datarange
+      $('.input-daterange').datepicker({
+        todayHighlight: true, 
+        language:'es',
+      });
+
+      // Funcion de agregar / eliminar escalas
+      $(".js-clone").on('click', function(e){
+        e.preventDefault(); 
+        var myParents = $(this).parents('.search__block')
+        var miSons = $(this).parents('.search__block').find(".search__inside")
+        myParents.find(".search__row:first-child").clone().appendTo(miSons);
+      });
+      $("body").delegate('.js-delete', 'click', function(e){
+        e.preventDefault(); 
+        $(this).parents('.search__row').remove();
+      });
+
+      // Función de cambio de viaje redondo/sencillo
+      $("input[name=trip]").on( "change", function() {
+          $(".search--round-trip").toggle();
+      });
+
+      // Function temporal de modal
+      $(".js-open-modal").click(function(e){
+        e.preventDefault();
+        $("#mapa-full").addClass("active");
+      });
+      $(".js-close-modal").click(function(e){
+        e.preventDefault();
+        $("#mapa-full").removeClass("active");
+      });
+
+    }, 1000);
+
+
   }
   public getRouteStops():TrainStop[]{
     var tss:TrainStop[] = [];
@@ -189,18 +241,6 @@ export class Step1Component implements OnInit {
     }
     
   }
-  public showStartDt(event){
-    $(event.target.id).datepicker({
-      todayHighlight: true
-    });
-  }
-  public showEndDt(event){
-    $(event.target.id).datepicker({
-      todayHighlight: true
-    });
-  }
-
-  
   public preflight(){
     if(this.session.preflight != null){
       this.session.preflight.unsubscribe();
@@ -237,4 +277,5 @@ export class Step1Component implements OnInit {
     }
     return this.wts;
   }
+  
 }
