@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ModelService } from '../../model.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -18,8 +18,12 @@ import { Schedule } from '../../model/schedule';
 import {Observable, Subscription} from 'rxjs/Rx';
 import { WagonType } from '../../model/wagontype';
 import { Wagon } from '../../model/wagon';
+import { PreviousRouteService } from '../../previous-route.service';
+import { HttpClient } from '@angular/common/http';
 declare var $: any;
-
+@NgModule({
+  imports: [HttpClient ]
+})
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',
@@ -32,11 +36,13 @@ export class Step1Component implements OnInit {
     private model:ModelService, 
     public session:SessionService,
     private sanitizer: DomSanitizer,
-  private router:Router) { }
+  private router:Router,  
+  private previousRouteService: PreviousRouteService) { }
 
   public route:Route2 = null;
   ngOnInit() {
-    if(this.session.query == null){
+    if(this.previousRouteService.getPreviousUrl().indexOf('reservaciones/')==-1 || this.session.query == null)
+    {
       this.session.query = new AvailabilityQuery2(this.model);
       this.session.query.start = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
       this.session.query.end = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();

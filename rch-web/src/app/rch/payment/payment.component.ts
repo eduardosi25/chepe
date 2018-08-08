@@ -47,16 +47,19 @@ export class PaymentComponent implements OnInit {
   }
   
   ngOnInit() {    
+  if (!this.session || !this.session.route || !this.session.query || !this.session.segments) {
+    this.router.navigate(["/reservaciones"]); return;
+  }
   this.session.rb.status = RouteBooking.booked;
     this.model.getWebPayUrl(this.session.rb).subscribe((response:Response<WebPay>)=>{        
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response.data.referencia.liga);        
-      // this.session = null;
+      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(response.data.referencia.liga);  
       let q2 : AvailabilityQuery2;
        this.session.query = q2;
        let r : Route2;
       this.session.route = r;
       let s : Segment[];
       this.session.segments = s;
+      this.session = null;
     });
   }
 

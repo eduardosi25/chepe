@@ -102,7 +102,7 @@ export class Step2Component implements OnInit {
               }
             }
             this.session.query = aq;
-            console.log(aq);
+            // console.log(aq);
             observer.next(true);
           })
 
@@ -115,7 +115,7 @@ export class Step2Component implements OnInit {
     });
   }
   goBack(): void {
-    this.location.back();
+    this.router.navigate(["/reservaciones/" + this.session.route.name + "/step1"]);
   }
   makeSegments(schedule: Schedule, query: AvailabilityQuery): Segment[] {
     var segments: Segment[] = [];
@@ -127,7 +127,7 @@ export class Step2Component implements OnInit {
     var fromkm = 0; var tokm = 0;
     for (var i = 0; i < this.session.route.stops.length; i++) {
       let ts: TrainStop = this.session.route.stops[i];
-      console.log("ts id: " + ts.id + " id_src: " + query.id_src);
+      // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
       if (ts.id == query.id_src) {
         fromkm = ts.km;
         routets.push(ts);
@@ -138,10 +138,8 @@ export class Step2Component implements OnInit {
       }
     if (query.stops.toString().search(ts.id.toString()) >= 0)
       routets.push(ts);
-      console.log(routets);
+      // console.log(routets);
     }   
-    console.log(fromkm);
-    console.log(tokm);
     if (fromkm > tokm) {
       routets.reverse();
     }
@@ -150,9 +148,9 @@ export class Step2Component implements OnInit {
       let ts0: TrainStop = routets[i];    
       let ts1: TrainStop = routets[i+1];
       var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
-      console.log(ts0.id);
-      console.log(ts1.id);
-      console.log(segment);
+      // console.log(ts0.id);
+      // console.log(ts1.id);
+      // console.log(segment);
       //segments_by_ts[ts0.id] = segment;
       if (direction == 1) {        
         segments_by_ts[ts0.id] = segment;
@@ -167,7 +165,7 @@ export class Step2Component implements OnInit {
       }
       segments.push(segment);
     }
-    console.log(schedule);
+    // console.log(schedule);
     for (var i = 0; i < schedule.travels.length; i++) {
       let t: Travel = schedule.travels[i];
       let segment = segments_by_ts[t.id_src];
@@ -186,15 +184,13 @@ export class Step2Component implements OnInit {
     var segments2: Segment[] = [];
     for (var j = 0; j < segments.length; j++) {
       let s: Segment = segments[j];
-      console.log("segment s");
-      console.log(s);
       if (s.travels.length > 0) {
         s.n = k++;
         s.previous = segments2.length > 0 ? segments2[segments2.length - 1] : null;
         segments2.push(s);
       }
     }
-    console.log(segments2);
+    // console.log(segments2);
     return segments2;
   }
   public onTravelSelected(segment: Segment, travel: Travel) {

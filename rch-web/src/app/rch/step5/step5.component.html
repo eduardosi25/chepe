@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-sm-offset-15 center margintop30">
-                        <a class="btn btn-link" (click)="onBack()" role="button" *ngIf="selected_segment">
+                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso4" role="button" *ngIf="selected_segment">
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>

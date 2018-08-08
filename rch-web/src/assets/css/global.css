@@ -2827,7 +2827,12 @@ app-cost-box {
 table.chepe {
     margin-bottom: 0;
 }
-
+.final-summary-body {
+    display: flex;
+}
+.final-summary-header > div:first-child {
+    height: 80px;
+}
 
 /*:::::::::::
 

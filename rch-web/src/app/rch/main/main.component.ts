@@ -12,7 +12,7 @@ import { Route2 } from '../../model/route2';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private model:ModelService) {
+  constructor(private model:ModelService) { 
 
   }
 

@@ -36,6 +36,8 @@ export class Step5Component implements OnInit {
       this.router.navigate(["/reservaciones"]); return;
     }
     this.segments = this.session.mkUnifiedSegments();
+    console.log("segments5");
+    console.log(this.segments);
     if (this.session && this.segments && this.segments.length > 0) {
       this.setSelectedSegment(this.segments[0]);
     } else {
@@ -54,29 +56,40 @@ export class Step5Component implements OnInit {
     return (this.segments.length == segment.n);
   }
   setSelectedSegment(segment: Segment) {
+    console.log("setselectedseg");
     let travel0: Travel = segment.selected_travel;
-    this.model.getTravel(travel0.id, travel0.id_src, travel0.id_dst).subscribe((response: Response<Travel>) => {
-      for (var i = 0; i < segment.travels.length; i++) {
-        let tt: Travel = segment.travels[i];
-        if (tt.id == response.data.id && tt.id_src == response.data.id_src && tt.id_dst == response.data.id_dst) {
-          segment.travels[i] = response.data;
-          break;
-        }
-      }
+    if (segment.sbs != null){
+      console.log("selected_segment.sbs");      
+      console.log(segment);
       this.selected_segment = segment;
-      this.selected_segment.selected_travel = response.data;
-      if (this.selected_segment.sbs == null) {
-        this.selected_segment.sbs = [];
-        let j: number = this.segments.indexOf(segment);
-        if (j > 0) {
-          //this.prePickSeats(segment,this.segments[i]);
+    }
+    else{
+      this.model.getTravel(travel0.id, travel0.id_src, travel0.id_dst).subscribe((response: Response<Travel>) => {
+        for (var i = 0; i < segment.travels.length; i++) {
+          let tt: Travel = segment.travels[i];
+          if (tt.id == response.data.id && tt.id_src == response.data.id_src && tt.id_dst == response.data.id_dst) {
+            segment.travels[i] = response.data;
+            break;
+          }
         }
-      }
-      window.scrollTo(0, 0)
-    });
+        this.selected_segment = segment;
+        this.selected_segment.selected_travel = response.data;
+        if (this.selected_segment.sbs == null) {
+          console.log("A ver que hace si no es nulo");
+          this.selected_segment.sbs = [];
+          let j: number = this.segments.indexOf(segment);
+          if (j > 0) {
+            this.prePickSeats(segment,this.segments[i]);
+          }
+        }
+        window.scrollTo(0, 0)
+      });
+  }
   }
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
+      console.log("aqui perpicked");
+      console.log(base.sbs);
       let sb: SeatBooking = base.sbs[i];
       let sbwname = sb.wagon.name;
       for (var j = 0; j < segment.selected_travel.wagons.length; j++) {
@@ -132,6 +145,8 @@ export class Step5Component implements OnInit {
   }
   getRemainingSbs(): number {
     let remaining: number = this.session.query.getTotalPassengers() - this.selected_segment.sbs.length;
+    // console.log("selectedS");
+    // console.log(this.selected_segment);
     return remaining;
   }
   getAssignedSbs(): number {
@@ -144,9 +159,14 @@ export class Step5Component implements OnInit {
     return this.selected_segment.sbs.length;
   }
   onSeatClicked(seat: Seat, wagon: Wagon, segment: Segment) {
-
+    // console.log("seat");
+    // console.log(seat);
+    // console.log("wagon");
+    // console.log(wagon);
+    // console.log("segment");
+    // console.log(segment);
     let remaining: number = this.getRemainingSbs();
-
+    // console.log(seat.status);
     switch (seat.status) {
       case Seat.available:
         if (remaining <= 0) {
@@ -158,11 +178,15 @@ export class Step5Component implements OnInit {
           segment.selected_travel, this.session.route,
           segment.getNextPT(this.session.route, this.session.query),
           null);
-        segment.sbs.push(sb);
+        this.selected_segment.sbs.push(sb);      
+        console.log("selected");
+        console.log(this.selected_segment);
+        this.selected_segment = segment;
         break;
       case Seat.unavailable: seat.status = Seat.unavailable; break;
       case Seat.taken:
         seat.status = Seat.available;
+        
         for (var i = 0; i < segment.sbs.length; i++) {
           let sb: SeatBooking = segment.sbs[i];
           if (sb.seat.id == seat.id) {
@@ -184,7 +208,8 @@ export class Step5Component implements OnInit {
   }
   onNext() {
     let i: number = this.segments.indexOf(this.selected_segment);
-    if (i == (this.segments.length - 1)) {
+    let r: number = this.getRemainingSbs();
+    if (i == (this.segments.length - 1) && r == 0) {
       if (confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")) {
         this.session.rb.seats = [];
         for (var j = 0; j < this.segments.length; j++) {
@@ -197,11 +222,11 @@ export class Step5Component implements OnInit {
         this.router.navigate(["/reservaciones/" + this.session.route.name + "/confirmar"]);
       }
     } else {
-      let r: number = this.getRemainingSbs();
       if (r > 0) {
         alert("Aun debe elegir " + r + " asientos más.");
       } else {
         this.setSelectedSegment(this.segments[i + 1]);
+        
       }
     }
   }

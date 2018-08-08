@@ -15,6 +15,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PaymentComponent } from './rch/payment/payment.component';
+import { PreviousRouteService } from './previous-route.service';
 
 
 
@@ -28,9 +29,10 @@ import { PaymentComponent } from './rch/payment/payment.component';
     HistoryComponent,
     TacComponent,
     FaqComponent,
-    LegalAdviceComponent,
+    LegalAdviceComponent
     //PaymentComponent
   ],
+  providers:[PreviousRouteService],
   imports: [
     BrowserModule,
     AppRoutingModule,

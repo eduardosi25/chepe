@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+/
 
 # IDEs and editors
 /.idea
@@ -46,3 +47,4 @@ Thumbs.db
 dev.zip
 prod.zip
 /src/assets/mock
+/src/environments
