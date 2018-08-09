@@ -3014,6 +3014,52 @@ table.chepe {
     height: 80px;
 }
 
+/*--- Modulo de reserva ---*/
+input,
+select,
+textarea {
+    font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+}
+.search-module small{
+    color: #abb4b4;
+}
+.search-module .form-control {
+    font-size: 14px;
+}
+.search__item > label {
+    margin-bottom: 20px;
+}
+.search__top {
+    padding: 20px 0;
+}
+.bg-three--light {
+    background-color: #f8f7f6;
+}
+.gap-left--2 {
+    padding-left: 100px;
+}
+.input-selection {
+    width: 100%;
+}
+.input-selection .input-block {
+    width: 50%;
+    float: left;
+}
+.input-selection .input-block input {
+    margin-right: 10px;
+}
+.input-selection .input-block label {
+    margin-right: 0;
+    width: auto;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+.passenger__btn {
+    font-size: 14px;
+    font-weight: 400;
+}
+
 /*:::::::::::
 
 FIXES RESPONSIVE 
