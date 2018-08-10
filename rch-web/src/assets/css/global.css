@@ -3071,8 +3071,35 @@ textarea {
     padding: 40px; 
 }
 .icon-plus {
-    background-image: url('assets/img/icon-plus.svg');
+    width: 30px;
+    float: right;
 }
+.text-default {
+    margin: 0;
+}
+.text-default__top {
+    margin-top: 14px;
+}
+.col-reset {
+    padding: 0;
+}
+.btn-delete__item {
+    position: relative;
+    width: 15px;
+    margin-top: 47px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.text-flt {
+    position: absolute;
+    font-size: 15px;
+    left: -90px;
+}
+/* my code */
 
 /*:::::::::::
 
@@ -3143,6 +3170,9 @@ FIXES RESPONSIVE
     }
     .header-topbar {
         top: 9px;
+    }
+    .no-gutter-left__small {
+        padding-left: 15px;
     }
 }
 @media (max-width:600px) {
