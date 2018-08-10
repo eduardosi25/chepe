@@ -110,6 +110,11 @@ export class Step1Component implements OnInit {
         $("#mapa-full").removeClass("active");
       });
 
+      //Tooltip
+      $(".js-my-tooltip").click(function(e){
+          $(".tooltiptext").toggleClass("active");
+        });
+        
     }, 1000);
 
 

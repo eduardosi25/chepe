@@ -37,7 +37,7 @@
                 <!-- Container -->
                 <section class="col-sm-24 search-module paddingtop30 paddingbot30 clearfix">
                     <section class="col-md-16">
-                        <article class="col-xs-24 bg-three gap-left--2">
+                        <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
                             <div class="search__top col-xs-24 no-gutter col-border__b">
                                 <div class="search__item col-md-8 no-gutter-left">
                                     <label>Tipo de viaje</label>
@@ -72,6 +72,14 @@
                                     <div class="box-passenger">
                                         <div class="row">
                                             <div class="col-xs-24 passenger-total">
+                                                    <div class="my-tooltip js-my-tooltip">
+                                                        i
+                                                        <span class="tooltiptext">
+                                                            <p class="text-default text-bold text-14">Chepe Regional</p> 
+                                                            <p class="text-default text-14">Pasajeros a partir de 5 años</p>
+                                                            <p class="text-default text-14">De 0 a 4 años no pagan boleto pero no tienen derecho a asiento.</p>
+                                                        </span>
+                                                    </div>
                                                 <div class="passsenger__hide">
                                                     <a class="btn btn-block bg-white c-base text-left passenger__btn" role="button" data-toggle="collapse" href="#popover-content-passengers"
                                                     aria-expanded="false" aria-controls="collapseExample">
@@ -83,41 +91,44 @@
                                         <div class="popover passengers collapse" id="popover-content-passengers">
                                             <div class="row" *ngFor="let pt of route.passenger_types">
                                                 <div class="col-xs-12 passenger-label">
-                                                <label>{{pt.name}}
-                                                <span *ngIf="pt.details">
-                                                <br/>{{pt.details}}</span>
-                                                </label>
+                                                    <label>{{pt.name}}
+                                                        <span *ngIf="pt.details">
+                                                        <br/>{{pt.details}}</span>
+                                                    </label>
                                                 </div>
                                                 <div class="col-xs-12">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                    </button>
-                                                    </span>
-                                                    <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
-                                                    min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
-                                                    <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                    </button>
-                                                    </span>
-                                                </div>
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
+                                                        </span>
+                                                        <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
+                                                        min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="search__item col-md-4">
-                                    eliminar
+                                <div class="search__item search__item--small col-md-4">
+                                    <a href="#" class="mini-map js-open-modal mini-map__top">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        <img src="assets/img/reservacion/map_express.jpg">
+                                    </a>
                                 </div>
                             </div>
                         </article>
 
-                        <article class="col-xs-24 bg-three gap-left--2">
+                        <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
                             <div class="search__top col-xs-24 no-gutter">
                                 <div class="search__item col-md-8 no-gutter-left no-gutter-left__small">
-                                    <span class="text-flt">Tramo 1 -></span>
+                                    <span class="text-flt text-flt__small">Tramo 1 -></span>
                                     <label>Origen</label>
                                     <div class="form-group" *ngIf="session.route.pick_class">
                                         <select class="form-control" id="clase" >
@@ -141,7 +152,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="search__item col-md-6">
+                                <div class="search__item col-xs-24 col-md-6 col-sm-24 col-lg-6 input-daterange">
                                     <label for="origen">Fecha</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
                                         <input type="text" class="form-control" name="start" />
@@ -151,7 +162,7 @@
                             </div>
                         </article>
 
-                        <article class="col-xs-24 bg-seven gap-left--2">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
                             <div class="search__top col-xs-24 no-gutter">
                                <div class="search__dashed clearfix">
                                     <div class="col-xs-12">
@@ -164,11 +175,11 @@
                             </div>
                         </article>
 
-                        <article class="col-xs-24 bg-seven gap-left--2">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
                             <div class="search__top col-xs-24 no-gutter">
                                 <div class="search__top col-xs-24 no-gutter">
                                     <div class="search__item col-md-8 no-gutter-left no-gutter-left__small">
-                                        <span class="text-flt">Tramo 2 -></span>
+                                        <span class="text-flt text-flt__small">Tramo 2 -></span>
                                         <label>Origen</label>
                                         <div class="form-group" *ngIf="session.route.pick_class">
                                             <select class="form-control" id="clase" >
@@ -192,7 +203,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="search__item col-md-6">
+                                    <div class="search__item col-xs-24 col-md-6 col-sm-24 col-lg-6 input-daterange">
                                         <label for="origen">Fecha</label>
                                         <div class="input-calendar col-xs-24 no-gutter">
                                             <input type="text" class="form-control" name="start" />
@@ -208,11 +219,11 @@
                             </div>
                         </article>
 
-                        <article class="col-xs-24 bg-seven gap-left--2">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
                             <div class="col-xs-24 no-gutter">
                                 <div class="search__top col-xs-24 no-gutter">
                                     <div class="search__item col-md-8 no-gutter-left no-gutter-left__small">
-                                        <span class="text-flt">Tramo 3 -></span>
+                                        <span class="text-flt text-flt__small">Tramo 3 -></span>
                                         <label>Origen</label>
                                         <div class="form-group" *ngIf="session.route.pick_class">
                                             <select class="form-control" id="clase" >
@@ -236,7 +247,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="search__item col-md-6">
+                                    <div class="search__item col-xs-24 col-md-6 col-sm-24 col-lg-6 input-daterange">
                                         <label for="origen">Fecha</label>
                                         <div class="input-calendar col-xs-24 no-gutter">
                                             <input type="text" class="form-control" name="start" />
@@ -295,48 +306,173 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-xs-24 col-top">
+                            <a class="btn btn-link c-one p-reset center-horizontal" role="button">
+                                <div>
+                                    <img src="assets/img/icon_right.png">
+                                </div>
+                                <div>Siguiente</div>
+                            </a>
+                        </div>
                     </aside>
                     
                     <div class="col-md-16">
-                            <div class="col-xs-24 col-reset col-top">
-                                    <div class="col-xs-12 col-reset">
-                                        <div class="col-xs-11 col-sm-6 col-lg-6">
-                                                <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png"></a>
-                                        </div>
-                                        <div class="col-xs-12 col-reset">
-                                            <p class="text-default text-default__top">Agregar escala</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        <a class="btn btn-link c-one p-reset fr" routerLink="/reservaciones/{{session.route.name}}/paso3" role="button">
-                                            <div>
-                                                <img src="assets/img/icon_right.png">
-                                            </div>
-                                            <div>Siguiente</div>
-                                        </a>
-                                    </div>
-                                </div>
+                        <div class="col-xs-24 col-reset col-top">
+                            <div class="col-xs-6 col-sm-3 col-lg-3">
+                                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png"></a>
+                            </div>
+                            <div class="col-xs-12 col-reset">
+                                <p class="text-default text-default__top">Agregar escala</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
-                
              </div>
           </div>
-
-          <div class="col-xs-24 center"> <!-- *ngIf="readyToGoNext()" -->
-             <a class="btn btn-link c-one" routerLink="/reservaciones/{{route.name}}/paso2" role="button">
-                <div>
-                   <img src="assets/img/icon_train.png">
-                </div>
-                <div>{{'Step1-P18' | translate}}</div>
-             </a>
-          </div>
-         
        </div>
     </div>
 
- 
+    <section class="col-md-16">
+        <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
+            <div class="title-combo">
+                <h3 class="fl">VIAJE DE REGRESO</h3>
+                <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
+            </div>
+            <div class="search__top col-xs-24 no-gutter">
+                <div class="search__item col-md-8 no-gutter-left no-gutter-left__small">
+                    <span class="text-flt text-flt__small">Tramo 1 -></span>
+                    <label>Origen</label>
+                    <div class="form-group" *ngIf="session.route.pick_class">
+                        <select class="form-control" id="clase" >
+                            <option>Elige una opción...</option>
+                            <option>Los Mochis</option>
+                            <option>Creel</option>
+                            <option>El Fuerte</option>
+                            <option>Divisadero</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search__item col-md-6">
+                    <label>Destino</label>
+                    <div class="form-group" *ngIf="session.route.pick_class">
+                        <select class="form-control" id="clase" >
+                            <option>Elige una opción...</option>
+                            <option>Creel</option>
+                            <option>Los Mochis</option>
+                            <option>Divisadero</option>
+                            <option>El Fuerte</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search__item col-xs-24 col-md-6 col-sm-24 col-lg-6 input-daterange">
+                    <label for="origen">Fecha</label>
+                    <div class="input-calendar col-xs-24 no-gutter">
+                        <input type="text" class="form-control" name="start" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    
+        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
+            <div class="search__top col-xs-24 no-gutter">
+                <div class="search__top col-xs-24 no-gutter">
+                    <div class="search__item col-md-8 no-gutter-left no-gutter-left__small">
+                        <span class="text-flt text-flt__small">Tramo 2 -></span>
+                        <label>Escala</label>
+                        <div class="form-group" *ngIf="session.route.pick_class">
+                            <select class="form-control" id="clase" >
+                                <option>Elige una opción...</option>
+                                <option>Los Mochis</option>
+                                <option>Creel</option>
+                                <option>El Fuerte</option>
+                                <option>Divisadero</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search__item col-md-6">
+                        <label>Destino</label>
+                        <div class="form-group" *ngIf="session.route.pick_class">
+                            <select class="form-control" id="clase" >
+                                <option>Elige una opción...</option>
+                                <option>Creel</option>
+                                <option>Los Mochis</option>
+                                <option>Divisadero</option>
+                                <option>El Fuerte</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search__item col-xs-24 col-md-6 col-sm-24 col-lg-6 input-daterange">
+                        <label for="origen">Fecha</label>
+                        <div class="input-calendar col-xs-24 no-gutter">
+                            <input type="text" class="form-control" name="start" />
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="search__item col-md-4">
+                        <div class="btn-delete">
+                            <a href="#"><img class="btn-delete__item" src="assets/img/icon-delet.svg"></a>
+                        </div>
+                    </div>
+                </div>                              
+            </div>
+        </article>
+    
+        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
+            <div class="col-xs-24 no-gutter">
+                <div class="search__top col-xs-24 no-gutter">
+                    <div class="search__item col-md-8 no-gutter-left no-gutter-left__small">
+                        <span class="text-flt text-flt__small">Tramo 3 -></span>
+                        <label>Escala</label>
+                        <div class="form-group" *ngIf="session.route.pick_class">
+                            <select class="form-control" id="clase" >
+                                <option>Elige una opción...</option>
+                                <option>Los Mochis</option>
+                                <option>Creel</option>
+                                <option>El Fuerte</option>
+                                <option>Divisadero</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search__item col-md-6">
+                        <label>Destino final</label>
+                        <div class="form-group" *ngIf="session.route.pick_class">
+                            <select class="form-control" id="clase" >
+                                <option>Elige una opción...</option>
+                                <option>Creel</option>
+                                <option>Los Mochis</option>
+                                <option>Divisadero</option>
+                                <option>El Fuerte</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search__item col-xs-24 col-md-6 col-sm-24 col-lg-6 input-daterange">
+                        <label for="origen">Fecha</label>
+                        <div class="input-calendar col-xs-24 no-gutter">
+                            <input type="text" class="form-control" name="start" />
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="search__item col-md-4">
+                        <div class="btn-delete">
+                            <a href="#"><img class="btn-delete__item" src="assets/img/icon-delet.svg"></a>
+                        </div>
+                    </div>
+                </div>                              
+            </div>
+        </article>
+    </section>
 
+    <div class="col-md-16">
+        <div class="col-xs-24 col-reset col-top">
+            <div class="col-xs-6 col-sm-3 col-lg-3">
+                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png"></a>
+            </div>
+            <div class="col-xs-12 col-reset">
+                <p class="text-default text-default__top">Agregar escala</p>
+            </div>
+        </div>
+    </div>
 
     <!-- modal map Chepe Express -->
     <div class="modal mapa fade" id="mapa-full">
@@ -358,3 +494,7 @@
     </div>
     <!-- /.modal -->
  </div>
+
+
+
+ 

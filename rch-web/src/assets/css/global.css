@@ -3083,8 +3083,14 @@ textarea {
 .text-bold {
     font-weight: 600;
 }
+.text-14 {
+    font-size: 14px;
+}
 .fr {
     float: right;
+}
+.fl {
+    float: left;
 }
 .col-reset {
     padding: 0;
@@ -3119,6 +3125,59 @@ textarea {
 }
 .p-reset {
     padding: 0;
+}
+.mini-map__top {
+    margin-top: 20px;
+}
+.center-horizontal {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.combo-arrow {
+    width: 20px;
+    margin: 29px 0 0 8px;
+}
+
+/*tooltip*/
+.my-tooltip {
+    position: absolute;
+    display: inline-block;
+    background: #565656;
+    color: #fff;
+    padding: 1px 0 0 7px;
+    border-radius: 30px;
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+    letter-spacing: 0;
+    right: -8px;
+    top: 10px;
+}
+.my-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 230px;
+    background-color: #565656;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000000000;
+    bottom: -875%;
+    right: -19%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.my-tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 /* my code */
 
@@ -3195,6 +3254,27 @@ FIXES RESPONSIVE
     .no-gutter-left__small {
         padding-left: 15px;
     }
+    .gap-left__small {
+        padding: 0 15px;
+    }
+    .text-flt__small {
+        position: relative;
+        left: 0;
+    }
+    .search__item {
+        height: auto;
+    }
+    .search__item--small {
+        height: 80px;
+    }
+    
+    /*tooltip*/
+    .tooltiptext {
+        display: none;
+    }
+    .tooltiptext.active {
+        display: block;
+    } 
 }
 @media (max-width:600px) {
     #webpay_sframe {
@@ -3202,10 +3282,6 @@ FIXES RESPONSIVE
     }
     .cost--fix-cost--right {
         padding-right: 0px;
-    }
-    .mini-map {
-        right: 15px;
-        top: 58px;
     }
 }
 @media (max-width:480px) {
