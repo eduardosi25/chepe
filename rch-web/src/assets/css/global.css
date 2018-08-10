@@ -3080,6 +3080,12 @@ textarea {
 .text-default__top {
     margin-top: 14px;
 }
+.text-bold {
+    font-weight: 600;
+}
+.fr {
+    float: right;
+}
 .col-reset {
     padding: 0;
 }
@@ -3098,6 +3104,21 @@ textarea {
     position: absolute;
     font-size: 15px;
     left: -90px;
+}
+.route-combo {
+    margin-bottom: 10px;
+}
+.route-combo__top {
+    margin-top: 40px;
+}
+.box-light {
+    padding: 15px 15px 35px 15px;
+}
+.col-top {
+    margin-top: 50px;
+}
+.p-reset {
+    padding: 0;
 }
 /* my code */
 
