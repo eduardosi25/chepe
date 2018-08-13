@@ -304,6 +304,30 @@ label {
     .table-destiny .row > div {
         padding: 0;
     }
+
+    .col-little {
+        width: 50%;
+    }
+    .col-little__reset {
+        width: 60%;
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+    .col-map {
+        position: absolute;
+        float: right;
+        right: 0;
+        top: 0;
+    }
+    .text-delete {
+        display: block !important;
+    }
+    .btn-delete__link {
+        position: relative;
+        display: inline-block;
+        float: right;
+        top: 80px;
+    }
 }
 
 
@@ -3095,6 +3119,9 @@ textarea {
 .col-reset {
     padding: 0;
 }
+.col-both {
+    margin: 50px 0;
+}
 .btn-delete__item {
     position: relative;
     width: 15px;
@@ -3143,6 +3170,26 @@ textarea {
     width: 20px;
     margin: 29px 0 0 8px;
 }
+.combo-elements {
+    position: absolute;
+    font-size: 15px;
+    left: -90px
+}
+.combo-elements__icon {
+    width: 12px;
+}
+.combo-elements__normal {
+    position: relative;
+    left: 0;
+    font-size: inherit;
+}
+.text-delete {
+    display: none;
+}
+.border-top {
+    border-top: 1px solid #c7c5c2;
+    padding-top: 20px;
+}
 
 /*tooltip*/
 .my-tooltip {
@@ -3180,16 +3227,6 @@ textarea {
     opacity: 1;
 }
 
-.combo-elements {
-    position: absolute;
-    font-size: 15px;
-    left: -90px
-}
-
-.combo-elements__icon {
-    width: 12px;
-}
-
 /* my code */
 
 /*:::::::::::
@@ -3197,6 +3234,12 @@ textarea {
 FIXES RESPONSIVE 
 
 :::::::::::*/
+@media (max-width: 1282px) {
+    .col-full {
+        width: 100%;
+    }
+}
+
 @media (max-width: 1200px) {
     .cost--fix.cost--left app-cost-box  {
         margin: 0 auto !important;
@@ -3278,6 +3321,22 @@ FIXES RESPONSIVE
     .search__item--small {
         height: 80px;
     }
+    .col-sm__top {
+        margin-top: 22px; 
+    }
+    .btn-delete__link {
+        position: relative;
+        display: inline-block; 
+        float: right;
+        top: 80px;
+    }
+    .btn-delete__item {
+        margin: 0;
+        position: relative;
+        display: inline-block;
+        left: 0;
+    }
+
     
     /*tooltip*/
     .tooltiptext {
@@ -3305,6 +3364,22 @@ FIXES RESPONSIVE
     }
     .search__box {
         padding: 0;
+    }
+
+    .col-little,
+    .col-little__reset {
+        width: 100%;
+    }
+    .btn-delete__link {
+        top: 0;
+        float: inherit;
+        margin-top: 30px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
 }
 
