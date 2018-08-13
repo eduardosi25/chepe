@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="search__item col-xs-6 col-little">
                                     <label>Total de pasajeros</label>
-                                    <div class="box-passenger">
+                                    <div class="box-passenger box-passenger__reset">
                                         <div class="row">
                                             <div class="col-xs-24 passenger-total">
                                                     <div class="my-tooltip js-my-tooltip">
@@ -129,7 +129,7 @@
                             <div class="search__top col-xs-24 no-gutter">
                                 <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little">
                                     <div class="combo-elements">
-                                        <span class="">Tramo 1</span>
+                                        <span class="text-blue">Tramo 1</span>
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
                                     </div>
                                     <label>Origen</label>
@@ -168,10 +168,8 @@
                         <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
                             <div class="search__top col-xs-24 no-gutter">
                                <div class="search__dashed clearfix">
-                                    <div class="col-xs-12">
+                                   <div class="search__dashed--combo">
                                         <img class="icon-plus" src="assets/img/icon-plus.svg" >
-                                    </div>
-                                    <div class="col-xs-12 col-reset">
                                         <p class="text-default">Añade tus escalas </p>
                                     </div>
                                </div>                                
@@ -179,10 +177,10 @@
                         </article>
 
                         <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter">
+                            <div class="search__top col-xs-24 no-gutter border-light__gray">
                                 <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
                                     <div class="combo-elements">
-                                        <span class="">Tramo 2</span>
+                                        <span class="text-blue">Tramo 2</span>
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
                                     </div>
                                     <label>Origen</label>
@@ -230,7 +228,7 @@
                             <div class="search__top col-xs-24 no-gutter">
                                 <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
                                     <div class="combo-elements">
-                                        <span class="">Tramo 3</span>
+                                        <span class="text-blue">Tramo 3</span>
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
                                     </div>
                                     <label>Origen</label>
@@ -291,7 +289,55 @@
                             <div class="search__top col-xs-24 no-gutter">
                                 <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
                                     <div class="combo-elements">
-                                        <span class="">Tramo 2</span>
+                                        <span class="text-blue">Tramo 2</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div>
+                                    <label>Origen</label>
+                                    <div class="form-group" *ngIf="session.route.pick_class">
+                                        <select class="form-control" id="clase" >
+                                            <option>Elige una opción...</option>
+                                            <option>Los Mochis</option>
+                                            <option>Creel</option>
+                                            <option>El Fuerte</option>
+                                            <option>Divisadero</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
+                                    <label>Destino</label>
+                                    <div class="form-group" *ngIf="session.route.pick_class">
+                                        <select class="form-control" id="clase" >
+                                            <option>Elige una opción...</option>
+                                            <option>Creel</option>
+                                            <option>Los Mochis</option>
+                                            <option>Divisadero</option>
+                                            <option>El Fuerte</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
+                                    <label for="origen">Fecha</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="text" class="form-control" name="start" />
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little">
+                                    <div class="btn-delete">
+                                        <a href="#" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
+                                            <p class="text-default fl text-delete">Eliminar</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
+                            <div class="search__top col-xs-24 no-gutter border-light__gray">
+                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
+                                    <div class="combo-elements">
+                                        <span class="text-blue">Tramo 2</span>
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
                                     </div>
                                     <label>Origen</label>
@@ -339,55 +385,7 @@
                             <div class="search__top col-xs-24 no-gutter">
                                 <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
                                     <div class="combo-elements">
-                                        <span class="">Tramo 2</span>
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                    </div>
-                                    <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
-                                    <label>Destino</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
-                                    <label for="origen">Fecha</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-3 col-md-4 col-little">
-                                    <div class="btn-delete">
-                                        <a href="#" class="btn-delete__link">
-                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
-                                            <p class="text-default fl text-delete">Eliminar</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter">
-                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="">Tramo 3</span>
+                                        <span class="text-blue">Tramo 3</span>
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
                                     </div>
                                     <label>Origen</label>
@@ -443,53 +441,117 @@
                     <aside class="col-md-8 col-full"> 
                         <div class="col-xs-24 bg-three--light box-light">
                             <h3>Resumen <small>Viaje sencillo</small></h3>
+                            <div class="title-combo title-combo__reset">
+                                <h4 class="subtitle text-blue fl">Viaje de ida</h4>
+                                <img class="combo-arrow" src="assets/img/icon-right.svg">
+                            </div>
                             <div class="route-combo clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-bold">Ruta</p>
+                                    <span class="text-default text-gray">Ruta</span>
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="">Los Mochis a Creel</span>
+                                        <span class="text-bold text-blue">Los Mochis a Creel</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="route-combo clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-bold">Inicio de viaje</p>
+                                    <p class="text-default text-gray">Inicio de viaje</p>
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="">5 agosto 2018</span>
+                                        <span class="text-bold text-blue">5 agosto 2018</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="route-combo route-combo__top clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default">Escala 1</p>
+                                    <p class="text-default text-gray">Escala 1</p>
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="">El Fuerte</span>
+                                        <span class="text-bold text-blue">El Fuerte</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="route-combo clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default">Escala 2</p>
+                                    <p class="text-default text-gray">Escala 2</p>
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="">Divisadero</span>
+                                        <span class="text-bold text-blue">Divisadero</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="route-text route-combo__top border-top clearfix">
+                        </div>
+                        <div class="col-xs-24 bg-four box-space">
+                            <div class="route-text clearfix">
                                 <div class="col-xs-24">
-                                    <p class="text-default text-bold">Llegarás</p>
+                                    <p class="text-default text-gray">Llegarás</p>
+                                    <p class="text-default text-bold">5 agosto . 13:00hrs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-24 bg-three--light box-light">
+                            <div class="title-combo title-combo__reset">
+                                <h4 class="subtitle text-blue fl">Viaje de regreso</h4>
+                                <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
+                            </div>
+                            <div class="route-combo clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10">
+                                    <span class="text-default text-gray">Ruta</span>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">Creel Los Mochis</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10">
+                                    <p class="text-default text-gray">Inicio de viaje</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">7 agosto 2018</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo route-combo__top clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10">
+                                    <p class="text-default text-gray">Escala 1</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">Divisadero</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10">
+                                    <p class="text-default text-gray">Escala 2</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">El Fuerte</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-24 bg-four box-space">
+                            <div class="route-text clearfix">
+                                <div class="col-xs-24">
+                                    <p class="text-default text-gray">Llegarás</p>
                                     <p class="text-default text-bold">5 agosto . 13:00hrs</p>
                                 </div>
                             </div>
