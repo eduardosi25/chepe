@@ -3179,6 +3179,17 @@ textarea {
     visibility: visible;
     opacity: 1;
 }
+
+.combo-elements {
+    position: absolute;
+    font-size: 15px;
+    left: -90px
+}
+
+.combo-elements__icon {
+    width: 12px;
+}
+
 /* my code */
 
 /*:::::::::::
@@ -3257,7 +3268,7 @@ FIXES RESPONSIVE
     .gap-left__small {
         padding: 0 15px;
     }
-    .text-flt__small {
+    .combo-elements {
         position: relative;
         left: 0;
     }
