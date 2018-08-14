@@ -324,6 +324,9 @@ label {
     .col-arrowreply {
         top: 20px !important; 
     }
+    .arrowreply-icon {
+        float: inherit !important;
+    }
 }
 
 
@@ -3247,10 +3250,11 @@ textarea {
 }
 .col-arrowreply {
     position: relative;
-    top: 60px;
+    top: 70px;
 }
 .arrowreply-icon {
-    width: 80px;
+    width: 50px;
+    float: right;
 }
 .form-control__size {
     font-size: 14px;
