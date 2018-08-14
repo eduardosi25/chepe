@@ -310,7 +310,6 @@ label {
     }
     .col-little__reset {
         width: 60%;
-        padding-top: 50px;
         padding-bottom: 30px;
     }
     .col-map {
@@ -1107,7 +1106,13 @@ table.chepe.secondary tr:last-child{
         float: right;
         right: 0;
         display: inline-block;
-    }  
+    } 
+    .form-group__nospace {
+        margin-bottom: 0;
+    } 
+    .label-space {
+        margin-bottom: 15px !important;
+    }
 }
 
 .header-topbar.transparent-topbar{
@@ -3167,7 +3172,7 @@ textarea {
     margin-bottom: 10px;
 }
 .route-combo__top {
-    margin-top: 40px;
+    margin-top: 30px;
 }
 .box-light {
     padding: 15px 15px 35px 15px;
@@ -3380,6 +3385,7 @@ FIXES RESPONSIVE
     }
     .search__item--small {
         height: 80px;
+        right: -30px;
     }
     .col-sm__top {
         margin-top: 23px; 
@@ -3391,7 +3397,8 @@ FIXES RESPONSIVE
         left: 0;
     }
     .search__space {
-        padding: 20px 15px;
+        padding-top: 20px;
+        padding-bottom: 0;    
     }
 
     .col-btn__delete {
@@ -3447,6 +3454,23 @@ FIXES RESPONSIVE
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
         transform: translateX(-50%);
+    }
+    .col-nospace {
+        padding: 0;
+    }
+    .col-nospace__sides {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .my-tooltip {
+        right: 22px;
+        z-index: 10;
+    }
+    .passenger__small {
+        width: 90%;
+    }
+    .box-passenger .passsenger__hide:after {
+        right: 30px;
     }
 }
 
