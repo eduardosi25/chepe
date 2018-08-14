@@ -213,3 +213,33 @@
         </div>
     </div>
 </div>
+
+<!--BEGIN::Infante-->
+<article class="col-xs-24 bg-three gap-left--2 gap-left__small">
+    <div class="col-xs-24 col-sm-3 col-lg-3 col-arrowreply">
+        <img class="arrowreply-icon" src="assets/img/icon-reply.svg">
+    </div>
+    <div class="search__top col-xs-24 col-sm-21 col-lg-21 no-gutter">
+        <h3>Tipo de pasajero: INFANTE</h3>
+        <div class="search__item col-xs-24 col-sm-6 col-lg-6 col-little col-sm__top">
+            <label>Apellido*</label>
+            <input type="text" required class="input-default">
+        </div>
+        <div class="search__item col-xs-24 col-sm-6 col-lg-6 col-little col-sm__top">
+            <label>Apellido*</label>
+            <input type="text" required class="input-default">
+        </div>
+        <div class="search__item col-xs-24 col-sm-6 col-lg-6 col-little col-sm__top">
+            <label>País de residencia</label>
+            <div class="form-group" *ngIf="session.route.pick_class">
+                <select class="form-control form-control__size" id="clase" >
+                    <option>Elige una opción...</option>
+                    <option>México</option>
+                    <option>Brasil</option>
+                    <option>Australia</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</article>
+<!--END::Infante-->

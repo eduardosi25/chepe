@@ -322,6 +322,9 @@ label {
     .text-delete {
         display: block !important;
     }
+    .col-arrowreply {
+        top: 20px !important; 
+    }
 }
 
 
@@ -3233,8 +3236,19 @@ textarea {
 }
 .input-default {
     height: 39px;
+    width: 100%;
     padding: 6px 12px;
     border: none;
+}
+.col-arrowreply {
+    position: relative;
+    top: 60px;
+}
+.arrowreply-icon {
+    width: 80px;
+}
+.form-control__size {
+    font-size: 14px;
 }
 
 /*tooltip*/
