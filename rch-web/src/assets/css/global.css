@@ -327,6 +327,9 @@ label {
     .arrowreply-icon {
         float: inherit !important;
     }
+    .col-scale {
+        margin-bottom: 25px;
+    }
 }
 
 
@@ -3259,6 +3262,15 @@ textarea {
 .form-control__size {
     font-size: 14px;
 }
+.col-scale {
+    margin-top: 25px;
+}
+.icon-train {
+    width: 25px;
+}
+.text-small {
+    font-size: 16px;
+}
 
 /*tooltip*/
 .my-tooltip {
@@ -3306,6 +3318,9 @@ FIXES RESPONSIVE
 @media (max-width: 1282px) {
     .col-full {
         width: 100%;
+    }
+    .col-scale {
+        padding-left: 15px;
     }
 }
 
@@ -3418,6 +3433,9 @@ FIXES RESPONSIVE
     .tooltiptext.active {
         display: block;
     } 
+    .col-scale span {
+        font-size: 13px !important;
+    }
 }
 @media (max-width:600px) {
     #webpay_sframe {
@@ -3475,6 +3493,9 @@ FIXES RESPONSIVE
     }
     .box-passenger .passsenger__hide:after {
         right: 30px;
+    }
+    .col-scale {
+        padding: 0 !important;
     }
 }
 
