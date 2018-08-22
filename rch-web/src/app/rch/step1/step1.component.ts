@@ -86,7 +86,7 @@ export class Step1Component implements OnInit {
       monthsTitle: "Meses",
       clear: "Borrar",
       weekStart: 1,
-      format: "dd/mm/yyyy"
+      format: "yyyy-mm-dd"
     };
     
     setTimeout(function(){
@@ -94,7 +94,7 @@ export class Step1Component implements OnInit {
       // Datarange
       $('.input-daterange').datepicker({
         todayHighlight: true, 
-        language:'es',
+        language:'es'
       });
 
       // Funcion de agregar / eliminar escalas
