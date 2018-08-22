@@ -106,4 +106,10 @@ export class Route2 implements FromJSONable{
     public getDirection(src:TrainStop,dst:TrainStop):number{
         return (src.km > dst.km)?Direction.down:Direction.up;
     }
+    // public getTrainStop(id:number, stops:TrainStop[]):TrainStop{
+    //     let ts:TrainStop = null;
+    //     let idx = stops.findIndex(x=>x.id == id);
+    //     ts = stops[idx];
+    //     return ts;
+    // }
 }

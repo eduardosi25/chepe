@@ -38,9 +38,11 @@ export class Step2Component implements OnInit {
       this.session.save();
       let query: AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
       this.model.getRouteScheduleAvailable(this.session.route.id, query).subscribe((response: Response<Schedule>) => {
+        console.log(response);
         if (response.success && response.data.travels.length > 0) {
           this.schedule = response.data;
           this.session.schedule = response.data;
+          console.log(query);
           this.segments = this.makeSegments(this.schedule, query);
           this.session.segments = this.segments;
         } else {
@@ -61,8 +63,8 @@ export class Step2Component implements OnInit {
             this.session.route = this.model.getRouteByName(route_name);
             var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
             aq.class = params.class ? this.model.getWagonTypeById(params.class) : aq.class;
-            aq.src = this.model.getTrainStopById(params.src);
-            aq.dst = this.model.getTrainStopById(params.dst);
+            // aq.src = this.model.getTrainStopById(params.src);
+            // aq.dst = this.model.getTrainStopById(params.dst);
             aq.passengers = []; params.passengers;
             for (var i = 0; i < params.passengers.length; i++) {
               let aa: string = "" + params.passengers[i];
@@ -73,20 +75,20 @@ export class Step2Component implements OnInit {
               aq.passengers[bb]++;
             }
             aq.round = (params.round == "true");
-            if (params.start == "today") {
-              aq.start = (new Date()).toString();
-            } else {
-              aq.start = params.start;
-            }
+            // if (params.start == "today") {
+            //   aq.start = (new Date()).toString();
+            // } else {
+            //   aq.start = params.start;
+            // }
             var endn = Number.parseInt(params.end);
-            if (!isNaN(endn)) {
-              var now: Date = new Date();
-              aq.end = (new Date(now.getTime() + (1000 * 60 * 60 * 24 * endn))).toString();
-            } else {
-              aq.end = params.end;
-            }
+            // if (!isNaN(endn)) {
+            //   var now: Date = new Date();
+            //   aq.end = (new Date(now.getTime() + (1000 * 60 * 60 * 24 * endn))).toString();
+            // } else {
+            //   aq.end = params.end;
+            // }
 
-            aq.stops = {};
+            // aq.stops = {};
             if (params.stops) {
               var aaa = params.stops;
               if (typeof (aaa) == 'string') {
@@ -96,9 +98,9 @@ export class Step2Component implements OnInit {
                 var bbb = aaa[i];
                 let ccc = parseInt(bbb);
                 let ts: TrainStop = this.model.getTrainStopById(ccc);
-                if (ts != null) {
-                  aq.stops[ts.id] = ts;
-                }
+                // if (ts != null) {
+                //   aq.stops[ts.id] = ts;
+                // }
               }
             }
             this.session.query = aq;
@@ -125,25 +127,40 @@ export class Step2Component implements OnInit {
     var routets01: TrainStop[] = [];
     var direction = Direction.up;
     var fromkm = 0; var tokm = 0;
+    
     for (var i = 0; i < this.session.route.stops.length; i++) {
-      let ts: TrainStop = this.session.route.stops[i];
-      // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
-      if (ts.id == query.id_src) {
-        fromkm = ts.km;
-        routets.push(ts);
-      }
-      if (ts.id == query.id_dst) {
-        tokm = ts.km;
-        routets.push(ts);
-      }
-    if (query.stops.toString().search(ts.id.toString()) >= 0)
-      routets.push(ts);
-      // console.log(routets);
+    //   let ts: TrainStop = this.session.route.stops[i];
+    //   // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
+    //   if (ts.id == query.id_src) {
+    //     fromkm = ts.km;
+    //     routets.push(ts);
+    //   }
+    //   if (ts.id == query.id_dst) {
+    //     tokm = ts.km;
+    //     routets.push(ts);
+    //   }
+    // if (query.stops.toString().search(ts.id.toString()) >= 0)
+    //   routets.push(ts);
+    //   // console.log(routets);
     }   
     if (fromkm > tokm) {
       routets.reverse();
     }
-
+    for (let i = 0; i < query.trips.length; i++) {
+      const e = query.trips[i];
+      
+      console.log("ts0");
+      console.log(e.id_src);
+      
+      console.log("ts1");
+      console.log(this.model.getTrainStopById(e.id_src));
+      let ts0: TrainStop = this.model.getTrainStopById(e.id_src);    
+      let ts1: TrainStop = this.model.getTrainStopById(e.id_dst);   
+      var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
+      console.log("Segment");
+      console.log(segment);
+      segments.push(segment);
+    }
     for (var i = 0; i < (routets.length - 1); i++) {
       let ts0: TrainStop = routets[i];    
       let ts1: TrainStop = routets[i+1];
@@ -165,10 +182,14 @@ export class Step2Component implements OnInit {
       }
       segments.push(segment);
     }
-    // console.log(schedule);
+    console.log("schedule");
+    console.log(schedule);
     for (var i = 0; i < schedule.travels.length; i++) {
       let t: Travel = schedule.travels[i];
-      let segment = segments_by_ts[t.id_src];
+      let segment = segments[t.id_src];
+       
+      console.log("segs1");
+      console.log(segments);
       //let segment: Segment;
       // if (direction == 1) {        
       //   segment = segments_by_ts[t.id_src];
@@ -177,7 +198,9 @@ export class Step2Component implements OnInit {
       // {        
       //   segment = segments_by_ts[t.id_dst];
       // }
-      if (segment == null) { continue; }
+      if (segment == null) { continue; } 
+      console.log("seg1");
+      console.log(segment);
       segment.travels.push(t);
     }
     var k = 1;
@@ -191,6 +214,7 @@ export class Step2Component implements OnInit {
       }
     }
     // console.log(segments2);
+    
     return segments2;
   }
   public onTravelSelected(segment: Segment, travel: Travel) {
@@ -206,19 +230,19 @@ export class Step2Component implements OnInit {
     return true;
   }
   public isStop(ts: TrainStop) {
-    return (this.session.query.stops[ts.id]);
+    return true;// (this.session.query.stops[ts.id]);
   }
   public getSegmentTravels(segment: Segment): Travel[] {
-    let gral_max: Date = new Date(this.session.query.end);
-    gral_max.setHours(23);
-    gral_max.setMinutes(59);
-    gral_max.setSeconds(59);
-    let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
-    if (ts.length == 1) {
+    let gral_max: Date = new Date();
+    // gral_max.setHours(23);
+    // gral_max.setMinutes(59);
+    // gral_max.setSeconds(59);
+     let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
+    // if (ts.length == 1) {
 
-      //  segment.selected_travel = ts[0];
+    //   //  segment.selected_travel = ts[0];
 
-    }
+    //}
     return ts;
   }
 

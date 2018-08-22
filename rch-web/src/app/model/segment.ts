@@ -12,10 +12,10 @@ export class Segment{
         this.n = n;
         this.src = src;
         this.dst = dst;
-        console.log(dst)
+        console.log(dst);
         this.travels = travels;
         if(query != null && this.dst != null){
-            this.stops_at_dst = (query.stops.indexOf(this.dst.id) != -1);
+            this.stops_at_dst = true;// (query.trips.indexOf(this.dst) != -1);
         }
     }
     public src:TrainStop;

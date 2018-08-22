@@ -174,11 +174,11 @@ export class ModelDummyService implements IModel {
     for(var i=0;i<route.stops.length;i++){
       let ts:TrainStop = route.stops[i];
       trs.push(ts);
-      if(ts.id == query.id_src){
-        minkm = ts.km;
-      }else if(ts.id == query.id_dst){
-        maxkm = ts.km;
-      }
+      // if(ts.id == query.id_src){
+      //   minkm = ts.km;
+      // }else if(ts.id == query.id_dst){
+      //   maxkm = ts.km;
+      // }
     }
     
     if(minkm>maxkm){
@@ -189,8 +189,8 @@ export class ModelDummyService implements IModel {
       minkm = maxkm;
       maxkm = a;
     }
-    var date:Date = new Date(query.start);
-    var dateend:Date = new Date(query.end);
+    // var date:Date = new Date(query.start);
+    // var dateend:Date = new Date(query.end);
     let day:number = 1000*60*60*24;
 
     
@@ -202,26 +202,26 @@ export class ModelDummyService implements IModel {
         continue;
       }
       let direction:number = route.getDirection(ts0,ts1);
-      let t:Travel = new Travel(schedule.travels.length+1,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,date.toString());
-      let t2:Travel = new Travel(schedule.travels.length+2,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,this.dateAddTime(date,day).toString());
-      let t3:Travel = new Travel(schedule.travels.length+3,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,this.dateAddTime(date,day*2).toString());
+      let t:Travel = new Travel(schedule.travels.length+1,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date().toString());
+      let t2:Travel = new Travel(schedule.travels.length+2,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date().toString());
+      let t3:Travel = new Travel(schedule.travels.length+3,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,new Date().toString());
       this.travels[t.id] =t;
       this.travels[t2.id] =t2;
       this.travels[t3.id] =t3;
       schedule.travels.push(t,t2,t3);
       var lastdt:Date = this.dateAddTime(new Date(t3.date),day);
       var j=0;
-      while(lastdt.getTime()<dateend.getTime() && j<30){
-        let tt:Travel = new Travel(schedule.travels.length+1,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,lastdt.toString());
-        schedule.travels.push(tt);
-        this.travels[tt.id]=tt;
-        lastdt = new Date(lastdt.getTime()+day);
-        j++;
-      }
+      // while(lastdt.getTime()<dateend.getTime() && j<30){
+      //   let tt:Travel = new Travel(schedule.travels.length+1,ts0.id,ts1.id,ts0.getDeparture(direction),ts1.getDeparture(direction),route.wagons,lastdt.toString());
+      //   schedule.travels.push(tt);
+      //   this.travels[tt.id]=tt;
+      //   lastdt = new Date(lastdt.getTime()+day);
+      //   j++;
+      // }
       
-      if(query.stops.indexOf(ts1.id) != -1){
-        date = this.dateAddTime(date,day);
-      }
+      // if(query.stops.indexOf(ts1.id) != -1){
+      //   date = this.dateAddTime(date,day);
+      // }
     }
     
     this.get_route_schedule_available[id] = new Response("+RCH.WS13.0",null,schedule);

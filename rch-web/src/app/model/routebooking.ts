@@ -29,8 +29,8 @@ export class RouteBooking implements FromJSONable{
         this.seats = []; var x:Object[] = object["seats"];
         if(x){
             for(var i=0;i<x.length;i++){
-                let y:SeatBooking = new SeatBooking();y.parseJSONObject(x[i]);
-                this.seats.push(y);
+                // let y:SeatBooking = new SeatBooking();y.parseJSONObject(x[i]);
+                // this.seats.push(y);
             }
         }
         this.persons = []; var x:Object[] = object["persons"];

@@ -7,13 +7,14 @@ import { FromJSONable } from "./FromJSONable";
 import { Route2 } from "./route2";
 
 export class SeatBooking implements FromJSONable{
-    constructor(seat:Seat=new Seat(),wagon:Wagon=new Wagon(),travel:Travel=new Travel(),route:Route2=new Route2(),pt:PassengerType=new PassengerType(),cost:Cost=new Cost()){
+    constructor(seat:Seat=new Seat(),wagon:Wagon=new Wagon(),travel:Travel=new Travel(),route:Route2=new Route2(),pt:PassengerType=new PassengerType(),cost:Cost=new Cost(),id_person:number){
         this.seat = seat;
         this.wagon = wagon;
         this.travel = travel;
         this.route = route;
         this.passenger_type = pt;
         this.cost = cost;
+        this.id_person = id_person;
     }
     parseJSONObject(object:Object){
         if(!object){return;}
@@ -24,6 +25,7 @@ export class SeatBooking implements FromJSONable{
         this.route = new Route2(); this.route.parseJSONObject(object["route"]);
         this.cost = new Cost(); this.cost.parseJSONObject(object["cost"]);
         this.passenger_type = new PassengerType(); this.passenger_type.parseJSONObject(object["passenger_type"]);
+        this.id_person = 0; this.passenger_type.parseJSONObject(object["id_person"]);
     }
     seat:Seat = new Seat();
     wagon:Wagon = new Wagon();
@@ -31,4 +33,5 @@ export class SeatBooking implements FromJSONable{
     route:Route2 = new Route2();
     cost:Cost = new Cost();
     passenger_type:PassengerType = new PassengerType();
+    id_person:number = 0;
 }

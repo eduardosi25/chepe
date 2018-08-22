@@ -43,20 +43,24 @@
                                     <label>Tipo de viaje</label>
                                     <div class="input-selection clearfix paddingtop10">
                                         <div class="input-block clearfix">
-                                            <input type="radio" class="special-radio" checked name="trip" value="redondo">
+                                            <input type="radio" class="special-radio" name="trip" (ngModelChange)="preflight()" (change)="onChange(true)">
                                             <label>Redondo</label>
                                             
                                         </div>
                                         <div class="input-block clearfix">
-                                            <input type="radio" class="special-radio" name="trip" value="sencillo">
+                                            <input type="radio" class="special-radio" checked name="trip" value="sencillo" (change)="onChange(false)" (ngModelChange)="preflight()" >
                                             <label>Sencillo</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-6 col-little">
-                                    <label>Clase</label>
+                                    <label>Clases</label>
                                     <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
+                                        <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">Elige una opción</option>
+                                            <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
+                                        </select>
+                                        <!-- <select class="form-control" id="clase" >
                                             <option>Elige una opción...</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -64,7 +68,7 @@
                                             <option>4</option>
                                             <option>5</option>
                                             <option>6</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-6 col-little">
@@ -126,314 +130,140 @@
                         </article>
 
                         <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter">
+                            <div class="title-combo">
+                                <h3 class="fl">VIAJE DE IDA</h3>
+                                <img class="combo-arrow" src="assets/img/icon-right.svg">
+                            </div>
+                            <div class="search__top col-xs-24 no-gutter" *ngFor="let trip of this.trips; let i = index">
                                 <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="text-blue">Tramo 1</span>
+                                    <div class="combo-elements" [hidden]="trips.length == 1">
+                                        <span class="text-blue">Tramo {{i+1}}</span>
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
                                     </div>
                                     <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">Elige una opción</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-8 col-md-6 col-sm__top col-little">
-                                    <label>Destino final</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
+                                    <label *ngIf="i == trips.length -1 ">Destino final</label>
+                                    <label *ngIf="i != trips.length -1 ">Destino</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_dst" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">Elige una opción</option>
+                                            <option *ngFor="let ts of getDsts(0,this.trip.id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little">
                                     <label for="origen">Fecha</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
+                                        <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.start"  (ngModelChange)="preflight()"
+                                            id="step1-start-dt" ngbDatepicker #d="ngbDatepicker"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>                                
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete" [hidden]="i == 0">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(this.trip)" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">Eliminar</p>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small" [hidden]="trips.length > 1">
                             <div class="search__top col-xs-24 search__space">
                                <div class="search__dashed clearfix">
                                    <div class="search__dashed--combo">
-                                        <img class="icon-plus" src="assets/img/icon-plus.svg" >
+                                        <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip()">
                                         <p class="text-default">Añade tus escalas </p>
                                     </div>
                                </div>                                
                             </div>
-                        </article>
-
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter border-light__gray">
-                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="text-blue">Tramo 2</span>
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                    </div>
-                                    <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
-                                    <label>Destino</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
-                                    <label for="origen">Fecha</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
-                                    <div class="btn-delete">
-                                        <a href="#" class="btn-delete__link">
-                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
-                                            <p class="text-default fl text-delete">Eliminar</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter">
-                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="text-blue">Tramo 3</span>
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                    </div>
-                                    <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
-                                    <label>Destino</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
-                                    <label for="origen">Fecha</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
-                                    <div class="btn-delete">
-                                        <a href="#" class="btn-delete__link">
-                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
-                                            <p class="text-default fl text-delete">Eliminar</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <div class="col-xs-24 col-reset col-both">
+                        </article>     
+                        
+                        <div class="col-xs-24 col-reset col-both" [hidden]="trips.length == 1">
                             <div class="col-xs-6 col-sm-3 col-lg-3">
-                                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png"></a>
+                                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png" (click)="onCreateTrip()"></a>
                             </div>
                             <div class="col-xs-12 col-reset">
                                 <p class="text-default text-default__top">Agregar escala</p>
                             </div>
                         </div>
 
-                        <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
-                            <div class="title-combo">
-                                <h3 class="fl">VIAJE DE REGRESO</h3>
-                                <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
-                            </div>
-                            <div class="search__top col-xs-24 no-gutter">
-                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="text-blue">Tramo 2</span>
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                        <div [hidden]="session.query.round == false">
+                            <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
+                                <div class="title-combo">
+                                    <h3 class="fl">VIAJE DE REGRESO</h3>
+                                    <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
+                                </div>
+                                <div class="search__top col-xs-24 no-gutter" *ngFor="let trip of this.trips2; let j = index">
+                                    <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little">
+                                        <div class="combo-elements" [hidden]="trips2.length == 1">
+                                            <span class="text-blue">Tramo {{j+1}}</span>
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        </div>
+                                        <label>Origen</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_src" (ngModelChange)="preflight()">
+                                                <option [ngValue]="null">Elige una opción</option>
+                                                <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
-                                        </select>
+                                    <div class="search__item col-xs-8 col-md-6 col-sm__top col-little">
+                                        <label *ngIf="j == trips2.length -1 ">Destino final</label>
+                                        <label *ngIf="j != trips2.length -1 ">Destino</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_dst" (ngModelChange)="preflight()">
+                                                <option [ngValue]="null">Elige una opción</option>
+                                                <option *ngFor="let ts of getDsts(0,this.trip.id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little">
+                                        <label for="origen">Fecha</label>
+                                        <div class="input-calendar col-xs-24 no-gutter">
+                                            <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trips2[0].start"  (ngModelChange)="preflight()"
+                                                id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/>
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div>
+                                    </div>                                
+                                    <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete" [hidden]="j == 0">
+                                        <div class="btn-delete">
+                                            <a (click)="onDeleteTrip(this.trip, true)" class="btn-delete__link">
+                                                <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                                <p class="text-default fl text-delete">Eliminar</p>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
-                                    <label>Destino</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
-                                        </select>
-                                    </div>
+                            </article>
+
+                            <article class="col-xs-24 bg-seven gap-left--2 gap-left__small" [hidden]="trips2.length > 1">
+                                <div class="search__top col-xs-24 search__space">
+                                    <div class="search__dashed clearfix">
+                                        <div class="search__dashed--combo">
+                                            <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(true)">
+                                            <p class="text-default">Añade tus escalas </p>
+                                        </div>
+                                    </div>                                
                                 </div>
-                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
-                                    <label for="origen">Fecha</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
+                            </article>     
+                            
+                            <div class="col-xs-24 col-reset col-both" [hidden]="trips2.length == 1">
+                                <div class="col-xs-6 col-sm-3 col-lg-3">
+                                        <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(true)"></a>
                                 </div>
-                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
-                                    <div class="btn-delete">
-                                        <a href="#" class="btn-delete__link">
-                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
-                                            <p class="text-default fl text-delete">Eliminar</p>
-                                        </a>
-                                    </div>
+                                <div class="col-xs-12 col-reset">
+                                    <p class="text-default text-default__top">Agregar escala</p>
                                 </div>
-                            </div>
-                        </article>
-                    
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter border-light__gray">
-                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="text-blue">Tramo 2</span>
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                    </div>
-                                    <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
-                                    <label>Destino</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
-                                    <label for="origen">Fecha</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
-                                    <div class="btn-delete">
-                                        <a href="#" class="btn-delete__link">
-                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
-                                            <p class="text-default fl text-delete">Eliminar</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small">
-                            <div class="search__top col-xs-24 no-gutter">
-                                <div class="search__item col-xs-7 no-gutter-left no-gutter-left__small col-little">
-                                    <div class="combo-elements">
-                                        <span class="text-blue">Tramo 3</span>
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                    </div>
-                                    <label>Origen</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Los Mochis</option>
-                                            <option>Creel</option>
-                                            <option>El Fuerte</option>
-                                            <option>Divisadero</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-little col-sm__top">
-                                    <label>Destino</label>
-                                    <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
-                                            <option>Elige una opción...</option>
-                                            <option>Creel</option>
-                                            <option>Los Mochis</option>
-                                            <option>Divisadero</option>
-                                            <option>El Fuerte</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top">
-                                    <label for="origen">Fecha</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
-                                    <div class="btn-delete">
-                                        <a href="#" class="btn-delete__link">
-                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg">
-                                            <p class="text-default fl text-delete">Eliminar</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <div class="col-xs-24 col-reset col-both">
-                            <div class="col-xs-6 col-sm-3 col-lg-3">
-                                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png"></a>
-                            </div>
-                            <div class="col-xs-12 col-reset">
-                                <p class="text-default text-default__top">Agregar escala</p>
                             </div>
                         </div>
                     </section>   
@@ -443,7 +273,7 @@
                             <h3>Resumen <small>Viaje sencillo</small></h3>
                             <div class="title-combo title-combo__reset">
                                 <h4 class="subtitle text-blue fl">Viaje de ida</h4>
-                                <img class="combo-arrow" src="assets/img/icon-right.svg">
+                                <img class="combo-arrow" src="assets/img/icon-right.svg"/>
                             </div>
                             <div class="route-combo clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
@@ -451,8 +281,8 @@
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">Los Mochis a Creel</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg"/>
+                                        <span class="text-bold text-blue">{{this.trips[0].id_src.name}} a {{this.trips[this.trips.length-1].id_dst.name}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -463,102 +293,104 @@
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">5 agosto 2018</span>
+                                        <span class="text-bold text-blue">{{this.trips[0].id_src.name}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="route-combo route-combo__top clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-gray">Escala 1</p>
+                                    <p class="text-default text-gray">Escala </p>
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">El Fuerte</span>
+                                        <span class="text-bold text-blue">{{this.trips[0].id_src.name}} a</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="route-combo clearfix">
+                            <!--<div class="route-combo clearfix">
                                 <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-gray">Escala 2</p>
+                                    <p class="text-default text-gray"></p>
                                 </div>
                                 <div class="col-xs-24 col-sm-14 col-lg-14">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">Divisadero</span>
+                                        <span class="text-bold text-blue"></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-xs-24 bg-four box-space">
                             <div class="route-text clearfix">
                                 <div class="col-xs-24">
                                     <p class="text-default text-gray">Llegarás</p>
-                                    <p class="text-default text-bold">5 agosto . 13:00hrs</p>
+                                    <p class="text-default text-bold"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-24 bg-three--light box-light">
-                            <div class="title-combo title-combo__reset">
-                                <h4 class="subtitle text-blue fl">Viaje de regreso</h4>
-                                <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
-                            </div>
-                            <div class="route-combo clearfix">
-                                <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <span class="text-default text-gray">Ruta</span>
+                        <div [hidden]="session.query.round == false">
+                            <div class="col-xs-24 bg-three--light box-light"> 
+                                <div class="title-combo title-combo__reset">
+                                    <h4 class="subtitle text-blue fl">Viaje de regreso</h4>
+                                    <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
                                 </div>
-                                <div class="col-xs-24 col-sm-14 col-lg-14">
-                                    <div class="combo-elements__normal">
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">Creel Los Mochis</span>
+                                <div class="route-combo clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10">
+                                        <span class="text-default text-gray">Ruta</span>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue">{{this.trips2[0].id_src.name}} a {{this.trips2[this.trips.length-1].id_dst.name}}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="route-combo clearfix">
-                                <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-gray">Inicio de viaje</p>
-                                </div>
-                                <div class="col-xs-24 col-sm-14 col-lg-14">
-                                    <div class="combo-elements__normal">
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">7 agosto 2018</span>
+                                <div class="route-combo clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10">
+                                        <p class="text-default text-gray">Inicio de viaje</p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue">{{this.trips2[0].id_src.name}}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="route-combo route-combo__top clearfix">
-                                <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-gray">Escala 1</p>
-                                </div>
-                                <div class="col-xs-24 col-sm-14 col-lg-14">
-                                    <div class="combo-elements__normal">
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">Divisadero</span>
+                                <div class="route-combo route-combo__top clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10">
+                                        <p class="text-default text-gray">Escala </p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue"></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="route-combo clearfix">
-                                <div class="col-xs-24 col-sm-10 col-lg-10">
-                                    <p class="text-default text-gray">Escala 2</p>
-                                </div>
-                                <div class="col-xs-24 col-sm-14 col-lg-14">
-                                    <div class="combo-elements__normal">
-                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">El Fuerte</span>
+                                <!--<div class="route-combo clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10">
+                                        <p class="text-default text-gray"></p>
                                     </div>
-                                </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue"></span>
+                                        </div>
+                                    </div>
+                                </div> -->
                             </div>
-                        </div>
 
-                        <div class="col-xs-24 bg-four box-space">
-                            <div class="route-text clearfix">
-                                <div class="col-xs-24">
-                                    <p class="text-default text-gray">Llegarás</p>
-                                    <p class="text-default text-bold">5 agosto . 13:00hrs</p>
+                            <div class="col-xs-24 bg-four box-space">
+                                <div class="route-text clearfix">
+                                    <div class="col-xs-24">
+                                        <p class="text-default text-gray">Llegarás</p>
+                                        <p class="text-default text-bold"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-24 col-top">
-                            <a class="btn btn-link c-one p-reset center-horizontal" role="button">
+                            <a class="btn btn-link c-one p-reset center-horizontal"  routerLink="/reservaciones/{{session.route.name}}/paso2" role="button">
                                 <div>
                                     <img src="assets/img/icon_right.png">
                                 </div>

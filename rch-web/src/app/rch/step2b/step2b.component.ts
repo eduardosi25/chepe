@@ -36,10 +36,10 @@ export class Step2bComponent extends Step2Component implements OnInit{
     });
   }
   fixQuery(query:AvailabilityQuery):AvailabilityQuery{
-    let src = query.id_src;
-    query.id_src = query.id_dst;
-    query.id_dst = src;
-    query.start = this.mkDate( this.session.segments[this.session.segments.length-1].selected_travel.getArrivalDateTime()).toString();    
+    // let src = query.id_src;
+    // query.id_src = query.id_dst;
+    // query.id_dst = src;
+    // query.start = this.mkDate( this.session.segments[this.session.segments.length-1].selected_travel.getArrivalDateTime()).toString();    
     // console.log(query.start);
     return query;
   }

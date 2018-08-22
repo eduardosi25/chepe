@@ -177,7 +177,7 @@ export class Step5Component implements OnInit {
         var sb: SeatBooking = new SeatBooking(seat, wagon,
           segment.selected_travel, this.session.route,
           segment.getNextPT(this.session.route, this.session.query),
-          null);
+          null, 0);
         this.selected_segment.sbs.push(sb);      
         console.log("selected");
         console.log(this.selected_segment);

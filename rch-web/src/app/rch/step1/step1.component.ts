@@ -19,6 +19,8 @@ import { Wagon } from '../../model/wagon';
 import { PreviousRouteService } from '../../previous-route.service';
 import { HttpClient } from '@angular/common/http';
 import { $$ } from '../../../../node_modules/protractor';
+import { Trip } from '../../model/trip';
+import { query } from '@angular/core/src/render3/instructions';
 declare var $: any;
 @NgModule({
   imports: [HttpClient ]
@@ -39,14 +41,26 @@ export class Step1Component implements OnInit {
   private previousRouteService: PreviousRouteService) { }
 
   public route:Route2 = null;
-  ngOnInit() {
+  public trips:Trip[] = [];  
+  public trips2:Trip[] = [];
+  ngOnInit() {    
+    var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
+    console.log(this.session);
+    let trip = new Trip(0,0,new Date());
+    this.trips.push(trip);
+    //var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
+    aq.trips = [];
+    aq.trips.push(trip);
+    this.session.query = aq;
+    this.session.query.trips.push(trip);
+    console.log(this.session);
     if(this.previousRouteService.getPreviousUrl().indexOf('reservaciones/')==-1 || this.session.query == null)
     {
       this.session.query = new AvailabilityQuery2(this.model);
-      this.session.query.start = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
-      this.session.query.end = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
-      this.session.query.src = null;
-      this.session.query.dst = null;
+      // this.session.query.start = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
+      // this.session.query.end = null; //(new Date((new Date()).getTime()+(1000*60*60*24))).toString();
+      // this.session.query.src = null;
+      // this.session.query.dst = null;
     }
     //clean session
     this.wts = null;
@@ -58,7 +72,7 @@ export class Step1Component implements OnInit {
     this.route = this.model.getRouteByName(route_name);
     if(!this.route){
       this.router.navigate(["/reservaciones"]);return;
-    }
+    }    
     this.session.route = this.route;
 
     // Funcion de calendario
@@ -119,45 +133,130 @@ export class Step1Component implements OnInit {
 
 
   }
+
+  public onCreateTrip(round:boolean){
+    if(round){
+      this.trips2.push(new Trip(0,0,null));
+    }
+    else{      
+      this.trips.push(new Trip(0,0,null));
+    }
+  }
+
+  public onDeleteTrip(tr:Trip,round:boolean){
+    let index;
+    if(round){
+      index = this.trips2.indexOf(tr,0);
+      if(index > 0){
+        this.trips2.splice(index,1);
+      }
+    }
+    else{
+      index = this.trips.indexOf(tr,0);
+      if(index > 0){
+        this.trips.splice(index,1);
+      }
+    }
+  }
+  public getDate(with_weekday:boolean = true):string{
+    let d:Date = new Date();
+    //let d:Date = this.mkDate(this.trips[0].start);
+    var s:string = "";
+    if(with_weekday){
+        s+=this.getWeekday(d.getDay(),false)+" ";
+    }
+    s+=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+    return s;
+  }
+  mkDate(s:string):Date{
+    var mps:string[] = s.split(" ");
+    let now:Date = new Date();
+    if(mps.length==1){
+        mps.push("00:00:01");
+    }
+    let dps:string[] = mps[0].split("-");
+    let tps:string[] = mps[1].split(":");
+
+    let year:number  = dps.length>=1?parseInt(dps[0]):now.getFullYear();
+    let month:number  = dps.length>=2?parseInt(dps[1])-1:now.getMonth();
+    let day:number  = dps.length>=3?parseInt(dps[2]):now.getDate();
+
+    let hour:number = tps.length>=1?parseInt(tps[0]):now.getHours();
+    let minute:number = tps.length>=2?parseInt(tps[1]):now.getMinutes();
+    let second:number = tps.length>=3?parseInt(tps[2]):now.getSeconds();
+
+    let dd:Date = new Date(year,month,day,hour,minute,second);
+    return dd;
+  }
+  public getWeekday(n:number=-1,full:boolean = true):string{
+    if(n == -1){
+        let d:Date = new Date();
+        //let d:Date = this.mkDate(this.trips[0].start);
+        return this.getWeekday(d.getDay(),full);
+    }
+    if(!full){
+        switch(n){
+            case 0:return 'Dom';
+            case 1:return 'Lun';
+            case 2:return 'Mar';
+            case 3:return 'Mié';
+            case 4:return 'Jue';
+            case 5:return 'Vie';
+            case 6:return 'Sáb';
+        }
+    }else{
+        switch(n){
+            case 0:return 'Domingo';
+            case 1:return 'Lunes';
+            case 2:return 'Martes';
+            case 3:return 'Miércoles';
+            case 4:return 'Jueves';
+            case 5:return 'Viernes';
+            case 6:return 'Sábado';
+        }
+    }
+    
+
+  }
   public getRouteStops():TrainStop[]{
     var tss:TrainStop[] = [];
-    if(this.session.query.src == null || this.session.query.dst == null){return tss;}
-    let src:TrainStop = this.session.query.src;
-    let dst:TrainStop = this.session.query.dst;
-    let direction:number = src.km < dst.km ? Direction.up : Direction.down;
+    // if(this.session.query.src == null || this.session.query.dst == null){return tss;}
+    // let src:TrainStop = this.session.query.src;
+    // let dst:TrainStop = this.session.query.dst;
+    let direction:number = 1;// src.km < dst.km ? Direction.up : Direction.down;
 
     for(var i=0;i<this.route.stops.length;i++){
       let ts:TrainStop = this.route.stops[i];
-      if(ts == src || ts == dst){continue;}
-      if(direction == Direction.up && ts.km>src.km && ts.km < dst.km){tss.push(ts);}
-      if(direction == Direction.down && ts.km<src.km && ts.km > dst.km){tss.push(ts);}
+      // if(ts == src || ts == dst){continue;}
+      // if(direction == Direction.up && ts.km>src.km && ts.km < dst.km){tss.push(ts);}
+      // if(direction == Direction.down && ts.km<src.km && ts.km > dst.km){tss.push(ts);}
     }
 
     return tss;
   }
   public onPickTS(ts:TrainStop){
-    var count:number = 0;
-    for(var i in this.session.query.stops){
-      let x = this.session.query.stops;
-      if(x){
-        count++;
-      }
-    }
+    // var count:number = 0;
+    // for(var i in this.session.query.stops){
+    //   let x = this.session.query.stops;
+    //   if(x){
+    //     count++;
+    //   }
+    // }
 
-    let x = this.session.query.stops[ts.id];
-    if(x){
-      delete this.session.query.stops[ts.id];
-    }else{
-      if(count >= this.route.max_stops){
-        alert("Sólo puedes elegir "+this.route.max_stops+" escalas.");
-        return false;
-      }
-      this.session.query.stops[ts.id] = true;
-    }
+    // let x = this.session.query.stops[ts.id];
+    // if(x){
+    //   delete this.session.query.stops[ts.id];
+    // }else{
+    //   if(count >= this.route.max_stops){
+    //     alert("Sólo puedes elegir "+this.route.max_stops+" escalas.");
+    //     return false;
+    //   }
+    //   this.session.query.stops[ts.id] = true;
+    // }
   }
   public isMiddle(i:number,ts:TrainStop){
-    if(ts == this.session.query.src || ts == this.session.query.dst){return false;}
-    return true;
+    // if(ts == this.session.query.src || ts == this.session.query.dst){return false;}
+    // return true;
   }
   public getSrcs(direction:number=Direction.up):TrainStop[]{
     return this.route.getSrcs(direction);
@@ -176,33 +275,33 @@ export class Step1Component implements OnInit {
     }
   }
   public readyToGoNext():boolean{
-    this.last_failure_motive = null;
-    this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');this.a1('clase');
-    if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
-    if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
-    var start_dt:Date = new Date(this.session.query.start);
-    var end_dt:Date = new Date(this.session.query.end);
-    var now_dt:Date = new Date();
-    var nstops = 0;
-    for(var i in this.session.query.stops){
-      if(this.session.query.stops[i]){nstops++;}
-    }
-    if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
-    var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
-    if(this.session.query.round){
-      let t = min_end_dt.getTime();
-      t+=((nstops+0)*1000*60*60*24);
-      min_end_dt = new Date(t);
-    }
-    if(start_dt.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('inicio','orange');return false;}
-    $('#end-warning').text('');
-    if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){
-      this.last_failure_motive = "Elige un fin válido.";
-      this.a1('fin','orange');
-      $('#end-warning').text('Elige una fecha posterior o igual a '+min_end_dt.getFullYear()+"-"+(min_end_dt.getMonth()+1)+"-"+min_end_dt.getDate());
-      return false;
-    }
-    if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
+    // this.last_failure_motive = null;
+    // this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');this.a1('clase');
+    // if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
+    // if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
+    // var start_dt:Date = new Date(this.session.query.start);
+    // var end_dt:Date = new Date(this.session.query.end);
+    // var now_dt:Date = new Date();
+    // var nstops = 0;
+    // for(var i in this.session.query.stops){
+    //   if(this.session.query.stops[i]){nstops++;}
+    // }
+    // if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
+    // var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
+    // if(this.session.query.round){
+    //   let t = min_end_dt.getTime();
+    //   t+=((nstops+0)*1000*60*60*24);
+    //   min_end_dt = new Date(t);
+    // }
+    // if(start_dt.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('inicio','orange');return false;}
+    // $('#end-warning').text('');
+    // if(end_dt.getTime() < now_dt.getTime() || end_dt.getTime() < min_end_dt.getTime()){
+    //   this.last_failure_motive = "Elige un fin válido.";
+    //   this.a1('fin','orange');
+    //   $('#end-warning').text('Elige una fecha posterior o igual a '+min_end_dt.getFullYear()+"-"+(min_end_dt.getMonth()+1)+"-"+min_end_dt.getDate());
+    //   return false;
+    // }
+    // if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
     return true;
   }
   public add(pt:PassengerType,d:number){
@@ -236,7 +335,7 @@ export class Step1Component implements OnInit {
     return this.sanitizer.bypassSecurityTrustStyle(styles);
   }
   public canSelectMap():boolean{
-    return (this.session.query.src != null  && this.session.query.dst != null);
+    return true ;//(this.session.query.src != null  && this.session.query.dst != null);
   }
   public onMap(){
     if(this.canSelectMap()){
@@ -247,17 +346,20 @@ export class Step1Component implements OnInit {
     
   }
   public preflight(){
+    console.log(this.session);
     if(this.session.preflight != null){
       this.session.preflight.unsubscribe();
     }
     if(this.session.query.isReady()){
+      this.session.query.trips = this.trips;
       let aq:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
       var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
       this.session.preflight = a.subscribe(((r:Response<Schedule>)=>{
         this.session.schedule = r.data;
       }));
     }
-    
+    console.log(this.session);
+    console.log(this.trips);
   }
   public wts:Wagon[] = null;
   public getClasses(route:Route2):Wagon[]{
@@ -280,7 +382,23 @@ export class Step1Component implements OnInit {
         }
       }
     }
+    //console.log(this.wts);
     return this.wts;
+  }
+  /**
+   * onChange
+value   */
+  public onChange(value) {
+    this.session.query.round = value;
+    if(value){
+      let trip = new Trip(0,0,new Date());
+      this.trips2.push(trip);
+      this.session.query.trips.push(trip);
+    }
+    else{
+      this.trips2 = null;
+      this.session.query.trips = [];
+    }
   }
   
 }

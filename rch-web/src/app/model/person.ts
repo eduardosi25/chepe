@@ -14,4 +14,6 @@ export class Person implements FromJSONable{
         Object.assign(this,object);
         this.type = new PassengerType();this.type.parseJSONObject(object["type"]);
     }
+    child:boolean;
+    parent_id:number;
 }

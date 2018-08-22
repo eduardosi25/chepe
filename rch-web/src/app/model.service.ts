@@ -94,7 +94,9 @@ export class ModelService implements IModel {
   public getRouteByName(route_name:string):Route2{
     return this.route_by_name[route_name];
   }
-  public getTrainStopById(id:number):TrainStop{
+  public getTrainStopById(id:number):TrainStop{    
+    console.log("ts0byid");
+    console.log(id);
     let ts:TrainStop = this.train_stops[id];
     return ts;
   }
