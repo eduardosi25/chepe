@@ -3271,6 +3271,9 @@ textarea {
 .text-small {
     font-size: 16px;
 }
+.col-add__btm {
+    margin-bottom: 40px;
+}
 
 /*tooltip*/
 .my-tooltip {

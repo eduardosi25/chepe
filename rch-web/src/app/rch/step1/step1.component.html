@@ -175,6 +175,14 @@
                                             id="step1-start-dt-{{i}}" ngbDatepicker #d="ngbDatepicker"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="text" class="form-control" name="start{{i}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.start"  (ngModelChange)="preflight()"
+                                            id="step1-start-dt-{{i}}" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
                                 </div>                                
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete" [hidden]="i == 0">
                                     <div class="btn-delete">
@@ -187,7 +195,7 @@
                             </div>
                         </article>
 
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small" [hidden]="trips.length > 1">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-add__btm" [hidden]="trips.length > 1">
                             <div class="search__top col-xs-24 search__space col-nospace__sides">
                                <div class="search__dashed clearfix">
                                    <div class="search__dashed--combo">
@@ -445,3 +453,6 @@
     </div>
     <!-- /.modal -->
  </div>
+  
+
+
