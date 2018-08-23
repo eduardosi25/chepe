@@ -400,5 +400,9 @@ value   */
       this.session.query.trips = [];
     }
   }
+  isRegional(route:Route2):boolean{
+    console.log(route.name);
+    return (route.name.toLowerCase() == "chepe regional");
+  }
   
 }

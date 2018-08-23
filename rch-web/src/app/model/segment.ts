@@ -83,6 +83,7 @@ export class Segment{
             let t:Travel = this.travels[i];
             //let dd:Date = new Date(t.date+" "+t.departure.time);
             let dd:Date = this.mkDate(t.date+" "+t.departure.time);   
+            travels.push(t);
             if(dd.getTime()>=min.getTime() && dd.getTime()<=max.getTime()){
                 travels.push(t);
             }
