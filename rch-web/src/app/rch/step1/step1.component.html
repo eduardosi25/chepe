@@ -11,7 +11,12 @@
              <div class="row">
                 <div class=" col-sm-20 gap-left">
                    <h1 class="c-two">{{'Step1-P00' | translate}} {{route.name}}</h1>
-                </div>
+                </div><!-- Caja de costo -->                        
+                <div class="cost--fix cost--right col-md-18 col-xs-24">
+                        <div class="row">
+                            <app-cost-box></app-cost-box>
+                        </div>
+                    </div>         
                 <div class="col-sm-24 no-gutter-left-mobile">
                    <span class="title-underline c-border-two"></span>
                 </div>
@@ -90,7 +95,13 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>             
+                                        <!-- Caja de costo -->                        
+                                        <div class="cost--fix cost--right col-md-18 col-xs-24">
+                                            <div class="row">
+                                                <app-cost-box></app-cost-box>
+                                            </div>
+                                        </div>          
                                         <div class="popover passengers collapse" id="popover-content-passengers">
                                             <div class="row" *ngFor="let pt of route.passenger_types">
                                                 <div class="col-xs-12 passenger-label">
@@ -160,8 +171,8 @@
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
                                     <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.start"  (ngModelChange)="preflight()"
-                                            id="step1-start-dt" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" name="start{{i}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.start"  (ngModelChange)="preflight()"
+                                            id="step1-start-dt-{{i}}" ngbDatepicker #d="ngbDatepicker"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>                                
@@ -229,8 +240,10 @@
                                     <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top col-nospace">
                                         <label for="origen">{{'Step1-P46' | translate}}</label>
                                         <div class="input-calendar col-xs-24 no-gutter">
-                                            <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trips2[0].start"  (ngModelChange)="preflight()"
-                                                id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/>
+                                            <!-- <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trips2[0].start"  (ngModelChange)="preflight()"
+                                                id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/> -->
+                                                <input type="text" class="form-control" name="start" 
+                                                id="step1-start-dt-{{j}}" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/>
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
                                     </div>                                
@@ -396,7 +409,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                  
                         <div class="col-xs-24 col-top">
                             <a class="btn btn-link c-one p-reset center-horizontal"  routerLink="/reservaciones/{{session.route.name}}/paso2" role="button">
                                 <div>
