@@ -16,6 +16,7 @@ import { Wagon } from '../../model/wagon';
 import { WagonType } from '../../model/wagontype';
 import { Seat } from '../../model/seat';
 import { SeatBooking } from '../../model/seatbooking';
+import { Cost } from '../../model/cost';
 declare var $: any;
 @Component({
   selector: 'app-step5',
@@ -75,7 +76,7 @@ export class Step5Component implements OnInit {
         this.selected_segment = segment;
         this.selected_segment.selected_travel = response.data;
         if (this.selected_segment.sbs == null) {
-          console.log("A ver que hace si no es nulo");
+          console.log("Si no es nulo");
           this.selected_segment.sbs = [];
           let j: number = this.segments.indexOf(segment);
           if (j > 0) {
@@ -84,7 +85,7 @@ export class Step5Component implements OnInit {
         }
         window.scrollTo(0, 0)
       });
-  }
+    }
   }
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
@@ -97,7 +98,7 @@ export class Step5Component implements OnInit {
         if (w.name == sbwname) {
           let s: Seat = w.getSeat(sb.seat.row, sb.seat.col);
           if (s != null) {
-            this.onSeatClicked(s, w, segment);
+            this.onSeatClicked(s, w, segment,i);
           }
         }
       }
@@ -145,8 +146,8 @@ export class Step5Component implements OnInit {
   }
   getRemainingSbs(): number {
     let remaining: number = this.session.query.getTotalPassengers() - this.selected_segment.sbs.length;
-    // console.log("selectedS");
-    // console.log(this.selected_segment);
+    console.log("selectedS");
+    console.log(this.selected_segment);
     return remaining;
   }
   getAssignedSbs(): number {
@@ -158,7 +159,7 @@ export class Step5Component implements OnInit {
     }
     return this.selected_segment.sbs.length;
   }
-  onSeatClicked(seat: Seat, wagon: Wagon, segment: Segment) {
+  onSeatClicked(seat: Seat, wagon: Wagon, segment: Segment, id_person: number) {
     // console.log("seat");
     // console.log(seat);
     // console.log("wagon");
@@ -177,7 +178,7 @@ export class Step5Component implements OnInit {
         var sb: SeatBooking = new SeatBooking(seat, wagon,
           segment.selected_travel, this.session.route,
           segment.getNextPT(this.session.route, this.session.query),
-          null, 0);
+          new Cost(), id_person,0);
         this.selected_segment.sbs.push(sb);      
         console.log("selected");
         console.log(this.selected_segment);

@@ -25,9 +25,15 @@ export class AvailabilityQuery2 implements FromJSONable{
     public round:boolean = false;
     public class:WagonType = null;
     public isReady():boolean{
-        // if(this.src == null || this.src.id == -1){return false;}
-        // if(this.dst == null  || this.dst.id == -1){return false;}
-        // if(this.start == null){return false;}
+        // if (this.trips.length > 0) {
+        //     this.trips.forEach(e => {   
+        //         console.log("en");           
+        //         console.log(e);             
+        //         if(e.id_src == null || e.id_src == 0){return false;}
+        //         if(e.id_dst == null || e.id_dst == 0){return false;}
+        //         if(e.start == null || e.start == undefined){return false;}
+        //     });
+        // }
         // if(this.end == null){return false;}
         if(this.class == null){return false;}
         return true;

@@ -12,11 +12,11 @@
                 <div class=" col-sm-20 gap-left">
                    <h1 class="c-two">{{'Step1-P00' | translate}} {{route.name}}</h1>
                 </div><!-- Caja de costo -->                        
-                <div class="cost--fix cost--right col-md-18 col-xs-24">
+                <!-- <div class="cost--fix cost--right col-md-18 col-xs-24">
                         <div class="row">
                             <app-cost-box></app-cost-box>
                         </div>
-                    </div>         
+                    </div> -->
                 <div class="col-sm-24 no-gutter-left-mobile">
                    <span class="title-underline c-border-two"></span>
                 </div>
@@ -97,11 +97,11 @@
                                             </div>
                                         </div>             
                                         <!-- Caja de costo -->                        
-                                        <div class="cost--fix cost--right col-md-18 col-xs-24">
+                                        <!-- <div class="cost--fix cost--right col-md-18 col-xs-24">
                                             <div class="row">
                                                 <app-cost-box></app-cost-box>
                                             </div>
-                                        </div>          
+                                        </div>           -->
                                         <div class="popover passengers collapse" id="popover-content-passengers">
                                             <div class="row" *ngFor="let pt of route.passenger_types">
                                                 <div class="col-xs-12 passenger-label">
@@ -152,7 +152,7 @@
                                     </div>
                                     <label>{{'Step1-P30' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="origen" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_src" (ngModelChange)="preflight()">
+                                        <select class="form-control" id="origen" [disabled]="i > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_src" (ngModelChange)="preflight()">
                                             <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
                                             <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -162,7 +162,7 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_dst" (ngModelChange)="preflight()">
+                                        <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.id_dst" (ngModelChange)="onChangeStop(false, this.trip)">
                                             <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
                                             <option *ngFor="let ts of getDsts(0,this.trip.id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -171,19 +171,11 @@
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
                                     <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start{{i}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.start"  (ngModelChange)="preflight()"
-                                            id="step1-start-dt-{{i}}" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" name="start" [ngModel]="trips[i].start"  (ngModelChange)="preflight()" (change)="onDateChange($event)"
+                                            id="step1-start-dt" ngbDatepicker #d="ngbDatepicker"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
-                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
-                                    <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start{{i}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trip.start"  (ngModelChange)="preflight()"
-                                            id="step1-start-dt-{{i}}" ngbDatepicker #d="ngbDatepicker"/>
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>                                
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete" [hidden]="i == 0">
                                     <div class="btn-delete">
                                         <a (click)="onDeleteTrip(this.trip)" class="btn-delete__link">
@@ -248,10 +240,8 @@
                                     <div class="search__item col-xs-7 col-md-6 col-lg-6 input-daterange col-little col-sm__top col-nospace">
                                         <label for="origen">{{'Step1-P46' | translate}}</label>
                                         <div class="input-calendar col-xs-24 no-gutter">
-                                            <!-- <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trips2[0].start"  (ngModelChange)="preflight()"
-                                                id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/> -->
-                                                <input type="text" class="form-control" name="start" 
-                                                id="step1-start-dt-{{j}}" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/>
+                                            <input type="text" class="form-control" name="start" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.trips2[0].start"  (ngModelChange)="onChangeStop(true, this.trip)"
+                                                id="step1-start-dt" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker"/>
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
                                     </div>                                
@@ -333,7 +323,7 @@
                                 <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
                                     <div class="combo-elements__normal">
                                         <img class="combo-elements__icon" src="assets/img/icon-right.svg">
-                                        <span class="text-bold text-blue">{{this.trips[0].id_src.name}} a</span>
+                                        <span class="text-bold text-blue"></span>
                                     </div>
                                 </div>
                             </div>

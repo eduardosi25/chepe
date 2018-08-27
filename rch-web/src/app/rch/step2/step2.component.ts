@@ -148,14 +148,13 @@ export class Step2Component implements OnInit {
     }
     for (let i = 0; i < query.trips.length; i++) {
       const e = query.trips[i];
-      
+      let ts0: any = e.id_src;// this.model.getTrainStopById(e.id_src);    
+      let ts1: any = e.id_dst;// this.model.getTrainStopById(e.id_dst);   
       console.log("ts0");
-      console.log(e.id_src);
-      
+      console.log(ts0);
       console.log("ts1");
-      console.log(this.model.getTrainStopById(e.id_src));
-      let ts0: TrainStop = this.model.getTrainStopById(e.id_src);    
-      let ts1: TrainStop = this.model.getTrainStopById(e.id_dst);   
+      console.log(ts1);
+      console.log(query);
       var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
       console.log("Segment");
       console.log(segment);
@@ -186,8 +185,12 @@ export class Step2Component implements OnInit {
     console.log(schedule);
     for (var i = 0; i < schedule.travels.length; i++) {
       let t: Travel = schedule.travels[i];
-      let segment = segments[t.id_src];
-       
+      
+      console.log("t");
+      console.log(t);
+      let segment = segments[i];
+      console.log("segmnt");
+      console.log(segment);       
       console.log("segs1");
       console.log(segments);
       //let segment: Segment;
@@ -202,6 +205,8 @@ export class Step2Component implements OnInit {
       console.log("seg1");
       console.log(segment);
       segment.travels.push(t);
+      console.log("seg2");
+      console.log(segment);
     }
     var k = 1;
     var segments2: Segment[] = [];
@@ -237,6 +242,9 @@ export class Step2Component implements OnInit {
     // gral_max.setHours(23);
     // gral_max.setMinutes(59);
     // gral_max.setSeconds(59);
+    console.log("this.segments");
+    console.log(this.segments);
+    console.log(gral_max);
      let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
     // if (ts.length == 1) {
 
