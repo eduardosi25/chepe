@@ -3311,6 +3311,10 @@ textarea {
     opacity: 1;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 /* my code */
 
 /*:::::::::::
