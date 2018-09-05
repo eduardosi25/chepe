@@ -42,19 +42,24 @@ export class Step1Component implements OnInit {
   private previousRouteService: PreviousRouteService) { }
 
   public route:Route2 = null;
-  public trips:Trip[] = [];  
-  public trips2:Trip[] = [];
+  public trips:Trip[] = [new Trip(0,0,new Date())];  
+  public trips2:Trip[] = [new Trip(0,0,new Date())];
+  public numStops: number = 0;
+  public avaStops:TrainStop[] = [];
+  // public stops:TrainStop[] = this.stops;
   ngOnInit() {    
+    console.log("inicial");
+    console.log(this.avaStops);
     var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
-    console.log(this.session);
-    let trip = new Trip(0,0,new Date());
-    this.trips.push(trip);
-    //var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
-    aq.trips = [];
-    aq.trips.push(trip);
-    this.session.query = aq;
-    this.session.query.trips.push(trip);
-    console.log(this.session);
+    // console.log(this.session);
+    // let trip = new Trip(0,0,null);
+    // this.trips.push(trip);
+    // //var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
+    // aq.trips = [];
+    // aq.trips.push(trip);
+    // this.session.query = aq;
+    // this.session.query.trips.push(trip);
+    // console.log(this.session);
     if(this.previousRouteService.getPreviousUrl().indexOf('reservaciones/')==-1 || this.session.query == null)
     {
       this.session.query = new AvailabilityQuery2(this.model);
@@ -76,6 +81,8 @@ export class Step1Component implements OnInit {
     }    
     this.session.route = this.route;    
     this.createInstance();
+    this.avaStops = this.getSrcs(0);
+    console.log(this.avaStops);
   }
 
   createInstance(){  
@@ -96,10 +103,10 @@ export class Step1Component implements OnInit {
     setTimeout(function(){
 
       // Datarange
-      $('.input-daterange').datepicker({
-        todayHighlight: true, 
-        language:'es'
-      });
+      // $('.input-daterange').datepicker({
+      //   todayHighlight: true, 
+      //   language:'es'
+      // });
 
       // Funcion de agregar / eliminar escalas
       $(".js-clone").on('click', function(e){
@@ -136,15 +143,39 @@ export class Step1Component implements OnInit {
     }, 1000);
   }
 
-  public onDateChange(e){
+  public countTrips(n:number){
+    if (this.trips.length >= n) {
+      return true;
+    }
+    
+  }
+
+  public countStops(tr:Trip[]){
+    if (tr.length > 1)
+      return true;
+  }
+
+  public onDateChange(e, tr:Trip){
+    tr.start = e;
     console.log(e);
   }
   public onChangeStop(round:boolean, tr:Trip){
+    console.log("trip");
+    console.log(this.trips);
+    console.log("trip2");
+    console.log(this.trips2);
     let index;   
     if (round) {
-      if (this.trips2.length > 1) {   
       index = this.trips2.indexOf(tr,0);
+      if (this.trips2.length > 1) {   
       this.trips2[index+1].id_src = this.trips2[index].id_dst;
+      this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
+      }
+      else{
+        this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
+      }
+      if (this.trips.length == index && tr.id_dst != 0) {
+        this.trips2[0].id_src == tr.id_dst;
       }
     }
     else{          
@@ -177,6 +208,7 @@ export class Step1Component implements OnInit {
       this.trips[index-1].id_dst = 0;
     }
     this.createInstance();
+    this.numStops++;
   }
 
   public onDeleteTrip(tr:Trip,round:boolean){
@@ -193,6 +225,7 @@ export class Step1Component implements OnInit {
         this.trips.splice(index,1);
       }
     }
+    this.numStops--;
   }
   public getDate(with_weekday:boolean = true):string{
     let d:Date = new Date();
@@ -296,8 +329,20 @@ export class Step1Component implements OnInit {
   public getSrcs(direction:number=Direction.up):TrainStop[]{
     return this.route.getSrcs(direction);
   }
-  public getDsts(direction:number=Direction.up,src:TrainStop=null):TrainStop[]{
-    return src == null ? this.getSrcs(direction):this.route.getDsts(direction,src.id);
+  public getDsts(direction:number=Direction.up,src:TrainStop=null):TrainStop[]{  
+    if (src == null) {
+      return this.getSrcs(direction)
+    }
+    else {
+      this.avaStops = this.route.getDsts(direction,src.id);
+      for (let i = 0; i < this.trips.length; i++) {
+        let e = this.trips[i];
+        let idx = this.trips.indexOf(this.trips[i]);
+        this.avaStops.splice(idx,0)
+      }
+      return this.avaStops;      
+    }
+    // return src == null ? this.getSrcs(direction):this.route.getDsts(direction,src.id);
   }
   public last_failure_motive:string = null;
   public a1(id:string,cl:string=null){
@@ -321,7 +366,7 @@ export class Step1Component implements OnInit {
     // for(var i in this.session.query.stops){
     //   if(this.session.query.stops[i]){nstops++;}
     // }
-    // if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
+    if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
     // var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
     // if(this.session.query.round){
     //   let t = min_end_dt.getTime();
@@ -336,7 +381,7 @@ export class Step1Component implements OnInit {
     //   $('#end-warning').text('Elige una fecha posterior o igual a '+min_end_dt.getFullYear()+"-"+(min_end_dt.getMonth()+1)+"-"+min_end_dt.getDate());
     //   return false;
     // }
-    // if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
+    if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
     return true;
   }
   public add(pt:PassengerType,d:number){
@@ -428,14 +473,17 @@ export class Step1Component implements OnInit {
 value   */
   public onChange(value) {
     this.session.query.round = value;
-    if(value){
+    if(value && this.trips2.length == 0){
       let trip = new Trip(0,0,new Date());
       this.trips2.push(trip);
       this.session.query.trips.push(trip);
-      // this.trips2.
+      this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
+    }
+    else if (value){
+      this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
     }
     else{
-      this.trips2 = null;
+      this.trips2 = [];
       this.session.query.trips = [];
     }
   }
@@ -443,5 +491,18 @@ value   */
     console.log(route.name);
     return (route.name.toLowerCase() == "chepe regional");
   }
-  
+  public onMaxStops():boolean{
+    if (this.trips.length == 1 || this.numStops == this.route.max_stops) {
+      return true
+    }
+  }
+  public isRound():boolean{
+    return this.session.query.round;
+  }
+  public display():boolean{
+    console.log(this.trips2.length)
+    if (this.trips2.length == 1){
+      return true;
+    }
+  }
 }
