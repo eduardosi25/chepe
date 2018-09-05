@@ -2884,6 +2884,8 @@ FIXES
     z-index: 3;
     pointer-events: none;
     line-height: 30px;
+    padding: 6px;
+    width: auto;
 }
 .datepicker-days {
     font-size: 12px;
@@ -3311,6 +3313,10 @@ textarea {
     opacity: 1;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 /* my code */
 
 /*:::::::::::
@@ -3420,7 +3426,7 @@ FIXES RESPONSIVE
     }
     .search__space {
         padding-top: 20px;
-        padding-bottom: 0;    
+        /*padding-bottom: 0;*/    
     }
 
     .col-btn__delete {
