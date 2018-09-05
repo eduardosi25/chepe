@@ -132,6 +132,11 @@ export class Step1Component implements OnInit {
       $(".js-my-tooltip").click(function(e){
           $(".tooltiptext").toggleClass("active");
         });
+
+                //getter
+                var maxDate = $( "#step1-start-dt" ).datepicker( "option", "maxDate" );
+                //setter
+                $( "#step1-start-dt" ).datepicker( "option", "maxDate", '+1m +1w' );
         
     }, 1000);
   }

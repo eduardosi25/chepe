@@ -171,7 +171,7 @@
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
                                     <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" name="start" [ngModel]="trips[i].start"  (ngModelChange)="preflight()" (change)="onDateChange($event)"
+                                        <input type="text" class="form-control appearance__input" name="start" [ngModel]="trips[i].start"  (ngModelChange)="preflight()" (change)="onDateChange($event)"
                                             id="step1-start-dt" ngbDatepicker #d="ngbDatepicker"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
