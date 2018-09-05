@@ -2884,6 +2884,8 @@ FIXES
     z-index: 3;
     pointer-events: none;
     line-height: 30px;
+    padding: 6px;
+    width: auto;
 }
 .datepicker-days {
     font-size: 12px;
