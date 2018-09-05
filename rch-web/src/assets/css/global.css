@@ -3426,7 +3426,7 @@ FIXES RESPONSIVE
     }
     .search__space {
         padding-top: 20px;
-        padding-bottom: 0;    
+        /*padding-bottom: 0;*/    
     }
 
     .col-btn__delete {
