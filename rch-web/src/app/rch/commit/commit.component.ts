@@ -40,11 +40,7 @@ export class CommitComponent implements OnInit {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
       this.router.navigate(["/reservaciones"]);return;
     }
-    console.log("confseg");
-    console.log(this.segments);
     this.segments = this.session.mkUnifiedSegments();
-    console.log("unified");
-    console.log(this.segments);
     this.session.segments = this.segments;
     this.is_captcha_solved = false;
     this.is_getting_quote = true;

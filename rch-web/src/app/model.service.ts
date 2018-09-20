@@ -94,9 +94,7 @@ export class ModelService implements IModel {
   public getRouteByName(route_name:string):Route2{
     return this.route_by_name[route_name];
   }
-  public getTrainStopById(id:number):TrainStop{    
-    console.log("ts0byid");
-    console.log(id);
+  public getTrainStopById(id:number):TrainStop{  
     let ts:TrainStop = this.train_stops[id];
     return ts;
   }
@@ -107,7 +105,6 @@ export class ModelService implements IModel {
     return null;
   }
   public getWagonTypeById(id:number):WagonType{
-    console.log(this.wagon_types_by_id);
     return this.wagon_types_by_id[""+id];
   }
   getCountries():Observable<Response<Country[]>>{

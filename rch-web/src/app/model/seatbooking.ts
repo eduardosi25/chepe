@@ -20,7 +20,6 @@ export class SeatBooking implements FromJSONable{
     }
     parseJSONObject(object:Object){
         if(!object){return;}
-        console.log(object);
         Object.assign(this,object);
         this.seat = new Seat(); this.seat.parseJSONObject(object["seat"]);
         this.wagon = new Wagon(); this.wagon.parseJSONObject(object["wagon"]);

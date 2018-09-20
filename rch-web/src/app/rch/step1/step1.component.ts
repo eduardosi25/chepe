@@ -48,18 +48,7 @@ export class Step1Component implements OnInit {
   public avaStops:TrainStop[] = [];
   // public stops:TrainStop[] = this.stops;
   ngOnInit() {    
-    console.log("inicial");
-    console.log(this.avaStops);
     var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
-    // console.log(this.session);
-    // let trip = new Trip(0,0,null);
-    // this.trips.push(trip);
-    // //var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
-    // aq.trips = [];
-    // aq.trips.push(trip);
-    // this.session.query = aq;
-    // this.session.query.trips.push(trip);
-    // console.log(this.session);
     if(this.previousRouteService.getPreviousUrl().indexOf('reservaciones/')==-1 || this.session.query == null)
     {
       this.session.query = new AvailabilityQuery2(this.model);
@@ -82,7 +71,6 @@ export class Step1Component implements OnInit {
     this.session.route = this.route;    
     this.createInstance();
     this.avaStops = this.getSrcs(0);
-    console.log(this.avaStops);
   }
 
   createInstance(){  
@@ -139,6 +127,11 @@ export class Step1Component implements OnInit {
       $(".js-my-tooltip").click(function(e){
           $(".tooltiptext").toggleClass("active");
         });
+
+                // //getter
+                // var maxDate = $( "#step1-start-dt" ).datepicker( "option", "maxDate" );
+                // //setter
+                // $( "#step1-start-dt" ).datepicker( "option", "maxDate", '+1m +1w' );
         
     }, 1000);
   }
@@ -149,7 +142,12 @@ export class Step1Component implements OnInit {
     }
     
   }
-
+  public countTrips2(n:number){
+    if (this.trips2.length >= n) {
+      return true;
+    }
+    
+  }
   public countStops(tr:Trip[]){
     if (tr.length > 1)
       return true;
@@ -157,31 +155,25 @@ export class Step1Component implements OnInit {
 
   public onDateChange(e, tr:Trip){
     tr.start = e;
-    console.log(e);
   }
   public onChangeStop(round:boolean, tr:Trip){
-    console.log("trip");
-    console.log(this.trips);
-    console.log("trip2");
-    console.log(this.trips2);
     let index;   
     if (round) {
       index = this.trips2.indexOf(tr,0);
       if (this.trips2.length > 1) {   
       this.trips2[index+1].id_src = this.trips2[index].id_dst;
-      this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
+      // this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
       }
       else{
-        this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
+        //this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
       }
       if (this.trips.length == index && tr.id_dst != 0) {
-        this.trips2[0].id_src == tr.id_dst;
+        //this.trips2[0].id_src == tr.id_dst;
       }
     }
     else{          
       if (this.trips.length > 1) {       
       index = this.trips.indexOf(tr,0);
-      console.log(tr.id_dst);
       this.trips[index+1].id_src = tr.id_dst;
       }
     }
@@ -193,17 +185,12 @@ export class Step1Component implements OnInit {
     if(round){
       this.trips2.push(tr);
       index = this.trips2.indexOf(tr,0);
-      console.log(index);
-      console.log(this.trips2[index].id_dst);
-      console.log(this.trips2[index-1].id_dst);
-      this.trips2[index].id_dst = this.trips2[index-1].id_dst;
+      this.trips2[index].id_src = this.trips2[index-1].id_dst;
     }
     else{      
       this.trips.push(tr);
       index = this.trips.indexOf(tr,0);
-      console.log(index);
-      console.log(this.trips[index].id_dst);
-      console.log(this.trips[index-1].id_dst);
+      // console.log(this.trips[index-1].id_dst);
       this.trips[index].id_dst = this.trips[index-1].id_dst;
       this.trips[index-1].id_dst = 0;
     }
@@ -237,25 +224,6 @@ export class Step1Component implements OnInit {
     s+=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
     return s;
   }
-  // mkDate(s:string):Date{
-  //   var mps:string[] = s.split(" ");
-  //   let now:Date = new Date();
-  //       mps.push("00:00:01");
-  //   }
-  //   let dps:string[] = mps[0].split("-");
-  //   let tps:string[] = mps[1].split(":");
-
-  //   let year:number  = dps.length>=1?parseInt(dps[0]):now.getFullYear();
-  //   let month:number  = dps.length>=2?parseInt(dps[1])-1:now.getMonth();
-  //   let day:number  = dps.length>=3?parseInt(dps[2]):now.getDate();
-
-  //   let hour:number = tps.length>=1?parseInt(tps[0]):now.getHours();
-  //   let minute:number = tps.length>=2?parseInt(tps[1]):now.getMinutes();
-  //   let second:number = tps.length>=3?parseInt(tps[2]):now.getSeconds();
-
-  //   let dd:Date = new Date(year,month,day,hour,minute,second);
-  //   return dd;
-  // }
   public getWeekday(n:number=-1,full:boolean = true):string{
     if(n == -1){
         let d:Date = new Date();
@@ -426,8 +394,6 @@ export class Step1Component implements OnInit {
     
   }
   public preflight(){
-    console.log("preflight");
-    console.log(this.trips);
     if(this.session.preflight != null){
       this.session.preflight.unsubscribe();
     }
@@ -436,13 +402,10 @@ export class Step1Component implements OnInit {
       let aq:AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
       var a =this.model.getRouteScheduleAvailable(this.session.route.id,aq);
       this.session.preflight = a.subscribe(((r:Response<Schedule>)=>{
-        console.log("r.data");
-        console.log(r.data);
         this.session.schedule = r.data;
-        console.log("this.session.schedule");
-        console.log(r.data);
       }));
     }
+    this.readyToGoNext();
   }
   public wts:Wagon[] = null;
   public getClasses(route:Route2):Wagon[]{
@@ -489,12 +452,14 @@ value   */
   }
   isRegional(route:Route2):boolean{
     console.log(route.name);
-    return (route.name.toLowerCase() == "chepe regional");
+    return (route.name.toLowerCase() == "regional");
   }
   public onMaxStops():boolean{
-    if (this.trips.length == 1 || this.numStops == this.route.max_stops) {
-      return true
+    if (this.numStops < this.route.max_stops || this.numStops == 0) {
+      return false;
     }
+    else
+      return true;
   }
   public isRound():boolean{
     return this.session.query.round;

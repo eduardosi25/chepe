@@ -100,9 +100,9 @@ export class Travel implements FromJSONable{
         let s:number = 1000;
         let m:number = s*60;
         let h:number = m*60;
-        let hrs:number = Math.ceil(dif/h); dif = dif%h;
+        let hrs:number = Math.ceil(dif/h)-1; dif = dif%h;
         let mins:number = Math.ceil(dif/m);
-
+        
         let hrss:string = hrs<10 ? '0'+hrs:''+hrs;
         let minss:string = mins<10 ? '0'+mins:''+mins;
 

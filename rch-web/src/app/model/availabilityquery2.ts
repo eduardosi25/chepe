@@ -82,8 +82,6 @@ export class AvailabilityQuery2 implements FromJSONable{
         // a.id_route = route.id;
         // a.id_src = this.src.id;
         a.passengers = this.getTotalPassengers2();
-        console.log("a.passengers");
-        console.log(this.trips);
         // a.start = this.start;
         // a.stops = [];
         a.round = this.round;

@@ -22,19 +22,20 @@ export class AvailabilityQuery implements FromJSONable{
     id_class:number;
 
     public getForParams():object{
-        console.log("pass");
-        console.log(this.passengers)
         let pts = environment.avmode == 1 ? this.passengers:this.getPTsIds();
-        console.log(this.trips);
         let s:string;
         this.trips.forEach(e => {
             let tsp : any = e.id_src;
             let tsp2 : any = e.id_dst;
-            console.log("e");
-            console.log(e);
-            console.log("tsp");
-            console.log(tsp.id);
-            s = tsp.id + ',' + tsp2.id + ',' + e.start;
+            if (e.start == null) {
+                e.start = new Date();
+            }
+            if (s == undefined) {
+                s = tsp.id + ',' + tsp2.id + ',' + e.start;                
+            }
+            else{
+                s += ',' + tsp.id + ',' + tsp2.id + ',' + e.start;
+            }    
         });
 
         console.log(JSON.stringify(s));
@@ -56,8 +57,6 @@ export class AvailabilityQuery implements FromJSONable{
             let pt:PassengerType = this.passengers[i];
             a.push(pt.id);
         }
-        console.log("pts");
-        console.log(a);
         return a;
     }
 }
