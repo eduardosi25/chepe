@@ -516,8 +516,11 @@
                     <aside class="col-md-8 col-full"> 
                         <div class="col-xs-24 bg-three--light box-light">
                             <div class="col-xs-24 col-reset ">
-                                <div class="col-sm-10 col-lg-15 col-reset">
+                                <div class="col-sm-10 col-lg-15 col-reset" *ngIf="!isRound()">
                                     <h3>{{'Step1-P50' | translate}} <small>{{'Step1-P51' | translate}}</small></h3>
+                                </div>
+                                <div class="col-sm-10 col-lg-15 col-reset" *ngIf="isRound()">
+                                    <h3>{{'Step1-P50' | translate}} <small>{{'Step1-P65' | translate}}</small></h3>
                                 </div>
                                 <!--div class="col-sm-14 col-lg-9 col-reset col-scale">
                                     <img class="icon-train" src="assets/img/icon_train.png">
