@@ -3322,6 +3322,11 @@ textarea {
     display: none;
  }
 
+.form-control__number::-webkit-inner-spin-button, 
+.form-control__number::-webkit-outer-spin-button {
+    -webkit-appearance: none; 
+ }
+
 /* my code */
 
 /*:::::::::::
