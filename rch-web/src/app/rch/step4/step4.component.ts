@@ -48,8 +48,8 @@ export class Step4Component implements OnInit {
     this.location.back();
   }
   static email_regex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  static name_regex: RegExp = /\w{3,30}/;
-  static lastname_regex: RegExp = /\w{3,30}/;
+  static name_regex: RegExp = /\w{2,30}/;
+  static lastname_regex: RegExp = /\w{2,30}/;
   static country_regex: RegExp = /\w{2,30}/;
   public readyToGoNext(): boolean {
     $('.form-control').removeClass('orange');
