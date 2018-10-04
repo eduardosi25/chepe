@@ -51,8 +51,8 @@
 
         </div>
 
-
-        <div class="final-summary regional margintop30">
+        
+        <div class="final-summary regional margintop30" *ngIf="segments">
 
             <!-- escala -->
             <div *ngFor="let segment of segments">
@@ -181,7 +181,7 @@
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-3 col-sm-offset-15 center margintop30">
-                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso2" role="button">
+                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso1" role="button">
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>

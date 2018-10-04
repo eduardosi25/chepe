@@ -5,28 +5,36 @@ import { FromJSONable } from "./FromJSONable";
 import { ModelService } from "../model.service";
 import { Route2 } from "./route2";
 import { WagonType } from "./wagontype";
+import { Trip } from "./trip";
 
 export class AvailabilityQuery2 implements FromJSONable{
     constructor(private model:ModelService){}
     parseJSONObject(object: Object) {
         if(!object){return;}
         Object.assign(this,object);
-        this.src = new TrainStop(); this.src.parseJSONObject(object["src"]);
-        this.dst = new TrainStop(); this.dst.parseJSONObject(object["dst"]);
+        // this.src = new TrainStop(); this.src.parseJSONObject(object["src"]);
+        // this.dst = new TrainStop(); this.dst.parseJSONObject(object["dst"]);
     }
-    public src:TrainStop = new TrainStop();
-    public dst:TrainStop = new TrainStop();
-    public start:string = (new Date()).toString();
-    public end:string = (new Date()).toString();
+    // public src:TrainStop = new TrainStop();
+    // public dst:TrainStop = new TrainStop();
+    // public start:string = (new Date()).toString();
+    // public end:string = (new Date()).toString();
     public passengers = [0,1,0,0,0,0,0,0,0];
-    public stops = {};
+    public trips:Trip[] = null;
+    // public stops = {};
     public round:boolean = false;
     public class:WagonType = null;
     public isReady():boolean{
-        if(this.src == null || this.src.id == -1){return false;}
-        if(this.dst == null  || this.dst.id == -1){return false;}
-        if(this.start == null){return false;}
-        if(this.end == null){return false;}
+        // if (this.trips.length > 0) {
+        //     this.trips.forEach(e => {   
+        //         console.log("en");           
+        //         console.log(e);             
+        //         if(e.id_src == null || e.id_src == 0){return false;}
+        //         if(e.id_dst == null || e.id_dst == 0){return false;}
+        //         if(e.start == null || e.start == undefined){return false;}
+        //     });
+        // }
+        // if(this.end == null){return false;}
         if(this.class == null){return false;}
         return true;
     }
@@ -69,19 +77,20 @@ export class AvailabilityQuery2 implements FromJSONable{
     }
     public toAvailabilityQuery(route:Route2):AvailabilityQuery{
         var a:AvailabilityQuery = new AvailabilityQuery();
-        a.end = this.end;
-        a.id_dst = this.dst.id;
-        a.id_route = route.id;
-        a.id_src = this.src.id;
+        // a.end = this.end;
+        // a.id_dst = this.dst.id;
+        // a.id_route = route.id;
+        // a.id_src = this.src.id;
         a.passengers = this.getTotalPassengers2();
-        a.start = this.start;
-        a.stops = [];
+        // a.start = this.start;
+        // a.stops = [];
         a.round = this.round;
         a.id_class = this.class != null ? this.class.id : 0;
-        for(var i in this.stops){
-            var n:number = parseInt(i);
-            a.stops.push(n);
-        }
+        // for(var i in this.stops){
+        //     var n:number = parseInt(i);
+        //     a.stops.push(n);
+        // }
+        a.trips = this.trips;
         return a;
     }
 }

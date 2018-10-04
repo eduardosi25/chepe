@@ -16,6 +16,7 @@ import { Wagon } from '../../model/wagon';
 import { WagonType } from '../../model/wagontype';
 import { Seat } from '../../model/seat';
 import { SeatBooking } from '../../model/seatbooking';
+import { Cost } from '../../model/cost';
 declare var $: any;
 @Component({
   selector: 'app-step5',
@@ -36,8 +37,6 @@ export class Step5Component implements OnInit {
       this.router.navigate(["/reservaciones"]); return;
     }
     this.segments = this.session.mkUnifiedSegments();
-    console.log("segments5");
-    console.log(this.segments);
     if (this.session && this.segments && this.segments.length > 0) {
       this.setSelectedSegment(this.segments[0]);
     } else {
@@ -56,11 +55,8 @@ export class Step5Component implements OnInit {
     return (this.segments.length == segment.n);
   }
   setSelectedSegment(segment: Segment) {
-    console.log("setselectedseg");
     let travel0: Travel = segment.selected_travel;
     if (segment.sbs != null){
-      console.log("selected_segment.sbs");      
-      console.log(segment);
       this.selected_segment = segment;
     }
     else{
@@ -75,7 +71,6 @@ export class Step5Component implements OnInit {
         this.selected_segment = segment;
         this.selected_segment.selected_travel = response.data;
         if (this.selected_segment.sbs == null) {
-          console.log("A ver que hace si no es nulo");
           this.selected_segment.sbs = [];
           let j: number = this.segments.indexOf(segment);
           if (j > 0) {
@@ -84,12 +79,10 @@ export class Step5Component implements OnInit {
         }
         window.scrollTo(0, 0)
       });
-  }
+    }
   }
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
-      console.log("aqui perpicked");
-      console.log(base.sbs);
       let sb: SeatBooking = base.sbs[i];
       let sbwname = sb.wagon.name;
       for (var j = 0; j < segment.selected_travel.wagons.length; j++) {
@@ -97,7 +90,7 @@ export class Step5Component implements OnInit {
         if (w.name == sbwname) {
           let s: Seat = w.getSeat(sb.seat.row, sb.seat.col);
           if (s != null) {
-            this.onSeatClicked(s, w, segment);
+            this.onSeatClicked(s, w, segment,i);
           }
         }
       }
@@ -145,8 +138,7 @@ export class Step5Component implements OnInit {
   }
   getRemainingSbs(): number {
     let remaining: number = this.session.query.getTotalPassengers() - this.selected_segment.sbs.length;
-    // console.log("selectedS");
-    // console.log(this.selected_segment);
+    
     return remaining;
   }
   getAssignedSbs(): number {
@@ -158,15 +150,9 @@ export class Step5Component implements OnInit {
     }
     return this.selected_segment.sbs.length;
   }
-  onSeatClicked(seat: Seat, wagon: Wagon, segment: Segment) {
-    // console.log("seat");
-    // console.log(seat);
-    // console.log("wagon");
-    // console.log(wagon);
-    // console.log("segment");
-    // console.log(segment);
+  onSeatClicked(seat: Seat, wagon: Wagon, segment: Segment, id_person: number) {
+    
     let remaining: number = this.getRemainingSbs();
-    // console.log(seat.status);
     switch (seat.status) {
       case Seat.available:
         if (remaining <= 0) {
@@ -177,10 +163,8 @@ export class Step5Component implements OnInit {
         var sb: SeatBooking = new SeatBooking(seat, wagon,
           segment.selected_travel, this.session.route,
           segment.getNextPT(this.session.route, this.session.query),
-          null);
-        this.selected_segment.sbs.push(sb);      
-        console.log("selected");
-        console.log(this.selected_segment);
+          new Cost(), id_person,0);
+        this.selected_segment.sbs.push(sb);    
         this.selected_segment = segment;
         break;
       case Seat.unavailable: seat.status = Seat.unavailable; break;

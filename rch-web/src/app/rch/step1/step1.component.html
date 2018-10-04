@@ -11,12 +11,25 @@
              <div class="row">
                 <div class=" col-sm-20 gap-left">
                    <h1 class="c-two">{{'Step1-P00' | translate}} {{route.name}}</h1>
-                </div>
+                </div><!-- Caja de costo -->                        
+                <!-- <div class="cost--fix cost--right col-md-18 col-xs-24">
+                        <div class="row">
+                            <app-cost-box></app-cost-box>
+                        </div>
+                    </div> -->
                 <div class="col-sm-24 no-gutter-left-mobile">
                    <span class="title-underline c-border-two"></span>
                 </div>
                 <div class="col-sm-15 gap-left ">
                    <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>
+                </div>
+                <!-- title -->
+                <div class=" col-sm-20 gap-left">
+                    <h3 class="c-two fontweight300">{{'Step1-P03' | translate}}</h3>
+                </div>
+                <!-- line -->
+                <div class="col-sm-24 no-gutter-left-mobile">
+                    <span class="title-underline c-border-two"></span>
                 </div>
              </div>
           </div>
@@ -25,38 +38,33 @@
           <!-- Searchblock -->
           <div class="col-md-24 no-gutter">
              <div class="row">
-                 <!-- title -->
-                <div class=" col-sm-20 gap-left">
-                   <h3 class="c-two fontweight300">{{'Step1-P03' | translate}}</h3>
-                </div>
-                <!-- line -->
-                <div class="col-sm-24 no-gutter-left-mobile">
-                   <span class="title-underline c-border-two"></span>
-                </div>
-
                 <!-- Container -->
-                <section class="col-sm-24 search-module paddingtop30 paddingbot30">
-                    <section class="col-md-16">
-                        <article class="col-xs-24 bg-three gap-left--2">
-                            <div class="search__top col-xs-24 no-gutter">
-                                <div class="search__item col-md-8 no-gutter-left">
-                                    <label>Tipo de viaje</label>
+                <section class="col-sm-24 search-module paddingtop30 clearfix">
+                    <section class="col-md-16 col-full">
+                        <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
+                            <div class="search__top col-xs-24 no-gutter col-border__b">
+                                <div class="search__item col-xs-8 col-little__reset no-gutter-left col-nospace__sides">
+                                    <label class="label-space">{{'Step1-P21' | translate}}</label>
                                     <div class="input-selection clearfix paddingtop10">
                                         <div class="input-block clearfix">
-                                            <input type="radio" class="special-radio" checked name="trip" value="redondo">
-                                            <label>Redondo</label>
+                                            <input type="radio" class="special-radio" name="trip" (change)="onChange(true)">
+                                            <label>{{'Step1-P19' | translate}}</label>
                                             
                                         </div>
                                         <div class="input-block clearfix">
-                                            <input type="radio" class="special-radio" name="trip" value="sencillo">
-                                            <label>Sencillo</label>
+                                            <input type="radio" class="special-radio" checked name="trip" value="sencillo" (change)="onChange(false)" >
+                                            <label>{{'Step1-P20' | translate}}</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="search__item col-md-6">
-                                    <label>Clase</label>
+                                <div class="search__item col-xs-6 col-little col-nospace">
+                                    <label class="label-space">{{'Step1-P23' | translate}}</label>
                                     <div class="form-group" *ngIf="session.route.pick_class">
-                                        <select class="form-control" id="clase" >
+                                        <select class="form-control" id="clase" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.class" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P22' | translate}}</option>
+                                            <option *ngFor="let c of getClasses(session.route)" [ngValue]="c">{{c.name}}</option>
+                                        </select>
+                                        <!-- <select class="form-control" id="clase" >
                                             <option>Elige una opción...</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -64,82 +72,642 @@
                                             <option>4</option>
                                             <option>5</option>
                                             <option>6</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                 </div>
-                                <div class="search__item col-md-6">
-                                    <label>Total de pasajeros</label>
-                                    <div class="box-passenger">
-                                            <div class="row">
-                                                <div class="col-xs-24 passenger-total">
-                                                    <div class="passsenger__hide">
-                                                        <a class="btn btn-block bg-white c-base text-left passenger__btn" role="button" data-toggle="collapse" href="#popover-content-passengers"
-                                                        aria-expanded="false" aria-controls="collapseExample">
-                                                        <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
-                                                        </a>
+                                <div class="search__item col-xs-6 col-little col-nospace">
+                                    <label class="label-space">{{'Step1-P24' | translate}}</label>
+                                    <div class="box-passenger box-passenger__reset">
+                                        <div class="row">
+                                            <div class="col-xs-24 passenger-total">
+                                                    <div class="my-tooltip js-my-tooltip" *ngIf="isRegional(route)">
+                                                        i
+                                                        <span class="tooltiptext">
+                                                            <p class="text-default text-bold text-14">{{'Step1-P25' | translate}}</p> 
+                                                            <p class="text-default text-14">{{'Step1-P26' | translate}}</p>
+                                                            <p class="text-default text-14">{{'Step1-P27' | translate}}</p>
+                                                        </span>
                                                     </div>
+                                                <div class="passsenger__hide">
+                                                    <a class="btn btn-block bg-white c-base text-left passenger__btn passenger__small no-scroll" role="button" data-toggle="collapse" href="#popover-content-passengers"
+                                                    aria-expanded="false" aria-controls="collapseExample">
+                                                    <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <div class="popover passengers collapse" id="popover-content-passengers">
-                                                <div class="row" *ngFor="let pt of route.passenger_types">
-                                                    <div class="col-xs-12 passenger-label">
-                                                    <label>{{pt.name}}
-                                                    <span *ngIf="pt.details">
-                                                    <br/>{{pt.details}}</span>
+                                        </div>             
+                                        <!-- Caja de costo -->                        
+                                        <!-- <div class="cost--fix cost--right col-md-18 col-xs-24">
+                                            <div class="row">
+                                                <app-cost-box></app-cost-box>
+                                            </div>
+                                        </div>           -->
+                                        <div class="popover passengers collapse" id="popover-content-passengers">
+                                            <div class="row" *ngFor="let pt of route.passenger_types">
+                                                <div class="col-xs-12 passenger-label">
+                                                    <label class="label-space">{{pt.name}}
+                                                        <span *ngIf="pt.details">
+                                                        <br/>{{pt.details}}</span>
                                                     </label>
-                                                    </div>
-                                                    <div class="col-xs-12">
+                                                </div>
+                                                <div class="col-xs-12">
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
-                                                        <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                            </button>
                                                         </span>
                                                         <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
                                                         min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
                                                         <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
-                                                        <span class="glyphicon glyphicon-plus"></span>
-                                                        </button>
+                                                            <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
                                                         </span>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="search__item col-md-4">
-                                    eliminar
-                                </div>
+                                <!--div class="search__item search__item--small col-md-4 col-map">
+                                    <a href="#" class="mini-map js-open-modal mini-map__top">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                        <img src="assets/img/reservacion/map_express.jpg">
+                                    </a>
+                                </div-->
                             </div>
                         </article>
-                    </section>    
-                    <aside class="col-md-8">
-                        <div class="col-xs-24 bg-three--light">
-                            <h3>Resumen <small>Viaje sencillo</small></h3>
+                        <!--VIAJE DE IDA-->
+                        <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
+                            <div class="title-combo">
+                                <h3 class="fl">{{'Step1-P28' | translate}}</h3>
+                                <img class="combo-arrow" src="assets/img/icon-right.svg">
+                            </div> 
+                            <!--Tramo 1-->
+                            <div class="search__top col-xs-24 no-gutter"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 1</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 1-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen" [disabled]="trips.length == 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null" selected="selected">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 1-->
+                                    <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_dst" (ngModelChange)="onChangeStop(false, trips[0])">
+                                            <option [ngValue]="null" selected>{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips[0].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 1-->
+                                    <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start" [ngModel]="trips[0].start"  (ngModelChange)="onDateChange($event, trips[0])" 
+                                            id="step1-start-dt" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete" [hidden]="trips.length == 1">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trip[0])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Tramo 2-->
+                            <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips(2)"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 2</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 2-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-2" [disabled]="trips.length > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[1].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 2-->
+                                    <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[1].id_dst" (ngModelChange)="onChangeStop(false, trips[1])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips[1].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 2-->
+                                    <label class="label-space" for="origen-1">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start-1" [ngModel]="trips[1].start"  (ngModelChange)="onDateChange($event, trips[1])" 
+                                            id="step1-start-dt-1" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips[1])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!--Tramo 3-->
+                            <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips(3)"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 3</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 3-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-2" [disabled]="trips.length > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[2].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 3-->
+                                    <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[2].id_dst" (ngModelChange)="onChangeStop(false, trips[2])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips[2].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 3-->
+                                    <label class="label-space" for="origen-2">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start-2" [ngModel]="trips[2].start"  (ngModelChange)="onDateChange($event, trips[2])" 
+                                            id="step1-start-dt-2" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips[2])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Tramo 4-->
+                            <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips(4)"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 4</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 4-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-3" [disabled]="trips.length > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_src" (ngModelChange)="preflight()" required>
+                                            <option [ngValue]="null" selected>{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 4-->
+                                    <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino-3" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_dst" (ngModelChange)="[disable](false, trips[3])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips[3].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 4-->
+                                    <label class="label-space" for="origen-3">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start-3" [ngModel]="trips[3].start"  (ngModelChange)="onDateChange($event, trips[3])" 
+                                            id="step1-start-dt-3" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips[3])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article> 
+
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-add__btm" *ngIf="trips.length == 1">
+                            <div class="search__top col-xs-24 search__space col-nospace__sides">
+                               <div class="search__dashed clearfix">
+                                   <div class="search__dashed--combo">
+                                        <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(false)">
+                                        <p class="text-default">{{'Step1-P37' | translate}} </p>
+                                    </div>
+                               </div>                                
+                            </div>
+                        </article>     
+                        
+                        <div class="col-xs-24 col-reset col-both" *ngIf="onMaxStops(false)">
+                            <div class="col-xs-6 col-sm-3 col-lg-3">
+                                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(false)"></a>
+                            </div>
+                            <div class="col-xs-12 col-reset">
+                                <p class="text-default text-default__top">{{'Step1-P38' | translate}}</p>
+                            </div>
+                        </div>
+                        <!--VIAJE DE REGRESO-->
+                        <div *ngIf="isRound()">
+                            <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
+                                <div class="title-combo">
+                                    <h3 class="fl">{{'Step1-P39' | translate}}</h3>
+                                    <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
+                                </div>
+                            <!--Tramo 1-->
+                            <div class="search__top col-xs-24 no-gutter"> <!--*ngFor="let trip of this.trips2; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips2.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 1</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 1-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-b" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[0].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 1-->
+                                    <label *ngIf="i == trips2.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips2.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino-b" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[0].id_dst" (ngModelChange)="onChangeStop(true, trips2[0])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips2[0].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 1-->
+                                    <label class="label-space" for="origen-b">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start-b" [ngModel]="trips2[0].start"  (ngModelChange)="onDateChange($event, trips2[0])" 
+                                            id="step1-start-dt-b" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete" *ngIf="display()">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips[0])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!--Tramo 2-->
+                            <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips2(2)"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips2.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 2</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 2-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-2b" [disabled]="trips2.length > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[1].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 2-->
+                                    <label *ngIf="i == trips2.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips2.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino-2b" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[1].id_dst" (ngModelChange)="onChangeStop(true, trips2[1])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips2[1].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 2-->
+                                    <label class="label-space" for="origen-1">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start-2b" [ngModel]="trips2[1].start"  (ngModelChange)="onDateChange($event, trips2[1])" 
+                                            id="step1-start-dt-2b" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips2[1])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Tramo 3-->
+                            <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips2(3)"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips2.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 3</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 3-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-2" [disabled]="trips2.length > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[2].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 3-->
+                                    <label *ngIf="i == trips2.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips2.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[2].id_dst" (ngModelChange)="onChangeStop(translate, trips2[2])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips2[2].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 3-->
+                                    <label class="label-space" for="origen-2">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="date" class="form-control" name="start-2" [ngModel]="trips2[2].start"  (ngModelChange)="onDateChange($event, trips2[2])" 
+                                            id="step1-start-dt-2" ngbDatepicker #d="ngbDatepicker"/>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips2[2])" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            </article>
+
+                            <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-nospace" *ngIf="trips2.length == 1">
+                                <div class="search__top col-xs-24 search__space">
+                                    <div class="search__dashed clearfix">
+                                        <div class="search__dashed--combo">
+                                            <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(true)">
+                                            <p class="text-default">{{'Step1-P48' | translate}} </p>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </article>     
+                            
+                            <div class="col-xs-24 col-reset col-both gap-left__small" *ngIf="onMaxStops(true)">
+                                    <div class="col-xs-6 col-sm-3 col-lg-3 no-gutter-left-mobile">
+                                        <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(true)"></a>
+                                </div>
+                                <div class="col-xs-12 col-reset">
+                                    <p class="text-default text-default__top">{{'Step1-P49' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>   
+
+                    <aside class="col-md-8 col-full"> 
+                        <div class="col-xs-24 bg-three--light box-light">
+                            <div class="col-xs-24 col-reset ">
+                                <div class="col-sm-10 col-lg-15 col-reset" *ngIf="!isRound()">
+                                    <h3>{{'Step1-P50' | translate}} <small>{{'Step1-P51' | translate}}</small></h3>
+                                </div>
+                                <div class="col-sm-10 col-lg-15 col-reset" *ngIf="isRound()">
+                                    <h3>{{'Step1-P50' | translate}} <small>{{'Step1-P65' | translate}}</small></h3>
+                                </div>
+                                <!--div class="col-sm-14 col-lg-9 col-reset col-scale">
+                                    <img class="icon-train" src="assets/img/icon_train.png">
+                                    <span class="text-default text-small">{{'Step1-P52' | translate}} <span class="text-bold text-blue">2</span> {{'Step1-P53' | translate}} <span class="text-bold text-blue">3</span></span>
+                                </div-->
+                            </div>
+                            
+                            <div class="title-combo title-combo__reset">
+                                <h4 class="subtitle text-blue fl">{{'Step1-P54' | translate}}</h4>
+                                <img class="combo-arrow" src="assets/img/icon-arrow-right-gray.svg">
+                            </div>
+                            <div class="route-combo clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                    <span class="text-default text-gray">{{'Step1-P55' | translate}}</span>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg"/>
+                                        <span class="text-bold text-blue">{{this.trips[0].id_src.name}} a {{this.trips[this.trips.length-1].id_dst.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                    <p class="text-default text-gray">{{'Step1-P56' | translate}}</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">{{this.trips[0].id_src.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo route-combo__top clearfix" *ngIf="countTrips(2)">
+                                <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                    <p class="text-default text-gray">{{'Step1-P57' | translate}} 1</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">{{trips[0].id_dst.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo route-combo__top clearfix" *ngIf="countTrips(3)">
+                                <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                    <p class="text-default text-gray">{{'Step1-P57' | translate}} 2</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">{{trips[1].id_dst.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="route-combo route-combo__top clearfix" *ngIf="countTrips(4)">
+                                <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                    <p class="text-default text-gray">{{'Step1-P57' | translate}} 3</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue">{{trips[2].id_dst.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="route-combo clearfix">
+                                <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                    <p class="text-default text-gray">Escala 2</p>
+                                </div>
+                                <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                    <div class="combo-elements__normal">
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                        <span class="text-bold text-blue"></span>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <div class="col-xs-24 bg-four box-space">
+                            <div class="route-text clearfix">
+                                <div class="col-xs-24 col-reset">
+                                    <p class="text-default text-gray">{{'Step1-P58' | translate}}</p>
+                                    <p class="text-default text-bold">{{trips[trips.length-1].start | date: 'dd/MMM/yyyy'}}</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div *ngIf="isRound()">
+                            <div class="col-xs-24 bg-three--light box-light"> 
+                                <div class="title-combo title-combo__reset">
+                                    <h4 class="subtitle text-blue fl">{{'Step1-P59' | translate}}</h4>
+                                    <img class="combo-arrow" src="assets/img/icon-arrow-left.svg">
+                                </div>
+                                <div class="route-combo clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                        <span class="text-default text-gray">{{'Step1-P60' | translate}}</span>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue">{{this.trips2[0].id_src.name}} a {{this.trips2[this.trips2.length-1].id_dst.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="route-combo clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                        <p class="text-default text-gray">{{'Step1-P61' | translate}}</p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue">{{this.trips2[0].id_src.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="route-combo route-combo__top clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                        <p class="text-default text-gray">{{'Step1-P62' | translate}} </p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue"></span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="route-combo route-combo__top clearfix" *ngIf="countTrips2(2)">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                        <p class="text-default text-gray">{{'Step1-P57' | translate}} 1</p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue">{{trips2[0].id_dst.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="route-combo route-combo__top clearfix" *ngIf="countTrips2(3)">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10 col-nospace">
+                                        <p class="text-default text-gray">{{'Step1-P57' | translate}} 2</p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14 col-nospace">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue">{{trips2[1].id_dst.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="route-combo clearfix">
+                                    <div class="col-xs-24 col-sm-10 col-lg-10">
+                                        <p class="text-default text-gray"></p>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-14 col-lg-14">
+                                        <div class="combo-elements__normal">
+                                            <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                            <span class="text-bold text-blue"></span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <!-- <div class="col-xs-24 bg-four box-space">
+                                <div class="route-text clearfix">
+                                    <div class="col-xs-24 col-reset">
+                                        <p class="text-default text-gray">{{'Step1-P63' | translate}}</p>
+                                        <p class="text-default text-bold">{{trips2[trips2.length-1].start | date: 'dd/MMM/yyyy'}}</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>                  
+                        <div class="col-xs-24 col-top" *ngIf="readyToGoNext()">
+                            <a class="btn btn-link c-one p-reset center-horizontal"  routerLink="/reservaciones/{{session.route.name}}/paso3" role="button">
+                                <div>
+                                    <img src="assets/img/icon_right.png">
+                                </div>
+                                <div>{{'Step1-P64' | translate}}</div>
+                            </a>
                         </div>
                     </aside>
                 </section>
-                
              </div>
           </div>
-
-          <div class="col-xs-24 center"> <!-- *ngIf="readyToGoNext()" -->
-             <a class="btn btn-link c-one" routerLink="/reservaciones/{{route.name}}/paso2" role="button">
-                <div>
-                   <img src="assets/img/icon_train.png">
-                </div>
-                <div>{{'Step1-P18' | translate}}</div>
-             </a>
-          </div>
-         
        </div>
 
        <!-- input fix ie11 -->
        <p>Date: <input type="text" id="datepicker" placeholder="dd/mm/aa"></p>
 
     </div>
-
 
     <!-- modal map Chepe Express -->
     <div class="modal mapa fade" id="mapa-full">
@@ -161,3 +729,18 @@
     </div>
     <!-- /.modal -->
  </div>
+ <script>
+      webshims.setOptions('forms-ext', {types: 'date'});
+      webshims.polyfill('forms forms-ext');
+      $.webshims.formcfg = {
+        en: {
+            dFormat: '-',
+            dateSigns: '-',
+            patterns: {
+                d: "mm-dd-yy"
+            }
+        }
+      };
+    </script>
+
+

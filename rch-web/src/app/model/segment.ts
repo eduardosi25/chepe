@@ -12,10 +12,9 @@ export class Segment{
         this.n = n;
         this.src = src;
         this.dst = dst;
-        console.log(dst)
         this.travels = travels;
         if(query != null && this.dst != null){
-            this.stops_at_dst = (query.stops.indexOf(this.dst.id) != -1);
+            this.stops_at_dst = true;// (query.trips.indexOf(this.dst) != -1);
         }
     }
     public src:TrainStop;
@@ -83,6 +82,7 @@ export class Segment{
             let t:Travel = this.travels[i];
             //let dd:Date = new Date(t.date+" "+t.departure.time);
             let dd:Date = this.mkDate(t.date+" "+t.departure.time);   
+            travels.push(t);
             if(dd.getTime()>=min.getTime() && dd.getTime()<=max.getTime()){
                 travels.push(t);
             }

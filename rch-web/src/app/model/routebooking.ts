@@ -6,6 +6,9 @@ import { SessionService } from "../session.service";
 import { Segment } from "./segment";
 import { PassengerType } from "./passengertype";
 import { FromJSONable } from "./FromJSONable";
+import { Wagon } from "./wagon";
+import { Route2 } from "./route2";
+import { Cost } from "./cost";
 //0 = inactive 1= editing 2= booked 3= paid 4= cancelled
 export class RouteBooking implements FromJSONable{
     public static inactive:number = 0;
@@ -29,7 +32,9 @@ export class RouteBooking implements FromJSONable{
         this.seats = []; var x:Object[] = object["seats"];
         if(x){
             for(var i=0;i<x.length;i++){
-                let y:SeatBooking = new SeatBooking();y.parseJSONObject(x[i]);
+                let y:SeatBooking = new SeatBooking(new Seat(), new Wagon(), new Travel(), new Route2(), new PassengerType(),
+                new Cost(), 0, 0);
+                y.parseJSONObject(x[i]);
                 this.seats.push(y);
             }
         }
@@ -37,6 +42,7 @@ export class RouteBooking implements FromJSONable{
         if(x){
             for(var i=0;i<x.length;i++){
                 let y:Person = new Person();y.parseJSONObject(x[i]);
+                y.id = i;
                 this.persons.push(y);
             }
         }
