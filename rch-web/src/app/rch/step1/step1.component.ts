@@ -95,7 +95,17 @@ export class Step1Component implements OnInit {
       //   todayHighlight: true, 
       //   language:'es'
       // });
-
+      // // webshims.setOptions('forms-ext', {types: 'date'});
+      // // webshims.polyfill('forms forms-ext');
+      // // $.webshims.formcfg = {
+      // //   en: {
+      // //       dFormat: '-',
+      // //       dateSigns: '-',
+      // //       patterns: {
+      // //           d: "mm-dd-yy"
+      // //       }
+      // //   }
+      // // };
       // Funcion de agregar / eliminar escalas
       $(".js-clone").on('click', function(e){
         e.preventDefault(); 
@@ -181,7 +191,7 @@ export class Step1Component implements OnInit {
   }
   public onCreateTrip(round:boolean){
     let index;    
-    let tr : Trip = new Trip(0,0,null);
+    let tr : Trip = new Trip(0,0,new Date());
     if(round){
       this.trips2.push(tr);
       index = this.trips2.indexOf(tr,0);
@@ -323,10 +333,17 @@ export class Step1Component implements OnInit {
     }
   }
   public readyToGoNext():boolean{
-    // this.last_failure_motive = null;
-    // this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');this.a1('clase');
+    this.last_failure_motive = null;
+    this.a1('origen');this.a1('destino');this.a1('pasajeros');this.a1('inicio');this.a1('fin');this.a1('clase');
     // if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
     // if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
+    if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
+    if(this.trips[0].id_src == null || this.trips[0].id_src == 0){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
+    if(this.trips[0].id_dst == null || this.trips[0].id_dst == 0){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
+    var now_dt:Date = new Date();
+    console.log(this.trips[0].start.getTime());
+    console.log(now_dt.getTime());
+    if(this.trips[0].start.getTime() < now_dt.getTime()){this.last_failure_motive = "Elige inicio válido";this.a1('step1-start-dt','orange');return false;}
     // var start_dt:Date = new Date(this.session.query.start);
     // var end_dt:Date = new Date(this.session.query.end);
     // var now_dt:Date = new Date();
@@ -334,7 +351,6 @@ export class Step1Component implements OnInit {
     // for(var i in this.session.query.stops){
     //   if(this.session.query.stops[i]){nstops++;}
     // }
-    if(this.session.route.pick_class && this.session.query.class == null){this.last_failure_motive = "Elige una clase.";this.a1('clase','orange');return false;}
     // var min_end_dt:Date = new Date(start_dt.getTime()+(nstops*1000*60*60*24));
     // if(this.session.query.round){
     //   let t = min_end_dt.getTime();
@@ -349,6 +365,17 @@ export class Step1Component implements OnInit {
     //   $('#end-warning').text('Elige una fecha posterior o igual a '+min_end_dt.getFullYear()+"-"+(min_end_dt.getMonth()+1)+"-"+min_end_dt.getDate());
     //   return false;
     // }
+    this.session.query2 = new AvailabilityQuery2(this.model);
+    // this.session.query2 = this.session.query;
+    console.log("ok con query");
+    console.log(this.session);
+    var clase = this.session.query.class;
+    var redondo = this.session.query.round;
+    var pax = this.session.query.passengers;
+    this.session.query2.trips = this.trips2;
+    this.session.query2.class = clase;
+    this.session.query2.round = redondo;
+    this.session.query2.passengers = pax;
     if(this.session.query.getTotalPassengers()<=0){this.last_failure_motive = "Elige pasajeros.";this.a1('pasajeros','orange');return false;}
     return true;
   }
@@ -451,21 +478,33 @@ value   */
     }
   }
   isRegional(route:Route2):boolean{
-    console.log(route.name);
+    // console.log(route.name);
     return (route.name.toLowerCase() == "regional");
   }
-  public onMaxStops():boolean{
-    if (this.numStops < this.route.max_stops || this.numStops == 0) {
+  public onMaxStops(round:boolean):boolean{
+    // console.log(this.numStops);
+    // console.log(this.route.max_stops);
+    if(round){      
+      if ((this.numStops >= this.route.max_stops || this.numStops == 0 || this.trips2.length == 1)) {
+        return false;
+      }
+      else //if(this.trips.length != 1)
+        return true;
+      }
+    else{
+      
+    if ((this.numStops >= this.route.max_stops || this.numStops == 0 || this.trips.length == 1)) {
       return false;
     }
-    else
+    else //if(this.trips2.length != 1)
       return true;
+    }
   }
   public isRound():boolean{
     return this.session.query.round;
   }
   public display():boolean{
-    console.log(this.trips2.length)
+    // console.log(this.trips2.length)
     if (this.trips2.length == 1){
       return true;
     }

@@ -14,6 +14,7 @@ export class SessionService {
   constructor() {
   }
   public query:AvailabilityQuery2;
+  public query2:AvailabilityQuery2;
   public route:Route2;
   /** Segmentos para el viaje de ida */
   public segments:Segment[];

@@ -62,7 +62,9 @@ export class Step4Component implements OnInit {
 
     if (!Step4Component.email_regex.test(this.session.rb.etickets_email)) { $('#etickets_email').addClass('orange'); return false; }
     if (this.session.rb.etickets_email2 != this.session.rb.etickets_email) { $('#etickets_email2').addClass('orange'); return false; }
-    //if(this.session.rb.etickets_phone == ""){$('#etickets_phone').addClass('orange');return false;}
+    console.log("Phone");
+    console.log(this.session.rb.etickets_phone);
+    if(this.session.rb.etickets_phone == ""){$('#etickets_phone').addClass('orange');return false;}
     return this.session.rb.pp;
   }
   //  public getCountry(){
