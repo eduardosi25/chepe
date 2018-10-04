@@ -110,6 +110,13 @@ export class Step1Component implements OnInit {
         $("#mapa-full").removeClass("active");
       });
 
+      // Datepicker
+      $( "#datepicker" ).datepicker({
+        autoSize: true,
+        todayHighlight: true,
+        language:'es',
+      });
+
     }, 1000);
 
 
