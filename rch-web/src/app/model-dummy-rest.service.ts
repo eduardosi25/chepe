@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { UrlWebPay } from './model/url';
 import { WebPay } from './model/webpay';
 import { Country } from './model/country';
+import { WebPayNotification } from './model/WebPayNotification';
 @Injectable()
 export class ModelDummyRestService implements IModel{
   private use_mocks:boolean = false;
@@ -125,11 +126,9 @@ export class ModelDummyRestService implements IModel{
       
     });
   }
-  // getPaymentUrl(amount:number,mail:string): Observable<Response<UrlWebPay>> {    
-  //   return new Observable<Response<UrlWebPay>>((observer)=>{ 
-  //     "http://wpp.sandbox.mit.com.mx/i/5RA7JKMS";           
-  //   });
-  // }
+  getPaymentNotification(reference:number): Observable<Response<WebPayNotification>> {    
+    return new Observable<Response<WebPayNotification>>();
+  }
   getCountries(): Observable<Response<Country[]>> {
     return new Observable<Response<Country[]>>((observer)=>{
       this.dummies.getCountries().subscribe((data)=>{

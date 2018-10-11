@@ -97,7 +97,7 @@ export class CommitComponent implements OnInit {
   captchaSolved(captchaResponse: string){
     this.is_captcha_solved=true;
     this.http.post('https://www.google.com/recaptcha/api/siteverify',{
-      'secret':'6LfMUFIUAAAAADHKkgMSv6WKj8-PuuE6jgGHszpR',
+      'secret':'6LdqDHQUAAAAALywsAfjmgqDg0k_O682N0XY7-3d',
       'response':captchaResponse
     }).subscribe(data => {
       this.is_captcha_solved=true;

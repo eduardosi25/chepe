@@ -22,6 +22,7 @@ import { UrlWebPay } from './model/url';
 import { WebPay } from './model/webpay';
 import { Referencia } from './model/referencia';
 import { Country } from './model/country';
+import { WebPayNotification } from './model/WebPayNotification';
 
 @Injectable()
 export class ModelDummyService implements IModel {
@@ -278,8 +279,8 @@ export class ModelDummyService implements IModel {
     let c : Country[] = [];
     return Observable.of(new Response("+RCH.WS1.0",null, c));
   }
-  // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
-  //   return Observable.of(new Response<UrlWebPay>("+RCH.WS17.0",null,new UrlWebPay("http://wpp.sandbox.mit.com.mx/i/5RA7JKMS")));
-  // }
+  getPaymentNotification(reference:number):Observable<Response<WebPayNotification>>{
+    return Observable.of(new Response<WebPayNotification>("+RCH.WS17.0",null,new WebPayNotification(0,"","","","","","","","","","","","","","","","","","")));
+  }
 
 }

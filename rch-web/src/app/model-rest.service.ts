@@ -15,6 +15,7 @@ import {environment} from "../environments/environment";
 import { UrlWebPay } from './model/url';
 import { WebPay } from './model/webpay';
 import { Country } from './model/country';
+import { WebPayNotification } from './model/WebPayNotification';
 @Injectable()
 export class ModelRestService implements IModel {
 
@@ -87,10 +88,7 @@ export class ModelRestService implements IModel {
   getCountries():Observable<Response<Country[]>>{
     return this.stdCall<Country[]>(Country,this.base+"/"+this.prefix+"/countries","get",null,{},null,null,true);
   }
-  // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
-  //   return this.stdCall<UrlWebPay>(UrlWebPay,this.base+"/"+this.prefix+"/payment/url","get",null,{
-  //     'amount':amount,
-  //     'mail':mail
-  //   });
-  // }
+  getPaymentNotification(reference:number):Observable<Response<WebPayNotification>>{ 
+    return this.stdCall<WebPayNotification>(WebPayNotification,this.base+"/"+this.prefix+"/payment/notification/"+reference,"get",null);
+  }
 }

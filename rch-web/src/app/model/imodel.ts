@@ -10,6 +10,7 @@ import {Observable} from "rxjs/Rx";
 import { UrlWebPay } from "./url";
 import { WebPay } from "./webpay";
 import { Country } from "./country";
+import { WebPayNotification } from "./WebPayNotification";
 
 export interface IModel{
     getRoutes():Observable<Response<Route2[]> >;
@@ -21,5 +22,5 @@ export interface IModel{
     getWebPayUrl(b:RouteBooking):Observable<Response<WebPay> >;
     getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel> >;
     getCountries():Observable<Response<Country[]>>;
-    //getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>;
+    getPaymentNotification(reference:number):Observable<Response<WebPayNotification>>;
 }

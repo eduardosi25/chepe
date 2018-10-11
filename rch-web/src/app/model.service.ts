@@ -20,6 +20,7 @@ import { WagonType } from './model/wagontype';
 import { Url } from 'url';
 import { WebPay } from './model/webpay';
 import { Country } from './model/country';
+import { WebPayNotification } from './model/WebPayNotification';
 
 @Injectable()
 export class ModelService implements IModel {
@@ -88,9 +89,9 @@ export class ModelService implements IModel {
   getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
     return this.impl.getTravel(id,id_src,id_dst);
   }
-  // getPaymentUrl(amount:number,mail:string):Observable<Response<UrlWebPay>>{
-  //   return this.impl.getPaymentUrl(amount,mail);
-  // }
+  getPaymentNotification(reference:number):Observable<Response<WebPayNotification>>{
+    return this.impl.getPaymentNotification(reference);
+  }
   public getRouteByName(route_name:string):Route2{
     return this.route_by_name[route_name];
   }

@@ -6,12 +6,24 @@
         <hr class="orange-hr" />
         <h5 class="c-one" *ngIf="content.reference !== undefined && content.reference !== ''">
           <b>Referencia: {{content.reference}}</b>
+        </h5>        
+        <h5 class="c-one" *ngIf="content.amount !== undefined && content.amount !== ''">
+          <b>Monto: $ {{content.amount}} {{content.moneda}}</b>
+        </h5>       
+        <h5 class="c-one" *ngIf="content.nombre !== undefined && content.nombre !== ''">
+          <b>Nombre: $ {{content.nombre}}</b>
+        </h5>     
+        <h5 class="c-one" *ngIf="content.num_tarjeta !== undefined && content.num_tarjeta !== ''">
+          <b>Núm. Tarjeta: ************{{content.num_tarjeta}}</b>
         </h5>
-        <h5 class="c-one" *ngIf="content.operation_num !== undefined && content.operation_num !== ''">
-          <b>Número de operación: {{content.operation_num}}</b>
+        <h5 class="c-one" *ngIf="content.tipo_tarjeta !== undefined && content.tipo_tarjeta !== ''">
+          <b>Tipo Tarjeta: {{content.tipo_tarjeta}}</b>
         </h5>
         <h5 class="c-one" *ngIf="content.auth_num !== undefined && content.auth_num !== ''">
           <b>Número de autorización: {{content.auth_num}}</b>
+        </h5>
+        <h5 class="c-one" *ngIf="content.operation_num !== undefined && content.operation_num !== ''">
+          <b>Número de operación: {{content.operation_num}}</b>
         </h5>
         <h5 class="c-one" *ngIf="content.code_resp !== undefined && content.nbError !== ''">
           <b>{{content.code_resp}} / {{content.nbError}}</b>
@@ -19,14 +31,14 @@
         <p class="blue-express fontweight600" [innerHTML]="content.main"></p>
         <p class="blue-express fontweight600" [innerHTML]="content.extra"></p>
         <br/>
-        <h5 class="c-one">
+        <!-- <h5 class="c-one">
           <b>Gracias por tu preferencia</b>
-        </h5>
+        </h5> -->
       </div>
     </div>
-    <div class="row margintop50">
+    <div class="row margintop10">
       <div class="col-xs-12 col-sm-4 center icon__cross">
-        <a class="btn btn-link" routerLink="/reservaciones" role="button">
+        <a class="btn btn-link" onclick="JavaScript: parent.location.href='/reservaciones';" role="button">
           <div>
             <img src="assets/img/icon_cross.png">
           </div>

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ModelService } from '../../model.service';
+import { WebPayNotification } from '../../model/WebPayNotification';
+import { Observable } from 'rxjs';
+import { UrlWebPay } from '../../model/url';
 
 @Component({
   selector: 'app-confirm',
@@ -15,57 +19,91 @@ export class ConfirmComponent implements OnInit {
     'operation_num': '',
     'auth_num': '',
     'code_resp': '',
-    'nbError' : ''
+    'nbError' : '',
+    'amount' : '',
+    'nombre' : '',
+    'num_tarjeta' : '',
+    'tipo_tarjeta' : '',
+    'moneda' : ''
   };
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private model:ModelService, 
   ) { }
 
   ngOnInit() {
     // Obtenemos parametros de pago
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       const nbResponse = params['nbResponse'];
-      const referencia = params['referencia'];
+      var referencia:number = params['referencia'];
       const operacion = params['operacion'];
       const nuAut = params['nuAut'];
       const nbError = params['nb_error'];
       const cdResponse = params['cdResponse'];
+      var amount:string = params['importe'];
+      var nombre:string;// = params['nombre'];
+      var numTarjeta:string;// = params['num_tarjeta'];
+      var tipoTarjeta:string = params['banco'];
+      var moneda:string;// = params['moneda'];
 
-      // Si no se reciben los parámetros necesarios, redirect a reservaciones
-      //if (nbResponse === undefined || nuAut === undefined) {
-        //this.router.navigate(['/reservaciones']);
-        //return;
-      //}
+      var wpNotif : WebPayNotification; 
+      this.model.getPaymentNotification(referencia).subscribe((response:any) => {        
+        console.log(wpNotif);
+        // while (wpNotif == null || wpNotif.response == "" || wpNotif.response == undefined) {
+        //   this.model.getPaymentNotification(referencia).subscribe((response:any) => {
+            console.log(response);
+            wpNotif = response.data;  
+            amount = amount;
+            numTarjeta = wpNotif.cc_number;
+            tipoTarjeta = tipoTarjeta;
+            moneda = "MXN";  
+              // Si nbResponse = “Aprobado” y nuAut != “”
+            if (nbResponse === 'Aprobado' && nuAut !== '') {
+              this.content.title = 'Cobro Aprobado';
+              this.content.reference = referencia.toString();
+              this.content.nombre = nombre;
+              this.content.amount = amount;
+              this.content.moneda = moneda;
+              this.content.num_tarjeta = numTarjeta;
+              this.content.tipo_tarjeta = tipoTarjeta;
+              this.content.auth_num = nuAut;
+              this.content.operation_num = operacion;
 
-      // Si nbResponse = “Aprobado” y nuAut != “”
-      if (nbResponse === 'Aprobado' && nuAut !== '') {
-        this.content.title = 'Tu compra se realizó con éxito';
-        this.content.main = 'En breve recibirás tus boletos electrónicos <br /> y clave de reservación por correo electrónico.';
-        this.content.extra = 'Te recomendamos imprimas tus boletos y los lleves <br/>contigo el día que vayas a abordar el tren. <br/>Gracias por tu preferencia';
-        this.content.reference = referencia;
-        this.content.operation_num = operacion;
-        this.content.auth_num = nuAut;
-      }
+              this.content.main = 'En breve recibirás tus boletos electrónicos <br /> y clave de reservación por correo electrónico.';
+              this.content.extra = 'Te recomendamos imprimas tus boletos y los lleves <br/>contigo el día que vayas a abordar el tren. <br/>Gracias por tu preferencia';
+            }
 
-      // Si nbResponse = “Rechazado”
-      else if (nbResponse === 'Rechazado') {
-        this.content.title = 'Tu pago ha sido rechazado';
-        this.content.main = 'Favor de comprobar con el banco emisor o intentar con otra tarjeta';
-        this.content.extra = '';
-        this.content.code_resp = cdResponse;
-        this.content.nbError = nbError;
-      }
+            // Si nbResponse = “Rechazado”
+            else if (nbResponse === 'Rechazado') {
+              this.content.title = 'Cobro declinado';
+              this.content.main = 'No se realizó ningún cargo a su tarjeta';
+              this.content.extra = 'La operación fue declinada por su banco emisor.\n Favor de intentar con otra tarjeta';
+              this.content.code_resp = cdResponse;
+              this.content.nbError = nbError;
+              this.content.amount;
+              this.content.num_tarjeta;
+              this.content.title;
+              this.content.nombre;
+              this.content.moneda;
+            }
 
-      // Si no es rechazado o aprobado
-      //if ((nbResponse !== 'Rechazado' && nbResponse !== 'Aprobado') || nuAut === '' ) {
-      else{
-        this.content.title = 'Lo sentimos, no podemos procesar el pago.';
-        this.content.main = 'Favor de intentar mas tarde o contactar a nuestra área de Atención al Cliente.';
-        this.content.extra = '';
-      }
-
+            // Si no es rechazado o aprobado
+            //if ((nbResponse !== 'Rechazado' && nbResponse !== 'Aprobado') || nuAut === '' ) {
+            else{
+              this.content.title = 'Lo sentimos, no podemos procesar el pago.';
+              this.content.main = 'Favor de intentar mas tarde o contactar a nuestra área de Atención al Cliente.';
+              this.content.extra = '';
+            }
+            // Si no se reciben los parámetros necesarios, redirect a reservaciones
+            //if (nbResponse === undefined || nuAut === undefined) {
+              //this.router.navigate(['/reservaciones']);
+              //return;
+            //}
+            /* */
+        //   });
+        // }
+      });
     });
   }
-
 }
