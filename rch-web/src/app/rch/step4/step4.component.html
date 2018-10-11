@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-sm-8 col-md-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" [(ngModel)]="person.name" id="p_{{i}}_name">
+                                        <input type="text" class="form-control" [(ngModel)]="person.name" id="p_{{i}}_name" maxlength="16">
                                     </div>
                                 </div>
                                 <div class="col-sm-4 col-md-2">
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="col-sm-8 col-md-4">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" [(ngModel)]="person.lastname" id="p_{{i}}_lastname">
+                                        <input type="text" class="form-control" [(ngModel)]="person.lastname" id="p_{{i}}_lastname" maxlength="16">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-4 padd5">
@@ -155,14 +155,14 @@
                             <div class="col-sm-12 col-md-8">
                                 <div class="form-group">
                                     <label for="celular">{{'Step4-P16' | translate}}</label>
-                                    <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_email2" id="etickets_email2">
+                                    <input type="text" class="form-control" id="celular" [(ngModel)]="session.rb.etickets_email2" id="etickets_email2" >
                                     <span id="helpBlock" class="help-block">{{'Step4-P17' | translate}}</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-8">
                                 <div class="form-group">
                                     <label>{{'Step4-P26' | translate}}</label>
-                                    <input type="text" class="form-control form-control__number" [(ngModel)]="session.rb.etickets_phone" id="etickets_phone">
+                                    <input type="text" class="form-control form-control__number" [(ngModel)]="session.rb.etickets_phone" id="etickets_phone" maxlength="10">
                                     <span id="helpBlock" class="help-block"> </span>
                                 </div>
                             </div>
