@@ -717,6 +717,29 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    <!-- Detalle compra -->
+    <div class="col-xs-32" *ngIf="session.schedule">
+        <table class="table uppercase">
+            <tbody>
+                <tr>
+                    <th class="bg-three border2 c-one" scope="row">Pasajero 1 - Subtotal</th>
+                    <td class="bg-two-darker border2 c-one">$1,500.00 MXN</td>
+                </tr>
+                <tr>
+                    <th class="bg-three c-one" scope="row">Pasajero 2 - Subtotal</th>
+                    <td class="bg-two-darker c-one">$1,000.00 MXN</td>
+                </tr>
+                <tr>
+                    <th class="bg-three border2 c-one" scope="row">Total</th>
+                    <td class="bg-two-darker border2 c-one">$3,500.00 MXN</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
  </div>
  <script>
       webshims.setOptions('forms-ext', {types: 'date'});
