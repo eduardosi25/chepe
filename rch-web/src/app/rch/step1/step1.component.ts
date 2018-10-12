@@ -165,7 +165,23 @@ export class Step1Component implements OnInit {
         autoSize: true,
         todayHighlight: true,
         language: 'es',
+        onSelect: function(dateText, inst) { 
+          var dateAsString = dateText; //the first parameter of this function
+          var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+          console.log("La fecha " + dateAsObject);
+          console.log(dateAsString);
+       }
+      }).on("change", function() {
+          var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+          console.log("La fecha " + dateAsObject);
+          $(".cambiar-fecha").each(function(){
+            $(this).html(dateAsObject);
+          });
       });
+
+      
+
+      
 
       //Tooltip
       $(".js-my-tooltip").click(function (e) {
