@@ -21,7 +21,6 @@ import { HttpClient } from '@angular/common/http';
 import { $$ } from '../../../../node_modules/protractor';
 import { Trip } from '../../model/trip';
 import { query } from '@angular/core/src/render3/instructions';
-import { _ } from "@biesbjerg/ngx-translate-extract/dist/utils/utils";
 import { TranslateService } from '@ngx-translate/core';
 import { DISABLED } from '@angular/forms/src/model';
 import { detectChanges } from '@angular/core/src/render3';
