@@ -175,11 +175,8 @@
                                     <!--Fecha 1-->
                                     <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <!-- input fix ie11 -->
-                                        
-                                        <input type="text" id="datepicker" placeholder="dd/mm/aa" [ngModel]="trips[0].start"  (ngModelChange)="onDateChange($event, trips[0])">
-                                        <!-- <input type="date" class="form-control" name="start" [ngModel]="trips[0].start"  (ngModelChange)="onDateChange($event, trips[0])"  -->
-                                            <!-- id="fecha1" ngbDatepicker #d="ngbDatepicker"/> -->
+                                        <input type="date" class="form-control" name="start" [ngModel]="trips[0].start"  (ngModelChange)="onDateChange($event, trips[0])" 
+                                            id="fecha1" ngbDatepicker #d="ngbDatepicker"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -692,7 +689,7 @@
        </div>
 
        <!-- input fix ie11 -->
-       <p>Date: <input type="text" id="datepicker" placeholder="dd/mm/aa" [ngModel]="trips[0].start"  (ngModelChange)="onDateChange($event, trips[0])"></p>
+       <!-- <p>Date: <input type="text" id="datepicker" placeholder="dd/mm/aa"></p> -->
 
     </div>
 
