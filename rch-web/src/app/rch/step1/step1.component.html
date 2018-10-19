@@ -174,11 +174,10 @@
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
                                     <!--Fecha 1-->
                                     <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start" [ngModel]="trips[0].start"  (ngModelChange)="onDateChange($event, trips[0])" 
-                                            id="fecha1" ngbDatepicker #d="ngbDatepicker"/>
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
+                                        <div class="input-calendar col-xs-24 no-gutter">
+                                            <input type="text" class="form-control" id="datepicker1" [value] = "dateStr1"> 
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div>
                                 </div>
                             </div>
                             <!--Tramo 2-->
@@ -212,8 +211,7 @@
                                     <!--Fecha 2-->
                                     <label class="label-space" for="origen-1">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start-1" [ngModel]="trips[1].start"  (ngModelChange)="onDateChange($event, trips[1])" 
-                                            id="fecha2" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" id="datepicker2" [value] = "dateStr2"> 
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -258,8 +256,7 @@
                                     <!--Fecha 3-->
                                     <label class="label-space" for="origen-2">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start-2" [ngModel]="trips[2].start"  (ngModelChange)="onDateChange($event, trips[2])" 
-                                            id="fecha3" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" id="datepicker3" [value] = "dateStr3"> 
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -355,7 +352,7 @@
                                     <!--Origen 1-->
                                     <label>{{'Step1-P30' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="origen3" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[0].id_src" (ngModelChange)="onChangeStop()">
+                                        <select class="form-control" id="o4" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[0].id_src" (ngModelChange)="onChangeStop()">
                                             <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
                                             <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -376,8 +373,7 @@
                                     <!--Fecha 1-->
                                     <label class="label-space" for="origen-b">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start-b" [ngModel]="trips2[0].start"  (ngModelChange)="onDateChange($event, trips2[0])" 
-                                            id="fecha4" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" id="datepicker4" [value] = "dateStr4">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -414,8 +410,7 @@
                                     <!--Fecha 2-->
                                     <label class="label-space" for="origen-1">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start-2b" [ngModel]="trips2[1].start"  (ngModelChange)="onDateChange($event, trips2[1])" 
-                                            id="fecha5" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" id="datepicker5" [value] = "dateStr5">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -459,8 +454,7 @@
                                     <!--Fecha 3-->
                                     <label class="label-space" for="origen-2">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start-2" [ngModel]="trips2[2].start"  (ngModelChange)="onDateChange($event, trips2[2])" 
-                                            id="fecha6" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" id="datepicker6" [value] = "dateStr6">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -687,12 +681,6 @@
              </div>
           </div>
        </div>
-
-       <!-- input fix ie11 -->
-       <!-- <p>Date: <input type="text" id="datepicker" placeholder="dd/mm/aa"></p> -->
-
-    </div>
-
     <!-- modal map Chepe Express -->
     <div class="modal mapa fade" id="mapa-full">
         <div class="modal-dialog modal-lg" role="document" >
@@ -712,6 +700,29 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    <!-- Detalle compra 
+    <div class="col-xs-32" *ngIf="session.schedule">
+        <table class="table uppercase">
+            <tbody>
+                <tr>
+                    <th class="bg-three border2 c-one" scope="row">Pasajero 1 - Subtotal</th>
+                    <td class="bg-two-darker border2 c-one">$1,500.00 MXN</td>
+                </tr>
+                <tr>
+                    <th class="bg-three c-one" scope="row">Pasajero 2 - Subtotal</th>
+                    <td class="bg-two-darker c-one">$1,000.00 MXN</td>
+                </tr>
+                <tr>
+                    <th class="bg-three border2 c-one" scope="row">Total</th>
+                    <td class="bg-two-darker border2 c-one">$3,500.00 MXN</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+-->
  </div>
  <script>
       webshims.setOptions('forms-ext', {types: 'date'});

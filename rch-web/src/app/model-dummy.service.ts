@@ -30,13 +30,13 @@ export class ModelDummyService implements IModel {
   constructor() { }
 
   getStdPassengerTypes():PassengerType[]{
-    return [new PassengerType(1,"Adultos ","(12+ años)",1,100),
-            new PassengerType(2,"Infante ","(0-4 años)",0,100),
-            new PassengerType(3,"Menor ","(5-11 años)",0,100),
-            new PassengerType(4,"INSEN","",0,100),
-            new PassengerType(5,"Estudiante","",0,100),
-            new PassengerType(5,"Profesor","",0,100),
-            new PassengerType(6,"Discapacitado","",0,100)];
+    return [new PassengerType(1,"Adultos ","(12+ años)",1,10),
+            new PassengerType(2,"Infante ","(0-4 años)",0,10),
+            new PassengerType(3,"Menor ","(5-11 años)",0,10),
+            new PassengerType(4,"INSEN","",0,10),
+            new PassengerType(5,"Estudiante","",0,10),
+            new PassengerType(5,"Profesor","",0,10),
+            new PassengerType(6,"Discapacitado","",0,10)];
   }
   rss():number{
     let r:number = Math.random();
