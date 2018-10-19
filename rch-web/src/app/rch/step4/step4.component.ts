@@ -48,9 +48,9 @@ export class Step4Component implements OnInit {
     this.location.back();
   }
   static email_regex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  static name_regex: RegExp = /\w[A-Za-z]{3,16}/;
-  static lastname_regex: RegExp = /\w[A-Za-z]{3,16}/;
-  static cellphone_regex: RegExp = /\w[0-9]{9,9}/;
+  static name_regex: RegExp = /^[a-zA-ZñÑ]{2,30}$/;
+  static lastname_regex: RegExp = /^[a-zA-ZñÑ]{2,30}$/;
+  static cellphone_regex: RegExp = /[0-9]{9,9}/;
   public readyToGoNext(): boolean {
     $('.form-control').removeClass('orange');
     for (var i = 0; i < this.session.rb.persons.length; i++) {
