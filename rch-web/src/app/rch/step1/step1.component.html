@@ -290,7 +290,7 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino-3" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_dst" (ngModelChange)="[disable](false, trips[3])">
+                                        <select class="form-control" id="destino7" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_dst" (ngModelChange)="onChangeStop(false, trips[3])">
                                             <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
                                             <option *ngFor="let ts of getDsts(0,trips[3].id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -300,8 +300,7 @@
                                     <!--Fecha 4-->
                                     <label class="label-space" for="origen-3">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="date" class="form-control" name="start-3" [ngModel]="trips[3].start"  (ngModelChange)="onDateChange($event, trips[3])" 
-                                            id="step1-start-dt-3" ngbDatepicker #d="ngbDatepicker"/>
+                                        <input type="text" class="form-control" id="datepicker7" [value] = "dateStr7"> 
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
