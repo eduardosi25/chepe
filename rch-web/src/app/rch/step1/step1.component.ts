@@ -64,16 +64,17 @@ export class Step1Component implements OnInit {
   public constBackOrigin: boolean;
   public flagDisabled: boolean;
   public flagOrigin: boolean;
-  public stopNumErr: number;
-  public dateNumErr: number;
+  public stopNumErr: number; public dateNumErr: number;
   public radio: boolean = null;
   public keySrc: number;
-  public keyDst: number;
-  public key1Dst: number;
-  public firstKey: boolean = null;
-  public lastKey: boolean = null;
-  public keyDst1: boolean = null;
-  public keyDst2: boolean = null;
+  public keyDst1: number;public keyDst2: number;public keyDst3: number;
+  public keySrcBack: number;
+  public keyDstBack1: number;public keyDstBack2: number;public keyDstBack3: number;
+  public flagSrc: boolean = null;
+  public flagDst1: boolean = null;public flagDst2: boolean = null;public flagDst3: boolean = null;
+  public flagDsts3: boolean = null;public keyDsts3: number;
+  public flagSrcBack: boolean = null;
+  public flagDstBack1: boolean = null;public flagDstBack2: boolean = null;public flagDstBack3: boolean = null;
   public dateStr1;public dateStr2;public dateStr3;public dateStr4;public dateStr5;public dateStr6;
   public dateGet;public dayGet1;public dayGet2;public dayGet3;public dayGet4;public dayGet5;
   public fechaGet;public fechaGet1;public fechaGet2;public fechaGet3;public fechaGet4;public fechaGet5;
@@ -338,7 +339,7 @@ export class Step1Component implements OnInit {
         else if (this.trips2[1].start.getTime() <= this.trips2[0].start.getTime()) { this.constBackDate = true; this.dateNumErr = 5; }
         else if (this.trips2[2].start.getTime() <= this.trips2[1].start.getTime()) { this.constBackDate = true; this.dateNumErr = 6; }
         else (this.constBackDate = null)
-      }
+      }this.onChangeStop(true , this.trips2[0])
     }
     
     
@@ -346,81 +347,206 @@ export class Step1Component implements OnInit {
   public onChangeStop(round: boolean, tr: Trip) {
 
     let index;
-    var id_dst1 = null;var id_dst2 = null;var id_dst3 = null;var id_src1 = null;
-    var backId_dst1 = null;var backId_dst2 = null;var backId_dst3 = null;var backId_src1 = null;var backId = null;
+    var id_dst1 = null;var id_dst2 = null;var id_dst3 = null;
+    var id_src1 = null;
+    var backId_dst1 = null;var backId_dst2 = null;var backId_dst3 = null;
+    var backId_src1 = null;
+    var backId = null;
     var getSrcs = null; getSrcs = this.getSrcs(0);  id_src1 = this.trips[0].id_src;
-
-    for (const key in getSrcs) {const position = getSrcs[key].id
+       
+    for (const key in getSrcs) {
+      const position = getSrcs[key].id
       if (position == id_src1.id) { this.keySrc = toInteger(key) }
     }
     var getSrcslenngth = this.getSrcs(0).length - 1;
-    if (getSrcslenngth == this.keySrc) { this.lastKey = true }
-    if (this.keySrc == 0) { this.firstKey = true }
+    if (getSrcslenngth == this.keySrc) { this.flagSrc = true }
+    else if (this.keySrc == 0) { this.flagSrc = false }
+    else (this.flagSrc = null)
+// Viaje ida con dos paradas
+  
+    if (this.trips.length == 2){
+      id_dst1 = this.trips[0].id_dst;
+      id_dst2 = this.trips[1].id_dst;
 
-    if (this.trips.length == 2) {id_dst1 = this.trips[0].id_dst; id_dst2 = this.trips[1].id_dst;
-      for (const key in getSrcs) {const position = getSrcs[key].id
-        if (position == id_dst1.id) { this.keyDst = toInteger(key) }
+      for (const keyD1 in getSrcs){
+        const position1 = getSrcs[keyD1].id
+        if(position1 == id_dst1.id){ this.keyDst1 = toInteger(keyD1)}
+      }
+      var getDstslenngth = this.getDsts(0).length - 1;
+      if (getDstslenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+      else (this.flagDst1 = null)
+  
+      if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
+      else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.constStop = true; this.stopNumErr = 2}
+      else if(this.flagDst1 == true){this.flagDst1 = null;this.constStop = true; this.stopNumErr = 1}
+      else if(this.flagSrc == null && id_dst1.id <= id_src1.id && id_dst1.id <= id_dst2.id){this.constStop = true; this.stopNumErr = 1}
+      else if(this.flagSrc == null && id_dst1.id >= id_src1.id && id_dst1.id >= id_dst2.id){this.constStop = true; this.stopNumErr = 1}
+      else if (this.flagSrc == false && id_dst2.id <= id_dst1.id){this.constStop = true ; this.stopNumErr= 2}
+      else if (this.flagSrc == true && id_dst2.id >= id_dst1.id){this.constStop = true ; this.stopNumErr= 2}
+      else (this.constStop = null)
+
+    }
+
+// Viaje ida con tres paradas
+
+    if(this.trips.length == 3){
+      id_dst1 = this.trips[0].id_dst;
+      id_dst2 = this.trips[1].id_dst;
+      id_dst3 = this.trips[2].id_dst;
+
+      for (const key in getSrcs) {
+        const position = getSrcs[key].id
+        if (position == id_dst3.id) { this.keyDsts3 = toInteger(key) }
       }
       var getSrcslenngth = this.getSrcs(0).length - 1;
-      if (getSrcslenngth == this.keyDst || this.keyDst == 0) { this.keyDst1 = true }
-      if (this.keyDst1) { this.constStop = true; this.keyDst1 = null }
-      else if (this.firstKey && id_dst2.id <= id_dst1.id || id_dst1.id == undefined) { this.constStop = true ; this.stopNumErr= 2}
-      else if (this.lastKey && id_dst2.id >= id_dst1.id || id_dst1.id == undefined ) { this.constStop = true ; this.stopNumErr= 2}
-      else if (this.firstKey && id_dst2.id <= id_dst1.id || id_dst2.id == undefined) { this.constStop = true ; this.stopNumErr= 3}
-      else if (this.lastKey && id_dst2.id >= id_dst1.id || id_dst2.id == undefined ) { this.constStop = true ; this.stopNumErr= 3}
-      else if (this.firstKey == null && this.lastKey == null && id_dst1.id == id_src1.id || id_dst2.id == id_src1.id){ this.constStop = true ; this.stopNumErr= 2}
-      else if (this.firstKey == null && this.lastKey == null && id_dst1.id < id_src1.id && id_dst2.id >= id_dst1.id) { this.constStop = true ; this.stopNumErr= 2}
-      else if (this.firstKey == null && this.lastKey == null && id_dst1.id > id_src1.id && id_dst2.id <= id_dst1.id) { this.constStop = true ; this.stopNumErr= 3}
-      else (this.constStop = null)
+      if (getSrcslenngth == this.keyDsts3 || this.keyDsts3 == 0) { this.flagDsts3 = null }
+      else (this.flagDsts3 = true)
+
+      for (const keyD1 in getSrcs){
+        const position1 = getSrcs[keyD1].id
+        if(position1 == id_dst1.id){ this.keyDst1 = toInteger(keyD1)}
+      }
+      var getDstslenngth = this.getDsts(0).length - 1;
+      if (getDstslenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+      else (this.flagDst1 = null)
+
+      for (const keyD2 in getSrcs){
+        const position2 = getSrcs[keyD2].id
+        if(position2 == id_dst2.id){ this.keyDst2 = toInteger(keyD2)}
+      }
+      var getDsts2lenngth = this.getDsts(1).length - 1;
+      if (getDsts2lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
+      else (this.flagDst2 = null)
+
+      var kMas = this.keyDst1 + 1;
+      var kMenos = this.keyDst1 -1;
+      if (this.keySrc == kMas || this.keySrc == kMenos){this.flagDst3 = true}
+      else (this.flagDst3 = null)
+
+      if (this.flagSrc == null){this.flagOrigin = true;}
+      else if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.flagOrigin = null;this.constStop = true; this.stopNumErr = 1}
+      else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.flagOrigin = null;this.constStop = true; this.stopNumErr = 2}
+      else if(id_dst3.id == undefined || id_dst3.id == id_src1.id){this.flagOrigin = null;this.constStop = true; this.stopNumErr = 3}
+      else if(this.flagDst1 == true){this.flagOrigin = null;this.flagDst1 = null;this.constStop = true; this.stopNumErr = 1}
+      else if(this.flagDst2 == true){this.flagOrigin = null;this.flagDst2 = null;this.constStop = true; this.stopNumErr = 2}
+      else if(this.flagDsts3 ==true){this.flagOrigin = null;this.flagDsts3 = null;this.constStop = true; this.stopNumErr = 3}
+      else if (this.flagSrc == true) { 
+        if (id_dst2.id >= id_dst1.id && this.flagDst3 == null) {this.flagOrigin = null; this.constStop = true;  this.stopNumErr = 1  } 
+        else if (id_dst2.id >= id_dst1.id && this.flagDst3 == true) {this.flagOrigin = null; this.constStop = true;  this.stopNumErr = 2  } 
+        else if (id_dst3.id >= id_dst2.id){this.flagOrigin = null; this.constStop = true;  this.stopNumErr = 2  } 
+        else (this.flagOrigin = null,  this.constStop = null ) }
+      else if (this.flagSrc == false) { 
+        if (id_dst2.id <= id_dst1.id && this.flagDst3 == null) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 1  } 
+        else if (id_dst2.id <= id_dst1.id && this.flagDst3 == true) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2  } 
+        else if( id_dst3.id <= id_dst2.id){ this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
+        else (this.constStop = null,this.flagOrigin = null) }
+        else (this.constStop = null, this.flagOrigin = null)
+      
+
     }
 
-    if (this.trips.length == 3) {id_dst1 = this.trips[0].id_dst;id_dst2 = this.trips[1].id_dst; id_dst3 = this.trips[2].id_dst;
-      for (const key in getSrcs) {const position = getSrcs[key].id
-        if (position == id_dst1.id) { this.keyDst = toInteger(key) }
-        if (position == id_dst2.id) { this.key1Dst = toInteger(key) }
-      }
-      var getSrcslenngth = this.getSrcs(0).length - 1;
-      if (getSrcslenngth == this.keyDst || this.keyDst == 0) { this.keyDst1 = true }
-      if (getSrcslenngth == this.key1Dst || this.key1Dst == 0) { this.keyDst2 = true }
-      if (this.firstKey == null && this.lastKey == null && this.getSrcs(0).length == 4) { this.flagOrigin == true }
-      else if (this.keyDst1 || this.keyDst2) { this.constStop = true; this.keyDst1 = null; this.keyDst2 = null }
-      else if (id_dst2.id == undefined) { this.constStop = true; this.stopNumErr = 2 }
-      else if (id_dst3.id == undefined) { this.constStop = true; this.stopNumErr = 3 }
-      else if (this.lastKey) { if (id_dst2.id >= id_dst1.id || id_dst3.id >= id_dst2.id) { this.constStop = true;  this.stopNumErr = 2  } else (this.constStop = null) }
-      else if (this.firstKey) { if (id_dst2.id <= id_dst1.id || id_dst3.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 3  } else (this.constStop = null) }
-      else (this.constStop = null)
-    }
-    ///////////Viaje de regreso//////////////
-    if (this.radio) {
-      for (const key in this.trips) {var pos = key} backId = this.trips[pos].id_dst
+///////////Viaje de regreso//////////////
+if (this.radio) {
+  
 
-      if (this.trips2.length == 1) {backId_src1 = this.trips2[0].id_src;backId_dst1 = this.trips2[0].id_dst;
-        if (backId_src1.id != backId.id || backId_src1.id == undefined) { this.constBackOrigin = true; }
-        else if (backId_dst1.id == undefined || backId_dst1.id != id_src1.id) { this.stopNumErr = 4; this.constBackOrigin = null;; this.constBackStop = true; }
-        else { this.constBackStop = null; this.constBackOrigin = null; }
-      }
-      if (this.trips2.length == 2) {backId_src1 = this.trips2[0].id_src; backId_dst1 = this.trips2[0].id_dst;backId_dst2 = this.trips2[1].id_dst;
-        if (backId_src1.id == backId.id) { this.constBackOrigin = null; }
-        else (this.constBackOrigin = true)
-        if (this.constBackOrigin == true) { this.constBackOrigin = true }
-        else if (backId_dst1.id == undefined) { this.constBackStop = true; this.stopNumErr = 4; }
-        else if (backId_dst1.id == backId.id || backId_dst1.id == id_src1.id) { this.constBackStop = true; this.stopNumErr = 4; }
-        else if (backId_dst2.id != id_src1.id || backId_dst2.id == undefined) { this.constBackStop = true; this.stopNumErr = 5; }
-        else (this.constBackStop = null)
-      }
-      if (this.trips2.length == 3) {backId_src1 = this.trips2[0].id_src;backId_dst1 = this.trips2[0].id_dst;backId_dst2 = this.trips2[1].id_dst;backId_dst3 = this.trips2[2].id_dst;
-        if (backId_src1.id == backId.id) { this.constBackOrigin = null; }
-        else (this.constBackOrigin = true)
-        if (this.constBackOrigin == true) { this.constBackOrigin = true }
-        else if (backId_dst1.id == undefined) { this.constBackStop = true; this.stopNumErr = 4; }
-        else if ((id_src1.id > backId_src1.id) && (backId_dst1.id == backId.id || backId_dst1.id == id_src1.id || backId_dst1.id == undefined)) { this.constBackStop = true; this.stopNumErr = 4; }
-        else if ((id_src1.id < backId_src1.id) && (backId_dst1.id == backId.id || backId_dst1.id == id_src1.id || backId_dst1.id == undefined)) { this.constBackStop = true; this.stopNumErr = 4; }
-        else if ((id_src1.id > backId_src1.id) && (backId_dst1.id >= backId_dst2.id || backId_dst2.id == id_src1.id || backId_dst2.id == backId.id || backId_dst1.id == backId.id || backId_dst1.id == backId_dst2.id || backId_dst1.id == id_src1.id || backId_dst2.id == undefined)) { this.constBackStop = true; this.stopNumErr = 5; }
-        else if ((id_src1.id < backId_src1.id) && (backId_dst1.id <= backId_dst2.id || backId_dst2.id == id_src1.id || backId_dst2.id == backId.id || backId_dst1.id == backId.id || backId_dst1.id == backId_dst2.id || backId_dst1.id == id_src1.id || backId_dst2.id == undefined)) { this.constBackStop = true; this.stopNumErr = 5; }
-        else if (backId_dst3.id != id_src1.id || backId_dst3.id == undefined) { this.constBackStop = true; this.stopNumErr = 6 }
-        else (this.constBackStop = null)
-      }
-    }
+  for (const key in this.trips) 
+  {var pos = key} backId = this.trips[pos].id_dst
+  backId_src1 = this.trips2[0].id_src;
+  
+
+  for (const key in getSrcs) {
+    const position = getSrcs[key].id
+    if (position == backId_src1.id) { this.keySrcBack = toInteger(key) }
+  }
+  var getSrcslenngth = this.getSrcs(0).length - 1;
+  if (getSrcslenngth == this.keySrcBack) { this.flagSrcBack = true }
+  else if (this.keySrcBack == 0) { this.flagSrcBack = false }
+  else (this.flagSrcBack = null)
+//Viaje de regreso con una parada
+if (this.trips2.length == 1){
+  backId_dst1 = this.trips2[0].id_dst;
+  if (backId_src1 == undefined){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else { this.constBackStop = null; this.constBackOrigin = null; }
+}
+//Viaje de regreso con dos paradas
+if (this.trips2.length == 2){
+  backId_dst1 = this.trips2[0].id_dst;
+  backId_dst2 = this.trips2[1].id_dst;
+
+  for (const keyD1 in getSrcs){
+    const position1 = getSrcs[keyD1].id
+    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
+  }
+
+  var getDstslenngth = this.getDsts(0).length - 1;
+  if (getDstslenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+  else (this.flagDstBack1 = null)
+
+  if (backId_src1.id == undefined){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else { this.constBackStop = null; this.constBackOrigin = null; }
+
+}
+//Viaje de regreso con tres paradas
+if (this.trips2.length == 3){
+  backId_dst1 = this.trips2[0].id_dst;
+  backId_dst2 = this.trips2[1].id_dst;
+  backId_dst3 = this.trips2[2].id_dst;
+
+  for (const keyD1 in getSrcs){
+    const position1 = getSrcs[keyD1].id
+    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
+  }
+  var getDstslenngth = this.getDsts(0).length - 1;
+  if (getDstslenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+  else (this.flagDstBack1 = null)
+
+  for (const keyD2 in getSrcs){
+    const position2 = getSrcs[keyD2].id
+    if(position2 == backId_dst2.id){ this.keyDstBack2 = toInteger(keyD2)}
+  }
+  var getDsts2lenngth = this.getDsts(1).length - 1;
+  if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
+  else (this.flagDstBack2 = null)
+
+  var kMas = this.keyDstBack1 + 1;
+  var kMenos = this.keyDstBack1 -1;
+  if (this.keySrc == kMas || this.keySrc == kMenos){this.flagDstBack3 = true}
+  else (this.flagDstBack3 = null)
+
+
+  if (backId_src1.id == undefined){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = true;  }
+ 
+  else if (this.flagSrcBack == true) { 
+    if      (backId_dst2.id >= backId_dst1.id && this.flagDstBack3 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
+    else if (backId_dst2.id >= backId_dst1.id && this.flagDstBack3 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true;   } 
+    else     (this.constBackOrigin = null, this.constBackStop = null)
+  }
+    else if (this.flagSrcBack == false) { 
+    if (backId_dst2.id <= backId_dst1.id && this.flagDstBack3 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;} 
+      else if (backId_dst2.id <= backId_dst1.id && this.flagDstBack3 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true; } 
+     else (this.constBackOrigin = null, this.constBackStop = null ) }
+  else (this.constBackOrigin = null, this.constBackStop = null)
+      
+
+}
+
+}
+    
     if (round) {
       index = this.trips2.indexOf(tr, 0);
 
@@ -471,7 +597,9 @@ export class Step1Component implements OnInit {
     this.dateChange();
     this.createInstance();
     this.numStops++;
-    this.onChangeStop(true, this.trips[0])
+    this.onChangeStop(true, this.trips2[1]);
+    this.onChangeStop(true, this.trips[0]);
+    
    
   }
 
@@ -597,7 +725,7 @@ export class Step1Component implements OnInit {
   
   public readyToGoNext(): boolean {
     this.last_failure_motive = null;
-    this.a1('origen'); this.a1('destino');
+    this.a1('origen'); this.a1('destino1');
     this.a1('pasajeros'); this.a1('inicio');
     this.a1('fin'); this.a1('clase'); this.a1('o4');
     this.a1('datepicker1'); this.a1('datepicker2');
@@ -611,19 +739,19 @@ export class Step1Component implements OnInit {
     // if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
     if (this.session.route.pick_class && this.session.query.class == null) { this.flagDisabled = true; this.last_failure_motive = "Elige una clase."; this.a1('clase', 'orange'); this.step1 = this.translate.instant('Step1-P66'); return true; }
     if (this.trips[0].id_src == null || this.trips[0].id_src == 0) { this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.a1('origen', 'orange'); this.step1 = this.translate.instant('Step1-P67'); return true; }
-    if (this.trips[0].id_dst == null || this.trips[0].id_dst == 0) { this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.a1('destino', 'orange'); this.step1 = this.translate.instant('Step1-P68'); return true; }
+    if (this.trips.length > 1 && this.flagOrigin) { this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); this.a1('origen', 'orange'); return true; }
+    if (this.trips[0].id_dst == null || this.trips[0].id_dst == 0) { this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.a1('destino1', 'orange'); this.step1 = this.translate.instant('Step1-P68'); return true; }
     var now_dt: Date = new Date();
     if (this.trips[0].start.getTime() < now_dt.getTime()) { this.flagDisabled = true; this.last_failure_motive = "Elige inicio válido"; this.a1('fecha1', 'orange'); this.step1 = this.translate.instant('Step1-P69'); return true; }
     
     if (this.trips.length > 1 && this.constStop) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
     if (this.trips.length > 1 && this.constDate) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
-    if (this.trips.length > 1 && this.flagOrigin) { this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); this.a1('origen', 'orange'); return true; }
-   
+    
     if ((this.radio)&&(this.trips2[0].id_src == null || this.trips2[0].id_src == 0)){ this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
     if ((this.radio)&&(this.trips2.length >= 1 && this.constBackOrigin)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
     if ((this.radio)&&(this.trips2.length >= 1 && this.constBackStop)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
     if ((this.radio)&&(this.trips2.length >= 1 && this.constBackDate)) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
-    
+   
     // var start_dt:Date = new Date(this.session.query.start);
     // var end_dt:Date = new Date(this.session.query.end);
     // var now_dt:Date = new Date();

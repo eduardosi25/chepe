@@ -165,7 +165,7 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_dst" (ngModelChange)="onChangeStop(false, trips[0])">
+                                        <select class="form-control" id="destino1" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_dst" (ngModelChange)="onChangeStop(false, trips[0])">
                                             <option [ngValue]="null" selected>{{'Step1-P34' | translate}}</option>
                                             <option *ngFor="let ts of getDsts(0,trips[0].id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
