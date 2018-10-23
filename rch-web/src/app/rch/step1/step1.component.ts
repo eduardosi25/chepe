@@ -69,14 +69,14 @@ export class Step1Component implements OnInit {
   public keySrc: number;
   public keyDst1: number;public keyDst2: number;public keyDst3: number;public keyDst4: number;
   public keySrcBack: number;
-  public keyDstBack1: number;public keyDstBack2: number;public keyDstBack3: number;
+  public keyDstBack1: number;public keyDstBack2: number;public keyDstBack3: number;public keyDstBack4: number;
   public flagSrc: boolean = null;
   public flagDst1: boolean = null;public flagDst2: boolean = null;public flagDst3: boolean = null;public flagDst4: boolean = null;
   public flagSrcBack: boolean = null;
   public flagDstBack1: boolean = null;public flagDstBack2: boolean = null;public flagDstBack3: boolean = null;
-  public dateStr1;public dateStr2;public dateStr3;public dateStr4;public dateStr5;public dateStr6;public dateStr7;
+  public dateStr1;public dateStr2;public dateStr3;public dateStr4;public dateStr5;public dateStr6;public dateStr7;public dateStr8;
   public dateGet;public dayGet1;public dayGet2;public dayGet3;public dayGet4;public dayGet5;public dayGet6;
-  public fechaGet;public fechaGet1;public fechaGet2;public fechaGet3;public fechaGet4;public fechaGet5;public fechaGet6;
+  public fechaGet;public fechaGet1;public fechaGet2;public fechaGet3;public fechaGet4;public fechaGet5;public fechaGet6;public fechaGet7;
   public keyFlag1;public keyFlag2;public keyFlag3;public keyFlag4;public keyFlag5;public keyFlag6;
   // public stops:TrainStop[] = this.stops;
   ngOnInit() {
@@ -188,7 +188,10 @@ export class Step1Component implements OnInit {
       autoclose: true,defaultDate:"+1d",startDate:"+1d"
     }).on('changeDate',(e) => { self.fechaGet6 = e.date; self.dateChange();
       }).keydown(false);
-
+      $("#datepicker8").datepicker({format: "dd/mm/yyyy",
+      autoclose: true,defaultDate:"+1d",startDate:"+1d"
+    }).on('changeDate',(e) => { self.fechaGet7 = e.date; self.dateChange();
+      }).keydown(false);
       
     //Tooltip
       $(".js-my-tooltip").click(function (e) {
@@ -342,6 +345,26 @@ export class Step1Component implements OnInit {
             if(this.fechaGet5.getDate() > this.fechaGet3.getDate()){;var currDates5 = this.fechaGet5.getDate();var currMonths5 = this.fechaGet5.getMonth();var currYears5 = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;var aimp7 = currMonths5 + 1;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;}
           }
         }
+        if(this.trips2.length==4){var d3 = new Date();
+          if(this.fechaGet4 == undefined){ var dayGet = currDates - d3.getDate();var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3;}
+          if(this.fechaGet4 != undefined){
+            if(this.fechaGet4.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
+            if(this.fechaGet4.getDate() > this.fechaGet3.getDate()){var currDates3 = this.fechaGet4.getDate();var currMonths3 = this.fechaGet4.getMonth();var currYears3 = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;var aimp6 = currMonths3 + 1;this.dateStr5 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
+          }
+          if(this.fechaGet5 == undefined){var dayGet = currDates - d3.getDate();var currDates5 = this.fechaGet3.getDate();var currMonths5 = this.fechaGet3.getMonth();var currYears5 = this.fechaGet3.getFullYear();var aimp7 = currMonths5 + 1;this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5;}
+          if(this.fechaGet5 != undefined){
+            if(this.fechaGet5.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates5 = this.fechaGet3.getDate();var currMonths5 = this.fechaGet3.getMonth();var currYears5 = this.fechaGet3.getFullYear();var aimp7 = currMonths5 + 1;this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;} 
+            if(this.fechaGet5.getDate() > this.fechaGet3.getDate()){;var currDates5 = this.fechaGet5.getDate();var currMonths5 = this.fechaGet5.getMonth();var currYears5 = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;var aimp7 = currMonths5 + 1;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;}
+          }
+          if(this.fechaGet7 == undefined){var dayGet = currDates - d3.getDate();var currDates7 = this.fechaGet3.getDate();var currMonths7 = this.fechaGet3.getMonth();var currYears7 = this.fechaGet3.getFullYear();var aimp10 = currMonths7 + 1;this.fechaGet7= new Date (currYears7 , currMonths7 , currDates7  );this.trips2[2].start = this.fechaGet7;this.dateStr8 = currDates7 + "/" + aimp10  + "/" + currYears7;}
+          if(this.fechaGet7 != undefined){
+            if(this.fechaGet7.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates7 = this.fechaGet3.getDate();var currMonths7 = this.fechaGet3.getMonth();var currYears7 = this.fechaGet3.getFullYear();var aimp10 = currMonths7 + 1;this.fechaGet7= new Date (currYears7 , currMonths7 , currDates7  );this.trips2[2].start = this.fechaGet7;this.dateStr8 = currDates7 + "/" + aimp10  + "/" + currYears7  ;} 
+            if(this.fechaGet7.getDate() > this.fechaGet3.getDate()){var currDates7 = this.fechaGet7.getDate();var currMonths7 = this.fechaGet7.getMonth();var currYears7 = this.fechaGet7.getFullYear();this.fechaGet7= new Date (currYears7 , currMonths7 , currDates7  );this.trips2[2].start = this.fechaGet7; var aimp10 = currMonths7 + 1;this.dateStr8 = currDates7 + "/" + aimp10  + "/" + currYears7  ;}
+          }
+       
+      
+    }
+
       }
     }this.onDateChange();this.createInstance();
   }
@@ -410,14 +433,14 @@ export class Step1Component implements OnInit {
     let index;
     var id_dst1 = null;var id_dst2 = null;var id_dst3 = null;var id_dst4 = null;
     var id_src1 = null;
-    var backId_dst1 = null;var backId_dst2 = null;var backId_dst3 = null;
+    var backId_dst1 = null;var backId_dst2 = null;var backId_dst3 = null;var backId_dst4 = null;
     var backId_src1 = null;
     var backId = null;
     var getSrcs = null; getSrcs = this.getSrcs(0);  id_src1 = this.trips[0].id_src;
     var getSrcslenngth = null; var getSrcs1lenngth = null; 
      
     var getDsts1lenngth = null;  var getDsts2lenngth = null;  var getDsts3lenngth = null;
-    var getDsts4lenngth = null; 
+    
     for (const key in getSrcs) {
       const position = getSrcs[key].id
       if (position == id_src1.id) { this.keySrc = toInteger(key) }
@@ -929,7 +952,54 @@ if (this.trips2.length == 3){
      else (this.constBackOrigin = null, this.constBackStop = null ) }
   else (this.constBackOrigin = null, this.constBackStop = null)
     }
+//Viaje de regreso con cuatro paradas
+if (this.trips2.length == 4){
+  backId_dst1 = this.trips2[0].id_dst;
+  backId_dst2 = this.trips2[1].id_dst;
+  backId_dst3 = this.trips2[2].id_dst;
+  backId_dst4 = this.trips2[3].id_dst;
 
+  for (const keyD1 in getSrcs){
+    const position1 = getSrcs[keyD1].id
+    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
+    if(position1 == backId_dst2.id){ this.keyDstBack2 = toInteger(keyD1)}
+  }
+  getDsts1lenngth = this.getDsts(0).length - 1;
+  if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+  else (this.flagDstBack1 = null)
+ getDsts2lenngth = this.getDsts(1).length - 1;
+  if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
+  else (this.flagDstBack2 = null)
+  getDsts3lenngth = this.getDsts(1).length - 1;
+  if (getDsts3lenngth == this.keyDstBack3 || this.keyDstBack3 == 0) { this.flagDstBack3 = true }
+  else (this.flagDstBack3 = null)
+  
+  var kMas = this.keyDstBack1 + 1;
+  var kMenos = this.keyDstBack1 -1;
+  if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
+  else (this.keyFlag1 = null)
+ 
+
+  if (backId_src1.id == undefined){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst4.id != id_src1.id){this.stopNumErr = 8;this.constBackOrigin = null; this.constBackStop = true;  }
+ 
+  else if (this.flagSrcBack == true) { 
+    if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
+    else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true;   } 
+    else     (this.constBackOrigin = null, this.constBackStop = null)
+  }
+    else if (this.flagSrcBack == false) { 
+    if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;} 
+     else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true; } 
+     else (this.constBackOrigin = null, this.constBackStop = null ) }
+  else (this.constBackOrigin = null, this.constBackStop = null)
+    }
   }
 }
     
@@ -991,7 +1061,7 @@ if (this.trips2.length == 3){
 
   public onDeleteTrip(tr: Trip, round: boolean) {
     let index;
-    if (this.radio) {
+    if (round) {
       index = this.trips2.indexOf(tr, 0);
       if (index > 0) {
         this.trips2.splice(index, 1);
@@ -1120,10 +1190,10 @@ if (this.trips2.length == 3){
     this.a1('datepicker1'); this.a1('datepicker2');
     this.a1('datepicker3'); this.a1('datepicker4');
     this.a1('datepicker5'); this.a1('datepicker6');
-    this.a1('datepicker7');
+    this.a1('datepicker7');this.a1('datepicker8');
     this.a1('destino2'); this.a1('destino3');
     this.a1('destino4'); this.a1('destino5');
-    this.a1('destino6');this.a1('destino7');
+    this.a1('destino6');this.a1('destino7');this.a1('destino8');
     //this.dateChange();
     // if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
     // if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}

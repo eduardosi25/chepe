@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
-                                        <a (click)="onDeleteTrip(trips[1])" class="btn-delete__link">
+                                        <a (click)="onDeleteTrip(trips[1], false)" class="btn-delete__link">
                                             <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
                                             <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
                                         </a>
@@ -262,7 +262,7 @@
                                 </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
-                                        <a (click)="onDeleteTrip(trips[2])" class="btn-delete__link">
+                                        <a (click)="onDeleteTrip(trips[2], false)" class="btn-delete__link">
                                             <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
                                             <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
                                         </a>
@@ -306,7 +306,7 @@
                                 </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
-                                        <a (click)="onDeleteTrip(trips[3])" class="btn-delete__link">
+                                        <a (click)="onDeleteTrip(trips[3], false)" class="btn-delete__link">
                                             <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
                                             <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
                                         </a>
@@ -415,7 +415,7 @@
                                 </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
-                                        <a (click)="onDeleteTrip(trips2[1])" class="btn-delete__link">
+                                        <a (click)="onDeleteTrip(trips2[1], true)" class="btn-delete__link">
                                             <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
                                             <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
                                         </a>
@@ -459,14 +459,58 @@
                                 </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
-                                        <a (click)="onDeleteTrip(trips2[2])" class="btn-delete__link">
+                                        <a (click)="onDeleteTrip(trips2[2], true)" class="btn-delete__link">
                                             <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
                                             <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            </article>
+                            <!--Tramo 4-->
+                            <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips2(4)"> <!--*ngFor="let trip of this.trips; let i = index">-->
+                                <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
+                                    <div class="combo-elements" [hidden]="trips2.length == 1">
+                                        <span class="text-blue">{{'Step1-P29' | translate}} 3</span>
+                                        <img class="combo-elements__icon" src="assets/img/icon-right.svg">
+                                    </div> 
+                                    <!--Origen 4-->
+                                    <label>{{'Step1-P30' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="origen-3b" [disabled]="trips2.length > 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[3].id_src" (ngModelChange)="preflight()">
+                                            <option [ngValue]="null">{{'Step1-P31' | translate}}</option>
+                                            <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-sm__top col-little"> 
+                                    <!--Destino 4-->
+                                    <label *ngIf="i == trips2.length -1 ">{{'Step1-P32' | translate}}</label>
+                                    <label *ngIf="i != trips2.length -1 ">{{'Step1-P33' | translate}}</label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="destino8" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips2[3].id_dst" (ngModelChange)="onChangeStop(translate, trips2[3])">
+                                            <option [ngValue]="null">{{'Step1-P34' | translate}}</option>
+                                            <option *ngFor="let ts of getDsts(0,trips2[3].id_src)" [ngValue]="ts">{{ts.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                    <!--Fecha 4-->
+                                    <label class="label-space" for="origen-3b">{{'Step1-P35' | translate}}</label>
+                                    <div class="input-calendar col-xs-24 no-gutter">
+                                        <input type="text" class="form-control" id="datepicker8" [value] = "dateStr8">
+                                        <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
+                                    <div class="btn-delete">
+                                        <a (click)="onDeleteTrip(trips2[3], true)" class="btn-delete__link">
+                                            <img class="btn-delete__item fl" src="assets/img/icon-delet.svg" >
+                                            <p class="text-default fl text-delete">{{'Step1-P36' | translate}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
 
                             <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-nospace" *ngIf="trips2.length == 1">
                                 <div class="search__top col-xs-24 search__space">
