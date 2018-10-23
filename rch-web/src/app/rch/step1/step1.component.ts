@@ -161,30 +161,30 @@ export class Step1Component implements OnInit {
         $("#mapa-full").removeClass("active");
       });
       //DatePicker fecha 1
-    $("#datepicker1").datepicker({format: "dd/mm/yyyy",autoclose: true,defaultDate: "+1d",startDate: "+1d"
+    $("#datepicker1").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate: "+1d",startDate: "+1d"
   }).on('changeDate',(e) => {self.fechaGet = e.date;self.dateChange();
     }).keydown(false);
     //DatePicker fecha 2
-    $("#datepicker2").datepicker({format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
+    $("#datepicker2").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
   }).on('changeDate',(e) => {self.fechaGet1 = e.date; self.dateChange();
     }).keydown(false);
       //DatePicker fecha 3
-    $("#datepicker3").datepicker({format: "dd/mm/yyyy",autoclose: true, defaultDate:"+1d",startDate:"+1d"
+    $("#datepicker3").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true, defaultDate:"+1d",startDate:"+1d"
   }).on('changeDate',(e) => {self.fechaGet2 = e.date;self.dateChange();
     }).keydown(false);
       //Regreso DatePicker fecha 1
-    $("#datepicker4").datepicker({format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate: "+1d"
+    $("#datepicker4").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate: "+1d"
     }).on('changeDate',(e) => {self.fechaGet3 = e.date;self.dateChange();
       }).keydown(false);
         //Regreso DatePicker fecha 2
-    $("#datepicker5").datepicker({format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
+    $("#datepicker5").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
   }).on('changeDate',(e) => {self.fechaGet4 = e.date;self.dateChange();
     }).keydown(false);
       //Regreso DatePicker fecha 3
-    $("#datepicker6").datepicker({format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
+    $("#datepicker6").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
     }).on('changeDate',(e) => { self.fechaGet5 = e.date; self.dateChange();
       }).keydown(false);
-      $("#datepicker7").datepicker({format: "dd/mm/yyyy",
+      $("#datepicker7").datepicker({language:'es', format: "dd/mm/yyyy",
       autoclose: true,defaultDate:"+1d",startDate:"+1d"
     }).on('changeDate',(e) => { self.fechaGet6 = e.date; self.dateChange();
       }).keydown(false);
