@@ -88,7 +88,7 @@ export class ModelDummyService implements IModel {
     //chepe regional
     var rregional:Route2 = new Route2();
     rregional.id = 1;
-    rregional.max_stops = 2;
+    rregional.max_stops = 3;
     rregional.name = "Chepe Regional";
     rregional.passenger_types = this.getStdPassengerTypes();
     rregional.stops = [
