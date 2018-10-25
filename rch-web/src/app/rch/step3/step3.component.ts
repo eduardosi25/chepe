@@ -14,8 +14,10 @@ import { Direction } from '../../model/direction';
 import { AvailabilityQuery2 } from '../../model/availabilityquery2';
 import { Route2 } from '../../model/route2';
 import { Observable } from 'rxjs/Rx';
+import { TranslateService } from '@ngx-translate/core';
 import { query } from '@angular/core/src/animation/dsl';
 import { forEach } from '@angular/router/src/utils/collection';
+import { setTimeout } from 'timers';
 @Component({
   selector: 'app-step3',
   templateUrl: './step3.component.html',
@@ -24,6 +26,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class Step3Component implements OnInit {
 
   constructor(private location: Location,
+    private translate: TranslateService,
     private model: ModelService,
     public session: SessionService,
     private router: Router,
@@ -31,7 +34,10 @@ export class Step3Component implements OnInit {
 
   public segments: Segment[] = [];
   public schedule: Schedule = null;
+  public dateWeek; 
+  public  btnNext= true;
   ngOnInit() {
+   
     this.checkQueryString().subscribe((r: boolean) => {
       if (!this.session || !this.session.query || !this.session.route) {
         this.router.navigate(["/reservaciones/"]); return;
@@ -98,8 +104,8 @@ export class Step3Component implements OnInit {
 
   private selectTrips() {
     
-  }
-
+  } 
+ 
   
   fixQuery(query:AvailabilityQuery):AvailabilityQuery{
     // let src = query.id_src;
@@ -132,8 +138,21 @@ export class Step3Component implements OnInit {
   }
   public onTravelSelected(segment: Segment, travel: Travel) {
     segment.selected_travel = travel;
-  }
+   
+    for(var a = 0; a <= segment.n; a++){
+       var d = segment.selected_travel.getWeekday()
+       
+        var dateWee = [d];
 
+       if (dateWee[0] == "Jueves"){
+       this.dateWeek = this.translate.instant('Step3-P16');
+      }
+      }
+  }
+  public lenguajeWeekDay(){
+
+
+  }
   public getSegmentTravels(segment: Segment): Travel[] {
     let gral_max: Date = new Date();
     // gral_max.setHours(23);
@@ -292,14 +311,16 @@ export class Step3Component implements OnInit {
         segments2.push(s);
       }
     }
-    // console.log(segments2);
     
-    return segments2;
+    this.btnNext=null;
+    return segments2
   }
   public isFirstSegment(segment: Segment): boolean {
+   
     return (segment.n == 1);
   }
   public isLastSegment(segment: Segment): boolean {
+   
     return (segment.n == this.segments.length);
   }
 
