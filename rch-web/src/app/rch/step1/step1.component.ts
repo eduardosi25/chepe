@@ -75,9 +75,10 @@ export class Step1Component implements OnInit {
   public flagSrcBack: boolean = null;
   public flagDstBack1: boolean = null;public flagDstBack2: boolean = null;public flagDstBack3: boolean = null;
   public dateStr1;public dateStr2;public dateStr3;public dateStr4;public dateStr5;public dateStr6;public dateStr7;public dateStr8;
-  public dateGet;public dayGet1;public dayGet2;public dayGet3;public dayGet4;public dayGet5;public dayGet6;
-  public fechaGet;public fechaGet1;public fechaGet2;public fechaGet3;public fechaGet4;public fechaGet5;public fechaGet6;public fechaGet7;
+   public fechaGet8;public fechaGet1;public fechaGet2;public fechaGet3;public fechaGet4;public fechaGet5;public fechaGet6;public fechaGet7;
   public keyFlag1;public keyFlag2;public keyFlag3;public keyFlag4;public keyFlag5;public keyFlag6;
+  public dateMY1 = null;public dateMY2= null;public dateMY3;public dateMY4;
+  public dateMY5;public dateMY6;public dateMY7;public dateMY8;
   // public stops:TrainStop[] = this.stops;
   ngOnInit() {
     this.dateChange();
@@ -162,42 +163,41 @@ export class Step1Component implements OnInit {
       });
       //DatePicker fecha 1
     $("#datepicker1").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate: "+1d",startDate: "+1d"
-  }).on('changeDate',(e) => {self.fechaGet = e.date;self.dateChange();
+  }).on('changeDate',(e) => {self.fechaGet1 = e.date;self.dateChange();
     }).keydown(false);
     //DatePicker fecha 2
     $("#datepicker2").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
-  }).on('changeDate',(e) => {self.fechaGet1 = e.date; self.dateChange();
+  }).on('changeDate',(e) => {self.fechaGet2 = e.date; self.dateChange();
     }).keydown(false);
       //DatePicker fecha 3
     $("#datepicker3").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true, defaultDate:"+1d",startDate:"+1d"
-  }).on('changeDate',(e) => {self.fechaGet2 = e.date;self.dateChange();
+  }).on('changeDate',(e) => {self.fechaGet3 = e.date;self.dateChange();
     }).keydown(false);
       //Regreso DatePicker fecha 1
     $("#datepicker4").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate: "+1d"
-    }).on('changeDate',(e) => {self.fechaGet3 = e.date;self.dateChange();
+    }).on('changeDate',(e) => {self.fechaGet4 = e.date;self.dateChange();
       }).keydown(false);
         //Regreso DatePicker fecha 2
     $("#datepicker5").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
-  }).on('changeDate',(e) => {self.fechaGet4 = e.date;self.dateChange();
+  }).on('changeDate',(e) => {self.fechaGet5 = e.date;self.dateChange();
     }).keydown(false);
       //Regreso DatePicker fecha 3
     $("#datepicker6").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
-    }).on('changeDate',(e) => { self.fechaGet5 = e.date; self.dateChange();
+    }).on('changeDate',(e) => { self.fechaGet6 = e.date; self.dateChange();
       }).keydown(false);
       $("#datepicker7").datepicker({language:'es', format: "dd/mm/yyyy",
       autoclose: true,defaultDate:"+1d",startDate:"+1d"
-    }).on('changeDate',(e) => { self.fechaGet6 = e.date; self.dateChange();
-      }).keydown(false);
-      $("#datepicker8").datepicker({format: "dd/mm/yyyy",
-      autoclose: true,defaultDate:"+1d",startDate:"+1d"
     }).on('changeDate',(e) => { self.fechaGet7 = e.date; self.dateChange();
+      }).keydown(false);
+      $("#datepicker8").datepicker({language:'es',  format: "dd/mm/yyyy",
+      autoclose: true,defaultDate:"+1d",startDate:"+1d"
+    }).on('changeDate',(e) => { self.fechaGet8 = e.date; self.dateChange();
       }).keydown(false);
       
     //Tooltip
       $(".js-my-tooltip").click(function (e) {
         $(".tooltiptext").toggleClass("active");
       });
-      
       // //getter
       // var maxDate = $( "#step1-start-dt" ).datepicker( "option", "maxDate" );
       // //setter
@@ -206,167 +206,275 @@ export class Step1Component implements OnInit {
   } 
   
   public dateChange(){
-    if(this.fechaGet == undefined){
-      var d = new Date();var currDate = d.getDate() + 1;var currMonth = d.getMonth();var currYear = d.getFullYear();var aimp = currMonth + 1;this.fechaGet= new Date (currYear , currMonth , currDate  );this.dateStr1 = currDate + "/" + aimp  + "/" + currYear  ;this.trips[0].start = this.fechaGet;
-      // Dos paradas indefinida la primera
-        if(this.trips.length==2){var d1 = new Date();
-          if(this.fechaGet1 == undefined){var currDate1 = d1.getDate() + 1; var currMonth1 = d1.getMonth();var currYear1 = d1.getFullYear(); var aimp1 = currMonth1 + 1; this.fechaGet1= new Date (currYear1 , currMonth1 , currDate1  );  this.dateStr2 = currDate1 + "/" + aimp1  + "/" + currYear1  ; this.dayGet1 = "+1d"; this.trips[1].start = this.fechaGet1 }
-          if(this.fechaGet1 != undefined){var currDates3 = this.fechaGet1.getDate();var currMonths3 = this.fechaGet1.getMonth(); var currYears3 = this.fechaGet1.getFullYear();this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  ); this.trips[1].start =this.fechaGet1; var aimp6 = currMonths3 + 1;this.dateStr2 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-        }
-        if(this.trips.length==3){var d1 = new Date();
-          if(this.fechaGet1 == undefined){var currDate1 = d1.getDate() + 1;var currMonth1 = d1.getMonth();var currYear1 = d1.getFullYear();var aimp1 = currMonth1 + 1; this.fechaGet1= new Date (currYear1 , currMonth1 , currDate1  );this.dateStr2 = currDate1 + "/" + aimp1  + "/" + currYear1  ;this.dayGet1 = "+1d";this.trips[1].start = this.fechaGet1;}
-          if(this.fechaGet1 != undefined){var currDates3 = this.fechaGet1.getDate();var currMonths3 = this.fechaGet1.getMonth();var currYears3 = this.fechaGet1.getFullYear();this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;var aimp6 = currMonths3 + 1;this.dateStr2 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-          if(this.fechaGet2 == undefined){var currDate4 = d1.getDate() + 1;var currMonth4 = d1.getMonth(); var currYear4 = d1.getFullYear();var aimp8 = currMonth4 + 1;this.fechaGet2= new Date (currYear4 , currMonth4 , currDate4  );this.dateStr3 = currDate4 + "/" + aimp8  + "/" + currYear4  ;this.dayGet2 = "+1d";this.trips[2].start = this.fechaGet2;}
-          if(this.fechaGet2 != undefined){var currDates4 = this.fechaGet2.getDate(); var currMonths4 = this.fechaGet2.getMonth(); var currYears4 = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  );this.trips[2].start = this.fechaGet2;var aimp7 = currMonths4 + 1;this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4  ;}
-        }
-      }
-        else{ 
-        this.trips[0].start = this.fechaGet;var currDates = this.fechaGet.getDate();var currMonths = this.fechaGet.getMonth();var currYears = this.fechaGet.getFullYear();var aimp4 = currMonths + 1;this.dateStr1 = currDates + "/" + aimp4  + "/" + currYears;
-          // Fecha con dos paradas
-          if(this.trips.length==2){var d3 = new Date();
-            if(this.fechaGet1 == undefined){var dayGet = currDates - d3.getDate();this.dayGet1 = "+"+dayGet+"d";var currDates3 = this.fechaGet.getDate();var currMonths3 = this.fechaGet.getMonth();var currYears3 = this.fechaGet.getFullYear();var aimp5 = currMonths3 + 1; this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;this.dateStr2 = currDates3 + "/" + aimp5  + "/" + currYears3;}
-            if(this.fechaGet1 != undefined){
-              if(this.fechaGet1.getDate() <= this.fechaGet.getDate()){var dayGet = currDates - d3.getDate();this.dayGet1 = "+"+dayGet+"d";var currDates3 = this.fechaGet.getDate();var currMonths3 = this.fechaGet.getMonth();var currYears3 = this.fechaGet.getFullYear();var aimp5 = currMonths3 + 1; this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;this.dateStr2 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
-              if(this.fechaGet1.getDate() > this.fechaGet.getDate()){this.dayGet1 = "+"+dayGet+"d";var currDates3 = this.fechaGet1.getDate();var currMonths3 = this.fechaGet1.getMonth();var currYears3 = this.fechaGet1.getFullYear();this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1; var aimp6 = currMonths3 + 1; this.dateStr2 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-            }
-          }
-          // Fecha con tres paradas
-          if(this.trips.length==3){var d4 = new Date();
-              if(this.fechaGet1 == undefined){ var dayGet = currDates - d4.getDate();this.dayGet1 = "+"+dayGet+"d";var currDates3 = this.fechaGet.getDate();var currMonths3 = this.fechaGet.getMonth();var currYears3 = this.fechaGet.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;this.dateStr2 = currDates3 + "/" + aimp5  + "/" + currYears3;}
-              if(this.fechaGet1 != undefined){
-                if(this.fechaGet1.getDate() <= this.fechaGet.getDate()){ var dayGet = currDates - d4.getDate(); this.dayGet1 = "+"+dayGet+"d";  var currDates3 = this.fechaGet.getDate();var currMonths3 = this.fechaGet.getMonth(); var currYears3 = this.fechaGet.getFullYear(); var aimp5 = currMonths3 + 1; this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;this.dateStr2 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
-                if(this.fechaGet1.getDate() > this.fechaGet.getDate()){this.dayGet1 = "+"+dayGet+"d"; var currDates3 = this.fechaGet1.getDate(); var currMonths3 = this.fechaGet1.getMonth(); var currYears3 = this.fechaGet1.getFullYear();this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  ); this.trips[1].start = this.fechaGet1; var aimp6 = currMonths3 + 1;this.dateStr2 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-              }
-              if(this.fechaGet2 == undefined){ var dayGet = currDates - d4.getDate(); this.dayGet1 = "+"+dayGet+"d";var currDates4 = this.fechaGet.getDate(); var currMonths4 = this.fechaGet.getMonth(); var currYears4 = this.fechaGet.getFullYear(); var aimp7 = currMonths4 + 1;this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  );this.trips[2].start = this.fechaGet2;this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4;}
-              if(this.fechaGet2 != undefined){
-                if(this.fechaGet2.getDate() <= this.fechaGet.getDate()){ var dayGet = currDates - d4.getDate();this.dayGet1 = "+"+dayGet+"d"; var currDates4 = this.fechaGet.getDate();var currMonths4 = this.fechaGet.getMonth();var currYears4 = this.fechaGet.getFullYear(); var aimp7 = currMonths4 + 1; this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  );this.trips[2].start = this.fechaGet2;this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4  ;} 
-                if(this.fechaGet2.getDate() > this.fechaGet.getDate()){this.dayGet1 = "+"+dayGet+"d";var currDates4 = this.fechaGet2.getDate();var currMonths4 = this.fechaGet2.getMonth();var currYears4 = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  ); this.trips[2].start = this.fechaGet2;var aimp7 = currMonths4 + 1; this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4  ; }
-              }
-          }
-          // Fecha con cuatro paradas
-          if(this.trips.length==4){var d5 = new Date();
-            if(this.fechaGet1 == undefined){var dayGet = currDates - d5.getDate();this.dayGet1 = "+"+dayGet+"d";var currDates3 = this.fechaGet.getDate();var currMonths3 = this.fechaGet.getMonth();var currYears3 = this.fechaGet.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;this.dateStr2 = currDates3 + "/" + aimp5  + "/" + currYears3;}
-           
-            if(this.fechaGet1 != undefined){
-              if(this.fechaGet1.getDate() <= this.fechaGet.getDate()){var dayGet = currDates - d5.getDate(); this.dayGet1 = "+"+dayGet+"d";  var currDates3 = this.fechaGet.getDate();var currMonths3 = this.fechaGet.getMonth();var currYears3 = this.fechaGet.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1;this.dateStr2 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
-             if(this.fechaGet1.getDate() > this.fechaGet.getDate()){this.dayGet1 = "+"+dayGet+"d"; var currDates3 = this.fechaGet1.getDate();var currMonths3 = this.fechaGet1.getMonth();var currYears3 = this.fechaGet1.getFullYear();this.fechaGet1= new Date (currYears3 , currMonths3 , currDates3  );this.trips[1].start = this.fechaGet1; var aimp6 = currMonths3 + 1;this.dateStr2 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-            }
-            if(this.fechaGet2 == undefined){ var dayGet = currDates - d5.getDate(); this.dayGet1 = "+"+dayGet+"d";var currDates4 = this.fechaGet.getDate(); var currMonths4 = this.fechaGet.getMonth(); var currYears4 = this.fechaGet.getFullYear(); var aimp7 = currMonths4 + 1;this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  );this.trips[2].start = this.fechaGet2;this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4;}
-            if(this.fechaGet2 != undefined){
-              if(this.fechaGet2.getDate() <= this.fechaGet.getDate()){ var dayGet = currDates - d5.getDate();this.dayGet1 = "+"+dayGet+"d"; var currDates4 = this.fechaGet.getDate();var currMonths4 = this.fechaGet.getMonth();var currYears4 = this.fechaGet.getFullYear(); var aimp7 = currMonths4 + 1; this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  );this.trips[2].start = this.fechaGet2;this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4  ;} 
-              if(this.fechaGet2.getDate() > this.fechaGet.getDate()){this.dayGet1 = "+"+dayGet+"d";var currDates4 = this.fechaGet2.getDate();var currMonths4 = this.fechaGet2.getMonth();var currYears4 = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYears4 , currMonths4 , currDates4  ); this.trips[2].start = this.fechaGet2;var aimp7 = currMonths4 + 1; this.dateStr3 = currDates4 + "/" + aimp7  + "/" + currYears4  ; }
-            }
-            if(this.fechaGet6 == undefined){ 
-              var dayGet = currDates - d5.getDate(); 
-              this.dayGet1 = "+"+dayGet+"d";
-              var currDates5 = this.fechaGet.getDate(); 
-              var currMonths5 = this.fechaGet.getMonth(); 
-              var currYears5 = this.fechaGet.getFullYear(); 
-              var aimp9 = currMonths5 + 1;
-              this.fechaGet2= new Date (currYears5 , currMonths5 , currDates5  );
-              this.trips[3].start = this.fechaGet2;
-              this.dateStr7 = currDates5 + "/" + aimp9  + "/" + currYears5;}
-            
-            if(this.fechaGet6 != undefined){
-              if(this.fechaGet6.getDate() <= this.fechaGet.getDate()){ 
-                var dayGet = currDates - d5.getDate();
-                this.dayGet1 = "+"+dayGet+"d"; 
-                var currDates5 = this.fechaGet.getDate();
-                var currMonths5 = this.fechaGet.getMonth();
-                var currYears5 = this.fechaGet.getFullYear();
-                var aimp9 = currMonths5 + 1; 
-                this.fechaGet6= new Date (currYears5 , currMonths5 , currDates5  );
-                this.trips[3].start = this.fechaGet6;
-                this.dateStr7 = currDates5 + "/" + aimp9  + "/" + currYears5  ;} 
-            
-                if(this.fechaGet6.getDate() > this.fechaGet.getDate()){
-                this.dayGet1 = "+"+dayGet+"d";
-                var currDates5 = this.fechaGet6.getDate();
-                var currMonths5 = this.fechaGet6.getMonth();
-                var currYears5 = this.fechaGet6.getFullYear();
-                this.fechaGet6= new Date (currYears5 , currMonths5 , currDates5  ); 
-                this.trips[3].start = this.fechaGet6;
-                var aimp9 = currMonths5 + 1; 
-                this.dateStr7 = currDates5 + "/" + aimp9  + "/" + currYears5  ; }
-                }
-                
-        }
-        }
-        //Viaje de regreso
-    if (this.radio) {
-      if(this.fechaGet3 == undefined){
-        var ds = new Date();
-        var backDates = ds.getDate() + 1;
-        var backMonths = ds.getMonth();
-        var backYears = ds.getFullYear();
-        var aimps = backMonths + 1;
-        this.fechaGet3= new Date (backYears , backMonths, backDates  );
-        this.dateStr4 = backDates + "/" + aimps  + "/" + backYears  ;
-        this.trips2[0].start = this.fechaGet3;
 
-        // Dos paradas indefinida la primera
-      if(this.trips2.length==2){var d1s = new Date();
-        if(this.fechaGet4 == undefined){ var currDate1s = d1s.getDate() + 1;var currMonth1s = d1s.getMonth();  var currYear1s = d1s.getFullYear(); var aimp1s = currMonth1s + 1;  this.fechaGet4= new Date (currYear1s , currMonth1s , currDate1s  );this.dateStr5 = currDate1s + "/" + aimp1s  + "/" + currYear1s  ;this.dayGet4 = "+1d";  this.trips2[1].start = this.fechaGet4;}
-        if(this.fechaGet4 != undefined){ var currDate2s = this.fechaGet4.getDate(); var currMonth2s = this.fechaGet4.getMonth(); var currYear2s = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYear2s , currMonth2s , currDate2s  );this.trips2[1].start =this.fechaGet4;var aimp2s = currMonth2s + 1;this.dateStr5 = currDate2s + "/" + aimp2s  + "/" + currYear2s  ;}
-      }
-      // tres paradas indefinida la primera
-      if(this.trips2.length==3){var d1s = new Date();
-          if(this.fechaGet4 == undefined){ var currDate1s = d1s.getDate() + 1;var currMonth1s = d1s.getMonth();var currYear1s = d1s.getFullYear();var aimp1s = currMonth1s + 1;this.fechaGet4= new Date (currYear1s , currMonth1s , currDate1s  );this.dateStr5 = currDate1s + "/" + aimp1s  + "/" + currYear1s  ;this.dayGet4 = "+1d";this.trips2[1].start =this.fechaGet4;}
-          if(this.fechaGet4 != undefined){ var currDate2s = this.fechaGet4.getDate();var currMonth2s = this.fechaGet4.getMonth();var currYear2s = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYear2s , currMonth2s , currDate2s  ); this.trips2[1].start =this.fechaGet4;var aimp2s = currMonth2s + 1;  this.dateStr5 = currDate2s + "/" + aimp2s  + "/" + currYear2s  ; }
-          if(this.fechaGet5 == undefined){ var currDate3s = d1s.getDate() + 1;var currMonth3s = d1s.getMonth(); var currYear3s = d1s.getFullYear();var aimp3s = currMonth3s + 1;this.fechaGet5= new Date (currYear3s , currMonth3s , currDate3s  ); this.dateStr6 = currDate3s + "/" + aimp3s  + "/" + currYear3s  ; this.dayGet5 = "+1d"; this.trips2[2].start = this.fechaGet5;}
-          if(this.fechaGet5 != undefined){var currDates3s = this.fechaGet5.getDate();var currMonths3s = this.fechaGet5.getMonth();var currYears3s = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYears3s , currMonths3s , currDates3s  ); this.trips2[2].start = this.fechaGet5 ; var aimp4s = currMonths3s + 1;this.dateStr6 = currDates3s + "/" + aimp4s  + "/" + currYears3s  ;}
-      }
-          }
-      else{   
-      this.trips2[0].start = this.fechaGet3
-      var currDates1s = this.fechaGet3.getDate();
-      var currMonths1s = this.fechaGet3.getMonth();
-      var currYears1s = this.fechaGet3.getFullYear();
-      var aimp4s = currMonths1s + 1;
-      this.dateStr4 = currDates1s + "/" + aimp4s  + "/" + currYears1s;
-        // Fecha con dos paradas
-        if(this.trips2.length==2){var d3 = new Date();
-          if(this.fechaGet4 == undefined){ var dayGet = currDates - d3.getDate();this.dayGet1 = "+"+dayGet+"d"; var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1; this.fechaGet4 = new Date (currYears3 , currMonths3 , currDates3  ); this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3;}
-          if(this.fechaGet4 != undefined){
-            if(this.fechaGet4.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate(); this.dayGet1 = "+"+dayGet+"d";var currDates3 = this.fechaGet3.getDate(); var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear(); var aimp5 = currMonths3 + 1; this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  ); this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
-            if(this.fechaGet4.getDate() > this.fechaGet3.getDate()){var currDates3 = this.fechaGet4.getDate();var currMonths3 = this.fechaGet4.getMonth();var currYears3 = this.fechaGet4.getFullYear(); this.fechaGet4 = new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;var aimp6 = currMonths3 + 1; this.dateStr5 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-          }
+   // Viaje de ida
+                ////Parada 1
+var currDate = null;var currDate1 = null;
+var currMonth = null;var currMonth1 = null;
+var currYear = null;var currYear1 = null;
+var mes;
+var d = new Date();
+
+if(this.fechaGet1 == undefined){ currDate = d.getDate() + 1; currMonth = d.getMonth(); currYear = d.getFullYear(); mes = currMonth + 1;this.fechaGet1= new Date (currYear,currMonth,currDate);this.trips[0].start = this.fechaGet1;this.dateStr1 = currDate + "/" + mes  + "/" + currYear;}
+    else{this.trips[0].start = this.fechaGet1; currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1;this.dateStr1 = currDate + "/" + mes  + "/" + currYear;}
+
+// Fecha con dos paradas
+    if(this.trips.length == 2){
+        //////////////Fecha dos indefinida
+        if(this.fechaGet2 == undefined){currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate);this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;}
+        //////////////Fecha dos definida
+        if(this.fechaGet2 != undefined){
+            if(this.fechaGet1.getDate() >= this.fechaGet2.getDate()){
+                if(this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
+                    && this.fechaGet1.getFullYear() == this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear; this.dateMY1 = null;}
+                else if(this.fechaGet1.getMonth() < this.fechaGet2.getMonth() 
+                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY1 = true}
+            }
+
+            if(this.fechaGet1.getDate() < this.fechaGet2.getDate()){
+                if( this.fechaGet1.getMonth() <= this.fechaGet2.getMonth() 
+                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes + "/" + currYear  ;this.dateMY1 = true}
+                else if (this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
+                    || this.fechaGet1.getFullYear() > this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;this.dateMY1 = null;}
+            }
         }
-        // Fecha con tres paradas
-        if(this.trips2.length==3){var d3 = new Date();
-          if(this.fechaGet4 == undefined){ var dayGet = currDates - d3.getDate();var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3;}
-          if(this.fechaGet4 != undefined){
-            if(this.fechaGet4.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
-            if(this.fechaGet4.getDate() > this.fechaGet3.getDate()){var currDates3 = this.fechaGet4.getDate();var currMonths3 = this.fechaGet4.getMonth();var currYears3 = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;var aimp6 = currMonths3 + 1;this.dateStr5 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-          }
-          if(this.fechaGet5 == undefined){var dayGet = currDates - d3.getDate();var currDates5 = this.fechaGet3.getDate();var currMonths5 = this.fechaGet3.getMonth();var currYears5 = this.fechaGet3.getFullYear();var aimp7 = currMonths5 + 1;this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5;}
-          if(this.fechaGet5 != undefined){
-            if(this.fechaGet5.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates5 = this.fechaGet3.getDate();var currMonths5 = this.fechaGet3.getMonth();var currYears5 = this.fechaGet3.getFullYear();var aimp7 = currMonths5 + 1;this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;} 
-            if(this.fechaGet5.getDate() > this.fechaGet3.getDate()){;var currDates5 = this.fechaGet5.getDate();var currMonths5 = this.fechaGet5.getMonth();var currYears5 = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;var aimp7 = currMonths5 + 1;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;}
-          }
-        }
-        if(this.trips2.length==4){var d3 = new Date();
-          if(this.fechaGet4 == undefined){ var dayGet = currDates - d3.getDate();var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3;}
-          if(this.fechaGet4 != undefined){
-            if(this.fechaGet4.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates3 = this.fechaGet3.getDate();var currMonths3 = this.fechaGet3.getMonth();var currYears3 = this.fechaGet3.getFullYear();var aimp5 = currMonths3 + 1;this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;this.dateStr5 = currDates3 + "/" + aimp5  + "/" + currYears3  ;} 
-            if(this.fechaGet4.getDate() > this.fechaGet3.getDate()){var currDates3 = this.fechaGet4.getDate();var currMonths3 = this.fechaGet4.getMonth();var currYears3 = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYears3 , currMonths3 , currDates3  );this.trips2[1].start = this.fechaGet4;var aimp6 = currMonths3 + 1;this.dateStr5 = currDates3 + "/" + aimp6  + "/" + currYears3  ;}
-          }
-          if(this.fechaGet5 == undefined){var dayGet = currDates - d3.getDate();var currDates5 = this.fechaGet3.getDate();var currMonths5 = this.fechaGet3.getMonth();var currYears5 = this.fechaGet3.getFullYear();var aimp7 = currMonths5 + 1;this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5;}
-          if(this.fechaGet5 != undefined){
-            if(this.fechaGet5.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates5 = this.fechaGet3.getDate();var currMonths5 = this.fechaGet3.getMonth();var currYears5 = this.fechaGet3.getFullYear();var aimp7 = currMonths5 + 1;this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;} 
-            if(this.fechaGet5.getDate() > this.fechaGet3.getDate()){;var currDates5 = this.fechaGet5.getDate();var currMonths5 = this.fechaGet5.getMonth();var currYears5 = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYears5 , currMonths5 , currDates5  );this.trips2[2].start = this.fechaGet5;var aimp7 = currMonths5 + 1;this.dateStr6 = currDates5 + "/" + aimp7  + "/" + currYears5  ;}
-          }
-          if(this.fechaGet7 == undefined){var dayGet = currDates - d3.getDate();var currDates7 = this.fechaGet3.getDate();var currMonths7 = this.fechaGet3.getMonth();var currYears7 = this.fechaGet3.getFullYear();var aimp10 = currMonths7 + 1;this.fechaGet7= new Date (currYears7 , currMonths7 , currDates7  );this.trips2[2].start = this.fechaGet7;this.dateStr8 = currDates7 + "/" + aimp10  + "/" + currYears7;}
-          if(this.fechaGet7 != undefined){
-            if(this.fechaGet7.getDate() <= this.fechaGet3.getDate()){var dayGet = currDates - d3.getDate();var currDates7 = this.fechaGet3.getDate();var currMonths7 = this.fechaGet3.getMonth();var currYears7 = this.fechaGet3.getFullYear();var aimp10 = currMonths7 + 1;this.fechaGet7= new Date (currYears7 , currMonths7 , currDates7  );this.trips2[2].start = this.fechaGet7;this.dateStr8 = currDates7 + "/" + aimp10  + "/" + currYears7  ;} 
-            if(this.fechaGet7.getDate() > this.fechaGet3.getDate()){var currDates7 = this.fechaGet7.getDate();var currMonths7 = this.fechaGet7.getMonth();var currYears7 = this.fechaGet7.getFullYear();this.fechaGet7= new Date (currYears7 , currMonths7 , currDates7  );this.trips2[2].start = this.fechaGet7; var aimp10 = currMonths7 + 1;this.dateStr8 = currDates7 + "/" + aimp10  + "/" + currYears7  ;}
-          }
-       
-      
     }
 
+// Fecha con tres paradas
+    if(this.trips.length == 3){
+        //////////////Fecha dos indefinida
+        if(this.fechaGet2 == undefined){currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate);this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;}
+        //////////////Fecha dos definida
+        if(this.fechaGet2 != undefined){
+            if(this.fechaGet1.getDate() >= this.fechaGet2.getDate()){
+                if(this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
+                    && this.fechaGet1.getFullYear() == this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear; this.dateMY1 = null;}
+                else if(this.fechaGet1.getMonth() < this.fechaGet2.getMonth() 
+                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY1 = true}
+            }
+            if(this.fechaGet1.getDate() < this.fechaGet2.getDate()){
+                if( this.fechaGet1.getMonth() <= this.fechaGet2.getMonth() 
+                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes + "/" + currYear  ;this.dateMY1 = true}
+                else if (this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
+                    || this.fechaGet1.getFullYear() > this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;this.dateMY1 = null;}
+            }
+        }
+        /////////////Fecha tres indefinida
+        if(this.fechaGet3 == undefined){currDate = this.fechaGet2.getDate(); currMonth = this.fechaGet2.getMonth(); currYear = this.fechaGet2.getFullYear(); mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate);this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;}
+        //////////////Fecha tres definida
+        if(this.fechaGet3 != undefined){
+            if(this.fechaGet2.getDate() >= this.fechaGet3.getDate()){
+                if(this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
+                    && this.fechaGet2.getFullYear() == this.fechaGet3.getFullYear()) {currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear; this.dateMY2 = null;}
+                else if(this.fechaGet2.getMonth() < this.fechaGet3.getMonth() 
+                    || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();mes = currMonth + 1;this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY2 = true}
+            }
+            if(this.fechaGet2.getDate() < this.fechaGet3.getDate()){
+                if( this.fechaGet2.getMonth() <= this.fechaGet3.getMonth() 
+                    || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes + "/" + currYear  ;this.dateMY2 = true}
+                else if (this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
+                    || this.fechaGet2.getFullYear() > this.fechaGet3.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;this.dateMY2 = null;}
+            }
+    }
+}
+// Fecha con cuatro paradas
+if(this.trips.length == 4){
+    //////////////Fecha dos indefinida
+    if(this.fechaGet2 == undefined){currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate);this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;}
+    //////////////Fecha dos definida
+    if(this.fechaGet2 != undefined){
+        if(this.fechaGet1.getDate() >= this.fechaGet2.getDate()){
+            if(this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
+                && this.fechaGet1.getFullYear() == this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear; this.dateMY1 = null;}
+            else if(this.fechaGet1.getMonth() < this.fechaGet2.getMonth() 
+                || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY1 = true}
+        }
+        if(this.fechaGet1.getDate() < this.fechaGet2.getDate()){
+            if( this.fechaGet1.getMonth() <= this.fechaGet2.getMonth() 
+                || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes + "/" + currYear  ;this.dateMY1 = true}
+            else if (this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
+                || this.fechaGet1.getFullYear() > this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;this.dateMY1 = null;}
+        }
+    }
+    /////////////Fecha tres indefinida
+    if(this.fechaGet3 == undefined){currDate = this.fechaGet2.getDate(); currMonth = this.fechaGet2.getMonth(); currYear = this.fechaGet2.getFullYear(); mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate);this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;}
+    //////////////Fecha tres definida
+    if(this.fechaGet3 != undefined){
+        if(this.fechaGet2.getDate() >= this.fechaGet3.getDate()){
+            if(this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
+                && this.fechaGet2.getFullYear() == this.fechaGet3.getFullYear()) {currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear; this.dateMY2 = null;}
+            else if(this.fechaGet2.getMonth() < this.fechaGet3.getMonth() 
+                || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();mes = currMonth + 1;this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY2 = true}
+        }
+        if(this.fechaGet2.getDate() < this.fechaGet3.getDate()){
+            if( this.fechaGet2.getMonth() <= this.fechaGet3.getMonth() 
+                || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes + "/" + currYear  ;this.dateMY2 = true}
+            else if (this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
+                || this.fechaGet2.getFullYear() > this.fechaGet3.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;this.dateMY2 = null;}
+        }
+    }
+    /////////////Fecha cuatro indefinida
+    if(this.fechaGet4 == undefined){currDate = this.fechaGet3.getDate(); currMonth = this.fechaGet3.getMonth(); currYear = this.fechaGet3.getFullYear(); mes = currMonth + 1; this.fechaGet4= new Date (currYear , currMonth , currDate);this.trips[3].start = this.fechaGet4;this.dateStr4 = currDate + "/" + mes  + "/" + currYear;}
+    //////////////Fecha cuatro definida
+    if(this.fechaGet4 != undefined){
+        if(this.fechaGet3.getDate() >= this.fechaGet4.getDate()){
+            if(this.fechaGet3.getMonth() >= this.fechaGet4.getMonth() 
+                && this.fechaGet3.getFullYear() == this.fechaGet4.getFullYear()) {currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();mes = currMonth + 1; this.fechaGet4= new Date (currYear , currMonth , currDate  );this.trips[3].start = this.fechaGet4;this.dateStr4 = currDate + "/" + mes  + "/" + currYear; this.dateMY3 = null;}
+            else if(this.fechaGet3.getMonth() < this.fechaGet4.getMonth() 
+                || this.fechaGet3.getFullYear() < this.fechaGet4.getFullYear()){currDate = this.fechaGet4.getDate();currMonth = this.fechaGet4.getMonth();currYear = this.fechaGet4.getFullYear();mes = currMonth + 1;this.fechaGet4= new Date (currYear , currMonth , currDate  ); this.trips[3].start = this.fechaGet4;this.dateStr4 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY3 = true}
+        }
+        if(this.fechaGet3.getDate() < this.fechaGet4.getDate()){
+            if( this.fechaGet3.getMonth() <= this.fechaGet4.getMonth() 
+                || this.fechaGet3.getFullYear() < this.fechaGet4.getFullYear()){currDate = this.fechaGet4.getDate();currMonth = this.fechaGet4.getMonth();currYear = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYear , currMonth , currDate  ); this.trips[3].start = this.fechaGet4;mes = currMonth + 1;this.dateStr4 = currDate + "/" + mes + "/" + currYear  ;this.dateMY3 = true}
+            else if (this.fechaGet3.getMonth() >= this.fechaGet4.getMonth() 
+                || this.fechaGet3.getFullYear() > this.fechaGet4.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();this.fechaGet4= new Date (currYear , currMonth , currDate  );this.trips[3].start = this.fechaGet3;mes = currMonth + 1;this.dateStr4 = currDate + "/" + mes  + "/" + currYear;this.dateMY3 = null;}
+        }
+    }
+}
+/////////////////////Viaje de vuelta////////////////////////
+if (this.radio) {
+
+  var dateBack = null
+
+  for (const key in this.trips) {
+      var pos = key
+    } dateBack = this.trips[pos].start
+
+// Fecha con una parada de vuelta
+if(this.fechaGet5 == undefined){currDate = dateBack.getDate(); currMonth = dateBack.getMonth(); currYear = dateBack.getFullYear(); mes = currMonth + 1; this.fechaGet5= new Date (currYear , currMonth , currDate);this.trips2[0].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;}
+if(this.fechaGet5 != undefined){
+        if(dateBack.getDate() >= this.fechaGet5.getDate()){
+            if(dateBack.getMonth() >= this.fechaGet5.getMonth() 
+                && dateBack.getFullYear() == this.fechaGet5.getFullYear()){currDate = dateBack.getDate();currMonth = dateBack.getMonth();currYear = dateBack.getFullYear();mes = currMonth + 1; this.fechaGet5= new Date (currYear , currMonth , currDate  );this.trips2[0].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear; this.dateMY4 = null;}
+            else if(dateBack.getMonth() < this.fechaGet5.getMonth() 
+                || dateBack.getFullYear() < this.fechaGet5.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYear , currMonth , currDate  ); this.trips2[0].start = this.fechaGet5;mes = currMonth + 1;this.dateStr5 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY4 = true}
+        }
+
+        if(dateBack.getDate() < this.fechaGet5.getDate()){
+            if(dateBack.getMonth() <= this.fechaGet5.getMonth() 
+                || dateBack.getFullYear() < this.fechaGet5.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYear , currMonth , currDate  ); this.trips2[0].start = this.fechaGet5;mes = currMonth + 1;this.dateStr5 = currDate + "/" + mes + "/" + currYear  ;this.dateMY4 = true}
+            else if (dateBack.getMonth() >= this.fechaGet5.getMonth() 
+                || dateBack.getFullYear() > this.fechaGet5.getFullYear()){currDate = dateBack.getDate();currMonth = dateBack.getMonth();currYear = dateBack.getFullYear();mes = currMonth + 1; this.fechaGet5= new Date (currYear , currMonth , currDate  );this.trips2[0].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;this.dateMY4 = null;}
+        }
       }
-    }this.onDateChange();this.createInstance();
+ // Fecha con dos paradas de vuelta
+ if(this.trips2.length == 2){
+  //////////////Fecha dos indefinida
+  if(this.fechaGet6 == undefined){currDate = this.fechaGet5.getDate(); currMonth = this.fechaGet5.getMonth(); currYear = this.fechaGet5.getFullYear(); mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate);this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear;}
+  //////////////Fecha dos definida
+  if(this.fechaGet6 != undefined){
+      if(this.fechaGet5.getDate() >= this.fechaGet6.getDate()){
+          if(this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
+              && this.fechaGet5.getFullYear() == this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
+          else if(this.fechaGet5.getMonth() < this.fechaGet6.getMonth() 
+              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+      }
+
+      if(this.fechaGet5.getDate() < this.fechaGet6.getDate()){
+          if( this.fechaGet5.getMonth() <= this.fechaGet6.getMonth() 
+              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+          else if (this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
+              || this.fechaGet5.getFullYear() > this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
+      }
+  }
+}
+
+// Fecha con tres paradas de vuelta
+if(this.trips2.length == 3){
+  //////////////Fecha dos indefinida
+  if(this.fechaGet6 == undefined){currDate = this.fechaGet5.getDate(); currMonth = this.fechaGet5.getMonth(); currYear = this.fechaGet5.getFullYear(); mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate);this.trips2[1].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;}
+  //////////////Fecha dos definida
+  if(this.fechaGet6 != undefined){
+      if(this.fechaGet5.getDate() >= this.fechaGet6.getDate()){
+          if(this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
+              && this.fechaGet5.getFullYear() == this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
+          else if(this.fechaGet5.getMonth() < this.fechaGet6.getMonth() 
+              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+      }
+
+      if(this.fechaGet5.getDate() < this.fechaGet6.getDate()){
+          if( this.fechaGet5.getMonth() <= this.fechaGet6.getMonth() 
+              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+          else if (this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
+              || this.fechaGet5.getFullYear() > this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
+      }
+  }
+  /////////////Fecha tres indefinida
+  if(this.fechaGet7 == undefined){currDate = this.fechaGet6.getDate(); currMonth = this.fechaGet6.getMonth(); currYear = this.fechaGet6.getFullYear(); mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate);this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear;}
+  //////////////Fecha tres definida
+  if(this.fechaGet7 != undefined){
+      if(this.fechaGet6.getDate() >= this.fechaGet7.getDate()){
+          if(this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
+              && this.fechaGet6.getFullYear() == this.fechaGet7.getFullYear()) {currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
+          else if(this.fechaGet6.getMonth() < this.fechaGet7.getMonth() 
+              || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
+      }
+      if(this.fechaGet6.getDate() < this.fechaGet7.getDate()){
+          if( this.fechaGet6.getMonth() <= this.fechaGet7.getMonth() 
+              || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
+          else if (this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
+              || this.fechaGet6.getFullYear() > this.fechaGet7.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
+      }
+}
+}
+
+// Fecha con cuatro paradas de vuelta
+if(this.trips2.length == 4){
+//////////////Fecha dos indefinida
+if(this.fechaGet6 == undefined){currDate = this.fechaGet5.getDate(); currMonth = this.fechaGet5.getMonth(); currYear = this.fechaGet5.getFullYear(); mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate);this.trips2[1].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;}
+//////////////Fecha dos definida
+if(this.fechaGet6 != undefined){
+  if(this.fechaGet5.getDate() >= this.fechaGet6.getDate()){
+      if(this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
+          && this.fechaGet5.getFullYear() == this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
+      else if(this.fechaGet5.getMonth() < this.fechaGet6.getMonth() 
+          || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+  }
+
+  if(this.fechaGet5.getDate() < this.fechaGet6.getDate()){
+      if( this.fechaGet5.getMonth() <= this.fechaGet6.getMonth() 
+          || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+      else if (this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
+          || this.fechaGet5.getFullYear() > this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
+  }
+}
+/////////////Fecha tres indefinida
+if(this.fechaGet7 == undefined){currDate = this.fechaGet6.getDate(); currMonth = this.fechaGet6.getMonth(); currYear = this.fechaGet6.getFullYear(); mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate);this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear;}
+//////////////Fecha tres definida
+if(this.fechaGet7 != undefined){
+  if(this.fechaGet6.getDate() >= this.fechaGet7.getDate()){
+      if(this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
+          && this.fechaGet6.getFullYear() == this.fechaGet7.getFullYear()) {currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
+      else if(this.fechaGet6.getMonth() < this.fechaGet7.getMonth() 
+          || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
+  }
+  if(this.fechaGet6.getDate() < this.fechaGet7.getDate()){
+      if( this.fechaGet6.getMonth() <= this.fechaGet7.getMonth() 
+          || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
+      else if (this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
+          || this.fechaGet6.getFullYear() > this.fechaGet7.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
+      }
+  }
+
+/////////////Fecha cuatro indefinida
+if(this.fechaGet8 == undefined){currDate = this.fechaGet7.getDate(); currMonth = this.fechaGet7.getMonth(); currYear = this.fechaGet7.getFullYear(); mes = currMonth + 1; this.fechaGet8= new Date (currYear , currMonth , currDate);this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear;}
+//////////////Fecha cuatro definida
+if(this.fechaGet8 != undefined){
+  if(this.fechaGet7.getDate() >= this.fechaGet8.getDate()){
+      if(this.fechaGet7.getMonth() >= this.fechaGet8.getMonth() 
+          && this.fechaGet7.getFullYear() == this.fechaGet8.getFullYear()) {currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1; this.fechaGet8= new Date (currYear , currMonth , currDate  );this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear; this.dateMY7 = null;}
+      else if(this.fechaGet7.getMonth() < this.fechaGet8.getMonth() 
+          || this.fechaGet7.getFullYear() < this.fechaGet8.getFullYear()){currDate = this.fechaGet8.getDate();currMonth = this.fechaGet8.getMonth();currYear = this.fechaGet8.getFullYear();mes = currMonth + 1;this.fechaGet8= new Date (currYear , currMonth , currDate  ); this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY7 = true}
+  }
+  if(this.fechaGet7.getDate() < this.fechaGet8.getDate()){
+      if( this.fechaGet7.getMonth() <= this.fechaGet8.getMonth() 
+          || this.fechaGet7.getFullYear() < this.fechaGet8.getFullYear()){currDate = this.fechaGet8.getDate();currMonth = this.fechaGet8.getMonth();currYear = this.fechaGet8.getFullYear();mes = currMonth + 1;this.fechaGet8= new Date (currYear , currMonth , currDate  ); this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY7 = true}
+      else if (this.fechaGet7.getMonth() >= this.fechaGet8.getMonth() 
+          || this.fechaGet7.getFullYear() > this.fechaGet8.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1; this.fechaGet8= new Date (currYear , currMonth , currDate  );this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear; this.dateMY7 = null;}
+  }
+}
+}
+}this.createInstance();this.onDateChange()
   }
 
   public countTrips(n: number) {
@@ -385,43 +493,47 @@ export class Step1Component implements OnInit {
   }
 
   public onDateChange() {
-    var dateBack = null
+    
    
     if (this.trips.length == 2) {
-      if (this.trips[0].start.getTime() >= this.trips[1].start.getTime()) { this.constDate = true; this.dateNumErr = 2; }
+      if (this.dateMY1 == null) { this.constDate = true; this.dateNumErr = 2; }
       else (this.constDate = null)
     }
     if (this.trips.length == 3) {
-      if (this.trips[1].start.getTime() <= this.trips[0].start.getTime()) { this.dateNumErr = 2; this.constDate = true }
-      else if (this.trips[2].start.getTime() <= this.trips[1].start.getTime()) { this.dateNumErr = 3; this.constDate = true }
+      if (this.dateMY1 == null) { this.dateNumErr = 2; this.constDate = true }
+      else if (this.dateMY2 == null) { this.dateNumErr = 3; this.constDate = true }
       else (this.constDate = null)
     }
     if (this.trips.length == 4) {
-      if (this.trips[1].start.getTime() <= this.trips[0].start.getTime()) { this.dateNumErr = 2; this.constDate = true }
-      else if (this.trips[2].start.getTime() <= this.trips[1].start.getTime()) { this.dateNumErr = 3; this.constDate = true }
-      else if (this.trips[3].start.getTime() <= this.trips[2].start.getTime()) { this.dateNumErr = 7; this.constDate = true }
-     
+      if (this.dateMY1 == null) { this.dateNumErr = 2; this.constDate = true }
+      else if (this.dateMY2 == null) { this.dateNumErr = 3; this.constDate = true }
+      else if (this.dateMY3 == null) { this.dateNumErr = 4; this.constDate = true }
       else (this.constDate = null)
     }
 
     ///////////Viaje de regreso//////////////
     if (this.radio) {
-      for (const key in this.trips) {
-        var pos = key
-      } dateBack = this.trips[pos].start
+      
       if (this.trips2.length == 1) {
-        if (this.trips2[0].start.getTime() <= dateBack.getTime()) { this.constBackDate = true; this.dateNumErr = 4; }
+        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
         else (this.constBackDate = null)
       }
       if (this.trips2.length == 2) {
-        if (this.trips2[0].start.getTime() <= dateBack.getTime()) { this.constBackDate = true; this.dateNumErr = 4; }
-        else if (this.trips2[1].start.getTime() <= this.trips2[0].start.getTime()) { this.constBackDate = true; this.dateNumErr = 5; }
+        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        else if (this.dateMY5 == null) { this.constBackDate = true; this.dateNumErr = 6; }
         else (this.constBackDate = null)
       }
       if (this.trips2.length == 3) {
-        if (this.trips2[0].start.getTime() <= dateBack.getTime()) { this.constBackDate = true; this.dateNumErr = 4; }
-        else if (this.trips2[1].start.getTime() <= this.trips2[0].start.getTime()) { this.constBackDate = true; this.dateNumErr = 5; }
-        else if (this.trips2[2].start.getTime() <= this.trips2[1].start.getTime()) { this.constBackDate = true; this.dateNumErr = 6; }
+        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        else if (this.dateMY5 == null) { this.constBackDate = true; this.dateNumErr = 6; }
+        else if (this.dateMY6 == null) { this.constBackDate = true; this.dateNumErr = 7; }
+        else (this.constBackDate = null)
+      }
+       if (this.trips2.length == 4) {
+        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        else if (this.dateMY5 == null) { this.constBackDate = true; this.dateNumErr = 6; }
+        else if (this.dateMY6 == null) { this.constBackDate = true; this.dateNumErr = 7; }
+        else if (this.dateMY7 == null) { this.constBackDate = true; this.dateNumErr = 8; }
         else (this.constBackDate = null)
       }this.onChangeStop(true , this.trips2[0])
     }
@@ -1063,6 +1175,7 @@ if (this.trips2.length == 4){
     let index;
     if (round) {
       index = this.trips2.indexOf(tr, 0);
+      this.onChangeStop(true, this.trips2[0]);
       if (index > 0) {
         this.trips2.splice(index, 1);
       }
@@ -1071,12 +1184,11 @@ if (this.trips2.length == 4){
       index = this.trips.indexOf(tr, 0);
       if (index > 0) {
         this.trips.splice(index, 1);
+        this.onChangeStop(true, this.trips[0]);
       }
     }
     this.numStops--;
-    this.dateChange();
-    this.onChangeStop(true, this.trips2[1]);
-    this.onChangeStop(true, this.trips[0]);
+    
   }
   public getDate(with_weekday: boolean = true): string {
     let d: Date = new Date();
@@ -1333,7 +1445,6 @@ value   */
   public onChange(value) {
     this.session.query.round = value;
     this.radio = value;
-    this.constBackDate=true; this.dateNumErr = 4;
     this.dateChange();
     this.createInstance();
     
@@ -1362,21 +1473,14 @@ value   */
   public onMaxStops(round: boolean): boolean {
     // console.log(this.numStops);
     // console.log(this.route.max_stops);
-    if (round) {
-      if ((this.numStops >= this.route.max_stops || this.numStops == 0 || this.trips2.length == 1)) {
-        return false;
-      }
-      else //if(this.trips.length != 1)
-        return true;
-    }
-    else {
+    
+    
+    
+    
+if (this.route.max_stops <= this.numStops){return false;}
+else return true;
 
-      if ((this.numStops >= this.route.max_stops || this.numStops == 0 || this.trips.length == 1)) {
-        return false;
-      }
-      else //if(this.trips2.length != 1)
-        return true;
-    }
+    
   }
   public isRound(): boolean {
     return this.session.query.round;

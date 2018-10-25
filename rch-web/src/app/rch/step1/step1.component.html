@@ -300,7 +300,7 @@
                                     <!--Fecha 4-->
                                     <label class="label-space" for="origen-3">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker7" [value] = "dateStr7"> 
+                                        <input type="text" class="form-control" id="datepicker4" [value] = "dateStr4"> 
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -315,25 +315,17 @@
                             </div>
                         </article> 
 
-                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-add__btm" *ngIf="trips.length == 1">
-                            <div class="search__top col-xs-24 search__space col-nospace__sides">
-                               <div class="search__dashed clearfix">
-                                   <div class="search__dashed--combo">
-                                        <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(false)">
-                                        <p class="text-default">{{'Step1-P37' | translate}} </p>
-                                    </div>
-                               </div>                                
+                            <div class="col-xs-24 col-reset col-both" *ngIf="onMaxStops(false)">
+                                <div class="col-xs-6 col-sm-3 col-lg-3">
+                                        <a href="#" class="add-block js-clone" ><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(false)"></a>
+                                </div>
+                                <div class="col-xs-12 col-reset">
+                                    <p class="text-default text-default__top">{{'Step1-P38' | translate}}</p>
+                                </div>
                             </div>
-                        </article>     
+                            
                         
-                        <div class="col-xs-24 col-reset col-both" *ngIf="onMaxStops(false)">
-                            <div class="col-xs-6 col-sm-3 col-lg-3">
-                                    <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(false)"></a>
-                            </div>
-                            <div class="col-xs-12 col-reset">
-                                <p class="text-default text-default__top">{{'Step1-P38' | translate}}</p>
-                            </div>
-                        </div>
+                        
                         <!--VIAJE DE REGRESO-->
                         <div *ngIf="isRound()">
                             <article class="col-xs-24 bg-three gap-left--2 gap-left__small">
@@ -372,7 +364,7 @@
                                     <!--Fecha 1-->
                                     <label class="label-space" for="origen-b">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker4" [value] = "dateStr4">
+                                        <input type="text" class="form-control" id="datepicker5" [value] = "dateStr5">
                                         <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -409,7 +401,7 @@
                                     <!--Fecha 2-->
                                     <label class="label-space" for="origen-1">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker5" [value] = "dateStr5">
+                                        <input type="text" class="form-control" id="datepicker6" [value] = "dateStr6">
                                         <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -453,7 +445,7 @@
                                     <!--Fecha 3-->
                                     <label class="label-space" for="origen-2">{{'Step1-P35' | translate}}</label>
                                     <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker6" [value] = "dateStr6">
+                                        <input type="text" class="form-control" id="datepicker7" [value] = "dateStr7">
                                         <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
                                 </div>
@@ -510,18 +502,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </article>
-
-                            <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-nospace" *ngIf="trips2.length == 1">
-                                <div class="search__top col-xs-24 search__space">
-                                    <div class="search__dashed clearfix">
-                                        <div class="search__dashed--combo">
-                                            <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(true)">
-                                            <p class="text-default">{{'Step1-P48' | translate}} </p>
-                                        </div>
-                                    </div>                                
-                                </div>
-                            </article>     
+                        </article>    
                             
                             <div class="col-xs-24 col-reset col-both gap-left__small" *ngIf="onMaxStops(true)">
                                     <div class="col-xs-6 col-sm-3 col-lg-3 no-gutter-left-mobile">
