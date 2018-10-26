@@ -67,7 +67,7 @@ import { ConfirmComponent } from './rch/confirm/confirm.component';
   ],
   providers: [ModelService,ModelDummyService,ModelRestService,ModelDummyRestService,SessionService,{
     provide: RECAPTCHA_SETTINGS,
-    useValue: { siteKey: '6LfMUFIUAAAAAFDSA3zsQ7F_1q7Lv5Fb8hxNqZGP' } as RecaptchaSettings,
+    useValue: { siteKey: '6LdqDHQUAAAAAAMk2E3JQ8Y_dMFQxjC2vlstHAom' } as RecaptchaSettings,
   },{
     provide: RECAPTCHA_LANGUAGE,
     useValue: 'es', 
