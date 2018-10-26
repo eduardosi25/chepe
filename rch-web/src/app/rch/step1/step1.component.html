@@ -314,8 +314,18 @@
                                 </div>
                             </div>
                         </article> 
-
-                            <div class="col-xs-24 col-reset col-both" *ngIf="onMaxStops(false)">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-nospace" *ngIf="tripMaxStop">
+                            <div class="search__top col-xs-24 search__space">
+                                <div class="search__dashed clearfix">
+                                    <div class="search__dashed--combo">
+                                        <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(false)">
+                                        <p class="text-default">{{'Step1-P38' | translate}} </p>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </article>  
+                        <!--
+                            <div class="col-xs-24 col-reset col-both" *ngIf="tripMaxStop">
                                 <div class="col-xs-6 col-sm-3 col-lg-3">
                                         <a href="#" class="add-block js-clone" ><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(false)"></a>
                                 </div>
@@ -323,7 +333,7 @@
                                     <p class="text-default text-default__top">{{'Step1-P38' | translate}}</p>
                                 </div>
                             </div>
-                            
+                            -->
                         
                         
                         <!--VIAJE DE REGRESO-->
@@ -503,15 +513,24 @@
                                 </div>
                             </div>
                         </article>    
-                            
-                            <div class="col-xs-24 col-reset col-both gap-left__small" *ngIf="onMaxStops(true)">
+                        <article class="col-xs-24 bg-seven gap-left--2 gap-left__small col-nospace" *ngIf="tripMaxStop">
+                            <div class="search__top col-xs-24 search__space">
+                                <div class="search__dashed clearfix">
+                                    <div class="search__dashed--combo">
+                                        <img class="icon-plus" src="assets/img/icon-plus.svg" (click)="onCreateTrip(true)">
+                                        <p class="text-default">{{'Step1-P49' | translate}} </p>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </article>  
+                           <!-- <div class="col-xs-24 col-reset col-both gap-left__small" *ngIf="onMaxStops(true)">
                                     <div class="col-xs-6 col-sm-3 col-lg-3 no-gutter-left-mobile">
                                         <a href="#" class="add-block js-clone"><img src="assets/img/plus-symbol.png" (click)="onCreateTrip(true)"></a>
                                 </div>
                                 <div class="col-xs-12 col-reset">
                                     <p class="text-default text-default__top">{{'Step1-P49' | translate}}</p>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </section>   
 

@@ -79,9 +79,11 @@ export class Step1Component implements OnInit {
   public keyFlag1;public keyFlag2;public keyFlag3;public keyFlag4;public keyFlag5;public keyFlag6;
   public dateMY1 = null;public dateMY2= null;public dateMY3;public dateMY4;
   public dateMY5;public dateMY6;public dateMY7;public dateMY8;
+  public tripMaxStop;
   // public stops:TrainStop[] = this.stops;
   ngOnInit() {
     this.dateChange();
+    
     var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
     if (this.previousRouteService.getPreviousUrl().indexOf('reservaciones/') == -1 || this.session.query == null) {
       this.session.query = new AvailabilityQuery2(this.model);
@@ -102,6 +104,7 @@ export class Step1Component implements OnInit {
       this.router.navigate(["/reservaciones"]); return;
     }
     this.session.route = this.route;
+    this.maxStop();
     this.createInstance();
     this.avaStops = this.getSrcs(0);
   }
@@ -474,7 +477,7 @@ if(this.fechaGet8 != undefined){
   }
 }
 }
-}this.createInstance();this.onDateChange()
+}this.createInstance();this.onDateChange();
   }
 
   public countTrips(n: number) {
@@ -535,12 +538,12 @@ if(this.fechaGet8 != undefined){
         else if (this.dateMY6 == null) { this.constBackDate = true; this.dateNumErr = 7; }
         else if (this.dateMY7 == null) { this.constBackDate = true; this.dateNumErr = 8; }
         else (this.constBackDate = null)
-      }this.onChangeStop(true , this.trips2[0])
+      }this.onChangeStop()
     }
     
     
   }
-  public onChangeStop(round: boolean, tr: Trip) {
+  public onChangeStop() {
 
     let index;
     var id_dst1 = null;var id_dst2 = null;var id_dst3 = null;var id_dst4 = null;
@@ -1115,26 +1118,7 @@ if (this.trips2.length == 4){
   }
 }
     
-    if (round) {
-      index = this.trips2.indexOf(tr, 0);
-
-      if (this.trips2.length > 1) {
-        this.trips2[index + 1].id_src = this.trips2[index].id_dst;
-        // this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
-      }
-      else {
-        //this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
-      }
-      if (this.trips.length == index && tr.id_dst != 0) {
-        //this.trips2[0].id_src == tr.id_dst;
-      }
-    }
-    else {
-      if (this.trips.length > 1) {
-        index = this.trips.indexOf(tr, 0);
-        this.trips[index + 1].id_src = tr.id_dst;
-      }
-    }
+  
     this.preflight();
 
   }
@@ -1165,8 +1149,8 @@ if (this.trips2.length == 4){
     this.dateChange();
     this.createInstance();
     this.numStops++;
-    this.onChangeStop(true, this.trips2[1]);
-    this.onChangeStop(true, this.trips[0]);
+    this.maxStop();
+    this.onChangeStop();
     
    
   }
@@ -1175,7 +1159,6 @@ if (this.trips2.length == 4){
     let index;
     if (round) {
       index = this.trips2.indexOf(tr, 0);
-      this.onChangeStop(true, this.trips2[0]);
       if (index > 0) {
         this.trips2.splice(index, 1);
       }
@@ -1184,10 +1167,17 @@ if (this.trips2.length == 4){
       index = this.trips.indexOf(tr, 0);
       if (index > 0) {
         this.trips.splice(index, 1);
-        this.onChangeStop(true, this.trips[0]);
+        
       }
     }
+    this.flagOrigin = null;
     this.numStops--;
+    this.onChangeStop();
+    this.dateChange();
+    this.createInstance();
+    
+    this.maxStop();
+    
     
   }
   public getDate(with_weekday: boolean = true): string {
@@ -1463,24 +1453,18 @@ value   */
       this.session.query.trips = [];
     }
     this.dateChange();
-    this.onChangeStop(true, this.trips2[0])
+    this.onChangeStop()
     
   }
   isRegional(route: Route2): boolean {
     // console.log(route.name);
     return (route.name.toLowerCase() == "regional");
   }
-  public onMaxStops(round: boolean): boolean {
-    // console.log(this.numStops);
-    // console.log(this.route.max_stops);
-    
-    
-    
-    
-if (this.route.max_stops <= this.numStops){return false;}
-else return true;
+  public maxStop(){
 
-    
+    if (this.route.max_stops <= this.numStops){this.tripMaxStop = false}
+    else (this.tripMaxStop= true)
+    this.onChangeStop();
   }
   public isRound(): boolean {
     return this.session.query.round;
