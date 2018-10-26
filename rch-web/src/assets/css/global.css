@@ -3326,7 +3326,99 @@ textarea {
 .form-control__number::-webkit-outer-spin-button {
     -webkit-appearance: none; 
  }
+ .modalbox {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background-color: rgba(237, 236, 236, 0.95); 
+ }
 
+ .modalbox.active {
+    display: none;
+}
+
+ .modalbox-content {
+    position: fixed;
+    width: 80%;
+    max-height: 90%;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 40px 80px;
+    background-color: #fff;
+    overflow-y: scroll; 
+    -webkit-box-shadow: 0px 0px 61px 9px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 61px 9px rgba(0,0,0,0.1);
+    -box-shadow: 0px 0px 61px 9px rgba(0,0,0,0.1);
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.modalbox-inside {
+    position: relative;
+}
+
+.modalbox-figure {
+    margin: 0;
+}
+
+.modalbox-figure img {
+    width: 184px;
+}
+
+.icon-close__modal {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    float: right;
+    right: -50px;
+    top: -20px;
+    padding: 10px;
+}
+
+.icon-close__modal .icon-close__item {
+    position: relative;
+    font-size: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.input-group .input-group-btn:first-of-type {
+    opacity: 1;
+} 
+.input-group.active .input-group-btn:first-of-type {
+    opacity: 0;
+} 
+.passenger__item.active .input-group-btn:first-child {
+    opacity: .6;
+    pointer-events: none;
+}
+
+.popover.popover-modify {
+    position: relative;
+    width: 100%;
+    display: block;
+    box-shadow: none;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.popover.popover-modify .row {
+    margin-bottom: 0 !important;
+}
+.popover.popover-modify .input-number {
+    text-align: center;
+}
 /* my code */
 
 /*:::::::::::
@@ -3365,6 +3457,9 @@ FIXES RESPONSIVE
     }
     .search__item.hide-item label {
         display:none;
+    }
+    .popover.popover-modify .label-space {
+        margin-bottom: 0 !important;
     }
 }
 @media (max-width: 1089px) {

@@ -17,12 +17,16 @@
                 <table class="table uppercase">
                     <tbody>
                         <tr>
-                            <th class="bg-three border2 c-one" scope="row">Total</th>
-                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
+                            <th class="bg-three border2 c-one" scope="row">{{'Costo por pasajero' | translate}}</th>
+                            <td class="bg-two-darker border2 c-one">{{session.schedule.cost / session.query.getTotalPassengers()| currency}} {{session.schedule.currency}}</td>
                         </tr>
                         <tr>
                             <th class="bg-three c-one" scope="row">{{'Com1-P00' | translate}}</th>
                             <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-three border2 c-one" scope="row">Total</th>
+                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
                         </tr>
                     </tbody>
                 </table>

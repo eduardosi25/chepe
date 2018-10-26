@@ -75,7 +75,7 @@
                                         </select> -->
                                     </div>
                                 </div>
-                                <div class="search__item col-xs-6 col-little col-nospace">
+                                <div class="search__item col-xs-6 col-little col-nospace" *ngIf="isRegional(route)">
                                     <label class="label-space">{{'Step1-P24' | translate}}</label>
                                     <div class="box-passenger box-passenger__reset">
                                         <div class="row">
@@ -102,7 +102,7 @@
                                                 <app-cost-box></app-cost-box>
                                             </div>
                                         </div>           -->
-                                        <div class="popover passengers collapse" id="popover-content-passengers">
+                                        <div class="popover passengers collapse" id="popover-content-passengers" *ngIf="isRegional(route)">
                                             <div class="row" *ngFor="let pt of route.passenger_types">
                                                 <div class="col-xs-12 passenger-label">
                                                     <label class="label-space">{{pt.name}}
@@ -128,6 +128,63 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <!-- Express Passenger -->
+                                <div class="search__item col-xs-8 col-md-6 col-lg-8 col-little col-nospace">
+                                    <label class="label-space">{{'Step1-P24' | translate}}</label>
+                                    <div class="box-passenger box-passenger__reset">
+                                        <div class="row">
+                                            <div class="col-xs-24 passenger-total">
+                                                <div class="my-tooltip js-my-tooltip" *ngIf="isRegional(route)">
+                                                    i
+                                                    <span class="tooltiptext">
+                                                        <p class="text-default text-bold text-14">{{'Step1-P25' | translate}}</p> 
+                                                        <p class="text-default text-14">{{'Step1-P26' | translate}}</p>
+                                                        <p class="text-default text-14">{{'Step1-P27' | translate}}</p>
+                                                    </span>
+                                                </div>
+                                                <div class="popover popover-modify passengers collapse" id="popover-content-passengers">
+                                                    <div class="row" *ngFor="let pt of route.passenger_types">
+                                                        <div>
+                                                            <!-- <label class="label-space"> -->
+                                                                <span *ngIf="pt.details">
+                                                                <br/>{{pt.details}}</span>
+                                                            <!-- </label> -->
+                                                        </div>
+                                                        <div class="col-xs-12 passenger__item">
+                                                            <div class="input-group">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-xs btn-number" data-type="minus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,-1)">
+                                                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                    </button>
+                                                                </span>
+                                                                <input type="text" name="pt_{{pt.id}}" class="form-control input-number" [ngModelOptions]="{standalone: true}" [(ngModel)]="session.query.passengers[pt.id]"  (ngModelChange)="preflight()" 
+                                                                min="{{pt.min}}" max="{{pt.max}}" disabled="disabled">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-xs btn-number" data-type="plus" attr.data-field="pt_{{pt.id}}" (click)="add(pt,+1)">
+                                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--div class="passsenger__hide">
+                                                    <a class="btn btn-block bg-white c-base text-left passenger__btn passenger__small no-scroll" role="button" data-toggle="collapse" href="#popover-content-passengers"
+                                                    aria-expanded="false" aria-controls="collapseExample">
+                                                        <span style="text-transform: capitalize;" id="pasajeros">{{getTotalPassengers()}}</span>
+                                                    </a>
+                                                </div-->
+                                            </div>
+                                        </div>             
+                                        <!-- Caja de costo -->                        
+                                        <!-- <div class="cost--fix cost--right col-md-18 col-xs-24">
+                                            <div class="row">
+                                                <app-cost-box></app-cost-box>
+                                            </div>
+                                        </div>           -->
+                                        
                                     </div>
                                 </div>
                                 <!--div class="search__item search__item--small col-md-4 col-map">
@@ -743,10 +800,10 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
-
+    </div>  
 -->
+
+
  </div>
  <script>
       webshims.setOptions('forms-ext', {types: 'date'});

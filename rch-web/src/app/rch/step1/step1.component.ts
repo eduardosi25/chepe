@@ -202,6 +202,41 @@ export class Step1Component implements OnInit {
       // var maxDate = $( "#step1-start-dt" ).datepicker( "option", "maxDate" );
       // //setter
       // $( "#step1-start-dt" ).datepicker( "option", "maxDate", '+1m +1w' );
+
+      // Calcular valor 0
+      var passengerItem = ".passenger__item";
+      var passengerNumber = ".input-number"
+      $(passengerItem).each(function(){
+          
+          var passengerStatus = $(this).find(passengerNumber).val();
+          //console.log(passengerStatus);
+
+          if (passengerStatus == 0) {
+            $(this).addClass("active");
+          }
+
+      });
+
+      // Plus BTN 
+      var plusBtn = ".btn-number[data-type='plus']"
+      $(plusBtn).click(function(){
+        var passengerStatus = $(this).parents(passengerItem).find(passengerNumber).val();
+        //console.log("Aumentar número" + passengerStatus);
+        if (passengerStatus >= 1) {
+          $(this).parents(passengerItem).removeClass("active");
+        }
+      });
+
+      // Minus BTN 
+      var minusBtn = ".btn-number[data-type='minus']"
+      $(minusBtn).click(function(){
+        var passengerStatus = $(this).parents(passengerItem).find(passengerNumber).val();
+        //console.log("Disminuye número" + passengerStatus);
+        if (passengerStatus == 0) {
+          $(this).parents(passengerItem).addClass("active");
+        }
+      });
+
     }, 1000);
   } 
   

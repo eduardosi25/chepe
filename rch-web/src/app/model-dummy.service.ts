@@ -30,13 +30,13 @@ export class ModelDummyService implements IModel {
   constructor() { }
 
   getStdPassengerTypes():PassengerType[]{
-    return [new PassengerType(1,"Adultos ","(12+ años)",1,10),
-            new PassengerType(2,"Infante ","(0-4 años)",0,10),
-            new PassengerType(3,"Menor ","(5-11 años)",0,10),
-            new PassengerType(4,"INSEN","",0,10),
-            new PassengerType(5,"Estudiante","",0,10),
-            new PassengerType(5,"Profesor","",0,10),
-            new PassengerType(6,"Discapacitado","",0,10)];
+    return [new PassengerType(1,"Adultos ","",1,10)];
+            // new PassengerType(2,"Infante ","(0-4 años)",0,10),
+            // new PassengerType(3,"Menor ","(5-11 años)",0,10),
+            // new PassengerType(4,"INSEN","",0,10),
+            // new PassengerType(5,"Estudiante","",0,10),
+            // new PassengerType(5,"Profesor","",0,10),
+            // new PassengerType(6,"Discapacitado","",0,10)];
   }
   rss():number{
     let r:number = Math.random();
@@ -66,7 +66,7 @@ export class ModelDummyService implements IModel {
     var rexpress:Route2 = new Route2();
     rexpress.id = 2;
     rexpress.max_stops = 2;
-    rexpress.name = "Chepe Express";
+    rexpress.name = "Express";
     rexpress.passenger_types = this.getStdPassengerTypes();
     let w1=610;let h1=610;
     rexpress.stops = [
@@ -89,7 +89,7 @@ export class ModelDummyService implements IModel {
     var rregional:Route2 = new Route2();
     rregional.id = 1;
     rregional.max_stops = 3;
-    rregional.name = "Chepe Regional";
+    rregional.name = "Regional";
     rregional.passenger_types = this.getStdPassengerTypes();
     rregional.stops = [
       new TrainStop(1,"CHIHUAHUA",[new Departure(1,1,0,"00:00:00",Direction.down,1),new Departure(1,1,0,"07:00:00",Direction.up,1)],28.61614,-106.07513,"",268,1,502/w1,32/h1),
