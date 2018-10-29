@@ -26,7 +26,10 @@ export class Step4Component implements OnInit {
     public session: SessionService,
     private router: Router) { }
     public paises: Country[] = [];
-    
+    public per;
+    public flag;
+    public perl;
+    public flagl;
 
   public segments: Segment[] = [];
   ngOnInit() {
@@ -55,8 +58,12 @@ export class Step4Component implements OnInit {
     $('.form-control').removeClass('orange');
     for (var i = 0; i < this.session.rb.persons.length; i++) {
       let p: Person = this.session.rb.persons[i];
-      if (!p.name || !Step4Component.name_regex.test(p.name)) { $('#p_' + i + '_name').addClass('orange'); return false; }
-      if (!p.lastname || !Step4Component.lastname_regex.test(p.lastname)) { $('#p_' + i + '_lastname').addClass('orange'); return false; }
+      this.per = p.name
+      this.perl = p.lastname
+      this.name();
+      this.last();
+      if (!p.name || this.flag == true) { $('#p_' + i + '_name').addClass('orange'); return false; }
+      if (!p.lastname || this.flagl == true) { $('#p_' + i + '_lastname').addClass('orange'); return false; }
       if(!p.country){$('#p_'+i+'_country').addClass('orange');return false;}
     }
 
@@ -64,6 +71,21 @@ export class Step4Component implements OnInit {
     if (this.session.rb.etickets_email2 != this.session.rb.etickets_email) { $('#etickets_email2').addClass('orange'); return false; }
     if(this.session.rb.etickets_phone == "" || !Step4Component.cellphone_regex.test(this.session.rb.etickets_phone)){$('#etickets_phone').addClass('orange');return false;}
     return this.session.rb.pp;
+  }
+  public name(){
+    if(typeof this.per != 'undefined'){
+    this.per= this.per.replace(/^\s+|\s+$/g, "");
+   if( !Step4Component.name_regex.test(this.per)){this.flag = true}
+   else (this.flag = null)
+    }
+  }
+
+  public last(){
+    if(typeof this.perl != 'undefined'){
+    this.perl= this.perl.replace(/^\s+|\s+$/g, "");
+   if( !Step4Component.lastname_regex.test(this.perl)){this.flagl = true}
+   else (this.flagl = null)
+    }
   }
   //  public getCountry(){
   //     this.model.getCountries().subscribe((response:Response<Country>) => {
