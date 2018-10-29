@@ -22,6 +22,8 @@
                 </div>
                 <div class="col-sm-15 gap-left ">
                    <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>
+                   <p>{{'Step1-P72' | translate}}</p>
+                   <p *ngIf="isRegional(route)">{{'Step1-P73' | translate}}</p>
                 </div>
                 <!-- title -->
                 <div class=" col-sm-20 gap-left">
@@ -86,6 +88,7 @@
                                                             <p class="text-default text-bold text-14">{{'Step1-P25' | translate}}</p> 
                                                             <p class="text-default text-14">{{'Step1-P26' | translate}}</p>
                                                             <p class="text-default text-14">{{'Step1-P27' | translate}}</p>
+                                                            <p class="text-default text-14">{{'Step1-P74' | translate}}</p>
                                                         </span>
                                                     </div>
                                                 <div class="passsenger__hide">

@@ -848,8 +848,8 @@
 	"Step1-P23":"Clase",
 	"Step1-P24":"Total de pasajeros",
 	"Step1-P25":"Chepe Regional",
-	"Step1-P26":"Pasajeros a partir de 5 años",
-	"Step1-P27":"De 0 a 4 años no pagan boleto pero no tienen derecho a asiento.",
+	"Step1-P26":"Adulto: 12 años en adelante",
+	"Step1-P27":"Menor: 5 a 11 años",
 	"Step1-P28":"VIAJE DE IDA",
 	"Step1-P29":"Tramo",
 	"Step1-P30":"Origen",
@@ -894,6 +894,9 @@
 	"Step1-P69":"Elige una fecha valida",
 	"Step1-P70":"Elige una fecha despues de la parada anterior",
 	"Step1-P71":"Elige un origen valido",
+	"Step1-P72":"Te solicitamos que anotes todas tus escalas.",
+	"Step1-P73":"***Para descuentos de menores, inapam, personas con capacidades diferentes, estudiantes y maestros, favor de revisar la política y contactar al 01800 1224373.",
+	"Step1-P74":"Infante: 0 a 4 años. Sin costo (Pero no se le asigna lugar)",
 	"Step2-P00":"Resultados de búsqueda",
 	"Step2-P01":"Elige una opción en cada uno de los tramos del tren encontrados para formar tu itinerario final.",
 	"Step2-P02":"Escala",
@@ -976,5 +979,6 @@
 	"Com1-P06":"Llegada",
 	"Com1-P07":"Duración",
 	"Com1-P08":"Regresar",
-	"Com1-P09":"Pagar"
+	"Com1-P09":"Pagar",
+	"Com1-P10":"En caso de cancelación o cambio, favor de contactar al 01800 1224373."
 }
