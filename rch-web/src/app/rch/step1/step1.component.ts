@@ -573,12 +573,12 @@ if(this.fechaGet8 != undefined){
         else if (this.dateMY6 == null) { this.constBackDate = true; this.dateNumErr = 7; }
         else if (this.dateMY7 == null) { this.constBackDate = true; this.dateNumErr = 8; }
         else (this.constBackDate = null)
-      }this.onChangeStop()
+      }this.onChangeStop(true, this.trips[0])
     }
     
     
   }
-  public onChangeStop() {
+  public onChangeStop(round: boolean, tr: Trip) {
 
     let index;
     var id_dst1 = null;var id_dst2 = null;var id_dst3 = null;var id_dst4 = null;
@@ -1153,7 +1153,28 @@ if (this.trips2.length == 4){
   }
 }
     
-  
+if (round) {
+  index = this.trips2.indexOf(tr, 0);
+
+  if (this.trips2.length > 1) {
+    this.trips2[index + 1].id_src = this.trips2[index].id_dst;
+    // this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
+  }
+  else {
+    //this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
+  }
+  if (this.trips.length == index && tr.id_dst != 0) {
+    //this.trips2[0].id_src == tr.id_dst;
+  }
+}
+else {
+  if (this.trips.length > 1) {
+    index = this.trips.indexOf(tr, 0);
+    this.trips[index + 1].id_src = tr.id_dst;
+  }
+}
+
+
     this.preflight();
 
   }
@@ -1185,7 +1206,7 @@ if (this.trips2.length == 4){
     this.createInstance();
     this.numStops++;
     this.maxStop();
-    this.onChangeStop();
+    this.onChangeStop(true, this.trips[0]);
     
    
   }
@@ -1207,7 +1228,7 @@ if (this.trips2.length == 4){
     }
     this.flagOrigin = null;
     this.numStops--;
-    this.onChangeStop();
+    this.onChangeStop(true, this.trips[0]);
     this.dateChange();
     this.createInstance();
     
@@ -1488,7 +1509,7 @@ value   */
       this.session.query.trips = [];
     }
     this.dateChange();
-    this.onChangeStop()
+    this.onChangeStop(true, this.trips[0])
     
   }
   isRegional(route: Route2): boolean {
@@ -1499,7 +1520,7 @@ value   */
 
     if (this.route.max_stops <= this.numStops){this.tripMaxStop = false}
     else (this.tripMaxStop= true)
-    this.onChangeStop();
+    this.onChangeStop(true, this.trips[0]);
   }
   public isRound(): boolean {
     return this.session.query.round;

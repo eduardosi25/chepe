@@ -88,15 +88,16 @@ export class Travel implements FromJSONable{
         return this.date+" "+this.arrival.time;
     }
     public getDuration():string{
+
         let dd:Date = this.mkDate(this.getDepartureDateTime());
         let ad:Date = this.mkDate(this.getArrivalDateTime());
-        // console.log(this.getArrivalDateTime());
-        // console.log(this.getDepartureDateTime());
         if (this.getArrivalDateTime() < this.getDepartureDateTime()) {
             dd = this.mkDate(this.getArrivalDateTime());  
             ad = this.mkDate(this.getDepartureDateTime());
         };
+        if( ad.getHours() != 0 && dd.getHours() != 0){
         var dif:number = ad.getTime()-dd.getTime()
+
         let s:number = 1000;
         let m:number = s*60;
         let h:number = m*60;
@@ -105,8 +106,26 @@ export class Travel implements FromJSONable{
         
         let hrss:string = hrs<10 ? '0'+hrs:''+hrs;
         let minss:string = mins<10 ? '0'+mins:''+mins;
-
+        
         return hrss+":"+minss;
+        }
+        
+        if( ad.getHours() == 0 || dd.getHours() == 0){
+            var dif:number = ad.getTime()-dd.getTime()  
+            
+            let s:number = 1000;
+            let m:number = s*60;
+            let h:number = m*60;
+            let hrs:number = Math.ceil(dif/h); dif = dif%h;
+            let mins:number = Math.ceil(dif/m);
+             hrs = 24 - hrs;
+             mins = 60 - mins;
+            let hrss:string = hrs<10 ? '0'+hrs:''+hrs;
+            let minss:string = mins<10 ? '0'+mins:''+mins;
+            
+            return hrss+":"+minss;
+            }
+       
     }
     mkDate(s:string):Date{
         var mps:string[] = s.split(" ");
