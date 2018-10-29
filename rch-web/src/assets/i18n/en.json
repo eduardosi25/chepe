@@ -848,8 +848,8 @@
 	"Step1-P23":"Class",
 	"Step1-P24":"Passengers",
 	"Step1-P25":"Regional Chepe",
-	"Step1-P26":"Passengers from 5 years old",
-	"Step1-P27":"From 0 to 4 years old they do not pay a ticket but they do not have the right to a seat.",
+	"Step1-P26":"Adult: 12 years and older",
+	"Step1-P27":"Minor: 5 to 11 years",
 	"Step1-P28":"VIAJE DE IDA",
 	"Step1-P29":"Stop",
 	"Step1-P30":"Origin",
@@ -893,6 +893,10 @@
 	"Step1-P68":"Choose a destination",
 	"Step1-P69":"Choose a valid date",
 	"Step1-P70":"Choose a date after the previous stop",
+	"Step1-P71":"Choose a valid origin",
+	"Step1-P72":"Please, write down all your stops.",
+	"Step1-P73":"***For discounts of minors, inapam, people with different abilities, students and teachers, please review the policy and contact 01800 1224373.",
+	"Step1-P74":"Infant: 0 to 4 years. No cost (But no place is assigned)",
 	"Step2-P00":"Search Results",
 	"Step2-P01":"Choose an option in each train segment found to make your final itinerary.",
 	"Step2-P02":"LAYOVER",
@@ -975,5 +979,6 @@
 	"Com1-P06":"ARRIVAL",
 	"Com1-P07":"DURATION",
 	"Com1-P08":"BACK",
-	"Com1-P09":"PAY"
+	"Com1-P09":"PAY",
+	"Com1-P10":"In case of cancellation or change, please contact 01800 1224373."
 }	 	
