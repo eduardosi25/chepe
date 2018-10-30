@@ -703,9 +703,9 @@ if (this.radio) {
 if (this.trips2.length == 1){
   backId_dst1 = this.trips2[0].id_dst;
   if (backId_src1 == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = false; }
   else { this.constBackStop = null; this.constBackOrigin = null; }
 }
 //Viaje de regreso con dos paradas
@@ -723,11 +723,11 @@ if (this.trips2.length == 2){
   else (this.flagDstBack1 = null)
 
   if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = false; }
   else { this.constBackStop = null; this.constBackOrigin = null; }
 
 }
@@ -760,13 +760,13 @@ if (this.trips2.length == 3){
 
 
   if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = true;  }
+  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = false;  }
  
   else if (this.flagSrcBack == true) { 
     if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
@@ -1026,9 +1026,9 @@ if (this.radio) {
 if (this.trips2.length == 1){
   backId_dst1 = this.trips2[0].id_dst;
   if (backId_src1 == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = false; }
   else { this.constBackStop = null; this.constBackOrigin = null; }
 }
 //Viaje de regreso con dos paradas
@@ -1046,11 +1046,11 @@ if (this.trips2.length == 2){
   else (this.flagDstBack1 = null)
 
   if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = false; }
   else { this.constBackStop = null; this.constBackOrigin = null; }
 
 }
@@ -1083,13 +1083,13 @@ if (this.trips2.length == 3){
 
 
   if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = true;  }
+  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = false;  }
  
   else if (this.flagSrcBack == true) { 
     if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
@@ -1131,13 +1131,13 @@ if (this.trips2.length == 4){
  
 
   if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = true;}
+  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
   else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
   else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
   else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst4.id != id_src1.id){this.stopNumErr = 8;this.constBackOrigin = null; this.constBackStop = true;  }
+  else if (backId_dst4.id != id_src1.id){this.stopNumErr = 8;this.constBackOrigin = null; this.constBackStop = false;  }
  
   else if (this.flagSrcBack == true) { 
     if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
@@ -1365,9 +1365,11 @@ else {
     if (this.trips.length >= 1 && this.constStop) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
     if (this.trips.length > 1 && this.constDate) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
     
-    if ((this.radio)&&(this.trips2[0].id_src == null || this.trips2[0].id_src == 0)){ this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackOrigin)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackStop)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
+    if ((this.radio)&&(this.trips2[0].id_src == null || this.trips2[0].id_src == 0)){ this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
+    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackOrigin == true)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
+    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackOrigin == false)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
+    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackStop  == true)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
+    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackStop  == false)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P75'); return true; }
     if ((this.radio)&&(this.trips2.length >= 1 && this.constBackDate)) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
    
     // var start_dt:Date = new Date(this.session.query.start);
