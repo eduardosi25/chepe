@@ -823,7 +823,7 @@
 	"Main-P17":"assets/img/reservacion/Mapas/Esp/map_regionalesp_full_2.jpg",
 	"Step1-P00":"Reservaciones del",
 	"Step1-P01":"Tu boleto incluye la opción de realizar hasta",
-	"Step1-P02":"escalas intermedias para vivir de cerca esta increíble experiencia*.",
+	"Step1-P02":"escalas intermedias para vivir de cerca esta increíble experiencia.",
 	"Step1-P03":"¿A dónde viajas?",
 	"Step1-P031":"Origen",
 	"Step1-P04":"Elige una opción",
@@ -894,9 +894,9 @@
 	"Step1-P69":"Elige una fecha valida",
 	"Step1-P70":"Elige una fecha despues de la parada anterior",
 	"Step1-P71":"El origen 'regreso' y el destino 'ida' no coincide",
-	"Step1-P72":"Te solicitamos que anotes todas tus escalas.",
-	"Step1-P73":"***Para descuentos de menores, inapam, personas con capacidades diferentes, estudiantes y maestros, favor de revisar la política y contactar al 01800 1224373.",
-	"Step1-P74":"Infante: 0 a 4 años. Sin costo (Pero no se le asigna lugar)",
+	"Step1-P72":"Te solicitamos que especifiques tus escalas.",
+	"Step1-P73":"*Para descuentos de menores, inapam, personas con capacidades diferentes, estudiantes y maestros, favor de revisar la política y contactar al 01800 1224373.",
+	"Step1-P74":"Infante: 0 a 4 años. Sin costo (Sin lugar asignado)",
 	"Step1-P75":"El origen 'ida' y el destino 'regreso' no coincide",
 	"Step2-P00":"Resultados de búsqueda",
 	"Step2-P01":"Elige una opción en cada uno de los tramos del tren encontrados para formar tu itinerario final.",
@@ -938,7 +938,7 @@
 	"Step4-P10":"Apellido*",
 	"Step4-P11":"País de residencia*",
 	"Step4-P12":"Elige una opción",
-	"Step4-P13":"Ingresar datos de contacto para entrega de eTICKETS",
+	"Step4-P13":"Ingresar datos de contacto para envío de boletos",
 	"Step4-P14":"Cuenta de correo*",
 	"Step4-P15":"Ej.: ana@dominio.com, pepe@yahoo.com, etc.",
 	"Step4-P16":"Confirmar correo*",
@@ -982,5 +982,5 @@
 	"Com1-P07":"Duración",
 	"Com1-P08":"Regresar",
 	"Com1-P09":"Pagar",
-	"Com1-P10":"En caso de cancelación o cambio, favor de contactar al 01800 1224373."
+	"Com1-P10":" "
 }

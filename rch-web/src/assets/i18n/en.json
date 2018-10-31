@@ -823,7 +823,7 @@
 	"Main-P17":"assets/img/reservacion/Mapas/Ing/map_regionaling_full_2.jpg",
 	"Step1-P00":"Reservations of",
 	"Step1-P01":"Your ticket includes the option of making up to",
-	"Step1-P02":"intermediate layovers to live up close this incredible experience*.",
+	"Step1-P02":"intermediate layovers to live up close this incredible experience.",
 	"Step1-P03":"Where are you travelling?",
 	"Step1-P031":"Origin",
 	"Step1-P04":"Choose an option",
@@ -894,9 +894,9 @@
 	"Step1-P69":"Choose a valid date",
 	"Step1-P70":"Choose a date after the previous stop",
 	"Step1-P71":"The origin 'return' and the destination 'gone' does not match",
-	"Step1-P72":"Please, write down all your stops.",
-	"Step1-P73":"***For discounts of minors, inapam, people with different abilities, students and teachers, please review the policy and contact 01800 1224373.",
-	"Step1-P74":"Infant: 0 to 4 years. No cost (But no place is assigned)",
+	"Step1-P72":"Please, specify your stops.",
+	"Step1-P73":"*For discounts of minors, inapam, people with different abilities, students and teachers, please review the policy and contact 01800 1224373.",
+	"Step1-P74":"Infant: 0 to 4 years. No cost (No assigned seat)",
 	"Step1-P75":"The origin 'gone' and the destination 'return' do not match",
 	"Step2-P00":"Search Results",
 	"Step2-P01":"Choose an option in each train segment found to make your final itinerary.",
@@ -938,7 +938,7 @@
 	"Step4-P10":"Last Name*",
 	"Step4-P11":"Country of residence*",
 	"Step4-P12":"Choose an option",
-	"Step4-P13":"Enter contact data for eTICKET delivery",
+	"Step4-P13":"Enter contact information for tickets delivery",
 	"Step4-P14":"Email account*",
 	"Step4-P15":"E.g.: ana@dominio.com, pepe@yahoo.com, etc.",
 	"Step4-P16":"Confirm email*",
@@ -982,5 +982,5 @@
 	"Com1-P07":"DURATION",
 	"Com1-P08":"BACK",
 	"Com1-P09":"PAY",
-	"Com1-P10":"In case of cancellation or change, please contact 01800 1224373."
+	"Com1-P10":" "
 }	 	
