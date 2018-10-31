@@ -169,7 +169,7 @@
                                 <div class="col-sm-12 col-md-8">
                                     <div class="form-group">
                                         <label>{{'Step4-P29' | translate}}</label>
-                                        <input class="form-control" id="emergencia" type="text"  [(ngModel)]="emergency" maxlength="10">
+                                        <input type="text" class="form-control form-control__number"  placeholder="{{'Step4-P28' | translate}}" id="emergencia" [(ngModel)]="emergency" maxlength="10">
                                         <span id="helpBlock" class="help-block">{{'Step4-P27' | translate}}</span>
                                     </div>
                                 </div>
@@ -215,12 +215,12 @@
                     </div>
 
                     <div class=" col-xs-12 col-sm-3 center">
-                        <a class="btn btn-link c-one" routerLink="/reservaciones/{{session.route.name}}/paso5" *ngIf="readyToGoNext()" role="button">
+                        <button disabled={{flagDisabled}} class="btn btn-link c-one" routerLink="/reservaciones/{{session.route.name}}/paso5" *ngIf="readyToGoNext()" role="button">
                             <div>
                                 <img src="assets/img/icon_right.png">
                             </div>
-                            <div>{{'Step4-P25' | translate}}</div>
-                        </a>
+                            <div>{{step4}}</div>
+                        </button>
                     </div>
 
                 </div>
