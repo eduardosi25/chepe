@@ -253,7 +253,7 @@ var currYear = null;var currYear1 = null;
 var mes;
 var d = new Date();
 
-if(this.fechaGet1 == undefined){ currDate = d.getDate() + 1; currMonth = d.getMonth(); currYear = d.getFullYear(); mes = currMonth + 1;this.fechaGet1= new Date (currYear,currMonth,currDate);this.trips[0].start = this.fechaGet1;this.dateStr1 = currDate + "/" + mes  + "/" + currYear;}
+if(this.fechaGet1 == undefined){ currDate = d.getDate() + 1; currMonth = d.getMonth(); currYear = d.getFullYear();this.fechaGet1= new Date (currYear,currMonth,currDate); mes = this.fechaGet1.getMonth() + 1 ;this.trips[0].start = this.fechaGet1;this.dateStr1 = this.fechaGet1.getDate() + "/" + mes + "/" + currYear;}
     else{this.trips[0].start = this.fechaGet1; currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1;this.dateStr1 = currDate + "/" + mes  + "/" + currYear;}
 
 // Fecha con dos paradas
