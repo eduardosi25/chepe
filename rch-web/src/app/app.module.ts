@@ -16,6 +16,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PaymentComponent } from './rch/payment/payment.component';
 import { PreviousRouteService } from './previous-route.service';
+import { TacExpressComponent } from './info/tac-express/tac-express.component';
 
 
 
@@ -29,7 +30,8 @@ import { PreviousRouteService } from './previous-route.service';
     HistoryComponent,
     TacComponent,
     FaqComponent,
-    LegalAdviceComponent
+    LegalAdviceComponent,
+    TacExpressComponent
     //PaymentComponent
   ],
   providers:[PreviousRouteService],

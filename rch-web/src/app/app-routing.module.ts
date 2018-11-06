@@ -4,6 +4,7 @@ import {IndexComponent} from './info/index/index.component';
 import { ContactComponent } from './info/contact/contact.component';
 import { HistoryComponent } from './info/history/history.component';
 import { TacComponent } from './info/tac/tac.component';
+import { TacExpressComponent } from './info/tac-express/tac-express.component';
 import { FaqComponent } from './info/faq/faq.component';
 import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactComponent },
   { path: 'historia', component: HistoryComponent },
   { path: 'terminos-y-condiciones', component: TacComponent },
+  { path: 'terminos-y-condiciones-express', component: TacExpressComponent },
   { path: 'aviso-legal', component: LegalAdviceComponent }
 ];
 
