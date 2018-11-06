@@ -20,9 +20,56 @@
                 <div class="col-sm-24 no-gutter-left-mobile">
                    <span class="title-underline c-border-two"></span>
                 </div>
-                <div class="col-sm-15 gap-left ">
-                   <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>
+                <div class="col-sm-15 gap-left">
+                   <p>{{'Step1-P01' | translate}} {{route.max_stops}} {{'Step1-P02' | translate}}</p>                   
                    <p>{{'Step1-P72' | translate}}</p>
+                </div>
+                <div class="col-sm-15 gap-left">
+                    <div class="table-responsive">
+                        <table class="table chepe">
+
+                            <tbody>
+                                <tr>
+                                    <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>
+                                    <td colspan="2" *ngIf="isRegional(route)">{{'Main-P13' | translate}}</td>                                        
+                                    <td colspan="2" *ngIf="!isRegional(route)">{{'Main-P10' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <span *ngIf="isRegional(route)">{{'Main-P01' | translate}}</span>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <th class="bg-three border2" scope="row" rowspan="2">
+                                        <span *ngIf="isRegional(route)">{{'Main-P03' | translate}}
+                                            <br/> {{'Main-P04' | translate}}</span>
+                                        <span *ngIf="!isRegional(route)">{{'Main-P03' | translate}}
+                                            <br/> {{'Main-P04' | translate}}</span>
+                                    </th>
+                                    <td class="c-one">{{route.getFirstTrainStop(1).getDeparture(1).time}} hrs
+                                        <br>
+                                        <br/> {{route.getLastTrainStop(1).getDeparture(1).time}} hrs</td>
+                                    <td class="bg-one-light">
+                                        {{'Main-P05' | translate}} {{route.getFirstTrainStop(1).name}}
+                                        <br>
+                                        <span *ngIf="isRegional(route)">{{'Main-P06' | translate}}</span>
+                                        <br/> {{'Main-P07' | translate}} {{route.getLastTrainStop(1).name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-one">{{route.getFirstTrainStop(2).getDeparture(2).time}} hrs
+                                        <br>
+                                        <br/> {{route.getLastTrainStop(2).getDeparture(2).time}} hrs</td>
+                                    <td class="bg-one-light">
+                                        {{'Main-P05' | translate}} {{route.getFirstTrainStop(2).name}}
+                                        <br>
+                                        <span *ngIf="isRegional(route)">{{'Main-P08' | translate}}</span>
+                                        <br/> {{'Main-P07' | translate}} {{route.getLastTrainStop(2).name}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-15 gap-left">
                    <p *ngIf="isRegional(route)">{{'Step1-P73' | translate}}</p>
                 </div>
                 <!-- title -->

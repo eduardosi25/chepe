@@ -23,6 +23,7 @@ export class RouteBooking implements FromJSONable{
     public etickets_email:string="";
     public etickets_email2:string="";
     public etickets_phone:string="";
+    public etickets_emergency_contact:string="";
     public travels:Travel[]=[];
     public pp:boolean=false;
     public round:boolean=false;

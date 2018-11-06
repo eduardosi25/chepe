@@ -98,6 +98,25 @@ export class Step1Component implements OnInit {
     this.session.segments = null;
     this.session.segments2 = null;
     this.session.schedule = new Schedule();
+    // console.log("query");
+    // console.log(this.session.query);
+    
+    // if(this.session.query.trips != null)
+    // {
+    //   var currDate = null;var currDate1 = null;
+    //   var currMonth = null;var currMonth1 = null;
+    //   var currYear = null;var currYear1 = null;
+    //   var mes;
+    //   //this.onChange(false);
+    //   this.trips = this.session.query.trips;
+    //   //this.dates trips[0].start =  currDate + "/" + mes  + "/" + currYear;
+    //   currDate = this.session.query.trips[0].start.getDate(); currMonth = this.session.query.trips[0].start.getMonth(); currYear = this.session.query.trips[0].start.getFullYear(); mes = currMonth + 1; this.session.query.trips[0].start= new Date (currYear , currMonth , currDate);//this.trips[1].start = this.fechaGet2;this.dateStr1 = currDate + "/" + mes  + "/" + currYear;
+    //   console.log(this.session.query.trips[0].start)
+    // }
+    // if (this.session.query.round) {
+    //   //this.onChange(true);
+    //   this.trips2 = this.session.query2.trips;
+    // }
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);
     if (!this.route) {

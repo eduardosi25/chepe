@@ -169,7 +169,7 @@
                                 <div class="col-sm-12 col-md-8">
                                     <div class="form-group">
                                         <label>{{'Step4-P29' | translate}}</label>
-                                        <input type="text" class="form-control form-control__number"  placeholder="{{'Step4-P28' | translate}}" id="emergencia" [(ngModel)]="emergency" maxlength="10">
+                                        <input type="text" placeholder="{{'Step4-P28' | translate}}" class="form-control form-control__number" [(ngModel)]="session.rb.etickets_emergency_contact" id="etickets_emergency_contact" maxlength="10">
                                         <span id="helpBlock" class="help-block">{{'Step4-P27' | translate}}</span>
                                     </div>
                                 </div>
@@ -197,8 +197,8 @@
                                 <input type="checkbox" id="pp" [(ngModel)]="session.rb.pp"> &nbsp; 
                                 <span class="c-two">{{'Step4-P18' | translate}}
                                     <br>{{'Step4-P19' | translate}}
-                                    <a class="underline c-two" routerLink="/terminos-y-condiciones">{{'Step4-P20' | translate}}</a>{{'Step4-P21' | translate}}
-                                    <a class="underline c-two" routerLink="aviso-legal">{{'Step4-P22' | translate}}</a>
+                                    <a class="underline c-two" routerLink="/terminos-y-condiciones" target="_blank">{{'Step4-P20' | translate}}</a>{{'Step4-P21' | translate}}
+                                    <a class="underline c-two" routerLink="/aviso-legal" target="_blank">{{'Step4-P22' | translate}}</a>
                                 </span>
                             </label>
                         </div>

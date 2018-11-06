@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <th class="bg-three border2 c-one" scope="row">Total</th>
-                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{c.amount | currency}} {{c.currency}}</td>
+                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{session.schedule.cost | currency}} {{c.currency}}</td>
                         </tr>
                     </tbody>
                 </table>
