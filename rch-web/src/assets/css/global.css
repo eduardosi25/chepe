@@ -2622,9 +2622,10 @@ FIXES
     z-index: 9999;
 }
 .modal-video {
-    z-index: 99999;
+    z-index: 20000002 !important;
     top: 0;
 }
+
 .body.active {
     overflow: inherit !important;
 }
