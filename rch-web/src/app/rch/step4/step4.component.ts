@@ -55,8 +55,8 @@ export class Step4Component implements OnInit {
   static email_regex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   static name_regex: RegExp = /^[A-Za-zÑñ\s]{2,30}$/;
   static lastname_regex: RegExp = /^[A-Za-zÑñ\s]{2,30}$/
-  static cellphone_regex: RegExp = /^[0-9]{10,10}$/;
-  static emergency_regex: RegExp = /^[0-9]{10,10}$/;
+  static cellphone_regex: RegExp = /^[0-9]{8,16}$/;
+  static emergency_regex: RegExp = /^[0-9]{8,16}$/;
  
  
   public readyToGoNext(): boolean {
