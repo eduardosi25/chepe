@@ -4,7 +4,6 @@ $(document).ready(function () {
             $(".modalbox").addClass("active");
         });
         $('.js-close__modal').click(function (e) {
-            e.preventDefault();
             $('.modalbox').removeClass("active");
         });
      }, 1000);
