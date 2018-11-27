@@ -3507,6 +3507,9 @@ textarea {
 .modal.modal-appear {
     display: block;
 }
+.modal.modal-appear.active {
+    display: none;
+}
 .modal-footer a {
     margin: 0 10px;
     width: 140px;
