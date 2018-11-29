@@ -118,7 +118,6 @@
                                     <div class="form-group">
                                         <!--<input type="text" class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">-->
                                         <select class="form-control" [(ngModel)]="person.country" id="p_{{i}}_country">
-                                                <option [ngValue]="null">{{'Step4-P12' | translate}}</option>
                                                 <option *ngFor="let c of this.paises" [ngValue]="c.id">{{c.nombre_es}}</option>
                                         </select>
                                     </div>
@@ -206,7 +205,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-3 center">
-                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso3" role="button">
+                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso1" role="button">
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>

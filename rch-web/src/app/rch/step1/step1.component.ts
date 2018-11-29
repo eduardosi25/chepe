@@ -98,6 +98,75 @@ export class Step1Component implements OnInit {
     this.session.segments = null;
     this.session.segments2 = null;
     this.session.schedule = new Schedule();
+    console.log(this.session.query);
+    if (this.session.query.trips != null) {
+      this.trips = this.session.query.trips;
+      for (let i = 0; i < this.trips.length; i++) {
+        const t:Trip = this.trips[i];
+        var day = t.start.getDate();
+        var month = t.start.getMonth()+1;
+        var year = t.start.getFullYear();
+        switch (i) {
+          case 0:
+            this.dateStr1 = day+ "/" + month+ "/" + year;
+            this.dateMY1 = true;
+            break;
+          case 1:
+            this.dateStr2 =  day+ "/" + month+ "/" + year;   
+            this.dateMY2 = true;   
+            break;
+          case 2:
+            this.dateStr3 =  day+ "/" + month+ "/" + year;  
+            this.dateMY3 = true;         
+            break;
+          case 3:
+            this.dateStr4 =  day+ "/" + month+ "/" + year;   
+            this.dateMY4 = true;    
+            break;
+          default:
+            this.dateStr1 =  day+ "/" + month+ "/" + year;
+            this.dateMY1 = true;
+            break;
+        }
+      }
+      // this.trips.forEach(trip => {
+      //   //this.dateStr1 = currDate + "/" + mes  + "/" + currYear
+      //   this.dateStr1 = "24/11/2018";
+      //  console.log(trip.start);
+      // });
+    }
+    //console.log(this.session.query2);
+    if (this.session.query2 != undefined && this.session.query2.trips != null) {
+      this.trips2 = this.session.query2.trips;
+      for (let i = 0; i < this.trips2.length; i++) {
+        const t:Trip = this.trips2[i];
+        var day = t.start.getDate();
+        var month = t.start.getMonth()+1;
+        var year = t.start.getFullYear();
+        switch (i) {
+          case 0:
+            this.dateStr5 = day+ "/" + month+ "/" + year;
+            this.dateMY5 = true;
+            break;
+          case 1:
+            this.dateStr6 =  day+ "/" + month+ "/" + year;           
+            this.dateMY6 = true;
+            break;
+          case 2:
+            this.dateStr7 =  day+ "/" + month+ "/" + year;  
+            this.dateMY7 = true;         
+            break;
+          case 3:
+            this.dateStr8 =  day+ "/" + month+ "/" + year; 
+            this.dateMY8 = true;      
+            break;
+          default:
+            this.dateStr5 =  day+ "/" + month+ "/" + year;
+            this.dateMY5 = true;
+            break;
+        }
+      }
+    }
     // console.log("query");
     // console.log(this.session.query);
     
@@ -126,6 +195,7 @@ export class Step1Component implements OnInit {
     this.maxStop();
     this.createInstance();
     this.avaStops = this.getSrcs(0);
+    this.onDateChange();
   }
   createInstance() {
     // Funcion de calendario
@@ -1472,12 +1542,12 @@ else {
     }
     if (this.session.query.isReady()) {
       this.session.query.trips = this.trips;
-      let aq: AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
-      var a = this.model.getRouteScheduleAvailable(this.session.route.id, aq);
-      this.session.preflight = a.subscribe(((r: Response<Schedule>) => {
-        this.session.schedule = r.data;
-        // console.log(this.session.schedule)
-      }));
+      // let aq: AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
+      // var a = this.model.getRouteScheduleAvailable(this.session.route.id, aq);
+      // this.session.preflight = a.subscribe(((r: Response<Schedule>) => {
+      //   this.session.schedule = r.data;
+      //   // console.log(this.session.schedule)
+      // }));
     }
 
     this.readyToGoNext();

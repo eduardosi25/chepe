@@ -36,8 +36,12 @@ export class Step3Component implements OnInit {
   public schedule: Schedule = null;
   public dateWeek; 
   public  btnNext= true;
+  public displayModal = false;
+  public notifTitle = "";
+  public notifBody = "";
+  public isLoading = true;
   ngOnInit() {
-   
+    this
     this.checkQueryString().subscribe((r: boolean) => {
       if (!this.session || !this.session.query || !this.session.route) {
         this.router.navigate(["/reservaciones/"]); return;
@@ -75,24 +79,54 @@ export class Step3Component implements OnInit {
               // this.session.schedule.travels. = response.data;
               // this.segments = this.makeSegments(this.schedule,query2);
               // this.session.segments2 = this.segments;
-              
             }else{
-              alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
+              if (this.session.route.name == 'Express') {
+                this.isLoading = false;
+                this.displayModal = true;
+                this.notifTitle = "No hay disponibilidad";
+                this.notifBody = "No se encontraron asientos disponibles para su viaje, elija otras opciones de búsqueda e inténtelo de nuevo";        
+                // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
+              }
+              else{
+                this.displayModal = true;
+                this.isLoading = false;
+                this.notifTitle = "No hay viajes disponibles";
+                this.notifBody = "No se encontraron viajes disponibles, verifica los días de salida para tu trayecto";        
+                // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
+              }
               this.schedule = new Schedule();
               this.session.schedule = null;
             }
           });
           }
+          else{            
+              this.segments.forEach(e => {
+                this.onTravelSelected(e,e.travels[0])
+            });
+          }
           /*************/
 
-          this.segments.forEach(e => {
-            this.onTravelSelected(e,e.travels[0])
-        });
         } else {
-          alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
-          this.schedule = new Schedule();
-          this.session.schedule = null;
+          // alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
+              if (this.session.route.name == 'Express') {
+                this.isLoading = false
+                this.displayModal = true;
+                this.notifTitle = "No hay disponibilidad";
+                this.notifBody = "No se encontraron asientos disponibles para su viaje, elija otras opciones de búsqueda e inténtelo de nuevo";        
+                // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
+              }
+              else{
+                this.isLoading = false
+                this.displayModal = true;
+                this.notifTitle = "No hay viajes disponibles";
+                this.notifBody = "No se encontraron viajes disponibles, verifica los días de salida para tu trayecto";        
+                // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
+              }
+          // this.schedule = new Schedule();
+          // this.session.schedule = null;
         }
+        // console.log("/reservaciones/" + this.session.route.name + "/paso");
+        // this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
       });
     });
     this.segments = this.session.mkUnifiedSegments();
@@ -147,7 +181,10 @@ export class Step3Component implements OnInit {
        if (dateWee[0] == "Jueves"){
        this.dateWeek = this.translate.instant('Step3-P16');
       }
-      }
+    }
+    
+    console.log("/reservaciones/" + this.session.route.name + "/paso");
+    this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
   }
   public lenguajeWeekDay(){
 
@@ -323,6 +360,5 @@ export class Step3Component implements OnInit {
    
     return (segment.n == this.segments.length);
   }
-
 
 }
