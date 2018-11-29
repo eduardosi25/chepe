@@ -39,6 +39,10 @@ export class Step3Component implements OnInit {
   public displayModal = false;
   public notifTitle = "";
   public notifBody = "";
+  public notifBody1 = "";
+  public notifBody2 = "";
+  public notifBody3 = "";
+  public notifBody11="";
   public isLoading = true;
   ngOnInit() {
     this
@@ -84,15 +88,23 @@ export class Step3Component implements OnInit {
                 this.isLoading = false;
                 this.displayModal = true;
                 this.notifTitle = "No hay disponibilidad";
-                this.notifBody = "No se encontraron asientos disponibles para su viaje, elija otras opciones de búsqueda e inténtelo de nuevo";        
+                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
+                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
+                this.notifBody11= "aquí"
+                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+                this.notifBody3 = "Gracias por elegirnos!"
                 // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
               }
               else{
                 this.displayModal = true;
                 this.isLoading = false;
                 this.notifTitle = "No hay viajes disponibles";
-                this.notifBody = "No se encontraron viajes disponibles, verifica los días de salida para tu trayecto";        
-                // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
+                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
+                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
+                this.notifBody11= "aquí"
+                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+                this.notifBody3 = "Gracias por elegirnos!"
+                  // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
               }
               this.schedule = new Schedule();
               this.session.schedule = null;
@@ -112,15 +124,22 @@ export class Step3Component implements OnInit {
                 this.isLoading = false
                 this.displayModal = true;
                 this.notifTitle = "No hay disponibilidad";
-                this.notifBody = "No se encontraron asientos disponibles para su viaje, elija otras opciones de búsqueda e inténtelo de nuevo";        
+                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
+                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
+                this.notifBody11= "aquí"
+                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+                this.notifBody3 = "Gracias por elegirnos!"
                 // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
               }
               else{
                 this.isLoading = false
                 this.displayModal = true;
-                this.notifTitle = "No hay viajes disponibles";
-                this.notifBody = "No se encontraron viajes disponibles, verifica los días de salida para tu trayecto";        
-                // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
+                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
+                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
+                this.notifBody11= "aquí"
+                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+                this.notifBody3 = "Gracias por elegirnos!"
+                   // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
               }
           // this.schedule = new Schedule();
           // this.session.schedule = null;
