@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         //-- Close lightbox
         $(".js-close-modal").click(function(e){
-            $(".modal").fadeOut();
+            $(".modal-appear").addClass("active");
         });
      }, 1000);
  }); 
