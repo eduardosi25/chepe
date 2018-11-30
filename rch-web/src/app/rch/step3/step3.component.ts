@@ -141,6 +141,7 @@ export class Step3Component implements OnInit {
               else{
                 this.isLoading = false
                 this.displayModal = true;
+                this.notifTitle = "No hay disponibilidad";
                 this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
                 this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
                 this.notifBody11= "aquí"
