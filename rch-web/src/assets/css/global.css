@@ -3532,6 +3532,9 @@ textarea {
     color: #7f8f9a;
     display: block;
 }
+.datepicker {
+    z-index: 9999;
+}
 
 /* Safari */ 
 @-webkit-keyframes spin { 
