@@ -96,12 +96,12 @@
                                     <label class="label-space">{{'Step1-P21' | translate}}</label>
                                     <div class="input-selection clearfix paddingtop10">
                                         <div class="input-block clearfix">
-                                            <input type="radio" class="special-radio" name="trip" (change)="onChange(true)">
+                                            <input type="radio" class="special-radio" name="trip" (change)="onChange(true)" [checked]="!this.isChecked">
                                             <label>{{'Step1-P19' | translate}}</label>
                                             
                                         </div>
                                         <div class="input-block clearfix">
-                                            <input type="radio" class="special-radio" checked name="trip" value="sencillo" (change)="onChange(false)" >
+                                            <input type="radio" class="special-radio" [checked]="this.isChecked" name="trip" value="sencillo" (change)="onChange(false)" >
                                             <label>{{'Step1-P20' | translate}}</label>
                                         </div>
                                     </div>

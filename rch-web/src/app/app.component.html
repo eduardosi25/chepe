@@ -1,7 +1,7 @@
 <div class="main-wrapper" [ngClass]="getRoutedClass()">
 
-    <!-- Modal -->
-    <div class="modal" style="display: none;">
+    <!-- Modal 
+    <div class="modal modal-appear">
         <div class="modal-dialog" role="document">
             <div class="modal-header cearfix">
                 <button type="button" class="close js-close-modal" data-dismiss="modal" aria-label="Close">
@@ -18,7 +18,7 @@
                 <a href="#" class="buttons__link buttons--type1">Aceptar</a>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <app-header *ngIf="showMainHeader()"></app-header>
     <router-outlet></router-outlet>

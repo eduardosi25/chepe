@@ -84,8 +84,8 @@ export class Step4Component implements OnInit {
     else if (this.session.rb.etickets_email2 != this.session.rb.etickets_email) { $('#etickets_email2').addClass('orange');this.step4 = this.translate.instant('Step4-P30');this.flagNext=true; this.flagDisabled= true ;return true; }
     else if (!this.session.rb.etickets_phone){$('#etickets_phone').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
     else if (!Step4Component.cellphone_regex.test(this.session.rb.etickets_phone)){$('#etickets_phone').addClass('orange');this.step4 = this.translate.instant('Step4-P32');this.flagNext=true;this.flagDisabled= true ;return true;}
-    else if (!this.session.rb.etickets_emergency_contact){$('#tickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
-    else if (!Step4Component.emergency_regex.test(this.session.rb.etickets_emergency_contact)){$('#tickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P33');this.flagNext=true;this.flagDisabled= true ;return true;}
+    else if (!this.session.rb.etickets_emergency_contact){$('#etickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
+    else if (!Step4Component.emergency_regex.test(this.session.rb.etickets_emergency_contact)){$('#etickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P33');this.flagNext=true;this.flagDisabled= true ;return true;}
     else if (this.session.rb.pp == false){$('#pp').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
     else { this.flagDisabled = null; this.step4 = this.translate.instant('Step4-P25'); return true; }
     
