@@ -59,9 +59,15 @@ export class Step3Component implements OnInit {
           this.session.schedule = response.data;
           this.segments = this.makeSegments(this.schedule, query);
           this.session.segments = this.segments;
-
+          
+          this.segments.forEach(e => {
+            this.onTravelSelected(e,e.travels[0])
+          });
+          
+    
+    
           /*************/          
-          if(this.session.query.round)
+         if(this.session.query.round)
           {
             
           let query2: AvailabilityQuery = this.session.query2.toAvailabilityQuery(this.session.route);
@@ -79,6 +85,7 @@ export class Step3Component implements OnInit {
               this.segments.forEach(e => {
                 this.onTravelSelected(e,e.travels[0])
             });
+              this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
               // this.schedule = response.data;
               // this.session.schedule.travels. = response.data;
               // this.segments = this.makeSegments(this.schedule,query2);
@@ -112,12 +119,12 @@ export class Step3Component implements OnInit {
           });
           }
           else{            
-              this.segments.forEach(e => {
-                this.onTravelSelected(e,e.travels[0])
-            });
-          }
+            //   this.segments.forEach(e => {
+            //     this.onTravelSelected(e,e.travels[0])
+            // });
+            this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
+          } 
           /*************/
-
         } else {
           // alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
               if (this.session.route.name == 'Express') {
@@ -201,9 +208,6 @@ export class Step3Component implements OnInit {
        this.dateWeek = this.translate.instant('Step3-P16');
       }
     }
-    
-    console.log("/reservaciones/" + this.session.route.name + "/paso");
-    this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
   }
   public lenguajeWeekDay(){
 

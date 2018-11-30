@@ -80,10 +80,12 @@ export class Step1Component implements OnInit {
   public dateMY1 = null;public dateMY2= null;public dateMY3;public dateMY4;
   public dateMY5;public dateMY6;public dateMY7;public dateMY8;
   public tripMaxStop;
+  public isChecked;;
   // public stops:TrainStop[] = this.stops;
   ngOnInit() {
     this.dateChange();
-    
+    this.isChecked = true;
+    console.log(this.isChecked);
     var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
     if (this.previousRouteService.getPreviousUrl().indexOf('reservaciones/') == -1 || this.session.query == null) {
       this.session.query = new AvailabilityQuery2(this.model);
@@ -136,8 +138,15 @@ export class Step1Component implements OnInit {
       // });
     }
     //console.log(this.session.query2);
-    if (this.session.query2 != undefined && this.session.query2.trips != null) {
+    console.log("tripos2");
+    console.log(this.session.query2);
+    if (this.session.query2 != undefined && this.session.query2.trips != null && this.session.query.round) {
+      
+    console.log("trips2");
+    console.log(this.session.query2);
       this.trips2 = this.session.query2.trips;
+      this.isChecked = false;
+      console.log(this.isChecked);
       for (let i = 0; i < this.trips2.length; i++) {
         const t:Trip = this.trips2[i];
         var day = t.start.getDate();
