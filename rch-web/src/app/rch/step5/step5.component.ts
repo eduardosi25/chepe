@@ -29,9 +29,16 @@ export class Step5Component implements OnInit {
     private model: ModelService,
     public session: SessionService,
     private router: Router) { }
-  public selected_segment: Segment = null;
-  public selected_wagon_type: WagonType = null;
-  public segments: Segment[] = [];
+    public selected_segment: Segment = null;
+    public selected_wagon_type: WagonType = null;
+    public segments: Segment[] = [];
+    public displayModal = false;
+    public notifTitle = "";
+    public notifBody = "";
+    public notifBody1 = "";
+    public isLoading = true;
+    public route ;
+    public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments || !this.session.rb) {
       this.router.navigate(["/reservaciones"]); return;
@@ -43,6 +50,7 @@ export class Step5Component implements OnInit {
       alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
       this.router.navigate(["/reservaciones"]);
     }
+   
   }
   goBack(): void {
     this.location.back();
@@ -80,6 +88,9 @@ export class Step5Component implements OnInit {
         window.scrollTo(0, 0)
       });
     }
+  }
+  ocultarModel(){
+    this.displayModal = false;
   }
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
@@ -156,7 +167,12 @@ export class Step5Component implements OnInit {
     switch (seat.status) {
       case Seat.available:
         if (remaining <= 0) {
-          alert("Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.");
+        //  alert("Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.");
+          this.isLoading = false
+          this.displayModal = true;
+          this.notifTitle = "";
+          this.notifBody = "Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.";       
+              this.route = this.routeX;
           return;
         }
         seat.status = Seat.taken;
@@ -194,7 +210,14 @@ export class Step5Component implements OnInit {
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs();
     if (i == (this.segments.length - 1) && r == 0) {
-      if (confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")) {
+      //if (confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")) {
+        this.isLoading = false
+        this.displayModal = true;
+        this.notifTitle = "";
+        this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";       
+        this.route = "/reservaciones/"+ this.session.route.name +"/confirmar";
+       
+       
         this.session.rb.seats = [];
         for (var j = 0; j < this.segments.length; j++) {
           let s: Segment = this.segments[j];
@@ -203,11 +226,19 @@ export class Step5Component implements OnInit {
             this.session.rb.seats.push(sb);
           }
         }
-        this.router.navigate(["/reservaciones/" + this.session.route.name + "/confirmar"]);
-      }
+        //this.router.navigate(["/reservaciones/" + this.session.route.name + "/confirmar"]);
+      //}
     } else {
       if (r > 0) {
-        alert("Aun debe elegir " + r + " asientos más.");
+       // alert("Aun debe elegir " + r + " asientos más.");
+        this.isLoading = false
+        this.displayModal = true;
+        this.notifTitle = "";
+        if(r == 1){
+          this.notifBody = "Aun debe elegir " + r + " asiento más.";
+        }else(this.notifBody = "Aun debe elegir " + r + " asientos más.")       
+        this.route = this.routeX;
+       
       } else {
         this.setSelectedSegment(this.segments[i + 1]);
         

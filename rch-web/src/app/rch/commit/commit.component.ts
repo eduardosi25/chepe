@@ -36,6 +36,13 @@ export class CommitComponent implements OnInit {
     public is_getting_quote:boolean = false;
     public is_captcha_solved:boolean = false;
     public segments:Segment[] = [];
+    public displayModal = false;
+    public notifTitle = "";
+    public notifBody = "";
+    public notifBody1 = "";
+    public isLoading = true;
+    public route ;
+    public routeX = "/reservaciones/" + this.session.route.name + "/confirmar";
   ngOnInit() {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
       this.router.navigate(["/reservaciones"]);return;
@@ -55,9 +62,23 @@ export class CommitComponent implements OnInit {
   public goBack(){
     this.location.back();
   }
+
+  ocultarModel(){
+    this.displayModal = false;
+  }
+
   public bookIt(){
-    if(confirm("¿Desea proceder al pago?")){
-      this.router.navigate(["/reservaciones/"+this.session.route.name+"/pago"]);
+
+
+    this.isLoading = false
+    this.displayModal = true;
+    this.notifTitle = "";
+    this.notifBody = "¿Desea proceder al pago?";       
+        this.route = "/reservaciones/"+this.session.route.name+"/pago";
+    //if(confirm("¿Desea proceder al pago?")){
+     // this.router.navigate(["/reservaciones/"+this.session.route.name+"/pago"]);
+      
+      
       // this.session.rb.status = RouteBooking.booked; 
       // this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{
       //   this.session.rb = response.data;
@@ -72,7 +93,7 @@ export class CommitComponent implements OnInit {
       //   }*/
       // });
       
-    }
+    //}
   }
   public getCosts():Cost[]{
     var costs={};
