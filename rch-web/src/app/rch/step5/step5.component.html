@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-sm-offset-15 center margintop30">
-                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso4" role="button" *ngIf="selected_segment">
+                        <a class="btn btn-link" (click)="onBack()" role="button" *ngIf="selected_segment">
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>
@@ -192,6 +192,25 @@
                 <div class="modal-footer">
                     <!-- <a href="Javascript:void(0);" class="buttons__link js-close-modal">Cancelar</a>  -->
                     <a routerLink={{route}} class="buttons__link buttons--type1"  (click)="ocultarModel()">Aceptar</a>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal modal-appear" *ngIf="this.displayModalReturn">
+            <div class="modal-dialog" role="document">
+                <div class="modal-header cearfix">
+                    <button type="button" class="close js-close-modal" data-dismiss="modal" aria-label="Close">
+                         <span routerLink={{routeX}}  aria-hidden="true" (click)="ocultarModel()">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <h2>{{this.notifTitle}}</h2>
+                    <p>{{this.notifBody}}</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <a href="Javascript:void(0);" class="buttons__link js-close-modal">Cancelar</a>  -->
+                    <a routerLink={{route}} class="buttons__link buttons--type1"  (click)="ocultarModelReturn()">Aceptar</a>
                 </div>
             </div>
         </div>

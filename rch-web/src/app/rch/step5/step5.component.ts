@@ -33,6 +33,7 @@ export class Step5Component implements OnInit {
     public selected_wagon_type: WagonType = null;
     public segments: Segment[] = [];
     public displayModal = false;
+    public displayModalReturn = false;
     public notifTitle = "";
     public notifBody = "";
     public notifBody1 = "";
@@ -91,6 +92,12 @@ export class Step5Component implements OnInit {
   }
   ocultarModel(){
     this.displayModal = false;
+    this.displayModalReturn = false;
+  }
+  ocultarModelReturn(){
+    let i: number = this.segments.indexOf(this.selected_segment);
+    this.setSelectedSegment(this.segments[i - 1]);
+    this.displayModalReturn = false;
   }
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
@@ -245,14 +252,24 @@ export class Step5Component implements OnInit {
       }
     }
   }
+  segment(){
+   
+  }
   onBack() {
     let i: number = this.segments.indexOf(this.selected_segment);
-    if (i == 0) {
-      if (confirm("¿Desea regresar a la pantalla anterior?")) {
-        this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
-      }
+    if (i != 0) {
+      //if (confirm("¿Desea regresar a la pantalla anterior?")) {
+        this.isLoading = false
+        this.displayModalReturn = true;
+        this.notifTitle = "";
+        this.notifBody = "¿Desea regresar a la escala anterior?";       
+        this.route = this.routeX;
+      //this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
+      //}
     } else {
-      this.setSelectedSegment(this.segments[i - 1]);
+      this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
+      
+     // this.setSelectedSegment(this.segments[i - 1]);
     }
   }
   getWagonType2(wagon: Wagon): string {
