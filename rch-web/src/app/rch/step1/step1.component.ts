@@ -67,20 +67,22 @@ export class Step1Component implements OnInit {
   public stopNumErr: number; public dateNumErr: number;
   public radio: boolean = null;
   public keySrc: number;
-  public keyDst1: number;public keyDst2: number;public keyDst3: number;public keyDst4: number;
+  public keyDst1: number; public keyDst2: number; public keyDst3: number; public keyDst4: number;
   public keySrcBack: number;
-  public keyDstBack1: number;public keyDstBack2: number;public keyDstBack3: number;public keyDstBack4: number;
+  public keyDstBack1: number; public keyDstBack2: number; public keyDstBack3: number; public keyDstBack4: number;
   public flagSrc: boolean = null;
-  public flagDst1: boolean = null;public flagDst2: boolean = null;public flagDst3: boolean = null;public flagDst4: boolean = null;
+  public flagDst1: boolean = null; public flagDst2: boolean = null; public flagDst3: boolean = null; public flagDst4: boolean = null;
   public flagSrcBack: boolean = null;
-  public flagDstBack1: boolean = null;public flagDstBack2: boolean = null;public flagDstBack3: boolean = null;
-  public dateStr1;public dateStr2;public dateStr3;public dateStr4;public dateStr5;public dateStr6;public dateStr7;public dateStr8;
-   public fechaGet8;public fechaGet1;public fechaGet2;public fechaGet3;public fechaGet4;public fechaGet5;public fechaGet6;public fechaGet7;
-  public keyFlag1;public keyFlag2;public keyFlag3;public keyFlag4;public keyFlag5;public keyFlag6;
-  public dateMY1 = null;public dateMY2= null;public dateMY3;public dateMY4;
-  public dateMY5;public dateMY6;public dateMY7;public dateMY8;
+  public flagDstBack1: boolean = null; public flagDstBack2: boolean = null; public flagDstBack3: boolean = null;
+  public dateStr = [];
+  public dateStrBack = [];
+  public keyFlag1; public keyFlag2; public keyFlag3; public keyFlag4; public keyFlag5; public keyFlag6;
+  public dateMY = [];
+  public dateMYBack = [];
   public tripMaxStop;
-  public isChecked;;
+  public isChecked;
+  public fechaGet = [];
+  public fechaGetBack = [];
   // public stops:TrainStop[] = this.stops;
   ngOnInit() {
     this.dateChange();
@@ -104,32 +106,38 @@ export class Step1Component implements OnInit {
     if (this.session.query.trips != null) {
       this.trips = this.session.query.trips;
       for (let i = 0; i < this.trips.length; i++) {
-        const t:Trip = this.trips[i];
+        const t: Trip = this.trips[i];
         var day = t.start.getDate();
-        var month = t.start.getMonth()+1;
+        var month = t.start.getMonth() + 1;
         var year = t.start.getFullYear();
+        this.numStops = i;
         switch (i) {
           case 0:
-            this.dateStr1 = day+ "/" + month+ "/" + year;
-            this.dateMY1 = true;
+            this.dateStr[0] = day + "/" + month + "/" + year;
+            this.dateMY[0] = true;
+            this.fechaGet[0] = t.start; 
             break;
           case 1:
-            this.dateStr2 =  day+ "/" + month+ "/" + year;   
-            this.dateMY2 = true;   
+            this.dateStr[1] = day + "/" + month + "/" + year;
+            this.dateMY[1] = true;
+            this.fechaGet[1] = t.start; 
             break;
           case 2:
-            this.dateStr3 =  day+ "/" + month+ "/" + year;  
-            this.dateMY3 = true;         
+            this.dateStr[2] = day + "/" + month + "/" + year;
+            this.dateMY[2] = true;
+            this.fechaGet[2] = t.start; 
             break;
           case 3:
-            this.dateStr4 =  day+ "/" + month+ "/" + year;   
-            this.dateMY4 = true;    
+            this.dateStr[3] = day + "/" + month + "/" + year;
+            this.dateMY[3] = true;
+            this.fechaGet[3] = t.start; 
             break;
           default:
-            this.dateStr1 =  day+ "/" + month+ "/" + year;
-            this.dateMY1 = true;
+            this.dateStr[0] = day + "/" + month + "/" + year;
+            this.dateMY[0] = true;
+            this.fechaGet[0] = t.start; 
             break;
-        }
+        } 
       }
       // this.trips.forEach(trip => {
       //   //this.dateStr1 = currDate + "/" + mes  + "/" + currYear
@@ -141,44 +149,53 @@ export class Step1Component implements OnInit {
     console.log("tripos2");
     console.log(this.session.query2);
     if (this.session.query2 != undefined && this.session.query2.trips != null && this.session.query.round) {
-      
-    console.log("trips2");
-    console.log(this.session.query2);
+
+      console.log("trips2");
+      console.log(this.session.query2);
       this.trips2 = this.session.query2.trips;
       this.isChecked = false;
       console.log(this.isChecked);
       for (let i = 0; i < this.trips2.length; i++) {
-        const t:Trip = this.trips2[i];
+        const t: Trip = this.trips2[i];
         var day = t.start.getDate();
-        var month = t.start.getMonth()+1;
+        var month = t.start.getMonth() + 1;
         var year = t.start.getFullYear();
+        this.numStops = this.numStops + i;
+       
         switch (i) {
           case 0:
-            this.dateStr5 = day+ "/" + month+ "/" + year;
-            this.dateMY5 = true;
+            this.dateStrBack[0] = day + "/" + month + "/" + year;
+            this.dateMYBack[0] = true;
+            this.fechaGetBack[0] = t.start; 
             break;
           case 1:
-            this.dateStr6 =  day+ "/" + month+ "/" + year;           
-            this.dateMY6 = true;
+            this.dateStrBack[1] = day + "/" + month + "/" + year;
+            this.dateMYBack[1] = true;
+            this.fechaGetBack[1] = t.start; 
             break;
           case 2:
-            this.dateStr7 =  day+ "/" + month+ "/" + year;  
-            this.dateMY7 = true;         
+            this.dateStrBack[2] = day + "/" + month + "/" + year;
+            this.dateMYBack[2] = true;
+            this.fechaGetBack[2] = t.start; 
             break;
           case 3:
-            this.dateStr8 =  day+ "/" + month+ "/" + year; 
-            this.dateMY8 = true;      
+            this.dateStrBack[3] = day + "/" + month + "/" + year;
+            this.dateMYBack[3] = true;
+            this.fechaGetBack[3] = t.start; 
             break;
           default:
-            this.dateStr5 =  day+ "/" + month+ "/" + year;
-            this.dateMY5 = true;
+            this.dateStrBack[0] = day + "/" + month + "/" + year;
+            this.dateMYBack[0] = true;
+            this.fechaGetBack[0] = t.start; 
             break;
-        }
+        } 
       }
+      this.onChange(true);
     }
+   this.dateChange();
     // console.log("query");
     // console.log(this.session.query);
-    
+
     // if(this.session.query.trips != null)
     // {
     //   var currDate = null;var currDate1 = null;
@@ -204,7 +221,7 @@ export class Step1Component implements OnInit {
     this.maxStop();
     this.createInstance();
     this.avaStops = this.getSrcs(0);
-    this.onDateChange();
+    
   }
   createInstance() {
     // Funcion de calendario
@@ -220,7 +237,7 @@ export class Step1Component implements OnInit {
       weekStart: 1,
       format: "yyyy-mm-dd"
     };
-    var self= this;
+    var self = this;
     setTimeout(function () {
       // Datarange
       // $('.input-daterange').datepicker({
@@ -263,39 +280,55 @@ export class Step1Component implements OnInit {
         $("#mapa-full").removeClass("active");
       });
       //DatePicker fecha 1
-    $("#datepicker1").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate: "+1d",startDate: "+1d"
-  }).on('changeDate',(e) => {self.fechaGet1 = e.date;self.dateChange();
-    }).keydown(false);
-    //DatePicker fecha 2
-    $("#datepicker2").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
-  }).on('changeDate',(e) => {self.fechaGet2 = e.date; self.dateChange();
-    }).keydown(false);
+      $("#datepicker1").datepicker({
+        language: 'es', format: "dd/mm/yyyy", autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGet[0] = e.date; self.dateChange();
+      }).keydown(false);
+      //DatePicker fecha 2
+      $("#datepicker2").datepicker({
+        language: 'es', format: "dd/mm/yyyy", autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGet[1] = e.date; self.dateChange();
+      }).keydown(false);
       //DatePicker fecha 3
-    $("#datepicker3").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true, defaultDate:"+1d",startDate:"+1d"
-  }).on('changeDate',(e) => {self.fechaGet3 = e.date;self.dateChange();
-    }).keydown(false);
+      $("#datepicker3").datepicker({
+        language: 'es', format: "dd/mm/yyyy", autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGet[2] = e.date; self.dateChange();
+      }).keydown(false);
       //Regreso DatePicker fecha 1
-    $("#datepicker4").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate: "+1d"
-    }).on('changeDate',(e) => {self.fechaGet4 = e.date;self.dateChange();
+      $("#datepicker4").datepicker({
+        language: 'es', format: "dd/mm/yyyy", autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGet[3] = e.date; self.dateChange();
       }).keydown(false);
-        //Regreso DatePicker fecha 2
-    $("#datepicker5").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
-  }).on('changeDate',(e) => {self.fechaGet5 = e.date;self.dateChange();
-    }).keydown(false);
+      //Regreso DatePicker fecha 2
+      $("#datepicker5").datepicker({
+        language: 'es', format: "dd/mm/yyyy", autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGetBack[0] = e.date; self.dateChange();
+      }).keydown(false);
       //Regreso DatePicker fecha 3
-    $("#datepicker6").datepicker({language:'es', format: "dd/mm/yyyy",autoclose: true,defaultDate:"+1d",startDate:"+1d"
-    }).on('changeDate',(e) => { self.fechaGet6 = e.date; self.dateChange();
+      $("#datepicker6").datepicker({
+        language: 'es', format: "dd/mm/yyyy", autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGetBack[1] = e.date; self.dateChange();
       }).keydown(false);
-      $("#datepicker7").datepicker({language:'es', format: "dd/mm/yyyy",
-      autoclose: true,defaultDate:"+1d",startDate:"+1d"
-    }).on('changeDate',(e) => { self.fechaGet7 = e.date; self.dateChange();
+      $("#datepicker7").datepicker({
+        language: 'es', format: "dd/mm/yyyy",
+        autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGetBack[2] = e.date; self.dateChange();
       }).keydown(false);
-      $("#datepicker8").datepicker({language:'es',  format: "dd/mm/yyyy",
-      autoclose: true,defaultDate:"+1d",startDate:"+1d"
-    }).on('changeDate',(e) => { self.fechaGet8 = e.date; self.dateChange();
+      $("#datepicker8").datepicker({
+        language: 'es', format: "dd/mm/yyyy",
+        autoclose: true, defaultDate: "+1d", startDate: "+1d"
+      }).on('changeDate', (e) => {
+      self.fechaGetBack[3] = e.date; self.dateChange();
       }).keydown(false);
-      
-    //Tooltip
+
+      //Tooltip
       $(".js-my-tooltip").click(function (e) {
         $(".tooltiptext").toggleClass("active");
       });
@@ -307,20 +340,20 @@ export class Step1Component implements OnInit {
       // Calcular valor 0
       var passengerItem = ".passenger__item";
       var passengerNumber = ".input-number"
-      $(passengerItem).each(function(){
-          
-          var passengerStatus = $(this).find(passengerNumber).val();
-          //console.log(passengerStatus);
+      $(passengerItem).each(function () {
 
-          if (passengerStatus == 0) {
-            $(this).addClass("active");
-          }
+        var passengerStatus = $(this).find(passengerNumber).val();
+        //console.log(passengerStatus);
+
+        if (passengerStatus == 0) {
+          $(this).addClass("active");
+        }
 
       });
 
       // Plus BTN 
       var plusBtn = ".btn-number[data-type='plus']"
-      $(plusBtn).click(function(){
+      $(plusBtn).click(function () {
         var passengerStatus = $(this).parents(passengerItem).find(passengerNumber).val();
         //console.log("Aumentar número" + passengerStatus);
         if (passengerStatus >= 1) {
@@ -330,7 +363,7 @@ export class Step1Component implements OnInit {
 
       // Minus BTN 
       var minusBtn = ".btn-number[data-type='minus']"
-      $(minusBtn).click(function(){
+      $(minusBtn).click(function () {
         var passengerStatus = $(this).parents(passengerItem).find(passengerNumber).val();
         //console.log("Disminuye número" + passengerStatus);
         if (passengerStatus == 0) {
@@ -339,279 +372,137 @@ export class Step1Component implements OnInit {
       });
 
     }, 1000);
-  } 
+  }
   
-  public dateChange(){
+  public dateChange() {
 
-   // Viaje de ida
-                ////Parada 1
-var currDate = null;var currDate1 = null;
-var currMonth = null;var currMonth1 = null;
-var currYear = null;var currYear1 = null;
-var mes;
-var d = new Date();
+    // Viaje de ida
+    ////Parada 1
+    var currDate = [];
+    var currMonth = [];
+    var currYear = [];
+    var mes;
+    var d = new Date();
 
-if(this.fechaGet1 == undefined){ currDate = d.getDate() + 1; currMonth = d.getMonth(); currYear = d.getFullYear();this.fechaGet1= new Date (currYear,currMonth,currDate); mes = this.fechaGet1.getMonth() + 1 ;this.trips[0].start = this.fechaGet1;this.dateStr1 = this.fechaGet1.getDate() + "/" + mes + "/" + currYear;}
-    else{this.trips[0].start = this.fechaGet1; currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1;this.dateStr1 = currDate + "/" + mes  + "/" + currYear;}
+    for (let i = 0; i < this.trips.length; i++) {
 
-// Fecha con dos paradas
-    if(this.trips.length == 2){
-        //////////////Fecha dos indefinida
-        if(this.fechaGet2 == undefined){currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate);this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;}
-        //////////////Fecha dos definida
-        if(this.fechaGet2 != undefined){
-            if(this.fechaGet1.getDate() >= this.fechaGet2.getDate()){
-                if(this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
-                    && this.fechaGet1.getFullYear() == this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear; this.dateMY1 = null;}
-                else if(this.fechaGet1.getMonth() < this.fechaGet2.getMonth() 
-                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY1 = true}
-            }
-
-            if(this.fechaGet1.getDate() < this.fechaGet2.getDate()){
-                if( this.fechaGet1.getMonth() <= this.fechaGet2.getMonth() 
-                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes + "/" + currYear  ;this.dateMY1 = true}
-                else if (this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
-                    || this.fechaGet1.getFullYear() > this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;this.dateMY1 = null;}
-            }
+      if (i == 0) {
+        if (this.fechaGet[i] == undefined) {
+          currDate[i] = d.getDate() + 1; currMonth[i] = d.getMonth(); currYear[i] = d.getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); mes = this.fechaGet[i].getMonth() + 1; this.trips[i].start = this.fechaGet[i]; this.dateStr[i] = this.fechaGet[i].getDate() + "/" + mes + "/" + currYear;
+        } else {
+          this.trips[i].start = this.fechaGet[i]; currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i];
         }
+      }
+      /////////////////////
+
+      if (i > 0) {
+        if (this.fechaGet[i] == undefined) {
+        currDate[i] = this.fechaGet[i - 1].getDate(); currMonth[i] = this.fechaGet[i - 1].getMonth(); currYear[i] = this.fechaGet[i - 1].getFullYear(); mes = currMonth[i] + 1; this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i];
+        }
+        //////////////
+        if (this.fechaGet[i] != undefined) {
+          if (this.fechaGet[i - 1].getDate() < this.fechaGet[i].getDate() && this.fechaGet[i - 1].getMonth() <= this.fechaGet[i].getMonth() && this.fechaGet[i - 1].getFullYear() <= this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true; }
+          /////////////////
+
+          else if (this.fechaGet[i - 1].getDate() >= this.fechaGet[i].getDate() && this.fechaGet[i - 1].getMonth() < this.fechaGet[i].getMonth()) {
+            if (this.fechaGet[i - 1].getFullYear() <= this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true; }
+            if (this.fechaGet[i - 1].getFullYear() > this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null }
+          }
+          ////////////////
+          else if (this.fechaGet[i - 1].getDate() >= this.fechaGet[i].getDate() && this.fechaGet[i - 1].getMonth() >= this.fechaGet[i].getMonth()) {
+            if (this.fechaGet[i - 1].getFullYear() < this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true; }
+            if (this.fechaGet[i - 1].getFullYear() >= this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null }
+          }
+          ////////////////
+          else if (this.fechaGet[i - 1].getDate() <= this.fechaGet[i].getDate() && this.fechaGet[i - 1].getMonth() >= this.fechaGet[i].getMonth()) {
+            if (this.fechaGet[i - 1].getFullYear() < this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true; }
+            if (this.fechaGet[i - 1].getFullYear() >= this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null }
+          }
+          ////////////////
+          else if (this.fechaGet[i - 1].getDate() <= this.fechaGet[i].getDate() && this.fechaGet[i - 1].getMonth() <= this.fechaGet[i].getMonth()) {
+            if (this.fechaGet[i - 1].getFullYear() < this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true; }
+            if (this.fechaGet[i - 1].getFullYear() >= this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null }
+          }
+          ////////////////
+          else (currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null);
+        }
+      }
     }
+    if (this.radio) {
+      var dateBack = null
 
-// Fecha con tres paradas
-    if(this.trips.length == 3){
-        //////////////Fecha dos indefinida
-        if(this.fechaGet2 == undefined){currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate);this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;}
-        //////////////Fecha dos definida
-        if(this.fechaGet2 != undefined){
-            if(this.fechaGet1.getDate() >= this.fechaGet2.getDate()){
-                if(this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
-                    && this.fechaGet1.getFullYear() == this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear; this.dateMY1 = null;}
-                else if(this.fechaGet1.getMonth() < this.fechaGet2.getMonth() 
-                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY1 = true}
+      for (const key in this.trips) {
+        var pos = key
+      } dateBack = this.trips[pos].start
+
+      for (let j = 0; j < this.trips2.length; j++) {
+
+        if (j == 0) {
+          if (this.fechaGetBack[j] == undefined) { currDate[j] = dateBack.getDate(); currMonth[j] = dateBack.getMonth(); currYear[j] = dateBack.getFullYear(); mes = currMonth[j] + 1; this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; this.dateStrBack[j] = currDate + "/" + mes + "/" + currYear; }
+          //////////////
+          if (this.fechaGetBack[j] != undefined) {
+            if (dateBack.getDate() < this.fechaGetBack[j].getDate() && dateBack.getMonth() <= this.fechaGetBack[j].getMonth() && dateBack.getFullYear() <= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+            /////////////////
+
+            else if (dateBack.getDate() >= this.fechaGetBack[j].getDate()
+              && dateBack.getMonth() < this.fechaGetBack[j].getMonth()) {
+              if (dateBack.getFullYear() <= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (dateBack.getFullYear() > this.fechaGetBack[j].getFullYear()) { currDate[j] = dateBack.getDate(), currMonth[j] = dateBack.getMonth(), currYear[j] = dateBack.getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
             }
-            if(this.fechaGet1.getDate() < this.fechaGet2.getDate()){
-                if( this.fechaGet1.getMonth() <= this.fechaGet2.getMonth() 
-                    || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes + "/" + currYear  ;this.dateMY1 = true}
-                else if (this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
-                    || this.fechaGet1.getFullYear() > this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;this.dateMY1 = null;}
+            ////////////////
+            else if (dateBack.getDate() >= this.fechaGetBack[j].getDate() && dateBack.getMonth() >= this.fechaGetBack[j].getMonth()) {
+              if (dateBack.getFullYear() < this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (dateBack.getFullYear() >= this.fechaGetBack[j].getFullYear()) { currDate[j] = dateBack.getDate(), currMonth[j] = dateBack.getMonth(), currYear[j] = dateBack.getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
             }
-        }
-        /////////////Fecha tres indefinida
-        if(this.fechaGet3 == undefined){currDate = this.fechaGet2.getDate(); currMonth = this.fechaGet2.getMonth(); currYear = this.fechaGet2.getFullYear(); mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate);this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;}
-        //////////////Fecha tres definida
-        if(this.fechaGet3 != undefined){
-            if(this.fechaGet2.getDate() >= this.fechaGet3.getDate()){
-                if(this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
-                    && this.fechaGet2.getFullYear() == this.fechaGet3.getFullYear()) {currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear; this.dateMY2 = null;}
-                else if(this.fechaGet2.getMonth() < this.fechaGet3.getMonth() 
-                    || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();mes = currMonth + 1;this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY2 = true}
+            ////////////////
+            else if (dateBack.getDate() <= this.fechaGetBack[j].getDate() && dateBack.getMonth() >= this.fechaGetBack[j].getMonth()) {
+              if (dateBack.getFullYear() < this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (dateBack.getFullYear() >= this.fechaGetBack[j].getFullYear()) { currDate[j] = dateBack.getDate(), currMonth[j] = dateBack.getMonth(), currYear[j] = dateBack.getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
             }
-            if(this.fechaGet2.getDate() < this.fechaGet3.getDate()){
-                if( this.fechaGet2.getMonth() <= this.fechaGet3.getMonth() 
-                    || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes + "/" + currYear  ;this.dateMY2 = true}
-                else if (this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
-                    || this.fechaGet2.getFullYear() > this.fechaGet3.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;this.dateMY2 = null;}
+            ////////////////
+            else if (dateBack.getDate() <= this.fechaGetBack[j].getDate() && dateBack.getMonth() <= this.fechaGetBack[j].getMonth()) {
+              if (dateBack.getFullYear() < this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (dateBack.getFullYear() >= this.fechaGetBack[j].getFullYear()) { currDate[j] = dateBack.getDate(), currMonth[j] = dateBack.getMonth(), currYear[j] = dateBack.getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
             }
+            ////////////////
+            else (currDate[j] = dateBack.getDate(), currMonth[j] = dateBack.getMonth(), currYear[j] = dateBack.getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null);
+          }
+        }
+        if (j > 0) {
+          if (this.fechaGetBack[j] == undefined) { currDate[j] = this.fechaGetBack[j - 1].getDate(); currMonth[j] = this.fechaGetBack[j - 1].getMonth(); currYear[j] = this.fechaGetBack[j - 1].getFullYear(); mes = currMonth[j] + 1; this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; }
+          //////////////
+          if (this.fechaGetBack[j] != undefined) {
+            if (this.fechaGetBack[j - 1].getDate() < this.fechaGetBack[j].getDate() && this.fechaGetBack[j - 1].getMonth() <= this.fechaGetBack[j].getMonth() && this.fechaGetBack[j - 1].getFullYear() <= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+            /////////////////
+
+            else if (this.fechaGetBack[j - 1].getDate() >= this.fechaGetBack[j].getDate() && this.fechaGetBack[j - 1].getMonth() < this.fechaGetBack[j].getMonth()) {
+              if (this.fechaGetBack[j - 1].getFullYear() <= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (this.fechaGetBack[j - 1].getFullYear() > this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j - 1].getDate(), currMonth[j] = this.fechaGetBack[j - 1].getMonth(), currYear[j] = this.fechaGetBack[j - 1].getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
+            }
+            ////////////////
+            else if (this.fechaGetBack[j - 1].getDate() >= this.fechaGetBack[j].getDate() && this.fechaGetBack[j - 1].getMonth() >= this.fechaGetBack[j].getMonth()) {
+              if (this.fechaGetBack[j - 1].getFullYear() < this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (this.fechaGetBack[j - 1].getFullYear() >= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j - 1].getDate(), currMonth[j] = this.fechaGetBack[j - 1].getMonth(), currYear[j] = this.fechaGetBack[j - 1].getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
+            }
+            ////////////////
+            else if (this.fechaGetBack[j - 1].getDate() <= this.fechaGetBack[j].getDate() && this.fechaGetBack[j - 1].getMonth() >= this.fechaGetBack[j].getMonth()) {
+              if (this.fechaGetBack[j - 1].getFullYear() < this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (this.fechaGetBack[j - 1].getFullYear() >= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j - 1].getDate(), currMonth[j] = this.fechaGetBack[j - 1].getMonth(), currYear[j] = this.fechaGetBack[j - 1].getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
+            }
+            ////////////////
+            else if (this.fechaGetBack[j - 1].getDate() <= this.fechaGetBack[j].getDate() && this.fechaGetBack[j - 1].getMonth() <= this.fechaGetBack[j].getMonth()) {
+              if (this.fechaGetBack[j - 1].getFullYear() < this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j].getDate(); currMonth[j] = this.fechaGetBack[j].getMonth(); currYear[j] = this.fechaGetBack[j].getFullYear(); this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]); this.trips2[j].start = this.fechaGetBack[j]; mes = currMonth[j] + 1; this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j]; this.dateMYBack[j] = true; }
+              if (this.fechaGetBack[j - 1].getFullYear() >= this.fechaGetBack[j].getFullYear()) { currDate[j] = this.fechaGetBack[j - 1].getDate(), currMonth[j] = this.fechaGetBack[j - 1].getMonth(), currYear[j] = this.fechaGetBack[j - 1].getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null }
+            }
+            ////////////////
+            else (currDate[j] = this.fechaGetBack[j - 1].getDate(), currMonth[j] = this.fechaGetBack[j - 1].getMonth(), currYear[j] = this.fechaGetBack[j - 1].getFullYear(), mes = currMonth[j] + 1, this.fechaGetBack[j] = new Date(currYear[j], currMonth[j], currDate[j]), this.trips2[j].start = this.fechaGetBack[j], this.dateStrBack[j] = currDate[j] + "/" + mes + "/" + currYear[j], this.dateMYBack[j] = null);
+          }
+        }
+      }
     }
-}
-// Fecha con cuatro paradas
-if(this.trips.length == 4){
-    //////////////Fecha dos indefinida
-    if(this.fechaGet2 == undefined){currDate = this.fechaGet1.getDate(); currMonth = this.fechaGet1.getMonth(); currYear = this.fechaGet1.getFullYear(); mes = currMonth + 1; this.fechaGet2= new Date (currYear , currMonth , currDate);this.trips[1].start = this.fechaGet2;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;}
-    //////////////Fecha dos definida
-    if(this.fechaGet2 != undefined){
-        if(this.fechaGet1.getDate() >= this.fechaGet2.getDate()){
-            if(this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
-                && this.fechaGet1.getFullYear() == this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear; this.dateMY1 = null;}
-            else if(this.fechaGet1.getMonth() < this.fechaGet2.getMonth() 
-                || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY1 = true}
-        }
-        if(this.fechaGet1.getDate() < this.fechaGet2.getDate()){
-            if( this.fechaGet1.getMonth() <= this.fechaGet2.getMonth() 
-                || this.fechaGet1.getFullYear() < this.fechaGet2.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  ); this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes + "/" + currYear  ;this.dateMY1 = true}
-            else if (this.fechaGet1.getMonth() >= this.fechaGet2.getMonth() 
-                || this.fechaGet1.getFullYear() > this.fechaGet2.getFullYear()){currDate = this.fechaGet1.getDate();currMonth = this.fechaGet1.getMonth();currYear = this.fechaGet1.getFullYear();this.fechaGet2= new Date (currYear , currMonth , currDate  );this.trips[1].start = this.fechaGet2;mes = currMonth + 1;this.dateStr2 = currDate + "/" + mes  + "/" + currYear;this.dateMY1 = null;}
-        }
-    }
-    /////////////Fecha tres indefinida
-    if(this.fechaGet3 == undefined){currDate = this.fechaGet2.getDate(); currMonth = this.fechaGet2.getMonth(); currYear = this.fechaGet2.getFullYear(); mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate);this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;}
-    //////////////Fecha tres definida
-    if(this.fechaGet3 != undefined){
-        if(this.fechaGet2.getDate() >= this.fechaGet3.getDate()){
-            if(this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
-                && this.fechaGet2.getFullYear() == this.fechaGet3.getFullYear()) {currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();mes = currMonth + 1; this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear; this.dateMY2 = null;}
-            else if(this.fechaGet2.getMonth() < this.fechaGet3.getMonth() 
-                || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();mes = currMonth + 1;this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;this.dateStr3 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY2 = true}
-        }
-        if(this.fechaGet2.getDate() < this.fechaGet3.getDate()){
-            if( this.fechaGet2.getMonth() <= this.fechaGet3.getMonth() 
-                || this.fechaGet2.getFullYear() < this.fechaGet3.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  ); this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes + "/" + currYear  ;this.dateMY2 = true}
-            else if (this.fechaGet2.getMonth() >= this.fechaGet3.getMonth() 
-                || this.fechaGet2.getFullYear() > this.fechaGet3.getFullYear()){currDate = this.fechaGet2.getDate();currMonth = this.fechaGet2.getMonth();currYear = this.fechaGet2.getFullYear();this.fechaGet3= new Date (currYear , currMonth , currDate  );this.trips[2].start = this.fechaGet3;mes = currMonth + 1;this.dateStr3 = currDate + "/" + mes  + "/" + currYear;this.dateMY2 = null;}
-        }
-    }
-    /////////////Fecha cuatro indefinida
-    if(this.fechaGet4 == undefined){currDate = this.fechaGet3.getDate(); currMonth = this.fechaGet3.getMonth(); currYear = this.fechaGet3.getFullYear(); mes = currMonth + 1; this.fechaGet4= new Date (currYear , currMonth , currDate);this.trips[3].start = this.fechaGet4;this.dateStr4 = currDate + "/" + mes  + "/" + currYear;}
-    //////////////Fecha cuatro definida
-    if(this.fechaGet4 != undefined){
-        if(this.fechaGet3.getDate() >= this.fechaGet4.getDate()){
-            if(this.fechaGet3.getMonth() >= this.fechaGet4.getMonth() 
-                && this.fechaGet3.getFullYear() == this.fechaGet4.getFullYear()) {currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();mes = currMonth + 1; this.fechaGet4= new Date (currYear , currMonth , currDate  );this.trips[3].start = this.fechaGet4;this.dateStr4 = currDate + "/" + mes  + "/" + currYear; this.dateMY3 = null;}
-            else if(this.fechaGet3.getMonth() < this.fechaGet4.getMonth() 
-                || this.fechaGet3.getFullYear() < this.fechaGet4.getFullYear()){currDate = this.fechaGet4.getDate();currMonth = this.fechaGet4.getMonth();currYear = this.fechaGet4.getFullYear();mes = currMonth + 1;this.fechaGet4= new Date (currYear , currMonth , currDate  ); this.trips[3].start = this.fechaGet4;this.dateStr4 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY3 = true}
-        }
-        if(this.fechaGet3.getDate() < this.fechaGet4.getDate()){
-            if( this.fechaGet3.getMonth() <= this.fechaGet4.getMonth() 
-                || this.fechaGet3.getFullYear() < this.fechaGet4.getFullYear()){currDate = this.fechaGet4.getDate();currMonth = this.fechaGet4.getMonth();currYear = this.fechaGet4.getFullYear();this.fechaGet4= new Date (currYear , currMonth , currDate  ); this.trips[3].start = this.fechaGet4;mes = currMonth + 1;this.dateStr4 = currDate + "/" + mes + "/" + currYear  ;this.dateMY3 = true}
-            else if (this.fechaGet3.getMonth() >= this.fechaGet4.getMonth() 
-                || this.fechaGet3.getFullYear() > this.fechaGet4.getFullYear()){currDate = this.fechaGet3.getDate();currMonth = this.fechaGet3.getMonth();currYear = this.fechaGet3.getFullYear();this.fechaGet4= new Date (currYear , currMonth , currDate  );this.trips[3].start = this.fechaGet3;mes = currMonth + 1;this.dateStr4 = currDate + "/" + mes  + "/" + currYear;this.dateMY3 = null;}
-        }
-    }
-}
-/////////////////////Viaje de vuelta////////////////////////
-if (this.radio) {
-
-  var dateBack = null
-
-  for (const key in this.trips) {
-      var pos = key
-    } dateBack = this.trips[pos].start
-
-// Fecha con una parada de vuelta
-if(this.fechaGet5 == undefined){currDate = dateBack.getDate(); currMonth = dateBack.getMonth(); currYear = dateBack.getFullYear(); mes = currMonth + 1; this.fechaGet5= new Date (currYear , currMonth , currDate);this.trips2[0].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;}
-if(this.fechaGet5 != undefined){
-        if(dateBack.getDate() >= this.fechaGet5.getDate()){
-            if(dateBack.getMonth() >= this.fechaGet5.getMonth() 
-                && dateBack.getFullYear() == this.fechaGet5.getFullYear()){currDate = dateBack.getDate();currMonth = dateBack.getMonth();currYear = dateBack.getFullYear();mes = currMonth + 1; this.fechaGet5= new Date (currYear , currMonth , currDate  );this.trips2[0].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear; this.dateMY4 = null;}
-            else if(dateBack.getMonth() < this.fechaGet5.getMonth() 
-                || dateBack.getFullYear() < this.fechaGet5.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYear , currMonth , currDate  ); this.trips2[0].start = this.fechaGet5;mes = currMonth + 1;this.dateStr5 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY4 = true}
-        }
-
-        if(dateBack.getDate() < this.fechaGet5.getDate()){
-            if(dateBack.getMonth() <= this.fechaGet5.getMonth() 
-                || dateBack.getFullYear() < this.fechaGet5.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();this.fechaGet5= new Date (currYear , currMonth , currDate  ); this.trips2[0].start = this.fechaGet5;mes = currMonth + 1;this.dateStr5 = currDate + "/" + mes + "/" + currYear  ;this.dateMY4 = true}
-            else if (dateBack.getMonth() >= this.fechaGet5.getMonth() 
-                || dateBack.getFullYear() > this.fechaGet5.getFullYear()){currDate = dateBack.getDate();currMonth = dateBack.getMonth();currYear = dateBack.getFullYear();mes = currMonth + 1; this.fechaGet5= new Date (currYear , currMonth , currDate  );this.trips2[0].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;this.dateMY4 = null;}
-        }
-      }
- // Fecha con dos paradas de vuelta
- if(this.trips2.length == 2){
-  //////////////Fecha dos indefinida
-  if(this.fechaGet6 == undefined){currDate = this.fechaGet5.getDate(); currMonth = this.fechaGet5.getMonth(); currYear = this.fechaGet5.getFullYear(); mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate);this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear;}
-  //////////////Fecha dos definida
-  if(this.fechaGet6 != undefined){
-      if(this.fechaGet5.getDate() >= this.fechaGet6.getDate()){
-          if(this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
-              && this.fechaGet5.getFullYear() == this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
-          else if(this.fechaGet5.getMonth() < this.fechaGet6.getMonth() 
-              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
-      }
-
-      if(this.fechaGet5.getDate() < this.fechaGet6.getDate()){
-          if( this.fechaGet5.getMonth() <= this.fechaGet6.getMonth() 
-              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
-          else if (this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
-              || this.fechaGet5.getFullYear() > this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
-      }
-  }
-}
-
-// Fecha con tres paradas de vuelta
-if(this.trips2.length == 3){
-  //////////////Fecha dos indefinida
-  if(this.fechaGet6 == undefined){currDate = this.fechaGet5.getDate(); currMonth = this.fechaGet5.getMonth(); currYear = this.fechaGet5.getFullYear(); mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate);this.trips2[1].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;}
-  //////////////Fecha dos definida
-  if(this.fechaGet6 != undefined){
-      if(this.fechaGet5.getDate() >= this.fechaGet6.getDate()){
-          if(this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
-              && this.fechaGet5.getFullYear() == this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
-          else if(this.fechaGet5.getMonth() < this.fechaGet6.getMonth() 
-              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
-      }
-
-      if(this.fechaGet5.getDate() < this.fechaGet6.getDate()){
-          if( this.fechaGet5.getMonth() <= this.fechaGet6.getMonth() 
-              || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
-          else if (this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
-              || this.fechaGet5.getFullYear() > this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
-      }
-  }
-  /////////////Fecha tres indefinida
-  if(this.fechaGet7 == undefined){currDate = this.fechaGet6.getDate(); currMonth = this.fechaGet6.getMonth(); currYear = this.fechaGet6.getFullYear(); mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate);this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear;}
-  //////////////Fecha tres definida
-  if(this.fechaGet7 != undefined){
-      if(this.fechaGet6.getDate() >= this.fechaGet7.getDate()){
-          if(this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
-              && this.fechaGet6.getFullYear() == this.fechaGet7.getFullYear()) {currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
-          else if(this.fechaGet6.getMonth() < this.fechaGet7.getMonth() 
-              || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
-      }
-      if(this.fechaGet6.getDate() < this.fechaGet7.getDate()){
-          if( this.fechaGet6.getMonth() <= this.fechaGet7.getMonth() 
-              || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
-          else if (this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
-              || this.fechaGet6.getFullYear() > this.fechaGet7.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
-      }
-}
-}
-
-// Fecha con cuatro paradas de vuelta
-if(this.trips2.length == 4){
-//////////////Fecha dos indefinida
-if(this.fechaGet6 == undefined){currDate = this.fechaGet5.getDate(); currMonth = this.fechaGet5.getMonth(); currYear = this.fechaGet5.getFullYear(); mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate);this.trips2[1].start = this.fechaGet5;this.dateStr5 = currDate + "/" + mes  + "/" + currYear;}
-//////////////Fecha dos definida
-if(this.fechaGet6 != undefined){
-  if(this.fechaGet5.getDate() >= this.fechaGet6.getDate()){
-      if(this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
-          && this.fechaGet5.getFullYear() == this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
-      else if(this.fechaGet5.getMonth() < this.fechaGet6.getMonth() 
-          || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
+    this.createInstance(); this.onDateChange();
   }
 
-  if(this.fechaGet5.getDate() < this.fechaGet6.getDate()){
-      if( this.fechaGet5.getMonth() <= this.fechaGet6.getMonth() 
-          || this.fechaGet5.getFullYear() < this.fechaGet6.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();this.fechaGet6= new Date (currYear , currMonth , currDate  ); this.trips2[1].start = this.fechaGet6;mes = currMonth + 1;this.dateStr6 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY5 = true}
-      else if (this.fechaGet5.getMonth() >= this.fechaGet6.getMonth() 
-          || this.fechaGet5.getFullYear() > this.fechaGet6.getFullYear()){currDate = this.fechaGet5.getDate();currMonth = this.fechaGet5.getMonth();currYear = this.fechaGet5.getFullYear();mes = currMonth + 1; this.fechaGet6= new Date (currYear , currMonth , currDate  );this.trips2[1].start = this.fechaGet6;this.dateStr6 = currDate + "/" + mes  + "/" + currYear; this.dateMY5 = null;}
-  }
-}
-/////////////Fecha tres indefinida
-if(this.fechaGet7 == undefined){currDate = this.fechaGet6.getDate(); currMonth = this.fechaGet6.getMonth(); currYear = this.fechaGet6.getFullYear(); mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate);this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear;}
-//////////////Fecha tres definida
-if(this.fechaGet7 != undefined){
-  if(this.fechaGet6.getDate() >= this.fechaGet7.getDate()){
-      if(this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
-          && this.fechaGet6.getFullYear() == this.fechaGet7.getFullYear()) {currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
-      else if(this.fechaGet6.getMonth() < this.fechaGet7.getMonth() 
-          || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
-  }
-  if(this.fechaGet6.getDate() < this.fechaGet7.getDate()){
-      if( this.fechaGet6.getMonth() <= this.fechaGet7.getMonth() 
-          || this.fechaGet6.getFullYear() < this.fechaGet7.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1;this.fechaGet7= new Date (currYear , currMonth , currDate  ); this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY6 = true}
-      else if (this.fechaGet6.getMonth() >= this.fechaGet7.getMonth() 
-          || this.fechaGet6.getFullYear() > this.fechaGet7.getFullYear()){currDate = this.fechaGet6.getDate();currMonth = this.fechaGet6.getMonth();currYear = this.fechaGet6.getFullYear();mes = currMonth + 1; this.fechaGet7= new Date (currYear , currMonth , currDate  );this.trips2[2].start = this.fechaGet7;this.dateStr7 = currDate + "/" + mes  + "/" + currYear; this.dateMY6 = null;}
-      }
-  }
-
-/////////////Fecha cuatro indefinida
-if(this.fechaGet8 == undefined){currDate = this.fechaGet7.getDate(); currMonth = this.fechaGet7.getMonth(); currYear = this.fechaGet7.getFullYear(); mes = currMonth + 1; this.fechaGet8= new Date (currYear , currMonth , currDate);this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear;}
-//////////////Fecha cuatro definida
-if(this.fechaGet8 != undefined){
-  if(this.fechaGet7.getDate() >= this.fechaGet8.getDate()){
-      if(this.fechaGet7.getMonth() >= this.fechaGet8.getMonth() 
-          && this.fechaGet7.getFullYear() == this.fechaGet8.getFullYear()) {currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1; this.fechaGet8= new Date (currYear , currMonth , currDate  );this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear; this.dateMY7 = null;}
-      else if(this.fechaGet7.getMonth() < this.fechaGet8.getMonth() 
-          || this.fechaGet7.getFullYear() < this.fechaGet8.getFullYear()){currDate = this.fechaGet8.getDate();currMonth = this.fechaGet8.getMonth();currYear = this.fechaGet8.getFullYear();mes = currMonth + 1;this.fechaGet8= new Date (currYear , currMonth , currDate  ); this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY7 = true}
-  }
-  if(this.fechaGet7.getDate() < this.fechaGet8.getDate()){
-      if( this.fechaGet7.getMonth() <= this.fechaGet8.getMonth() 
-          || this.fechaGet7.getFullYear() < this.fechaGet8.getFullYear()){currDate = this.fechaGet8.getDate();currMonth = this.fechaGet8.getMonth();currYear = this.fechaGet8.getFullYear();mes = currMonth + 1;this.fechaGet8= new Date (currYear , currMonth , currDate  ); this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear  ; this.dateMY7 = true}
-      else if (this.fechaGet7.getMonth() >= this.fechaGet8.getMonth() 
-          || this.fechaGet7.getFullYear() > this.fechaGet8.getFullYear()){currDate = this.fechaGet7.getDate();currMonth = this.fechaGet7.getMonth();currYear = this.fechaGet7.getFullYear();mes = currMonth + 1; this.fechaGet8= new Date (currYear , currMonth , currDate  );this.trips2[3].start = this.fechaGet8;this.dateStr8 = currDate + "/" + mes  + "/" + currYear; this.dateMY7 = null;}
-  }
-}
-}
-}this.createInstance();this.onDateChange();
-  }
 
   public countTrips(n: number) {
     if (this.trips.length >= n) {
@@ -629,648 +520,652 @@ if(this.fechaGet8 != undefined){
   }
 
   public onDateChange() {
-    
-   
+
+
     if (this.trips.length == 2) {
-      if (this.dateMY1 == null) { this.constDate = true; this.dateNumErr = 2; }
+      if (this.dateMY[1] == null) { this.constDate = true; this.dateNumErr = 2; }
       else (this.constDate = null)
     }
     if (this.trips.length == 3) {
-      if (this.dateMY1 == null) { this.dateNumErr = 2; this.constDate = true }
-      else if (this.dateMY2 == null) { this.dateNumErr = 3; this.constDate = true }
+      if (this.dateMY[1] == null) { this.dateNumErr = 2; this.constDate = true }
+      else if (this.dateMY[2] == null) { this.dateNumErr = 3; this.constDate = true }
       else (this.constDate = null)
     }
     if (this.trips.length == 4) {
-      if (this.dateMY1 == null) { this.dateNumErr = 2; this.constDate = true }
-      else if (this.dateMY2 == null) { this.dateNumErr = 3; this.constDate = true }
-      else if (this.dateMY3 == null) { this.dateNumErr = 4; this.constDate = true }
+      if (this.dateMY[1] == null) { this.dateNumErr = 2; this.constDate = true }
+      else if (this.dateMY[2] == null) { this.dateNumErr = 3; this.constDate = true }
+      else if (this.dateMY[3] == null) { this.dateNumErr = 4; this.constDate = true }
       else (this.constDate = null)
     }
 
     ///////////Viaje de regreso//////////////
     if (this.radio) {
-      
+
       if (this.trips2.length == 1) {
-        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        if (this.dateMYBack[0] == null) { this.constBackDate = true; this.dateNumErr = 5; }
         else (this.constBackDate = null)
       }
       if (this.trips2.length == 2) {
-        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
-        else if (this.dateMY5 == null) { this.constBackDate = true; this.dateNumErr = 6; }
+        if (this.dateMYBack[0] == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        else if (this.dateMYBack[1] == null) { this.constBackDate = true; this.dateNumErr = 6; }
         else (this.constBackDate = null)
       }
       if (this.trips2.length == 3) {
-        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
-        else if (this.dateMY5 == null) { this.constBackDate = true; this.dateNumErr = 6; }
-        else if (this.dateMY6 == null) { this.constBackDate = true; this.dateNumErr = 7; }
+        if (this.dateMYBack[0] == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        else if (this.dateMYBack[1] == null) { this.constBackDate = true; this.dateNumErr = 6; }
+        else if (this.dateMYBack[2] == null) { this.constBackDate = true; this.dateNumErr = 7; }
         else (this.constBackDate = null)
       }
-       if (this.trips2.length == 4) {
-        if (this.dateMY4 == null) { this.constBackDate = true; this.dateNumErr = 5; }
-        else if (this.dateMY5 == null) { this.constBackDate = true; this.dateNumErr = 6; }
-        else if (this.dateMY6 == null) { this.constBackDate = true; this.dateNumErr = 7; }
-        else if (this.dateMY7 == null) { this.constBackDate = true; this.dateNumErr = 8; }
+      if (this.trips2.length == 4) {
+        if (this.dateMYBack[0] == null) { this.constBackDate = true; this.dateNumErr = 5; }
+        else if (this.dateMYBack[1] == null) { this.constBackDate = true; this.dateNumErr = 6; }
+        else if (this.dateMYBack[2] == null) { this.constBackDate = true; this.dateNumErr = 7; }
+        else if (this.dateMYBack[3] == null) { this.constBackDate = true; this.dateNumErr = 8; }
         else (this.constBackDate = null)
-      }this.onChangeStop(true, this.trips[0])
+      } this.onChangeStop(false, this.trips[0])
     }
-    
-    
+
+
   }
   public onChangeStop(round: boolean, tr: Trip) {
-
+    
     let index;
-    var id_dst1 = null;var id_dst2 = null;var id_dst3 = null;var id_dst4 = null;
+    var id_dst1 = null; var id_dst2 = null; var id_dst3 = null; var id_dst4 = null;
     var id_src1 = null;
-    var backId_dst1 = null;var backId_dst2 = null;var backId_dst3 = null;var backId_dst4 = null;
+    var backId_dst1 = null; var backId_dst2 = null; var backId_dst3 = null; var backId_dst4 = null;
     var backId_src1 = null;
     var backId = null;
-    var getSrcs = null; getSrcs = this.getSrcs(0);  id_src1 = this.trips[0].id_src;
-    var getSrcslenngth = null; var getSrcs1lenngth = null; 
-     
-    var getDsts1lenngth = null;  var getDsts2lenngth = null;  var getDsts3lenngth = null;
-    
+    var getSrcs = null; getSrcs = this.session.route.stops;
+     id_src1 = this.trips[0].id_src;
+    var getSrcslenngth = null; var getSrcs1lenngth = null;
+
+    var getDsts1lenngth = null; var getDsts2lenngth = null; var getDsts3lenngth = null;
+
     for (const key in getSrcs) {
       const position = getSrcs[key].id
       if (position == id_src1.id) { this.keySrc = toInteger(key) }
     }
-    getSrcslenngth = this.getSrcs(0).length - 1;
+    getSrcslenngth = getSrcs.length - 1;
     if (getSrcslenngth == this.keySrc) { this.flagSrc = true }
     else if (this.keySrc == 0) { this.flagSrc = false }
     else (this.flagSrc = null)
-   
+
     //express
-    if(this.route.id == 2){   
-    // Viaje de ida 
-  if (this.trips.length == 1){
-    id_dst1 = this.trips[0].id_dst;
-    
-    if (id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
-    else (this.constStop = null)
-  }
-// Viaje ida con dos paradas
-  
-    if (this.trips.length == 2){
-      id_dst1 = this.trips[0].id_dst;
-      id_dst2 = this.trips[1].id_dst;
+    if (this.session.route.id == 2) {
+      // Viaje de ida 
+      if (this.trips.length == 1) {
+        id_dst1 = this.trips[0].id_dst;
 
-      for (const keyD1 in getSrcs){
-        const position1 = getSrcs[keyD1].id
-        if(position1 == id_dst1.id){ this.keyDst1 = toInteger(keyD1)}
+        if (id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else (this.constStop = null)
       }
-      getDsts1lenngth = this.getDsts(0).length - 1;
-      if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
-      else (this.flagDst1 = null)
-  
-      if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
-      else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.constStop = true; this.stopNumErr = 2}
-      else if(this.flagDst1 == true){this.flagDst1 = null;this.constStop = true; this.stopNumErr = 1}
-      else if(this.flagSrc == null && id_dst1.id <= id_src1.id && id_dst1.id <= id_dst2.id){this.constStop = true; this.stopNumErr = 1}
-      else if(this.flagSrc == null && id_dst1.id >= id_src1.id && id_dst1.id >= id_dst2.id){this.constStop = true; this.stopNumErr = 1}
-      else if (this.flagSrc == false && id_dst2.id <= id_dst1.id){this.constStop = true ; this.stopNumErr= 2}
-      else if (this.flagSrc == true && id_dst2.id >= id_dst1.id){this.constStop = true ; this.stopNumErr= 2}
-      else (this.constStop = null)
+      // Viaje ida con dos paradas
 
-    }
+      if (this.trips.length == 2) {
+        id_dst1 = this.trips[0].id_dst;
+        id_dst2 = this.trips[1].id_dst;
 
-// Viaje ida con tres paradas
+        for (const keyD1 in getSrcs) {
+          const position1 = getSrcs[keyD1].id
+          if (position1 == id_dst1.id) { this.keyDst1 = toInteger(keyD1) }
+        }
+        getDsts1lenngth = getSrcs.length - 1;
+        if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+        else (this.flagDst1 = null)
 
-    if(this.trips.length == 3){
-      id_dst1 = this.trips[0].id_dst;
-      id_dst2 = this.trips[1].id_dst;
-      id_dst3 = this.trips[2].id_dst;
+        if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (id_dst2.id == undefined || id_dst2.id == id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagDst1 == true) { this.flagDst1 = null; this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == null && id_dst1.id <= id_src1.id && id_dst1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == null && id_dst1.id >= id_src1.id && id_dst1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == false && id_dst2.id <= id_dst1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagSrc == true && id_dst2.id <= id_dst1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else (this.constStop = null)
 
-      for (const key in getSrcs) {
-        const position = getSrcs[key].id
-        if(position == id_dst1.id){ this.keyDst1 = toInteger(key)}
-        if(position == id_dst2.id){ this.keyDst2 = toInteger(key)}
-        if(position == id_dst3.id){ this.keyDst3 = toInteger(key)}
       }
-      getDsts1lenngth = this.getSrcs(0).length - 1;
-       if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
-      else (this.flagDst1 = null)
-      if (getDsts1lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
-      else (this.flagDst2 = null)
-      if (getDsts1lenngth == this.keyDst3 || this.keyDst3 == 0) { this.flagDst3 = null }
-      else (this.flagDst3 = true)
-    
-      var kMas = this.keyDst1 + 1;
-      var kMenos = this.keyDst1 -1;
-      if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-      else (this.keyFlag1 = null)
 
-      if (this.flagSrc == null){this.flagOrigin = true;}
-      else if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.flagOrigin = null;this.constStop = true; this.stopNumErr = 1}
-      else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.flagOrigin = null;this.constStop = true; this.stopNumErr = 2}
-      else if(id_dst3.id == undefined || id_dst3.id == id_src1.id){this.flagOrigin = null;this.constStop = true; this.stopNumErr = 3}
-      else if(this.flagDst1 == true){this.flagOrigin = null;this.flagDst1 = null;this.constStop = true; this.stopNumErr = 1}
-      else if(this.flagDst2 == true){this.flagOrigin = null;this.flagDst2 = null;this.constStop = true; this.stopNumErr = 2}
-      else if(this.flagDst3 == true){this.flagOrigin = null;this.flagDst3 = null;this.constStop = true; this.stopNumErr = 3}
-      else if (this.flagSrc == true) { 
-        if (id_dst2.id >= id_dst1.id && this.keyFlag1 == null) {this.flagOrigin = null; this.constStop = true;  this.stopNumErr = 1  } 
-        else if (id_dst2.id >= id_dst1.id && this.keyFlag1 == true) {this.flagOrigin = null; this.constStop = true;  this.stopNumErr = 2  } 
-        else if (id_dst3.id >= id_dst2.id){this.flagOrigin = null; this.constStop = true;  this.stopNumErr = 2  } 
-        else (this.flagOrigin = null,  this.constStop = null ) }
-      else if (this.flagSrc == false) { 
-        if (id_dst2.id <= id_dst1.id && this.keyFlag1 == null) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 1  } 
-        else if (id_dst2.id <= id_dst1.id && this.keyFlag1 == true) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2  } 
-        else if( id_dst3.id <= id_dst2.id){ this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
-        else (this.constStop = null,this.flagOrigin = null) }
+      // Viaje ida con tres paradas
+
+      if (this.trips.length == 3) {
+        id_dst1 = this.trips[0].id_dst;
+        id_dst2 = this.trips[1].id_dst;
+        id_dst3 = this.trips[2].id_dst;
+
+        for (const key in getSrcs) {
+          const position = getSrcs[key].id
+          if (position == id_dst1.id) { this.keyDst1 = toInteger(key) }
+          if (position == id_dst2.id) { this.keyDst2 = toInteger(key) }
+          if (position == id_dst3.id) { this.keyDst3 = toInteger(key) }
+        }
+        getDsts1lenngth = getSrcs.length - 1;
+        if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+        else (this.flagDst1 = null)
+        if (getDsts1lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
+        else (this.flagDst2 = null)
+        if (getDsts1lenngth == this.keyDst3 || this.keyDst3 == 0) { this.flagDst3 = null }
+        else (this.flagDst3 = true)
+
+        var kMas = this.keyDst1 + 1;
+        var kMenos = this.keyDst1 - 1;
+        if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+        else (this.keyFlag1 = null)
+
+        if (this.flagSrc == null) { this.flagOrigin = true; }
+        else if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 1 }
+        else if (id_dst2.id == undefined || id_dst2.id == id_src1.id) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
+        else if (id_dst3.id == undefined || id_dst3.id == id_src1.id) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 3 }
+        else if (this.flagDst1 == true) { this.flagOrigin = null; this.flagDst1 = null; this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagDst2 == true) { this.flagOrigin = null; this.flagDst2 = null; this.constStop = true; this.stopNumErr = 2 }
+      //  else if (this.flagDst3 == true) { this.flagOrigin = null; this.flagDst3 = null; this.constStop = true; this.stopNumErr = 3 }
+        else if (this.flagSrc == true) {
+          if (id_dst2.id >= id_dst1.id && this.keyFlag1 == null) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 1 }
+          else if (id_dst2.id >= id_dst1.id && this.keyFlag1 == true) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
+          else if (id_dst3.id >= id_dst2.id) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
+          else (this.flagOrigin = null, this.constStop = null)
+        }
+        else if (this.flagSrc == false) {
+          if (id_dst2.id <= id_dst1.id && this.keyFlag1 == null) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 1 }
+          else if (id_dst2.id <= id_dst1.id && this.keyFlag1 == true) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
+          else if (id_dst3.id <= id_dst2.id) { this.flagOrigin = null; this.constStop = true; this.stopNumErr = 2 }
+          else (this.constStop = null, this.flagOrigin = null)
+        }
         else (this.constStop = null, this.flagOrigin = null)
-      
+
+
+      }
+
+      ///////////Viaje de regreso//////////////
+      if (this.radio) {
+
+
+        for (const key in this.trips) { var pos = key } backId = this.trips[pos].id_dst
+        backId_src1 = this.trips2[0].id_src;
+
+
+        for (const key in getSrcs) {
+          const position = getSrcs[key].id
+          if (position == backId_src1.id) { this.keySrcBack = toInteger(key) }
+        }
+        getSrcslenngth = getSrcs.length - 1;
+        if (getSrcslenngth == this.keySrcBack) { this.flagSrcBack = true }
+        else if (this.keySrcBack == 0) { this.flagSrcBack = false }
+        else (this.flagSrcBack = null)
+        //Viaje de regreso con una parada
+        if (this.trips2.length == 1) {
+          backId_dst1 = this.trips2[0].id_dst;
+          if (backId_src1 == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst1.id != id_src1.id) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = false; }
+          else { this.constBackStop = null; this.constBackOrigin = null; }
+        }
+        //Viaje de regreso con dos paradas
+        if (this.trips2.length == 2) {
+          backId_dst1 = this.trips2[0].id_dst;
+          backId_dst2 = this.trips2[1].id_dst;
+
+          for (const keyD1 in getSrcs) {
+            const position1 = getSrcs[keyD1].id
+            if (position1 == backId_dst1.id) { this.keyDstBack1 = toInteger(keyD1) }
+          }
+
+          getDsts1lenngth = getSrcs.length - 1;
+          if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+          else (this.flagDstBack1 = null)
+
+          if (backId_src1.id == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id == undefined) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id != id_src1.id) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = false; }
+          else { this.constBackStop = null; this.constBackOrigin = null; }
+
+        }
+        //Viaje de regreso con tres paradas
+        if (this.trips2.length == 3) {
+          backId_dst1 = this.trips2[0].id_dst;
+          backId_dst2 = this.trips2[1].id_dst;
+          backId_dst3 = this.trips2[2].id_dst;
+
+          for (const keyD1 in getSrcs) {
+            const position1 = getSrcs[keyD1].id
+            if (position1 == backId_dst1.id) { this.keyDstBack1 = toInteger(keyD1) }
+          }
+          getDsts1lenngth = getSrcs.length - 1;
+          if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+          else (this.flagDstBack1 = null)
+
+          for (const keyD2 in getSrcs) {
+            const position2 = getSrcs[keyD2].id
+            if (position2 == backId_dst2.id) { this.keyDstBack2 = toInteger(keyD2) }
+          }
+          getDsts2lenngth = getSrcs.length - 1;
+          if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
+          else (this.flagDstBack2 = null)
+
+          var kMas = this.keyDstBack1 + 1;
+          var kMenos = this.keyDstBack1 - 1;
+          if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+          else (this.keyFlag1 = null)
+
+
+          if (backId_src1.id == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id == undefined) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack2 == true) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst3.id == undefined) { this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst3.id != id_src1.id) { this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = false; }
+
+          else if (this.flagSrcBack == true) {
+            if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+            else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+            else (this.constBackOrigin = null, this.constBackStop = null)
+          }
+          else if (this.flagSrcBack == false) {
+            if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+            else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+            else (this.constBackOrigin = null, this.constBackStop = null)
+          }
+          else (this.constBackOrigin = null, this.constBackStop = null)
+        }
+
+      }
 
     }
 
-///////////Viaje de regreso//////////////
-if (this.radio) {
-  
+    // Regional
+    if (this.session.route.id == 1) {
+      // Viaje de ida 
+      if (this.trips.length == 1) {
+        id_dst1 = this.trips[0].id_dst;
 
-  for (const key in this.trips) 
-  {var pos = key} backId = this.trips[pos].id_dst
-  backId_src1 = this.trips2[0].id_src;
-  
+        if (id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else (this.constStop = null)
+      }
+      // Viaje de ida con una parada
+      if (this.trips.length == 2) {
+        id_dst1 = this.trips[0].id_dst;
+        id_dst2 = this.trips[1].id_dst;
 
-  for (const key in getSrcs) {
-    const position = getSrcs[key].id
-    if (position == backId_src1.id) { this.keySrcBack = toInteger(key) }
-  }
-   getSrcslenngth = this.getSrcs(0).length - 1;
-  if (getSrcslenngth == this.keySrcBack) { this.flagSrcBack = true }
-  else if (this.keySrcBack == 0) { this.flagSrcBack = false }
-  else (this.flagSrcBack = null)
-//Viaje de regreso con una parada
-if (this.trips2.length == 1){
-  backId_dst1 = this.trips2[0].id_dst;
-  if (backId_src1 == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = false; }
-  else { this.constBackStop = null; this.constBackOrigin = null; }
-}
-//Viaje de regreso con dos paradas
-if (this.trips2.length == 2){
-  backId_dst1 = this.trips2[0].id_dst;
-  backId_dst2 = this.trips2[1].id_dst;
+        for (const key in getSrcs) {
+          const position2 = getSrcs[key].id
+          if (position2 == id_src1.id) { this.keySrc = toInteger(key) }
+          if (position2 == id_dst1.id) { this.keyDst1 = toInteger(key) }
+        }
+        getDsts1lenngth = getSrcs.length - 2;
+        if (getDsts1lenngth == this.keySrc) { this.flagSrc = true }
+        else if (this.keySrc == 1) { this.flagSrc = false }
+        else (this.flagSrc = null)
 
-  for (const keyD1 in getSrcs){
-    const position1 = getSrcs[keyD1].id
-    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
-  }
-
-   getDsts1lenngth = this.getDsts(0).length - 1;
-  if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
-  else (this.flagDstBack1 = null)
-
-  if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = false; }
-  else { this.constBackStop = null; this.constBackOrigin = null; }
-
-}
-//Viaje de regreso con tres paradas
-if (this.trips2.length == 3){
-  backId_dst1 = this.trips2[0].id_dst;
-  backId_dst2 = this.trips2[1].id_dst;
-  backId_dst3 = this.trips2[2].id_dst;
-
-  for (const keyD1 in getSrcs){
-    const position1 = getSrcs[keyD1].id
-    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
-  }
-  getDsts1lenngth = this.getDsts(0).length - 1;
-  if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
-  else (this.flagDstBack1 = null)
-
-  for (const keyD2 in getSrcs){
-    const position2 = getSrcs[keyD2].id
-    if(position2 == backId_dst2.id){ this.keyDstBack2 = toInteger(keyD2)}
-  }
- getDsts2lenngth = this.getDsts(1).length - 1;
-  if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
-  else (this.flagDstBack2 = null)
-
-  var kMas = this.keyDstBack1 + 1;
-  var kMenos = this.keyDstBack1 -1;
-  if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-  else (this.keyFlag1 = null)
+        getDsts2lenngth = getSrcs.length - 1;
+        if (getDsts2lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+        else (this.flagDst1 = null)
 
 
-  if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = false;  }
- 
-  else if (this.flagSrcBack == true) { 
-    if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
-    else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true;   } 
-    else     (this.constBackOrigin = null, this.constBackStop = null)
-  }
-    else if (this.flagSrcBack == false) { 
-    if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;} 
-     else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true; } 
-     else (this.constBackOrigin = null, this.constBackStop = null ) }
-  else (this.constBackOrigin = null, this.constBackStop = null)
+
+        for (const keyD2 in getSrcs) {
+          const position2 = getSrcs[keyD2].id
+          if (position2 == id_dst2.id) { this.keyDst2 = toInteger(keyD2) }
+        }
+        var kMas = this.keyDst2 + 1;
+        var kMenos = this.keyDst2 - 1;
+        if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+        else (this.keyFlag1 = null)
+
+        if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagDst1 == true) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == false && id_dst1.id <= id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == true && id_dst1.id >= id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (id_dst2.id == undefined || id_dst2.id == id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+
+        else if (this.keyFlag1 == true && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id > id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id == id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+
+        else if (id_src1.id < id_dst1.id && id_src1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+
+
+        else if (id_src1.id > id_dst1.id && id_src1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == true && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id < id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id == id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+
+        else (this.constStop = null)
+      }
+      // Viaje de ida con dos paradas
+      if (this.trips.length == 3) {
+        id_dst1 = this.trips[0].id_dst;
+        id_dst2 = this.trips[1].id_dst;
+        id_dst3 = this.trips[2].id_dst;
+
+
+        for (const key in getSrcs) {
+          const position2 = getSrcs[key].id
+          if (position2 == id_src1.id) { this.keySrc = toInteger(key) }
+          if (position2 == id_dst1.id) { this.keyDst1 = toInteger(key) }
+          if (position2 == id_dst2.id) { this.keyDst2 = toInteger(key) }
+          if (position2 == id_dst3.id) { this.keyDst3 = toInteger(key) }
+        }
+        getSrcslenngth = getSrcs.length - 2;
+        getSrcs1lenngth = getSrcs.length - 3;
+        if (getSrcslenngth == this.keySrc || getSrcs1lenngth == this.keySrc) { this.flagSrc = true }
+        else if (this.keySrc == 1 || this.keySrc == 2) { this.flagSrc = false }
+        else (this.flagSrc = null)
+
+        getDsts1lenngth = getSrcs.length - 1;
+        if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+        else (this.flagDst1 = null)
+
+        getDsts2lenngth = getSrcs.length - 1;
+        if (getDsts2lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
+        else (this.flagDst2 = null)
+
+        var kMas = this.keyDst2 + 1;
+        var kMenos = this.keyDst2 - 1;
+        if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+        else (this.keyFlag1 = null)
+        var kMas1 = this.keyDst3 + 1;
+        var kMenos1 = this.keyDst3 - 1;
+        if (this.keySrc == kMas1 || this.keySrc == kMenos1) { this.keyFlag2 = true }
+        else (this.keyFlag2 = null)
+
+        if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagDst1 == true) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == false && id_dst1.id <= id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == true && id_dst1.id >= id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (id_dst2.id == undefined || id_dst2.id == id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagSrc == false && id_dst2.id <= id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagSrc == true && id_dst2.id >= id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (id_dst3.id == undefined || id_dst3.id == id_src1.id) { this.constStop = true; this.stopNumErr = 3 }
+
+        else if (this.keyFlag1 == true && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id > id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id == id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (id_src1.id < id_dst1.id && id_src1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+
+
+        else if (id_src1.id > id_dst1.id && id_src1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == true && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id < id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id == id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+
+        else if (this.keyFlag2 == true && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id >= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id > id_dst3.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id == id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (id_src1.id < id_dst2.id && id_src1.id >= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+
+
+        else if (id_src1.id > id_dst2.id && id_src1.id <= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag2 == true && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id <= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id < id_dst3.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id == id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+
+        else (this.constStop = null)
+      }
+
+      // Viaje de ida con tres paradas
+      if (this.trips.length == 4) {
+        id_dst1 = this.trips[0].id_dst;
+        id_dst2 = this.trips[1].id_dst;
+        id_dst3 = this.trips[2].id_dst;
+        id_dst4 = this.trips[3].id_dst;
+
+
+        for (const key in getSrcs) {
+          const position2 = getSrcs[key].id
+          if (position2 == id_src1.id) { this.keySrc = toInteger(key) }
+          if (position2 == id_dst1.id) { this.keyDst1 = toInteger(key) }
+          if (position2 == id_dst2.id) { this.keyDst2 = toInteger(key) }
+          if (position2 == id_dst3.id) { this.keyDst3 = toInteger(key) }
+          if (position2 == id_dst4.id) { this.keyDst4 = toInteger(key) }
+
+        }
+        getSrcslenngth = getSrcs.length - 2;
+        getSrcs1lenngth = getSrcs.length - 3;
+        if (getSrcslenngth == this.keySrc || getSrcs1lenngth == this.keySrc) { this.flagSrc = true }
+        else if (this.keySrc == 1 || this.keySrc == 2) { this.flagSrc = false }
+        else (this.flagSrc = null)
+
+        getDsts1lenngth = getSrcs.length - 1;
+        if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
+        else (this.flagDst1 = null)
+
+        getDsts2lenngth = getSrcs.length - 1;
+        if (getDsts2lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
+        else (this.flagDst2 = null)
+
+        getDsts3lenngth = getSrcs.length - 1;
+        if (getDsts3lenngth == this.keyDst3 || this.keyDst3 == 0) { this.flagDst3 = true }
+        else (this.flagDst3 = null)
+
+        var kMas = this.keyDst2 + 1;
+        var kMenos = this.keyDst2 - 1;
+        if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+        else (this.keyFlag1 = null)
+        var kMas1 = this.keyDst3 + 1;
+        var kMenos1 = this.keyDst3 - 1;
+        if (this.keySrc == kMas1 || this.keySrc == kMenos1) { this.keyFlag2 = true }
+        else (this.keyFlag2 = null)
+        var kMas2 = this.keyDst4 + 1;
+        var kMenos2 = this.keyDst4 - 1;
+        if (this.keySrc == kMas2 || this.keySrc == kMenos2) { this.keyFlag3 = true }
+        else (this.keyFlag3 = null)
+
+
+        if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagDst1 == true) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == false && id_dst1.id <= id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.flagSrc == true && id_dst1.id >= id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (id_dst2.id == undefined || id_dst2.id == id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagSrc == false && id_dst2.id <= id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagSrc == true && id_dst2.id >= id_src1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (id_dst3.id == undefined || id_dst3.id == id_src1.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.flagSrc == false && id_dst3.id <= id_src1.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.flagSrc == true && id_dst3.id >= id_src1.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (id_dst4.id == undefined || id_dst4.id == id_src1.id) { this.constStop = true; this.stopNumErr = 7 }
+
+        else if (this.keyFlag1 == true && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id > id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id == id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (id_src1.id < id_dst1.id && id_src1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (id_src1.id > id_dst1.id && id_src1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == true && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id < id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
+        else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id == id_dst2.id) { this.constStop = true; this.stopNumErr = 2 }
+
+        else if (this.keyFlag2 == true && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id >= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id > id_dst3.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id == id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (id_src1.id < id_dst2.id && id_src1.id >= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (id_src1.id > id_dst2.id && id_src1.id <= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag2 == true && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id <= id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id < id_dst3.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id == id_dst3.id) { this.constStop = true; this.stopNumErr = 3 }
+
+        else if (this.keyFlag3 == true && id_src1.id < id_dst3.id && id_src1.id <= id_dst4.id && id_dst3.id >= id_dst4.id) { this.constStop = true; this.stopNumErr = 7 }
+        else if (this.keyFlag3 == null && id_src1.id < id_dst3.id && id_src1.id <= id_dst4.id && id_dst3.id > id_dst4.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag3 == null && id_src1.id < id_dst3.id && id_src1.id <= id_dst4.id && id_dst3.id == id_dst4.id) { this.constStop = true; this.stopNumErr = 7 }
+        else if (id_src1.id < id_dst3.id && id_src1.id >= id_dst4.id) { this.constStop = true; this.stopNumErr = 7 }
+        else if (id_src1.id > id_dst3.id && id_src1.id <= id_dst4.id) { this.constStop = true; this.stopNumErr = 7 }
+        else if (this.keyFlag3 == true && id_src1.id > id_dst3.id && id_src1.id >= id_dst4.id && id_dst3.id <= id_dst4.id) { this.constStop = true; this.stopNumErr = 7 }
+        else if (this.keyFlag3 == null && id_src1.id > id_dst3.id && id_src1.id >= id_dst4.id && id_dst3.id < id_dst4.id) { this.constStop = true; this.stopNumErr = 3 }
+        else if (this.keyFlag3 == null && id_src1.id > id_dst3.id && id_src1.id >= id_dst4.id && id_dst3.id == id_dst4.id) { this.constStop = true; this.stopNumErr = 7 }
+
+
+        else (this.constStop = null)
+      }
+      ///////////Viaje de regreso//////////////
+      if (this.radio) {
+
+
+        for (const key in this.trips) { var pos = key } backId = this.trips[pos].id_dst
+        backId_src1 = this.trips2[0].id_src;
+
+
+        for (const key in getSrcs) {
+          const position = getSrcs[key].id
+          if (position == backId_src1.id) { this.keySrcBack = toInteger(key) }
+        }
+        getSrcslenngth = getSrcs.length - 1;
+        if (getSrcslenngth == this.keySrcBack) { this.flagSrcBack = true }
+        else if (this.keySrcBack == 0) { this.flagSrcBack = false }
+        else (this.flagSrcBack = null)
+        //Viaje de regreso con una parada
+        if (this.trips2.length == 1) {
+          backId_dst1 = this.trips2[0].id_dst;
+          if (backId_src1 == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst1.id != id_src1.id) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = false; }
+          else { this.constBackStop = null; this.constBackOrigin = null; }
+        }
+        //Viaje de regreso con dos paradas
+        if (this.trips2.length == 2) {
+          backId_dst1 = this.trips2[0].id_dst;
+          backId_dst2 = this.trips2[1].id_dst;
+
+          for (const keyD1 in getSrcs) {
+            const position1 = getSrcs[keyD1].id
+            if (position1 == backId_dst1.id) { this.keyDstBack1 = toInteger(keyD1) }
+          }
+
+          getDsts1lenngth = getSrcs.length - 1;
+          if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+          else (this.flagDstBack1 = null)
+
+          if (backId_src1.id == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id == undefined) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id != id_src1.id) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = false; }
+          else { this.constBackStop = null; this.constBackOrigin = null; }
+
+        }
+        //Viaje de regreso con tres paradas
+        if (this.trips2.length == 3) {
+          backId_dst1 = this.trips2[0].id_dst;
+          backId_dst2 = this.trips2[1].id_dst;
+          backId_dst3 = this.trips2[2].id_dst;
+
+          for (const keyD1 in getSrcs) {
+            const position1 = getSrcs[keyD1].id
+            if (position1 == backId_dst1.id) { this.keyDstBack1 = toInteger(keyD1) }
+          }
+          getDsts1lenngth = getSrcs.length - 1;
+          if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+          else (this.flagDstBack1 = null)
+
+          for (const keyD2 in getSrcs) {
+            const position2 = getSrcs[keyD2].id
+            if (position2 == backId_dst2.id) { this.keyDstBack2 = toInteger(keyD2) }
+          }
+          getDsts2lenngth = getSrcs.length - 1;
+          if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
+          else (this.flagDstBack2 = null)
+
+          var kMas = this.keyDstBack1 + 1;
+          var kMenos = this.keyDstBack1 - 1;
+          if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+          else (this.keyFlag1 = null)
+
+
+          if (backId_src1.id == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id == undefined) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack2 == true) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst3.id == undefined) { this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst3.id != id_src1.id) { this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = false; }
+
+          else if (this.flagSrcBack == true) {
+            if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+            else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+            else (this.constBackOrigin = null, this.constBackStop = null)
+          }
+          else if (this.flagSrcBack == false) {
+            if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+            else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+            else (this.constBackOrigin = null, this.constBackStop = null)
+          }
+          else (this.constBackOrigin = null, this.constBackStop = null)
+        }
+        //Viaje de regreso con cuatro paradas
+        if (this.trips2.length == 4) {
+          backId_dst1 = this.trips2[0].id_dst;
+          backId_dst2 = this.trips2[1].id_dst;
+          backId_dst3 = this.trips2[2].id_dst;
+          backId_dst4 = this.trips2[3].id_dst;
+
+          for (const keyD1 in getSrcs) {
+            const position1 = getSrcs[keyD1].id
+            if (position1 == backId_dst1.id) { this.keyDstBack1 = toInteger(keyD1) }
+            if (position1 == backId_dst2.id) { this.keyDstBack2 = toInteger(keyD1) }
+          }
+          getDsts1lenngth = getSrcs.length - 1;
+          if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
+          else (this.flagDstBack1 = null)
+          getDsts2lenngth = getSrcs.length - 1;
+          if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
+          else (this.flagDstBack2 = null)
+          getDsts3lenngth = getSrcs.length - 1;
+          if (getDsts3lenngth == this.keyDstBack3 || this.keyDstBack3 == 0) { this.flagDstBack3 = true }
+          else (this.flagDstBack3 = null)
+
+          var kMas = this.keyDstBack1 + 1;
+          var kMenos = this.keyDstBack1 - 1;
+          if (this.keySrc == kMas || this.keySrc == kMenos) { this.keyFlag1 = true }
+          else (this.keyFlag1 = null)
+
+
+          if (backId_src1.id == undefined) { this.constBackOrigin = true; }
+          else if (backId_src1.id != backId.id) { this.constBackOrigin = false; }
+          else if (backId_dst1.id == undefined) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst2.id == undefined) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (this.flagDstBack2 == true) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst3.id == undefined) { this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
+          else if (backId_dst4.id != id_src1.id) { this.stopNumErr = 8; this.constBackOrigin = null; this.constBackStop = false; }
+
+          else if (this.flagSrcBack == true) {
+            if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+            else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+            else (this.constBackOrigin = null, this.constBackStop = null)
+          }
+          else if (this.flagSrcBack == false) {
+            if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) { this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
+            else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) { this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
+            else (this.constBackOrigin = null, this.constBackStop = null)
+          }
+          else (this.constBackOrigin = null, this.constBackStop = null)
+        }
+      }
     }
 
-  }
+    if (round) {
+      index = this.trips2.indexOf(tr, 0);
 
-}
-
-// Regional
-if(this.route.id == 1){  
-// Viaje de ida 
-  if (this.trips.length == 1){
-    id_dst1 = this.trips[0].id_dst;
-    
-    if (id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
-    else (this.constStop = null)
-  }
-// Viaje de ida con una parada
-  if (this.trips.length == 2){
-    id_dst1 = this.trips[0].id_dst;
-    id_dst2 = this.trips[1].id_dst;
-
-  for (const key in getSrcs){
-    const position2 = getSrcs[key].id
-    if(position2 == id_src1.id){ this.keySrc = toInteger(key)}
-    if(position2 == id_dst1.id){ this.keyDst1 = toInteger(key)}
-  }
-  getDsts1lenngth = this.getDsts(1).length - 2;
-  if (getDsts1lenngth == this.keySrc) { this.flagSrc = true }
-  else if (this.keySrc == 1){this.flagSrc = false}
-  else (this.flagSrc = null)
-
-  getDsts2lenngth = this.getDsts(1).length - 1;
-  if (getDsts2lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
-  else (this.flagDst1 = null)
-
-
-
-  for (const keyD2 in getSrcs){
-    const position2 = getSrcs[keyD2].id
-    if(position2 == id_dst2.id){ this.keyDst2 = toInteger(keyD2)}
-  }
-  var kMas = this.keyDst2 + 1;
-  var kMenos = this.keyDst2 -1;
-  if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-  else (this.keyFlag1 = null)
-
-  if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
-  else if(this.flagDst1 == true){this.constStop = true; this.stopNumErr = 1}
-  else if(this.flagSrc == false && id_dst1.id <= id_src1.id){this.constStop = true; this.stopNumErr = 1}
-  else if(this.flagSrc == true && id_dst1.id >= id_src1.id){this.constStop = true; this.stopNumErr = 1}
-  else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.constStop = true; this.stopNumErr = 2}
-  
-  else if (this.keyFlag1 == true && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id >= id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id > id_dst2.id ){this.constStop = true; this.stopNumErr = 1}
-  else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id == id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-  
-  else if (id_src1.id < id_dst1.id && id_src1.id >= id_dst2.id){this.constStop = true; this.stopNumErr = 2}
-  
-
-  else if (id_src1.id > id_dst1.id && id_src1.id <= id_dst2.id){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag1 == true && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id <= id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id < id_dst2.id ){this.constStop = true; this.stopNumErr = 1}
-  else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id == id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-
-  else (this.constStop = null)
-  }
-  // Viaje de ida con dos paradas
-if(this.trips.length == 3){
- id_dst1 = this.trips[0].id_dst;
- id_dst2 = this.trips[1].id_dst;
- id_dst3 = this.trips[2].id_dst;
- 
-
-  for (const key in getSrcs){
-    const position2 = getSrcs[key].id
-    if(position2 == id_src1.id){ this.keySrc = toInteger(key)}
-    if(position2 == id_dst1.id){ this.keyDst1 = toInteger(key)}
-    if(position2 == id_dst2.id){ this.keyDst2 = toInteger(key)}
-    if(position2 == id_dst3.id){ this.keyDst3 = toInteger(key)}
-  }
-  getSrcslenngth = this.getDsts(1).length - 2;
-  getSrcs1lenngth = this.getDsts(1).length - 3;
-  if (getSrcslenngth == this.keySrc || getSrcs1lenngth == this.keySrc) { this.flagSrc = true }
-  else if (this.keySrc == 1 || this.keySrc == 2){this.flagSrc = false}
-  else (this.flagSrc = null)
-
-  getDsts1lenngth = this.getDsts(1).length - 1;
-  if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
-  else (this.flagDst1 = null)
-
-  getDsts2lenngth = this.getDsts(1).length - 1;
-  if (getDsts2lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
-  else (this.flagDst2 = null)
-
-  var kMas = this.keyDst2 + 1;
-  var kMenos = this.keyDst2 -1;
-  if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-  else (this.keyFlag1 = null)
-  var kMas1 = this.keyDst3 + 1;
-  var kMenos1 = this.keyDst3 -1;
-  if (this.keySrc == kMas1 || this.keySrc == kMenos1){this.keyFlag2 = true}
-  else (this.keyFlag2 = null)
-
-  if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
-  else if(this.flagDst1 == true){this.constStop = true; this.stopNumErr = 1}
-  else if(this.flagSrc == false && id_dst1.id <= id_src1.id){this.constStop = true; this.stopNumErr = 1}
-  else if(this.flagSrc == true && id_dst1.id >= id_src1.id){this.constStop = true; this.stopNumErr = 1}
-  else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.constStop = true; this.stopNumErr = 2}
-  else if(this.flagSrc == false && id_dst2.id <= id_src1.id){this.constStop = true; this.stopNumErr = 2}
-  else if(this.flagSrc == true && id_dst2.id >= id_src1.id){this.constStop = true; this.stopNumErr = 2}
-  else if(id_dst3.id == undefined || id_dst3.id == id_src1.id){this.constStop = true; this.stopNumErr = 3}
- 
-  else if (this.keyFlag1 == true && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id >= id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id > id_dst2.id ){this.constStop = true; this.stopNumErr = 1}
-  else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id == id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (id_src1.id < id_dst1.id && id_src1.id >= id_dst2.id){this.constStop = true; this.stopNumErr = 2}
-  
-
-  else if (id_src1.id > id_dst1.id && id_src1.id <= id_dst2.id){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag1 == true && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id <= id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id < id_dst2.id ){this.constStop = true; this.stopNumErr = 1}
-  else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id == id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-
-  else if (this.keyFlag2 == true && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id >= id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-  else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id > id_dst3.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id == id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-  else if (id_src1.id < id_dst2.id && id_src1.id >= id_dst3.id){this.constStop = true; this.stopNumErr = 3}
-  
-
-  else if (id_src1.id > id_dst2.id && id_src1.id <= id_dst3.id){this.constStop = true; this.stopNumErr = 3}
-  else if (this.keyFlag2 == true && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id <= id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-  else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id < id_dst3.id ){this.constStop = true; this.stopNumErr = 2}
-  else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id == id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-
-  else (this.constStop = null)
-}
-
- // Viaje de ida con tres paradas
- if(this.trips.length == 4){
-  id_dst1 = this.trips[0].id_dst;
-  id_dst2 = this.trips[1].id_dst;
-  id_dst3 = this.trips[2].id_dst;
-  id_dst4 = this.trips[3].id_dst;
-  
- 
-   for (const key in getSrcs){
-     const position2 = getSrcs[key].id
-     if(position2 == id_src1.id){ this.keySrc = toInteger(key)}
-     if(position2 == id_dst1.id){ this.keyDst1 = toInteger(key)}
-     if(position2 == id_dst2.id){ this.keyDst2 = toInteger(key)}
-     if(position2 == id_dst3.id){ this.keyDst3 = toInteger(key)}
-     if(position2 == id_dst4.id){ this.keyDst4 = toInteger(key)}
-
-   }
-   getSrcslenngth = this.getDsts(1).length - 2;
-   getSrcs1lenngth = this.getDsts(1).length - 3;
-   if (getSrcslenngth == this.keySrc || getSrcs1lenngth == this.keySrc) { this.flagSrc = true }
-   else if (this.keySrc == 1 || this.keySrc == 2){this.flagSrc = false}
-   else (this.flagSrc = null)
- 
-   getDsts1lenngth = this.getDsts(1).length - 1;
-   if (getDsts1lenngth == this.keyDst1 || this.keyDst1 == 0) { this.flagDst1 = true }
-   else (this.flagDst1 = null)
- 
-   getDsts2lenngth = this.getDsts(1).length - 1;
-   if (getDsts2lenngth == this.keyDst2 || this.keyDst2 == 0) { this.flagDst2 = true }
-   else (this.flagDst2 = null)
-
-   getDsts3lenngth = this.getDsts(1).length - 1;
-   if (getDsts3lenngth == this.keyDst3 || this.keyDst3 == 0) { this.flagDst3 = true }
-   else (this.flagDst3 = null)
- 
-   var kMas = this.keyDst2 + 1;
-   var kMenos = this.keyDst2 -1;
-   if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-   else (this.keyFlag1 = null)
-   var kMas1 = this.keyDst3 + 1;
-   var kMenos1 = this.keyDst3 -1;
-   if (this.keySrc == kMas1 || this.keySrc == kMenos1){this.keyFlag2 = true}
-   else (this.keyFlag2 = null)
-   var kMas2 = this.keyDst4 + 1;
-   var kMenos2 = this.keyDst4 -1;
-   if (this.keySrc == kMas2 || this.keySrc == kMenos2){this.keyFlag3 = true}
-   else (this.keyFlag3 = null)
- 
-
-   if(id_dst1.id == undefined || id_dst1.id == id_src1.id){this.constStop = true; this.stopNumErr = 1}
-   else if(this.flagDst1 == true){this.constStop = true; this.stopNumErr = 1}
-   else if(this.flagSrc == false && id_dst1.id <= id_src1.id){this.constStop = true; this.stopNumErr = 1}
-   else if(this.flagSrc == true && id_dst1.id >= id_src1.id){this.constStop = true; this.stopNumErr = 1}
-   else if(id_dst2.id == undefined || id_dst2.id == id_src1.id){this.constStop = true; this.stopNumErr = 2}
-   else if(this.flagSrc == false && id_dst2.id <= id_src1.id){this.constStop = true; this.stopNumErr = 2}
-   else if(this.flagSrc == true && id_dst2.id >= id_src1.id){this.constStop = true; this.stopNumErr = 2}
-   else if(id_dst3.id == undefined || id_dst3.id == id_src1.id){this.constStop = true; this.stopNumErr = 3}
-   else if(this.flagSrc == false && id_dst3.id <= id_src1.id){this.constStop = true; this.stopNumErr = 3}
-   else if(this.flagSrc == true && id_dst3.id >= id_src1.id){this.constStop = true; this.stopNumErr = 3}
-   else if(id_dst4.id == undefined || id_dst4.id == id_src1.id){this.constStop = true; this.stopNumErr = 7}
-  
-   else if (this.keyFlag1 == true && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id >= id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-   else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id > id_dst2.id ){this.constStop = true; this.stopNumErr = 1}
-   else if (this.keyFlag1 == null && id_src1.id < id_dst1.id && id_src1.id <= id_dst2.id && id_dst1.id == id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-   else if (id_src1.id < id_dst1.id && id_src1.id >= id_dst2.id){this.constStop = true; this.stopNumErr = 2}
-   else if (id_src1.id > id_dst1.id && id_src1.id <= id_dst2.id){this.constStop = true; this.stopNumErr = 2}
-   else if (this.keyFlag1 == true && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id <= id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
-   else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id < id_dst2.id ){this.constStop = true; this.stopNumErr = 1}
-   else if (this.keyFlag1 == null && id_src1.id > id_dst1.id && id_src1.id >= id_dst2.id && id_dst1.id == id_dst2.id ){this.constStop = true; this.stopNumErr = 2}
- 
-   else if (this.keyFlag2 == true && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id >= id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-   else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id > id_dst3.id ){this.constStop = true; this.stopNumErr = 2}
-   else if (this.keyFlag2 == null && id_src1.id < id_dst2.id && id_src1.id <= id_dst3.id && id_dst2.id == id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-   else if (id_src1.id < id_dst2.id && id_src1.id >= id_dst3.id){this.constStop = true; this.stopNumErr = 3}
-   else if (id_src1.id > id_dst2.id && id_src1.id <= id_dst3.id){this.constStop = true; this.stopNumErr = 3}
-   else if (this.keyFlag2 == true && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id <= id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
-   else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id < id_dst3.id ){this.constStop = true; this.stopNumErr = 2}
-   else if (this.keyFlag2 == null && id_src1.id > id_dst2.id && id_src1.id >= id_dst3.id && id_dst2.id == id_dst3.id ){this.constStop = true; this.stopNumErr = 3}
- 
-   else if (this.keyFlag3 == true && id_src1.id < id_dst3.id && id_src1.id <= id_dst4.id && id_dst3.id >= id_dst4.id ){this.constStop = true; this.stopNumErr = 7}
-   else if (this.keyFlag3 == null && id_src1.id < id_dst3.id && id_src1.id <= id_dst4.id && id_dst3.id > id_dst4.id ){this.constStop = true; this.stopNumErr = 3}
-   else if (this.keyFlag3 == null && id_src1.id < id_dst3.id && id_src1.id <= id_dst4.id && id_dst3.id == id_dst4.id ){this.constStop = true; this.stopNumErr = 7}
-   else if (id_src1.id < id_dst3.id && id_src1.id >= id_dst4.id){this.constStop = true; this.stopNumErr = 7}
-   else if (id_src1.id > id_dst3.id && id_src1.id <= id_dst4.id){this.constStop = true; this.stopNumErr = 7}
-   else if (this.keyFlag3 == true && id_src1.id > id_dst3.id && id_src1.id >= id_dst4.id && id_dst3.id <= id_dst4.id ){this.constStop = true; this.stopNumErr = 7}
-   else if (this.keyFlag3 == null && id_src1.id > id_dst3.id && id_src1.id >= id_dst4.id && id_dst3.id < id_dst4.id ){this.constStop = true; this.stopNumErr = 3}
-   else if (this.keyFlag3 == null && id_src1.id > id_dst3.id && id_src1.id >= id_dst4.id && id_dst3.id == id_dst4.id ){this.constStop = true; this.stopNumErr = 7}
- 
-
-   else (this.constStop = null)
- }
-///////////Viaje de regreso//////////////
-if (this.radio) {
-  
-
-  for (const key in this.trips) 
-  {var pos = key} backId = this.trips[pos].id_dst
-  backId_src1 = this.trips2[0].id_src;
-  
-
-  for (const key in getSrcs) {
-    const position = getSrcs[key].id
-    if (position == backId_src1.id) { this.keySrcBack = toInteger(key) }
-  }
-   getSrcslenngth = this.getSrcs(0).length - 1;
-  if (getSrcslenngth == this.keySrcBack) { this.flagSrcBack = true }
-  else if (this.keySrcBack == 0) { this.flagSrcBack = false }
-  else (this.flagSrcBack = null)
-//Viaje de regreso con una parada
-if (this.trips2.length == 1){
-  backId_dst1 = this.trips2[0].id_dst;
-  if (backId_src1 == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst1.id != id_src1.id){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = false; }
-  else { this.constBackStop = null; this.constBackOrigin = null; }
-}
-//Viaje de regreso con dos paradas
-if (this.trips2.length == 2){
-  backId_dst1 = this.trips2[0].id_dst;
-  backId_dst2 = this.trips2[1].id_dst;
-
-  for (const keyD1 in getSrcs){
-    const position1 = getSrcs[keyD1].id
-    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
-  }
-
-   getDsts1lenngth = this.getDsts(0).length - 1;
-  if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
-  else (this.flagDstBack1 = null)
-
-  if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id != id_src1.id){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = false; }
-  else { this.constBackStop = null; this.constBackOrigin = null; }
-
-}
-//Viaje de regreso con tres paradas
-if (this.trips2.length == 3){
-  backId_dst1 = this.trips2[0].id_dst;
-  backId_dst2 = this.trips2[1].id_dst;
-  backId_dst3 = this.trips2[2].id_dst;
-
-  for (const keyD1 in getSrcs){
-    const position1 = getSrcs[keyD1].id
-    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
-  }
-  getDsts1lenngth = this.getDsts(0).length - 1;
-  if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
-  else (this.flagDstBack1 = null)
-
-  for (const keyD2 in getSrcs){
-    const position2 = getSrcs[keyD2].id
-    if(position2 == backId_dst2.id){ this.keyDstBack2 = toInteger(keyD2)}
-  }
- getDsts2lenngth = this.getDsts(1).length - 1;
-  if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
-  else (this.flagDstBack2 = null)
-
-  var kMas = this.keyDstBack1 + 1;
-  var kMenos = this.keyDstBack1 -1;
-  if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-  else (this.keyFlag1 = null)
-
-
-  if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id != id_src1.id){this.stopNumErr = 6;this.constBackOrigin = null; this.constBackStop = false;  }
- 
-  else if (this.flagSrcBack == true) { 
-    if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
-    else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true;   } 
-    else     (this.constBackOrigin = null, this.constBackStop = null)
-  }
-    else if (this.flagSrcBack == false) { 
-    if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;} 
-     else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true; } 
-     else (this.constBackOrigin = null, this.constBackStop = null ) }
-  else (this.constBackOrigin = null, this.constBackStop = null)
+      if (this.trips2.length > 1) {
+        this.trips2[index + 1].id_src = this.trips2[index].id_dst;
+        // this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
+      }
+      else {
+        //this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
+      }
+      if (this.trips.length == index && tr.id_dst != 0) {
+        //this.trips2[0].id_src == tr.id_dst;
+      }
     }
-//Viaje de regreso con cuatro paradas
-if (this.trips2.length == 4){
-  backId_dst1 = this.trips2[0].id_dst;
-  backId_dst2 = this.trips2[1].id_dst;
-  backId_dst3 = this.trips2[2].id_dst;
-  backId_dst4 = this.trips2[3].id_dst;
-
-  for (const keyD1 in getSrcs){
-    const position1 = getSrcs[keyD1].id
-    if(position1 == backId_dst1.id){ this.keyDstBack1 = toInteger(keyD1)}
-    if(position1 == backId_dst2.id){ this.keyDstBack2 = toInteger(keyD1)}
-  }
-  getDsts1lenngth = this.getDsts(0).length - 1;
-  if (getDsts1lenngth == this.keyDstBack1 || this.keyDstBack1 == 0) { this.flagDstBack1 = true }
-  else (this.flagDstBack1 = null)
- getDsts2lenngth = this.getDsts(1).length - 1;
-  if (getDsts2lenngth == this.keyDstBack2 || this.keyDstBack2 == 0) { this.flagDstBack2 = true }
-  else (this.flagDstBack2 = null)
-  getDsts3lenngth = this.getDsts(1).length - 1;
-  if (getDsts3lenngth == this.keyDstBack3 || this.keyDstBack3 == 0) { this.flagDstBack3 = true }
-  else (this.flagDstBack3 = null)
-  
-  var kMas = this.keyDstBack1 + 1;
-  var kMenos = this.keyDstBack1 -1;
-  if (this.keySrc == kMas || this.keySrc == kMenos){this.keyFlag1 = true}
-  else (this.keyFlag1 = null)
- 
-
-  if (backId_src1.id == undefined){this.constBackOrigin = true;}
-  else if (backId_src1.id != backId.id){this.constBackOrigin = false;}
-  else if (backId_dst1.id == undefined){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack1 == true){this.stopNumErr = 4; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst2.id == undefined){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (this.flagDstBack2 == true){this.stopNumErr = 5; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst3.id == undefined){this.stopNumErr = 6; this.constBackOrigin = null; this.constBackStop = true; }
-  else if (backId_dst4.id != id_src1.id){this.stopNumErr = 8;this.constBackOrigin = null; this.constBackStop = false;  }
- 
-  else if (this.flagSrcBack == true) { 
-    if      (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;   } 
-    else if (backId_dst2.id >= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true;   } 
-    else     (this.constBackOrigin = null, this.constBackStop = null)
-  }
-    else if (this.flagSrcBack == false) { 
-    if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == true) {this.stopNumErr = 4;this.constBackOrigin = null; this.constBackStop = true;} 
-     else if (backId_dst2.id <= backId_dst1.id && this.keyFlag1 == null) {this.stopNumErr = 5;this.constBackOrigin = null; this.constBackStop = true; } 
-     else (this.constBackOrigin = null, this.constBackStop = null ) }
-  else (this.constBackOrigin = null, this.constBackStop = null)
+    else {
+      if (this.trips.length > 1) {
+        index = this.trips.indexOf(tr, 0);
+        this.trips[index + 1].id_src = this.trips[index].id_dst;
+      }
     }
-  }
-}
-    
-if (round) {
-  index = this.trips2.indexOf(tr, 0);
-
-  if (this.trips2.length > 1) {
-    this.trips2[index + 1].id_src = this.trips2[index].id_dst;
-    // this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;
-  }
-  else {
-    //this.trips2[0].id_src = this.trips[this.trips.length -1].id_dst;        
-  }
-  if (this.trips.length == index && tr.id_dst != 0) {
-    //this.trips2[0].id_src == tr.id_dst;
-  }
-}
-else {
-  if (this.trips.length > 1) {
-    index = this.trips.indexOf(tr, 0);
-    this.trips[index + 1].id_src = tr.id_dst;
-  }
-}
 
 
     this.preflight();
@@ -1279,11 +1174,11 @@ else {
   public onCreateTrip(round: boolean) {
     let index;
     let tr: Trip = new Trip(0, 0, new Date());
-   
-     this.constStop = true
-    if ((this.radio)&&( this.trips2[0].id_src == 0 || this.trips2[0].id_src == undefined)) { this.constBackOrigin = true }
-    if ((this.radio)&&(this.trips2[0].id_src != 0)) { this.constBackStop = true; this.stopNumErr = 4 }
-    if ((this.radio)&&( this.trips2[0].id_src == 0 || this.trips2[0].id_src == undefined)) { this.constBackOrigin = true }
+
+    this.constStop = true
+    if ((this.radio) && (this.trips2[0].id_src == 0 || this.trips2[0].id_src == undefined)) { this.constBackOrigin = true }
+    if ((this.radio) && (this.trips2[0].id_src != 0)) { this.constBackStop = true; this.stopNumErr = 4 }
+    if ((this.radio) && (this.trips2[0].id_src == 0 || this.trips2[0].id_src == undefined)) { this.constBackOrigin = true }
     if (this.trips.length == 1) { this.stopNumErr = 2 }
     if (this.trips.length == 1) { this.dateNumErr = 2 }
     if (this.trips2.length == 1) { this.stopNumErr = 5 }
@@ -1304,9 +1199,9 @@ else {
     this.createInstance();
     this.numStops++;
     this.maxStop();
-    this.onChangeStop(true, this.trips[0]);
-    
-   
+    this.onChangeStop(false, this.trips[0]);
+
+
   }
 
   public onDeleteTrip(tr: Trip, round: boolean) {
@@ -1321,18 +1216,15 @@ else {
       index = this.trips.indexOf(tr, 0);
       if (index > 0) {
         this.trips.splice(index, 1);
-        
+
       }
     }
     this.flagOrigin = null;
     this.numStops--;
-    this.onChangeStop(true, this.trips[0]);
+    this.onChangeStop(false, this.trips[0]);
     this.dateChange();
     this.createInstance();
-    
     this.maxStop();
-    
-    
   }
   public getDate(with_weekday: boolean = true): string {
     let d: Date = new Date();
@@ -1437,7 +1329,7 @@ else {
       }
     }
   }
-  
+
   public readyToGoNext(): boolean {
     this.last_failure_motive = null;
     this.a1('origen'); this.a1('destino1');
@@ -1446,10 +1338,10 @@ else {
     this.a1('datepicker1'); this.a1('datepicker2');
     this.a1('datepicker3'); this.a1('datepicker4');
     this.a1('datepicker5'); this.a1('datepicker6');
-    this.a1('datepicker7');this.a1('datepicker8');
+    this.a1('datepicker7'); this.a1('datepicker8');
     this.a1('destino2'); this.a1('destino3');
     this.a1('destino4'); this.a1('destino5');
-    this.a1('destino6');this.a1('destino7');this.a1('destino8');
+    this.a1('destino6'); this.a1('destino7'); this.a1('destino8');
     //this.dateChange();
     // if(this.session.query.src == null){this.last_failure_motive = "Elige un origen";this.a1('origen','orange');return false;}
     // if(this.session.query.dst == null){this.last_failure_motive = "Elige un destino";this.a1('destino','orange');return false;}
@@ -1459,17 +1351,17 @@ else {
     if (this.trips[0].id_dst == null || this.trips[0].id_dst == 0) { this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.a1('destino1', 'orange'); this.step1 = this.translate.instant('Step1-P68'); return true; }
     var now_dt: Date = new Date();
     if (this.trips[0].start.getTime() < now_dt.getTime()) { this.flagDisabled = true; this.last_failure_motive = "Elige inicio válido"; this.a1('fecha1', 'orange'); this.step1 = this.translate.instant('Step1-P69'); return true; }
-    
+
     if (this.trips.length >= 1 && this.constStop) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
     if (this.trips.length > 1 && this.constDate) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
-    
-    if ((this.radio)&&(this.trips2[0].id_src == null || this.trips2[0].id_src == 0)){ this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackOrigin == true)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackOrigin == false)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackStop  == true)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackStop  == false)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P75'); return true; }
-    if ((this.radio)&&(this.trips2.length >= 1 && this.constBackDate)) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
-   
+
+    if ((this.radio) && (this.trips2[0].id_src == null || this.trips2[0].id_src == 0)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
+    if ((this.radio) && (this.trips2.length >= 1 && this.constBackOrigin == true)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
+    if ((this.radio) && (this.trips2.length >= 1 && this.constBackOrigin == false)) { this.a1('o4', 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P71'); return true; }
+    if ((this.radio) && (this.trips2.length >= 1 && this.constBackStop == true)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
+    if ((this.radio) && (this.trips2.length >= 1 && this.constBackStop == false)) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P75'); return true; }
+    if ((this.radio) && (this.trips2.length >= 1 && this.constBackDate)) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
+
     // var start_dt:Date = new Date(this.session.query.start);
     // var end_dt:Date = new Date(this.session.query.end);
     // var now_dt:Date = new Date();
@@ -1500,7 +1392,7 @@ else {
     this.session.query2.class = clase;
     this.session.query2.round = redondo;
     this.session.query2.passengers = pax;
-    if (this.session.query.getTotalPassengers() <= 0) {this.flagDisabled = null; this.last_failure_motive = "Elige pasajeros."; this.a1('pasajeros', 'orange'); return true; }
+    if (this.session.query.getTotalPassengers() <= 0) { this.flagDisabled = null; this.last_failure_motive = "Elige pasajeros."; this.a1('pasajeros', 'orange'); return true; }
     if (this.last_failure_motive == null) { this.flagDisabled = null; this.step1 = this.translate.instant('Step1-P64'); return true; }
 
     return true;
@@ -1591,36 +1483,40 @@ value   */
   public onChange(value) {
     this.session.query.round = value;
     this.radio = value;
-    this.dateChange();
+    //this.dateChange();
     this.createInstance();
-    
+
     if (value && this.trips2.length == 0) {
       let trip = new Trip(0, 0, new Date());
-
       this.trips2.push(trip);
-      this.session.query.trips.push(trip);
+      //this.session.query.trips.push(trip);
       this.trips2[0].id_src = this.trips[this.trips.length - 1].id_dst;
+      this.maxStop();
+      
     }
     else if (value) {
       this.trips2[0].id_src = this.trips[this.trips.length - 1].id_dst;
     }
     else {
+      if(this.trips2.length > 1){
+        this.numStops = this.numStops - (this.trips2.length - 1); 
+        
+      } this.maxStop();
       this.trips2 = [];
       this.session.query.trips = [];
     }
     this.dateChange();
-    this.onChangeStop(true, this.trips[0])
-    
+    this.onChangeStop(false, this.trips[0])
   }
   isRegional(route: Route2): boolean {
     // console.log(route.name);
     return (route.name.toLowerCase() == "regional");
   }
-  public maxStop(){
+  public maxStop() {
 
-    if (this.route.max_stops <= this.numStops){this.tripMaxStop = false}
-    else (this.tripMaxStop= true)
-    this.onChangeStop(true, this.trips[0]);
+    if (this.route.max_stops <= this.numStops) { this.tripMaxStop = false }
+    else (this.tripMaxStop = true)
+    this.onChangeStop(false, this.trips[0]);
   }
   public isRound(): boolean {
     return this.session.query.round;
