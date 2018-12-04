@@ -3410,6 +3410,10 @@ textarea {
     color: white;
 }
 
+.modalbox-special .modalbox-content {
+    overflow-y: hidden;
+}
+
 .icon-close__modal {
     position: absolute;
     width: 50px;
