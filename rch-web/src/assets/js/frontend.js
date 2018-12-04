@@ -13,5 +13,10 @@ $(document).ready(function () {
         $(".js-close-modal").click(function(e){
             $(".modal-appear").addClass("active");
         });
+
+        //--Close modal index
+        $(".js-specialClose__modal").click(function(e){
+            $(".modalbox").addClass("active");
+        });
      }, 1000);
  }); 
