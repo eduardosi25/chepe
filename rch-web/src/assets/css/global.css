@@ -3581,7 +3581,7 @@ textarea {
     z-index: 9999;
 }
 .table-horarios+.table-horarios .horario__txt{
-    display: none;
+    opacity: 0;
 }
 .horario__txt {
     margin-top: 20px;
