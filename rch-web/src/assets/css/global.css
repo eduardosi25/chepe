@@ -3580,6 +3580,14 @@ textarea {
 .datepicker {
     z-index: 9999;
 }
+.table-horarios+.table-horarios .horario__txt{
+    display: none;
+}
+.horario__txt {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
 
 /* Safari */ 
 @-webkit-keyframes spin { 

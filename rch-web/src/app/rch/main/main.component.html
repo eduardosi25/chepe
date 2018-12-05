@@ -8,7 +8,7 @@
             <div class="col-sm-24 no-gutter-left-mobile" *ngIf="noRoutes()">
                 <span class="title-underline-half c-border-one">{{'Main-P12' | translate}}</span>
             </div>
-            <div class="col-md-12  marginbot80 no-gutter route" *ngFor="let route of routes">
+            <div class="col-md-12  marginbot80 no-gutter route table-horarios" *ngFor="let route of routes">
                 <div class="row">
 
                     <div class="col-sm-24 no-gutter-mobile">
@@ -70,6 +70,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <small class="horario__txt">Cambio de horarios y salidas a partir del 11 de enero de 2019</small>
                     </div>
                     <div class=" col-sm-12 col-sm-offset-6 margintop50">
                         <a href="#" data-toggle="modal" data-target="#mapa-full" (click)="selectRoute(route)">
