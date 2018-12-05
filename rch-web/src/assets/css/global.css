@@ -3589,6 +3589,7 @@ textarea {
     width: 100%;
 }
 
+
 /* Safari */ 
 @-webkit-keyframes spin { 
     0% { -webkit-transform: rotate(0deg); } 
@@ -3639,6 +3640,10 @@ FIXES RESPONSIVE
     }
     .popover.popover-modify .label-space {
         margin-bottom: 0 !important;
+    }
+    .table-horarios .table.chepe {
+        font-size: 14px;
+        height: 320px;
     }
 }
 @media (max-width: 1089px) {
@@ -3733,6 +3738,10 @@ FIXES RESPONSIVE
     /* Modalbox */
     .modalbox-special .modalbox-content {
         width: 90%;
+    }
+    .table-horarios .table.chepe {
+        font-size: 15px;
+        height: auto;
     }
 }
 @media (max-width:600px) {
