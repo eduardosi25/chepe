@@ -3602,6 +3602,125 @@ textarea {
 } 
 
 
+/*::::::
+
+    SEATS
+
+:::::::*/
+.select-seat {
+    position: relative;
+}
+
+/*---- Generales -----*/
+.seat-show {
+    position: absolute;
+    top: -4px;
+    z-index: 1;
+}
+.seat__border {
+    border: 5px solid #7cb6ad;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #7cb6ad;
+}
+.seat__label {
+    position: absolute;
+    font-size: 14px;
+    text-align: left;
+    color: #04265e;
+    line-height: 15px;
+    font-weight: bold;
+    background: #D8D8D8;
+    border-radius: 5px;
+    padding: 7px 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.seat__label:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 20px;
+    height: 1.5px;
+    background: #04265e;
+}
+.seat__label:after {
+    content: "";
+    position: absolute;
+    background: #04265e;
+    height: 80px;
+    width: 1px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.seat__left {
+    position: absolute;
+}
+.seat__left.left__top {
+    top: 20px;
+}
+.seat__left.left__bottom {
+    bottom: 20px;
+}
+
+
+/*---- Ejecutivo -----*/
+.seat__ejecutivo {
+    
+}
+.seat__ejecutivo .seat__border {
+    width: 79px;
+    height: 132px;
+}
+
+/* right */
+.seat-show.show__right {
+    right: -5px;
+}
+.seat-show.show__right .seat__label {
+    right: -180px;
+}
+.seat-show.show__right .seat__label:before {
+    left: -20px;
+}
+.seat-show.show__right .seat__label:after {
+    left: -20px;
+}
+.seat-show.show__right .seat__left {
+    right: -53px;
+}
+
+/*left */
+.seat-show.show__left {
+    left: -4px;
+}
+.seat-show.show__left .seat__label {
+    left: -157px;
+    text-align: right;
+}
+.seat-show.show__left .seat__label:before {
+    right: -20px;
+}
+.seat-show.show__left .seat__label:after {
+    right: -20px;
+}
+.seat-show.show__left .seat__left {
+    left: -30px;
+}
+
+
 /*:::::::::::
 
 FIXES RESPONSIVE 
