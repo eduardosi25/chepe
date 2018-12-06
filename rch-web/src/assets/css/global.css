@@ -3680,14 +3680,20 @@ textarea {
 }
 
 
-/*---- Ejecutivo -----*/
-.seat__ejecutivo {
-    
-}
-.seat__ejecutivo .seat__border {
+/*---- Ejecutivo -----*/ 
+.premium .seat__border {
     width: 79px;
     height: 132px;
 }
+.classic .seat__border {
+    width: 79px;
+    height: 114px;
+}
+.classic .seat__label:after {
+    height: 62px;
+}
+
+/*---- Turista -----*/
 
 /* right */
 .seat-show.show__right {

@@ -92,12 +92,38 @@
                     </div>
                     <div class="col-sm-24">
                         <div class="bg-base-light center">
+                            <!--
+                                Añadir clase dinamica en select-seat
+
+                                Express ejecutivo -> seat__ejecutivo
+                                Express turista -> seat__turista
+                                Regional turista -> seat__regional
+                            
+                            -->
                             <div class="select-seat {{getWagonType2(wagon)}}" id="VC">
+                                
                                 <div class="wagon-img-classic">
                                     <img class="img-responsive" src="{{wagon.type.img_mobile}}">
                                 </div>
                                 <div class="block-seats">
                                     <div class="row-seats clearfix {{getRowClasses(i, wagon.type.id)}}" id="VC1" *ngFor="let row of wagon.getRows(); let i = index;">
+                                        <!--
+                                            Añadir clase dinamica dentro de let seat
+
+                                            !-- Elemento derecho --!
+                                            <section class="seat-show show__right">
+                                                <img _ngcontent-c9="" class="seat__left left__top" src="assets/img/arrow-left.svg"><img _ngcontent-c9="" class="seat__left left__bottom" src="assets/img/arrow-left.svg">
+                                                <div class="seat__border"></div>
+                                                <article class="seat__label">Asientos<br>encontrados</article>
+                                            </section>
+                                            !-- Elemento izquierdo --!
+                                            <section class="seat-show show__left">
+                                                <img _ngcontent-c9="" class="seat__left left__top" src="assets/img/arrow-right.svg"><img _ngcontent-c9="" class="seat__left left__bottom" src="assets/img/arrow-right.svg">
+                                                <div class="seat__border"></div>
+                                                <article class="seat__label">Asientos<br>encontrados</article>
+                                            </section>
+                                        
+                                        -->
                                         <div class="{{row.getSeatClasses(j,seat)}}" id="seat_{{seat.id}}" *ngFor="let seat of row.cols; let j = index" (click)="onSeatClicked(seat,wagon,selected_segment,j)">
                                             <label>{{seat.name}}</label>
                                         </div>
