@@ -3616,6 +3616,7 @@ textarea {
     position: absolute;
     top: -4px;
     z-index: 1;
+    pointer-events: none;
 }
 .seat__border {
     border: 5px solid #7cb6ad;
