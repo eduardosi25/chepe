@@ -80,7 +80,7 @@
             <!-- max number of seats -->
             <div id="seatsnumbermax" data="3"></div>
 
-            <div class="col-sm-24 " *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
+            <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
                 <div class="row">
                     <div class="col-sm-24 center">
                         <h3 class="c-two fontweight400"> {{wagon.name}} {{wagon.type.numero_carro}}

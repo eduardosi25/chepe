@@ -3610,6 +3610,9 @@ textarea {
 .select-seat {
     position: relative;
 }
+.row-seats {
+    position: relative;
+}
 
 /*---- Generales -----*/
 .seat-show {
@@ -3863,6 +3866,22 @@ FIXES RESPONSIVE
         font-size: 15px;
         height: auto;
     }
+    .seat__label:after,
+    .seat__label:before {
+        display: none;
+    }
+    .seat__left {
+        display: none;
+    }    
+    .seat-show.show__left .seat__label {
+        left: -130px;
+    }
+    .seat-show.show__right .seat__label {
+        right: -139px;
+    }
+    .seat-train {
+        width: 100% !important;
+    }
 }
 @media (max-width:600px) {
     #webpay_sframe {
@@ -3926,6 +3945,17 @@ FIXES RESPONSIVE
     }
     .col-scale {
         padding: 0 !important;
+    }
+    .seat__label {
+        font-size: 10px;
+        line-height: 12px;
+        padding: 3px;
+    }
+    .seat-show.show__left .seat__label {
+        left: -80px;
+    }
+    .seat-show.show__right .seat__label {
+        right: -99px;
     }
 }
 
