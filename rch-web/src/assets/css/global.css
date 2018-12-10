@@ -3416,7 +3416,7 @@ textarea {
 
 .modalbox-special .modalbox-content {
     width: 60%;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .icon-close__modal {
@@ -3920,6 +3920,9 @@ FIXES RESPONSIVE
     .modalbox-special .modalbox-inside {
         padding: 20px;
     }
+    .modalbox-link {
+        font-size: 17px;
+    }
 }
 
 @media (max-width:600px) {
@@ -3932,6 +3935,11 @@ FIXES RESPONSIVE
     .modal-dialog {
         width: 90%;
     }
+    .modalbox-special .modalbox-content {
+        height: 450px;
+        overflow-y: scroll;
+    }
+
 }
 @media (max-width:480px) {
     app-cost-box>div {
