@@ -304,4 +304,46 @@ export class Step5Component implements OnInit {
       return true;
     }*/
   }
+  public seatsHeadOnLeft(seat: number): boolean {
+    switch (this.session.query.class.id) {
+      case 1:
+        if (seat == 39 || seat == 63) {
+          return true;
+        }
+        break;
+      case 4:
+      if (seat == 6 || seat == 14 || seat == 22 || seat == 30 || seat == 38 || seat == 46) {
+        return true;
+        }        
+        break;
+      case 5:        
+        if (seat == 28) {
+          return true;
+        }
+      break ;
+      default:
+      return false;
+    }
+  } 
+  public seatsHeadOnRight(seat: number): boolean {
+    switch (this.session.query.class.id) {
+      case 1:
+        if (seat == 37 || seat == 61) {
+          return true;
+        }
+        break;
+      case 4:
+      if (seat == 1 || seat == 9 || seat == 17 || seat == 25 || seat == 33 || seat == 41) {
+        return true;
+        }
+        break;
+      case 5:
+      if (seat == 25) {
+        return true;
+      }
+      break ;
+      default:
+      return false;
+    }
+  } 
 }
