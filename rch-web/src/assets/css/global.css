@@ -3388,7 +3388,9 @@ textarea {
 } 
 
 .modalbox-link__red,
-.modalbox-link__red:hover {
+.modalbox-link__red:hover,
+.modalbox-link__red:focus,
+.modalbox-link__red:active {
     color: red;
 }
 
