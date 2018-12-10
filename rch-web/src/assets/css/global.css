@@ -1974,8 +1974,6 @@ table.chepe.secondary tr:last-child{
     margin-bottom: 5px;
 }
 
-
-
 @media screen and (min-width: 767px) {
 
     .final-summary{
@@ -3386,6 +3384,12 @@ textarea {
 
 .modalbox-link {
     font-size: 24px;
+    color: #0E0F22;
+} 
+
+.modalbox-link__red,
+.modalbox-link__red:hover {
+    color: red;
 }
 
 .modalbox-top__blue {
@@ -3411,7 +3415,8 @@ textarea {
 }
 
 .modalbox-special .modalbox-content {
-    overflow-y: hidden;
+    width: 60%;
+    overflow-y: scroll;
 }
 
 .icon-close__modal {
@@ -3433,6 +3438,28 @@ textarea {
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
+}
+
+.icon-warning {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    left: 2%;
+    background-image: url(/assets/img/icon_warning.svg);
+}
+
+.icon-cross {
+    background-size: 100%;
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 13px;
+    background-repeat: no-repeat;
+    background-image: url(/assets/img/icon_cross.svg);
 }
 
 .input-group .input-group-btn:first-of-type {
@@ -3889,6 +3916,12 @@ FIXES RESPONSIVE
         width: 100% !important;
     }
 }
+@media (max-width: 768px) {
+    .modalbox-special .modalbox-inside {
+        padding: 20px;
+    }
+}
+
 @media (max-width:600px) {
     #webpay_sframe {
         width: 100% !important;
