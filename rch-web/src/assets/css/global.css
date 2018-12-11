@@ -3629,7 +3629,7 @@ textarea {
 .seat__label {
     position: absolute;
     font-size: 14px;
-    text-align: left;
+    text-align: center;
     color: #04265e;
     line-height: 15px;
     font-weight: bold;
@@ -3700,7 +3700,7 @@ textarea {
     right: -5px;
 }
 .seat-show.show__right .seat__label {
-    right: -180px;
+    right: -199px;
 }
 .seat-show.show__right .seat__label:before {
     left: -20px;
@@ -3717,8 +3717,7 @@ textarea {
     left: -4px;
 }
 .seat-show.show__left .seat__label {
-    left: -157px;
-    text-align: right;
+    left: -175px;
 }
 .seat-show.show__left .seat__label:before {
     right: -20px;
