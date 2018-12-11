@@ -3418,7 +3418,12 @@ textarea {
 
 .modalbox-special .modalbox-content {
     width: 60%;
-    overflow-y: hidden;
+    min-height: 510px;
+    overflow-y: scroll;
+}
+
+body.active {
+    overflow: hidden !important;
 }
 
 .icon-close__modal {
