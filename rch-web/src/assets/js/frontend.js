@@ -17,7 +17,7 @@ $(document).ready(function () {
         //--Close modal index
         $(".js-specialClose__modal").click(function(e){
             $(".modalbox").addClass("active");
-            $("body").removeClass("active");
+            //$("body").removeClass("active");
         });
      }, 1000);
  }); 
