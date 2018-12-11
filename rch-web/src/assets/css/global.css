@@ -3419,8 +3419,8 @@ textarea {
 
 .modalbox-special .modalbox-content {
     width: 60%;
-    min-height: 510px;
-    overflow-y: scroll;
+    min-height: 550px;
+    overflow-y: auto;
 }
 
 .title-modal__big {
