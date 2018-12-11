@@ -3392,6 +3392,7 @@ textarea {
 .modalbox-link__red:focus,
 .modalbox-link__red:active {
     color: red;
+    text-decoration: line-through;
 }
 
 .modalbox-top__blue {
@@ -3418,7 +3419,17 @@ textarea {
 
 .modalbox-special .modalbox-content {
     width: 60%;
-    overflow-y: hidden;
+    min-height: 510px;
+    overflow-y: scroll;
+}
+
+.title-modal__big {
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+body.active {
+    overflow: hidden !important;
 }
 
 .icon-close__modal {
@@ -3658,7 +3669,7 @@ textarea {
 .seat__label {
     position: absolute;
     font-size: 14px;
-    text-align: left;
+    text-align: center;
     color: #04265e;
     line-height: 15px;
     font-weight: bold;
@@ -3729,7 +3740,7 @@ textarea {
     right: -5px;
 }
 .seat-show.show__right .seat__label {
-    right: -180px;
+    right: -199px;
 }
 .seat-show.show__right .seat__label:before {
     left: -20px;
@@ -3746,8 +3757,7 @@ textarea {
     left: -4px;
 }
 .seat-show.show__left .seat__label {
-    left: -157px;
-    text-align: right;
+    left: -175px;
 }
 .seat-show.show__left .seat__label:before {
     right: -20px;
