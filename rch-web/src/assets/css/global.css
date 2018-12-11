@@ -3392,6 +3392,7 @@ textarea {
 .modalbox-link__red:focus,
 .modalbox-link__red:active {
     color: red;
+    text-decoration: line-through;
 }
 
 .modalbox-top__blue {
@@ -3420,6 +3421,11 @@ textarea {
     width: 60%;
     min-height: 510px;
     overflow-y: scroll;
+}
+
+.title-modal__big {
+    font-size: 40px;
+    margin-top: 10px;
 }
 
 body.active {
