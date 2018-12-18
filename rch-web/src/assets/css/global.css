@@ -3593,6 +3593,17 @@ body.active {
     margin: 0 10px;
     width: 140px;
 }
+.modal-center__default {
+    position: fixed;
+    margin: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
 .buttons__link {
     display: inline-block;
     padding: 10px 0;
