@@ -619,7 +619,7 @@ export class Step1Component implements OnInit {
         else if (this.flagSrc == null && id_dst1.id <= id_src1.id && id_dst1.id <= id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
         else if (this.flagSrc == null && id_dst1.id >= id_src1.id && id_dst1.id >= id_dst2.id) { this.constStop = true; this.stopNumErr = 1 }
         else if (this.flagSrc == false && id_dst2.id <= id_dst1.id) { this.constStop = true; this.stopNumErr = 2 }
-        else if (this.flagSrc == true && id_dst2.id <= id_dst1.id) { this.constStop = true; this.stopNumErr = 2 }
+        else if (this.flagSrc == true && id_dst2.id >= id_dst1.id) { this.constStop = true; this.stopNumErr = 2 }
         else (this.constStop = null)
 
       }
