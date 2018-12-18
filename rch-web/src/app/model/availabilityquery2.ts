@@ -43,8 +43,10 @@ export class AvailabilityQuery2 implements FromJSONable{
         var n:number = 0;
 
         for(var i in this.passengers){
-            let n2:number = this.passengers[i];
-            n+=n2;
+            if (+i<8) { 
+                let n2:number = this.passengers[i];
+                n+=n2;                
+            }
         }
 
         return n;

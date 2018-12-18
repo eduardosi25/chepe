@@ -97,8 +97,9 @@ export class CommitComponent implements OnInit {
   }
   public getCosts():Cost[]{
     var costs={};
+    console.log("logSeats");
     console.log(this.session.rb.seats);
-    for(var i=0;i<this.session.rb.persons.length;i++){
+    for(var i=0;i<this.session.rb.seats.length;i++){
       let sb:SeatBooking = this.session.rb.seats[i];
       let a:number = sb.cost.amount;
       let b:string = sb.cost.currency;
