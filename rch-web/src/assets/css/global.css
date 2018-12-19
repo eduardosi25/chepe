@@ -3604,6 +3604,9 @@ body.active {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
 }
+.modal-center__default--special {
+    top: 55%;
+}
 .buttons__link {
     display: inline-block;
     padding: 10px 0;
@@ -3639,7 +3642,11 @@ body.active {
     display: block;
     width: 100%;
 }
-
+.carousel-item .item.active {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
 /* Safari */ 
 @-webkit-keyframes spin { 
