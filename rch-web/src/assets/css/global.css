@@ -3607,8 +3607,9 @@ body.active {
 .modal-center__default--special {
     top: 55%;
 }
-.modal-center__default--special .carousel-item {
-    height: 400px;
+.modal-center__default--special button {
+    float: right;
+    right: 20px;
 }
 /*.modal-center__default--special .carousel-control {
     right: 10px;
@@ -3852,9 +3853,6 @@ FIXES RESPONSIVE
     }
 }
 @media (max-width: 900px) {
-    .modal-center__default--special .carousel-item {
-        height: 380px;
-    }
     .modal-center__default--special .carousel-item .item.active,
     .modal-center__default--special .carousel-item .item .img-responsive {
         object-fit: cover;
