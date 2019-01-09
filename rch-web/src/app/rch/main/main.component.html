@@ -38,14 +38,14 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <span *ngIf="isRegional(route)">{{'Main-P01' | translate}}</span>&nbsp;</td>
+                                            <span >{{'Main-P01' | translate}}</span>&nbsp;</td>
                                     </tr>
                                     <tr>
                                         <th class="bg-three border2" scope="row" rowspan="2">
                                             <span *ngIf="isRegional(route)">{{'Main-P03' | translate}}
-                                                <br/> {{'Main-P04' | translate}}</span>
+                                             </span>
                                             <span *ngIf="!isRegional(route)">{{'Main-P03' | translate}}
-                                                <br/> {{'Main-P04' | translate}}</span>
+                                               </span>
                                         </th>
                                         <td class="c-one">{{route.getFirstTrainStop(1).getDeparture(1).time}} hrs
                                             <br>
@@ -54,6 +54,7 @@
                                             {{'Main-P05' | translate}} {{route.getFirstTrainStop(1).name}}
                                             <br>
                                             <span *ngIf="isRegional(route)">{{'Main-P06' | translate}}</span>
+                                            <span *ngIf="!isRegional(route)">{{'Main-P08' | translate}}</span>
                                             <br/> {{'Main-P07' | translate}} {{route.getLastTrainStop(1).name}}</td>
                                     </tr>
                                     <tr>
@@ -64,13 +65,14 @@
                                             {{'Main-P05' | translate}} {{route.getFirstTrainStop(2).name}}
                                             <br>
                                             <span *ngIf="isRegional(route)">{{'Main-P08' | translate}}</span>
+                                            <span *ngIf="!isRegional(route)">{{'Main-P06' | translate}}</span>
                                             <br/> {{'Main-P07' | translate}} {{route.getLastTrainStop(2).name}}</td>
                                     </tr>
 
                                 </tbody>
                             </table>
                         </div>
-                        <small class="horario__txt">Cambio de horarios y salidas a partir del 11 de enero de 2019.</small>
+                       
                     </div>
                     <div class=" col-sm-12 col-sm-offset-6 margintop50">
                         <a href="#" data-toggle="modal" data-target="#mapa-full" (click)="selectRoute(route)">

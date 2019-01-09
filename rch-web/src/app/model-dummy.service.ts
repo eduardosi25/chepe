@@ -70,10 +70,10 @@ export class ModelDummyService implements IModel {
     rexpress.passenger_types = this.getStdPassengerTypes();
     let w1=610;let h1=610;
     rexpress.stops = [
-      new TrainStop(20,"CREEL",[new Departure(1,1,0,"21:30:00",Direction.down,1),new Departure(1,1,0,"09:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1,411/w1,44/h1),
+      new TrainStop(20,"CREEL",[new Departure(1,1,0,"17:14:00",Direction.down,1),new Departure(1,1,0,"07:30:00",Direction.up,1)],27.75556,-107.6349,"",564,1,411/w1,44/h1),
       new TrainStop(22,"DIVISADERO",[new Departure(1,1,0,"20:30:00",Direction.down,1),new Departure(1,1,0,"10:30:00",Direction.up,1)],27.53413,-107.82507,"",622,1,330/w1,105/h1),
       new TrainStop(39,"EL FUERTE",[new Departure(1,1,0,"16:20:00",Direction.down,1),new Departure(1,1,0,"14:40:00",Direction.up,1)],26.3645,-108.59235,"",839,1,148/w1,388/h1),
-      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"16:00:00",Direction.down,1),new Departure(1,1,0,"15:00:00",Direction.up,1)],25.75877,-108.96825,"",921,1,62/w1,530/h1)];
+      new TrainStop(42,"LOS MOCHIS",[new Departure(1,1,0,"07:30:00",Direction.down,1),new Departure(1,1,0,"16:35:00",Direction.up,1)],25.75877,-108.96825,"",921,1,62/w1,530/h1)];
     rexpress.wagons = [
       this.mkWagon(wt3),
       this.mkWagon(wt3),
