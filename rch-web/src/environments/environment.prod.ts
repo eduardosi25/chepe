@@ -1,6 +1,8 @@
 export const environment = {
   production: false,
-  restws_base: "http://localhost:51979",
+  // restws_base: "http://localhost:51979",
+  // model:"rest",
+  restws_base: "http://10.10.29.44/rest",
   model:"rest",
   //  restws_base: "https://devfxe.ferromex.com.mx/rest",
   // model: "rest",
