@@ -69,24 +69,26 @@ export class Step4Component implements OnInit {
       this.pName();
       this.pLast();
       
-      if (!p.name || this.flagName == true) { $('#p_' + i + '_name').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true; this.flagDisabled= true ;return true; }
-      if (!p.lastname || this.flagLast == true) { $('#p_' + i + '_lastname').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true; this.flagDisabled= true ;return true; }
-      if(!p.country){$('#p_'+i+'_country').addClass('orange');return true;}
+      if (!p.name) { $('#p_' + i + '_name').addClass('orange');this.step4 = this.translate.instant('Step4-P35');this.flagNext=true; this.flagDisabled= true ;return true; }
+      if (this.flagName == true) { $('#p_' + i + '_name').addClass('orange');this.step4 = this.translate.instant('Step4-P36');this.flagNext=true; this.flagDisabled= true ;return true; }
+      if (!p.lastname) { $('#p_' + i + '_lastname').addClass('orange');this.step4 = this.translate.instant('Step4-P37');this.flagNext=true; this.flagDisabled= true ;return true; }
+      if (this.flagLast == true) { $('#p_' + i + '_lastname').addClass('orange');this.step4 = this.translate.instant('Step4-P38');this.flagNext=true; this.flagDisabled= true ;return true; }
+      if(!p.country){$('#p_'+i+'_country').addClass('orange');this.step4 = this.translate.instant('Step4-P39');this.flagNext=true; this.flagDisabled= true ;return true;}
     }
       this.email = this.session.rb.etickets_email;
       this.cellphone = this.session.rb.etickets_phone;
       this.emergency = this.session.rb.etickets_emergency_contact;
     
     
-    if (!this.session.rb.etickets_email) { $('#etickets_email').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true; this.flagDisabled= true ; return true; }
+    if (!this.session.rb.etickets_email) { $('#etickets_email').addClass('orange');this.step4 = this.translate.instant('Step4-P40');this.flagNext=true; this.flagDisabled= true ; return true; }
     else if (!Step4Component.email_regex.test(this.session.rb.etickets_email)) { $('#etickets_email').addClass('orange');this.step4 = this.translate.instant('Step4-P31');this.flagNext=true; this.flagDisabled= true ;return true; }
-    else if (!this.session.rb.etickets_email2) { $('#etickets_email2').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ; return true; }
+    else if (!this.session.rb.etickets_email2) { $('#etickets_email2').addClass('orange');this.step4 = this.translate.instant('Step4-P41');this.flagNext=true;this.flagDisabled= true ; return true; }
     else if (this.session.rb.etickets_email2 != this.session.rb.etickets_email) { $('#etickets_email2').addClass('orange');this.step4 = this.translate.instant('Step4-P30');this.flagNext=true; this.flagDisabled= true ;return true; }
-    else if (!this.session.rb.etickets_phone){$('#etickets_phone').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
+    else if (!this.session.rb.etickets_phone){$('#etickets_phone').addClass('orange');this.step4 = this.translate.instant('Step4-P42');this.flagNext=true;this.flagDisabled= true ;return true;}
     else if (!Step4Component.cellphone_regex.test(this.session.rb.etickets_phone)){$('#etickets_phone').addClass('orange');this.step4 = this.translate.instant('Step4-P32');this.flagNext=true;this.flagDisabled= true ;return true;}
-    else if (!this.session.rb.etickets_emergency_contact){$('#etickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
+    else if (!this.session.rb.etickets_emergency_contact){$('#etickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P43');this.flagNext=true;this.flagDisabled= true ;return true;}
     else if (!Step4Component.emergency_regex.test(this.session.rb.etickets_emergency_contact)){$('#etickets_emergency_contact').addClass('orange');this.step4 = this.translate.instant('Step4-P33');this.flagNext=true;this.flagDisabled= true ;return true;}
-    else if (this.session.rb.pp == false){$('#pp').addClass('orange');this.step4 = this.translate.instant('Step4-P34');this.flagNext=true;this.flagDisabled= true ;return true;}
+    else if (this.session.rb.pp != true){$('#pp').addClass('orange');this.step4 = this.translate.instant('Step4-P44');this.flagNext=true;this.flagDisabled= true ;return true;}
     else { this.flagDisabled = null; this.step4 = this.translate.instant('Step4-P25'); return true; }
     
   }
