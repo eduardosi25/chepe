@@ -298,7 +298,7 @@
                                     <!--Origen 1-->
                                     <label>{{'Step1-P30' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="origen1" [disabled]="trips.length == 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_src" (ngModelChange)="onChangeStop()">
+                                        <select class="form-control" id="origen1" [disabled]="trips.length == 0" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_src" (ngModelChange)="onChangeStop(true, trips[0])">
                                             <!-- <option [ngValue]="null" selected="selected">{{'Step1-P31' | translate}}</option> -->
                                             <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -309,21 +309,21 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino1" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_dst" (ngModelChange)="onChangeStop(false, trips[0])">
+                                        <select class="form-control" id="destino1" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[0].id_dst" (ngModelChange)="onChangeStop(true, trips[0])">
                                             <!-- <option [ngValue]="null" selected>{{'Step1-P34' | translate}}</option> -->
                                             <option *ngFor="let ts of getDsts(0,trips[0].id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace"  >
                                     <!--Fecha 1-->
                                     <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
-                                        <div class="input-calendar col-xs-24 no-gutter">
-                                            <input type="text" class="form-control" id="datepicker1" [value] = "dateStr[0]"> 
+                                        <div class="input-calendar col-xs-24 no-gutter" >
+                                            <input type="text" class="form-control" id="datepicker1" [value] = "dateStr[0]" disabled={{bloc1}}> 
                                             <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
                                 </div>
-                            </div>
+                                </div> 
                             <!--Tramo 2-->
                             <div class="search__top col-xs-24 no-gutter" *ngIf="countTrips(2)"> <!--*ngFor="let trip of this.trips; let i = index">-->
                                 <div class="search__item col-xs-8 col-md-8 no-gutter-left no-gutter-left__small col-little col-nospace">
@@ -334,7 +334,7 @@
                                     <!--Origen 2-->
                                     <label>{{'Step1-P30' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="origen2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[1].id_src" (ngModelChange)="onChangeStop()">
+                                        <select class="form-control" id="origen2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[1].id_src" (ngModelChange)="onChangeStop(true, trips[1])">
                                             <!-- <option [ngValue]="null">{{'Step1-P31' | translate}}</option> -->
                                             <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -345,20 +345,20 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[1].id_dst" (ngModelChange)="onChangeStop(false, trips[1])">
+                                        <select class="form-control" id="destino2" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[1].id_dst" (ngModelChange)="onChangeStop(true, trips[1])">
                                             <!-- <option [ngValue]="null">{{'Step1-P34' | translate}}</option> -->
                                             <option *ngFor="let ts of getDsts(0,trips[1].id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
-                                    <!--Fecha 2-->
-                                    <label class="label-space" for="origen-1">{{'Step1-P35' | translate}}</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker2" [value] = "dateStr[1]"> 
-                                        <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
-                                    </div>
-                                </div>
+                                        <!--Fecha 2-->
+                                        <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
+                                            <div class="input-calendar col-xs-24 no-gutter" >
+                                                <input type="text" class="form-control" id="datepicker2" [value] = "dateStr[1]" disabled={{bloc2}}> 
+                                                <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                        </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
                                         <a (click)="onDeleteTrip(trips[1], false)" class="btn-delete__link">
@@ -379,7 +379,7 @@
                                     <!--Origen 3-->
                                     <label>{{'Step1-P30' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="origen3"  [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[2].id_src" (ngModelChange)="onChangeStop()">
+                                        <select class="form-control" id="origen3"  [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[2].id_src" (ngModelChange)="onChangeStop(true, trips[2])">
                                             <!-- <option [ngValue]="null">{{'Step1-P31' | translate}}</option> -->
                                             <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -390,20 +390,20 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino3" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[2].id_dst" (ngModelChange)="onChangeStop(false, trips[2])">
+                                        <select class="form-control" id="destino3" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[2].id_dst" (ngModelChange)="onChangeStop(true, trips[2])">
                                             <!-- <option [ngValue]="null">{{'Step1-P34' | translate}}</option> -->
                                             <option *ngFor="let ts of getDsts(0,trips[2].id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
-                                    <!--Fecha 3-->
-                                    <label class="label-space" for="origen-2">{{'Step1-P35' | translate}}</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker3" [value] = "dateStr[2]"> 
-                                        <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <!--Fecha 3 -->
+                                        <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
+                                            <div class="input-calendar col-xs-24 no-gutter" >
+                                                <input type="text" class="form-control" id="datepicker3" [value] = "dateStr[2]" disabled={{bloc3}}> 
+                                                <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
                                     </div>
-                                </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
                                         <a (click)="onDeleteTrip(trips[2], false)" class="btn-delete__link">
@@ -423,7 +423,7 @@
                                     <!--Origen 4-->
                                     <label>{{'Step1-P30' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="origen4" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_src" (ngModelChange)="onChangeStop()">
+                                        <select class="form-control" id="origen4" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_src" (ngModelChange)="onChangeStop(true, trips[3])">
                                             <!-- <option [ngValue]="null" selected>{{'Step1-P31' | translate}}</option> -->
                                             <option *ngFor="let ts of getSrcs(0)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
@@ -434,20 +434,20 @@
                                     <label *ngIf="i == trips.length -1 ">{{'Step1-P32' | translate}}</label>
                                     <label *ngIf="i != trips.length -1 ">{{'Step1-P33' | translate}}</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="destino4" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_dst" (ngModelChange)="onChangeStop(false, trips[3])">
+                                        <select class="form-control" id="destino4" [ngModelOptions]="{standalone: true}" [(ngModel)]="trips[3].id_dst" (ngModelChange)="onChangeStop(true, trips[3])">
                                             <!-- <option [ngValue]="null">{{'Step1-P34' | translate}}</option> -->
                                             <option *ngFor="let ts of getDsts(0,trips[3].id_src)" [ngValue]="ts">{{ts.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="search__item col-xs-8 col-md-6 col-lg-6 input-daterange col-sm__top col-little col-nospace">
-                                    <!--Fecha 4-->
-                                    <label class="label-space" for="origen-3">{{'Step1-P35' | translate}}</label>
-                                    <div class="input-calendar col-xs-24 no-gutter">
-                                        <input type="text" class="form-control" id="datepicker4" [value] = "dateStr[3]"> 
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <!--Fecha 4 -->
+                                        <label class="label-space" for="origen">{{'Step1-P35' | translate}}</label>
+                                            <div class="input-calendar col-xs-24 no-gutter" >
+                                                <input type="text" class="form-control" id="datepicker4" [value] = "dateStr[3]" disabled={{bloc4}}> 
+                                                <span class="input-group-addon" style="background: none;"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
                                     </div>
-                                </div>
                                 <div class="search__item col-xs-3 col-md-4 col-little col-btn__delete">
                                     <div class="btn-delete">
                                         <a (click)="onDeleteTrip(trips[3], false)" class="btn-delete__link">
