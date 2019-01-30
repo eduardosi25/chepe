@@ -145,50 +145,7 @@ export class Step1Component implements OnInit {
         }
       }
     }
-
-    if (this.session.query2 != undefined && this.session.query2.trips != null && this.session.query.round) {
-
-      this.trips2 = this.session.query2.trips;
-      this.isChecked = false;
-      for (let i = 0; i < this.trips2.length; i++) {
-        const t: Trip = this.trips2[i];
-        var day = t.start.getDate();
-        var month = t.start.getMonth() + 1;
-        var year = t.start.getFullYear();
-        this.numStops = this.numStops + i;
-
-        switch (i) {
-          case 0:
-            this.dateStrBack[0] = day + "/" + month + "/" + year;
-            this.dateMYBack[0] = true;
-            this.fechaGetBack[0] = t.start;
-            break;
-          case 1:
-            this.dateStrBack[1] = day + "/" + month + "/" + year;
-            this.dateMYBack[1] = true;
-            this.fechaGetBack[1] = t.start;
-            break;
-          case 2:
-            this.dateStrBack[2] = day + "/" + month + "/" + year;
-            this.dateMYBack[2] = true;
-            this.fechaGetBack[2] = t.start;
-            break;
-          case 3:
-            this.dateStrBack[3] = day + "/" + month + "/" + year;
-            this.dateMYBack[3] = true;
-            this.fechaGetBack[3] = t.start;
-            break;
-          default:
-            this.dateStrBack[0] = day + "/" + month + "/" + year;
-            this.dateMYBack[0] = true;
-            this.fechaGetBack[0] = t.start;
-            break;
-        }
-      }
-      this.onChange(true);
-    }
-
-    this.dateChange();
+    this.createInstance();
 
     let route_name = this.activated_route.snapshot.paramMap.get('route_name');
     this.route = this.model.getRouteByName(route_name);
@@ -197,7 +154,7 @@ export class Step1Component implements OnInit {
     }
     this.session.route = this.route;
     this.maxStop();
-    this.createInstance();
+
     this.avaStops = this.getSrcs(0);
 
   }
@@ -216,8 +173,6 @@ export class Step1Component implements OnInit {
       format: "yyyy-mm-dd"
     };
     var self = this;
-
-
     setTimeout(function () {
       // Funcion de agregar / eliminar escalas
       $(".js-clone").on('click', function (e) {
@@ -279,7 +234,6 @@ export class Step1Component implements OnInit {
       $(passengerItem).each(function () {
 
         var passengerStatus = $(this).find(passengerNumber).val();
-        //console.log(passengerStatus);
 
         if (passengerStatus == 0) {
           $(this).addClass("active");
@@ -291,7 +245,6 @@ export class Step1Component implements OnInit {
       var plusBtn = ".btn-number[data-type='plus']"
       $(plusBtn).click(function () {
         var passengerStatus = $(this).parents(passengerItem).find(passengerNumber).val();
-        //console.log("Aumentar número" + passengerStatus);
         if (passengerStatus >= 1) {
           $(this).parents(passengerItem).removeClass("active");
         }
@@ -301,7 +254,6 @@ export class Step1Component implements OnInit {
       var minusBtn = ".btn-number[data-type='minus']"
       $(minusBtn).click(function () {
         var passengerStatus = $(this).parents(passengerItem).find(passengerNumber).val();
-        //console.log("Disminuye número" + passengerStatus);
         if (passengerStatus == 0) {
           $(this).parents(passengerItem).addClass("active");
         }
@@ -309,9 +261,8 @@ export class Step1Component implements OnInit {
 
     }, 1000);
   }
-  public disabled = function (date, mode) {
-    return (mode === 'day' && (date.getDay() === 6));
-  };
+
+
   public dateChange() {
     ////Parada 1
     var currDate = [];
