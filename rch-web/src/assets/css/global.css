@@ -3808,11 +3808,7 @@ FIXES RESPONSIVE
         background-size: 100%;
     }
     .select-seat.classic  {
-        background: url(assets/img/reservacion/vagon-clasico-vertical.png) center center no-repeat;
-        background-size: 100%;
-    }
-    .select-seat.classic.regional  {
-        background: url(assets/img/reservacion/vagon-clasico-regional-vertical.png) center center no-repeat;
+        background: url(assets/img/reservacion/vagon-clasico-horizontal.png) center center no-repeat;
         background-size: 100%;
     }
     .select-seat img {
