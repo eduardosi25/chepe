@@ -3800,6 +3800,126 @@ body.active {
 FIXES RESPONSIVE 
 
 :::::::::::*/
+
+/* Up MediaQueries */
+@media (min-width: 994px) {
+    .select-seat.premium {
+        background: url(assets/img/reservacion/vagon-premium-vertical.png) center center no-repeat;
+        background-size: 100%;
+    }
+    .select-seat.classic  {
+        background: url(assets/img/reservacion/vagon-clasico-vertical.png) center center no-repeat;
+        background-size: 100%;
+    }
+    .select-seat.classic.regional  {
+        background: url(assets/img/reservacion/vagon-clasico-regional-vertical.png) center center no-repeat;
+        background-size: 100%;
+    }
+    .select-seat img {
+        opacity: 0;
+    }
+    .seat-train {
+        width: 100% !important; 
+        height: 500px;
+    }
+    .select-seat label {
+        -webkit-transform: rotate(90deg);3
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+    }
+    .select-seat.classic,
+    .select-seat.premium {
+        /* Rotate and Scale*/
+        -webkit-transform: rotate(-90deg) scale(0.68);
+        -moz-transform: rotate(-90deg) scale(0.68);
+        -ms-transform: rotate(-90deg) scale(0.68);
+        -o-transform: rotate(-90deg) scale(0.68);
+        /* Origin X */
+        -webkit-transform-origin-x: -56%;
+        -moz-transform-origin-x: -56%;
+        -ms-transform-origin-x: -56%;
+        -o-transform-origin-x: -56%;
+        /* Origin Y */
+        -webkit-transform-origin-y: 26%;
+        -moz-transform-origin-y: 26%;
+        -ms-transform-origin-y: 26%;
+        -o-transform-origin-y: 26%;
+    }
+    .seat-show  .seat__label,
+    .seat-show.show__left .seat__label:after,
+    .seat-show.show__left .seat__label:before {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+    }
+
+    /* seat label */
+    .seat-show  .seat__label{
+        width: 100px;
+        font-size: 12px;
+        text-transform: initial;
+    }
+    .seat__label:before {
+        width: 34px;
+        height: 0.5px;
+    }
+
+    /* seat lef */
+    .seat-show.show__left .seat__label {
+        left: -198px;
+        top: 7px;
+    }
+    .seat-show.show__left .seat__label:after {
+        right: 50px;
+        top: -74px;
+    }
+    .seat-show.show__left .seat__label:before {
+        right: 34px;
+        top: -17px;
+    }
+
+    /* seat right */
+    .seat-show.show__right .seat__label {
+        right: -199px;
+        top: 7px;
+    }
+    .seat-show.show__right .seat__label:before {
+        left: 31px;
+        top: 136px;
+    }
+    .seat-show.show__right .seat__label:after {
+        left: 49px;
+        top: 115px;
+    }
+}
+@media (min-width: 1200px) {
+    .seat-train {
+        height: 550px;
+    }
+    .select-seat.classic,
+    .select-seat.premium {
+        /* Rotate and Scale*/
+        -webkit-transform: rotate(-90deg) scale(0.75);
+        -moz-transform: rotate(-90deg) scale(0.75);
+        -ms-transform: rotate(-90deg) scale(0.75);
+        -o-transform: rotate(-90deg) scale(0.75);
+        /* Origin X */
+        -webkit-transform-origin-x: -56%;
+        -moz-transform-origin-x: -56%;
+        -ms-transform-origin-x: -56%;
+        -o-transform-origin-x: -56%;
+        /* Origin Y */
+        -webkit-transform-origin-y: 29%;
+        -moz-transform-origin-y: 29%;
+        -ms-transform-origin-y: 29%;
+        -o-transform-origin-y: 29%;
+    }
+}
+
+
+/* Down MediaQueries */
 @media (max-width: 1282px) {
     .col-full {
         width: 100%;
@@ -3969,7 +4089,6 @@ FIXES RESPONSIVE
         font-size: 17px;
     }
 }
-
 @media (max-width:600px) {
     #webpay_sframe {
         width: 100% !important;
