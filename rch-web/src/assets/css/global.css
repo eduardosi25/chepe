@@ -161,7 +161,7 @@ ul.colored{
 }
 
 ul.colored li::before {
-    content: "• ";
+    content: "â€¢ ";
     padding-right: 5px;
 }
 
@@ -3321,7 +3321,7 @@ textarea {
     display: none;
  }
 
-.form-control__number::-webkit-inner-spin-button, 
+.form-control__number::-webkit-inner-spin-button,Â 
 .form-control__number::-webkit-outer-spin-button {
     -webkit-appearance: none; 
  }
@@ -3804,7 +3804,7 @@ FIXES RESPONSIVE
 /* Up MediaQueries */
 @media (min-width: 994px) {
     .select-seat.premium > div {
-        background: url(/assets/img/reservacion/vagon-premium-vertical.png) center center no-repeat;
+        background: url(/assets/img/reservacion/vagon-premium-horizontal.png) center center no-repeat;
         background-size: 100%;
     }
     .select-seat.classic > div {
@@ -3867,29 +3867,29 @@ FIXES RESPONSIVE
     /* seat lef */
     .seat-show.show__left .seat__label {
         left: -173px;
-        top: -2px;
+        top: 6px;
     }
     .seat-show.show__left .seat__label:after {
-        right: 50px;
-        top: -64px;
+        right: 49px;
+        top: -74px;
     }
     .seat-show.show__left .seat__label:before {
         right: 34px;
-        top: -16px;
+        top: -17px;
     }
 
     /* seat right */
     .seat-show.show__right .seat__label {
         right: -198px;
-        top: -2px;
+        top: 11px;
     }
     .seat-show.show__right .seat__label:before {
-        left: 32px;
-        top: 136px;
+        left: 29px;
+        top: 137px;
     }
     .seat-show.show__right .seat__label:after {
-        left: 49px;
-        top: 123px;
+        left: 45px;
+        top: 115px;
     }
 }
 @media (min-width: 1200px) {
