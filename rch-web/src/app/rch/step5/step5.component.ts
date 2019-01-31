@@ -275,7 +275,7 @@ export class Step5Component implements OnInit {
   getWagonType2(wagon: Wagon): string {
     if (wagon.type.id != 3) { return "classic"; }
     if (wagon.type.id == 3) { return "premium"; }
-    return "classic regional";
+    return "classic";
   }
   getRowClasses(i: number, vagonId: number): string {
     switch (vagonId) {

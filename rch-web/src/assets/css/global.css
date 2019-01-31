@@ -3803,15 +3803,15 @@ FIXES RESPONSIVE
 
 /* Up MediaQueries */
 @media (min-width: 994px) {
-    .select-seat.premium {
-        background: url(assets/img/reservacion/vagon-premium-vertical.png) center center no-repeat;
+    .select-seat.premium > div {
+        background: url(/assets/img/reservacion/vagon-premium-vertical.png) center center no-repeat;
         background-size: 100%;
     }
-    .select-seat.classic  {
-        background: url(assets/img/reservacion/vagon-clasico-horizontal.png) center center no-repeat;
+    .select-seat.classic > div {
+        background: url(/assets/img/reservacion/vagon-clasico-horizontal.png) center center no-repeat;
         background-size: 100%;
     }
-    .select-seat img {
+    .select-seat .wagon-img-classic img {
         opacity: 0;
     }
     .seat-train {
@@ -3827,24 +3827,26 @@ FIXES RESPONSIVE
     .select-seat.classic,
     .select-seat.premium {
         /* Rotate and Scale*/
-        -webkit-transform: rotate(-90deg) scale(0.68);
-        -moz-transform: rotate(-90deg) scale(0.68);
-        -ms-transform: rotate(-90deg) scale(0.68);
-        -o-transform: rotate(-90deg) scale(0.68);
+        -webkit-transform: rotate(-90deg) scale(0.72);
+        -moz-transform: rotate(-90deg) scale(0.72);
+        -ms-transform: rotate(-90deg) scale(0.72);
+        -o-transform: rotate(-90deg) scale(0.72);
         /* Origin X */
-        -webkit-transform-origin-x: -56%;
-        -moz-transform-origin-x: -56%;
-        -ms-transform-origin-x: -56%;
-        -o-transform-origin-x: -56%;
+        -webkit-transform-origin-x: -64%;
+        -moz-transform-origin-x: -64%;
+        -ms-transform-origin-x: -64%;
+        -o-transform-origin-x: -64%;
         /* Origin Y */
-        -webkit-transform-origin-y: 26%;
-        -moz-transform-origin-y: 26%;
-        -ms-transform-origin-y: 26%;
-        -o-transform-origin-y: 26%;
+        -webkit-transform-origin-y: 28%;
+        -moz-transform-origin-y: 28%;
+        -ms-transform-origin-y: 28%;
+        -o-transform-origin-y: 28%;
     }
     .seat-show  .seat__label,
     .seat-show.show__left .seat__label:after,
-    .seat-show.show__left .seat__label:before {
+    .seat-show.show__left .seat__label:before,
+    .seat-show.show__right .seat__label:after,
+    .seat-show.show__right .seat__label:before  {
         -webkit-transform: rotate(90deg);
         -moz-transform: rotate(90deg);
         -ms-transform: rotate(90deg);
@@ -3864,30 +3866,30 @@ FIXES RESPONSIVE
 
     /* seat lef */
     .seat-show.show__left .seat__label {
-        left: -198px;
-        top: 7px;
+        left: -173px;
+        top: -2px;
     }
     .seat-show.show__left .seat__label:after {
         right: 50px;
-        top: -74px;
+        top: -64px;
     }
     .seat-show.show__left .seat__label:before {
         right: 34px;
-        top: -17px;
+        top: -16px;
     }
 
     /* seat right */
     .seat-show.show__right .seat__label {
-        right: -199px;
-        top: 7px;
+        right: -198px;
+        top: -2px;
     }
     .seat-show.show__right .seat__label:before {
-        left: 31px;
+        left: 32px;
         top: 136px;
     }
     .seat-show.show__right .seat__label:after {
         left: 49px;
-        top: 115px;
+        top: 123px;
     }
 }
 @media (min-width: 1200px) {
@@ -3897,17 +3899,17 @@ FIXES RESPONSIVE
     .select-seat.classic,
     .select-seat.premium {
         /* Rotate and Scale*/
-        -webkit-transform: rotate(-90deg) scale(0.75);
+        -webkit-transform: rotate(-90deg) scale(0.85);
         -moz-transform: rotate(-90deg) scale(0.75);
         -ms-transform: rotate(-90deg) scale(0.75);
         -o-transform: rotate(-90deg) scale(0.75);
         /* Origin X */
-        -webkit-transform-origin-x: -56%;
+        -webkit-transform-origin-x: -43%;
         -moz-transform-origin-x: -56%;
         -ms-transform-origin-x: -56%;
         -o-transform-origin-x: -56%;
         /* Origin Y */
-        -webkit-transform-origin-y: 29%;
+        -webkit-transform-origin-y: 31%;
         -moz-transform-origin-y: 29%;
         -ms-transform-origin-y: 29%;
         -o-transform-origin-y: 29%;
@@ -4076,6 +4078,14 @@ FIXES RESPONSIVE
     .seat-train {
         width: 100% !important;
     }
+    .seat__label {
+        
+width: 110px;
+        
+font-size: 11px;
+        
+text-transform: initial;
+    }
 }
 @media (max-width: 768px) {
     .modalbox-special .modalbox-inside {
@@ -4154,6 +4164,7 @@ FIXES RESPONSIVE
         padding: 0 !important;
     }
     .seat__label {
+        width: 70px;
         font-size: 10px;
         line-height: 12px;
         padding: 3px;
