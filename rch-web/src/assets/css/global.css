@@ -3803,11 +3803,11 @@ FIXES RESPONSIVE
 
 /* Up MediaQueries */
 @media (min-width: 994px) {
-    .select-seat.premium > div {
+    .select-seat.premium .wagon-img-classic {
         background: url(/assets/img/reservacion/vagon-premium-horizontal.png) center center no-repeat;
         background-size: 100%;
     }
-    .select-seat.classic > div {
+    .select-seat.classic .wagon-img-classic {
         background: url(/assets/img/reservacion/vagon-clasico-horizontal.png) center center no-repeat;
         background-size: 100%;
     }
@@ -3890,6 +3890,22 @@ FIXES RESPONSIVE
     .seat-show.show__right .seat__label:after {
         left: 45px;
         top: 115px;
+    }
+    /*---- classic ----*/
+    .select-seat.classic .seat-show.show__right .seat__label {
+        right: -198px;
+        top: 2px;
+    }
+    .select-seat.classic .seat-show.show__right .seat__label:after {
+        top: 124px;
+    }
+    .select-seat.classic .seat-show.show__left .seat__label {
+        left: -173px;
+        top: -1px;
+    }
+    .select-seat.classic .seat-show.show__left .seat__label:after {
+        right: 51px;
+        top: -65px;
     }
 }
 @media (min-width: 1200px) {
