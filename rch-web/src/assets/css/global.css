@@ -3793,6 +3793,17 @@ body.active {
 .seat-show.show__left .seat__left {
     left: -30px;
 }
+.datepicker td.day {
+    color: #000;
+}
+.datepicker table tr td.old,
+.datepicker table tr td.new {
+    color: #f3f3f3 !important;
+}
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover {
+    color: #c9c9c9;
+}
 
 
 /*:::::::::::
