@@ -89,13 +89,22 @@ export class Step1Component implements OnInit {
   public fechaGetBack = [];
   public bloqueoCalendario1 = null; bloqueoCalendario2 = null; bloqueoCalendario3 = null; bloqueoCalendario4 = null;
   public bloc1 = true; public bloc2 = true; public bloc3 = true; public bloc4 = true;
-  public c1 = 1;
+  public c1=[];
   public calendarArray1; public calendarArray2; public calendarArray3; public calendarArray4;
   public calendar = null;
   public c1A; c2A; c3A; c4A;
   public c1Av; c2Av; c3Av; c4Av;
+
+
+
+
+  public id_Src = []; id_Dst = []; keySrc = []; keyDst = []; bloqueoCalendario = []; bloc = []; calendarArray = []; cA=[]; cAV=[];
+
+
+
+
   ngOnInit() {
-    this.dateChange();
+    // this.dateChange();
     this.isChecked = true;
     var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
     if (this.previousRouteService.getPreviousUrl().indexOf('reservaciones/') == -1 || this.session.query == null) {
@@ -199,29 +208,29 @@ export class Step1Component implements OnInit {
         $("#mapa-full").removeClass("active");
       });
       //DatePicker fecha 1
-      $("#datepicker1").datepicker({
-        language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      }).on('changeDate', (e) => {
-        self.fechaGet[0] = e.date; self.dateChange();
-      }).keydown(false);
-      // //DatePicker fecha 2
-      $("#datepicker2").datepicker({
-        language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      }).on('changeDate', (e) => {
-        self.fechaGet[1] = e.date; self.dateChange();
-      }).keydown(false);
-      //DatePicker fecha 3
-      $("#datepicker3").datepicker({
-        language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      }).on('changeDate', (e) => {
-        self.fechaGet[2] = e.date; self.dateChange();
-      }).keydown(false);
-      //DatePicker fecha 4
-      $("#datepicker4").datepicker({
-        language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      }).on('changeDate', (e) => {
-        self.fechaGet[3] = e.date; self.dateChange();
-      }).keydown(false);
+      // $("#datepicker1").datepicker({
+      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
+      // }).on('changeDate', (e) => {
+      //   self.fechaGet[0] = e.date; self.dateChange();
+      // }).keydown(false);
+      // // //DatePicker fecha 2
+      // $("#datepicker2").datepicker({
+      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
+      // }).on('changeDate', (e) => {
+      //   self.fechaGet[1] = e.date; self.dateChange();
+      // }).keydown(false);
+      // //DatePicker fecha 3
+      // $("#datepicker3").datepicker({
+      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
+      // }).on('changeDate', (e) => {
+      //   self.fechaGet[2] = e.date; self.dateChange();
+      // }).keydown(false);
+      // //DatePicker fecha 4
+      // $("#datepicker4").datepicker({
+      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
+      // }).on('changeDate', (e) => {
+      //   self.fechaGet[3] = e.date; self.dateChange();
+      // }).keydown(false);
 
       //Tooltip
       $(".js-my-tooltip").click(function (e) {
@@ -270,24 +279,72 @@ export class Step1Component implements OnInit {
     var currYear = [];
     var mes;
     var d = new Date();
+
+    let self = this
+console.log(this.c1)
+    this.c1[0] = '+1d'
+        if (this.cAV[0] == true) {
+                setTimeout(function () {
+                  $("#datepicker1").datepicker("destroy")
+                  $("#datepicker1").datepicker({daysOfWeekDisabled: self.calendarArray[0], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
+                  startDate: self.c1[0]})
+                  .on('changeDate', (e) => {self.fechaGet[0] = e.date; self.cAV[0] = null; self.cAV[1]=true; self.dateChange();
+                  }).keydown(false);          
+                }, 150)
+              }
+              if (this.cAV[1] == true) {
+                setTimeout(function () {
+                  $("#datepicker2").datepicker("destroy")
+                  $("#datepicker2").datepicker({daysOfWeekDisabled: self.calendarArray[1], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
+                  startDate: self.c1[1]})
+                  .on('changeDate', (e) => {self.fechaGet[1] = e.date;  self.cAV[1] = null; self.cAV[2]=true; self.dateChange();
+                  }).keydown(false);          
+                }, 150)
+              } 
+              if (this.cAV[2] == true) {
+                setTimeout(function () {
+                  $("#datepicker3").datepicker("destroy")
+                  $("#datepicker3").datepicker({daysOfWeekDisabled: self.calendarArray[2], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
+                  startDate: self.c1[2]})
+                  .on('changeDate', (e) => {self.fechaGet[2] = e.date; self.cAV[2] = null; self.cAV[3]=true; self.dateChange();
+                  }).keydown(false);          
+                }, 150)
+              }
+              if (this.cAV[3] == true) {
+                setTimeout(function () {
+                  $("#datepicker4").datepicker("destroy")
+                  $("#datepicker4").datepicker({daysOfWeekDisabled: self.calendarArray[3], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
+                  startDate: self.c1[3]})
+                  .on('changeDate', (e) => {self.fechaGet[3] = e.date;  self.cAV[3] = null; self.dateChange();
+                  }).keydown(false);          
+                }, 150)
+              } 
+
     this.calendar = null
     for (let i = 0; i < this.trips.length; i++) {
-
-      if (i == 0) {
+        if (i == 0) {
         if (this.fechaGet[i] == undefined) {
           this.dateStr[i] = "";
           this.dateMY[i] = false;
         } else {
           var c = this.fechaGet[i].getDay();
 
-          for (let j = 0; j < this.calendarArray1.length; j++) {
-            if (c == this.calendarArray1[j]) { this.calendar = true }
+          for (let j = 0; j < this.calendarArray[i].length; j++) {
+            if (c == this.calendarArray[i][j]) { this.calendar = true }
           }
 
           if (this.calendar == true) {
             this.dateMY[i] = null;
+            break;
           } else {
-            this.trips[i].start = this.fechaGet[i]; currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true;
+            this.trips[i].start = this.fechaGet[i]; 
+            currDate[i] = this.fechaGet[i].getDate(); 
+            currMonth[i] = this.fechaGet[i].getMonth(); 
+            currYear[i] = this.fechaGet[i].getFullYear(); 
+            mes = currMonth[i] + 1; 
+            this.c1 [i + 1] =  (currDate[i] + 1) + "/" + mes + "/" + currYear[i]; 
+            this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; 
+            this.dateMY[i] = true;
           }
         }
       }
@@ -301,18 +358,12 @@ export class Step1Component implements OnInit {
         //////////////
         if (this.fechaGet[i] != undefined) {
           var e = this.fechaGet[i].getDay();
-          var arrayC
-          if (i == 0) { arrayC = this.calendarArray1 }
-          else if (i == 1) { arrayC = this.calendarArray2 }
-          else if (i == 2) { arrayC = this.calendarArray3 }
-          else if (i == 3) { arrayC = this.calendarArray4 }
-
-          for (let j = 0; j < arrayC.length; j++) {
-            if (e == arrayC[j]) { this.calendar = true }
-
+          for (let j = 0; j < 4; j++) {
+            if (e == this.calendarArray[i][j]) { this.calendar = true }
           }
           if (this.calendar == true) {
             this.dateMY[i] = null;
+            break;
           } else {
             if (this.fechaGet[i - 1].getDate() < this.fechaGet[i].getDate() && this.fechaGet[i - 1].getMonth() <= this.fechaGet[i].getMonth() && this.fechaGet[i - 1].getFullYear() <= this.fechaGet[i].getFullYear()) { currDate[i] = this.fechaGet[i].getDate(); currMonth[i] = this.fechaGet[i].getMonth(); currYear[i] = this.fechaGet[i].getFullYear(); this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]); this.trips[i].start = this.fechaGet[i]; mes = currMonth[i] + 1; this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; this.dateMY[i] = true; }
             /////////////////
@@ -339,10 +390,12 @@ export class Step1Component implements OnInit {
             ////////////////
             else (currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null);
           }
+        
+        this.c1 [i + 1] =  (currDate[i] + 1) + "/" + mes + "/" + currYear[i]; 
         }
       }
     }
-    this.createInstance(); this.onDateChange();
+    this.onDateChange();
   }
 
 
@@ -369,303 +422,41 @@ export class Step1Component implements OnInit {
       else if (this.calendar == true && this.dateMY[i] == null) { this.constDate = null; this.constDateInv = true; this.constDateUnd = null; this.dateNumErr = (i + 1); break }
       else if (this.dateMY[i] == null) { this.constDate = true; this.constDateInv = null; this.constDateUnd = null; this.dateNumErr = (i + 1); break }
       else (this.constDate = null, this.constDateInv = null, this.constDateUnd = null)
-
-
     }
-
-    // if (this.trips.length == 1) {
-    //   if (this.dateMY[0] == false) { this.constDate = null;this.constDateInv = null;this.constDateUnd = true; this.dateNumErr = 1; }
-    //   else if (this.calendar == true && this.dateMY[0] == null) { this.constDate = null;this.constDateInv = true;this.constDateUnd = null; this.dateNumErr = 1; }
-    //   else (this.constDate = null, this.constDateInv = null, this.constDateUnd =null)
-    // }
-    // if (this.trips.length == 2) {
-    //   if (this.dateMY[0] == null) { this.constDate = true; this.dateNumErr = 1; }
-    //   else if (this.dateMY[1] == null) { this.constDate = true; this.dateNumErr = 2; }
-    //   else (this.constDate = null)
-    // }
-    // if (this.trips.length == 3) {
-    //   if (this.dateMY[0] == null) { this.constDate = true; this.dateNumErr = 1; }
-    //   else if (this.dateMY[1] == null) { this.dateNumErr = 2; this.constDate = true }
-    //   else if (this.dateMY[2] == null) { this.dateNumErr = 3; this.constDate = true }
-    //   else (this.constDate = null)
-    // }
-    // if (this.trips.length == 4) {
-    //   if (this.dateMY[0] == null) { this.constDate = true; this.dateNumErr = 1; }
-    //   else if (this.dateMY[1] == null) { this.dateNumErr = 2; this.constDate = true }
-    //   else if (this.dateMY[2] == null) { this.dateNumErr = 3; this.constDate = true }
-    //   else if (this.dateMY[3] == null) { this.dateNumErr = 4; this.constDate = true }
-    //   else (this.constDate = null)
-    // }
   }
+
   public onChangeStop(round: boolean, tr: Trip) {
-    let index;
-    var id_dst1 = null; var id_dst2 = null; var id_dst3 = null; var id_dst4 = null;
-    var id_src1 = null; var id_src2 = null; var id_src3 = null; var id_src4 = null;
-    var getSrcs = null; getSrcs = this.session.route.stops;
+    var inde = 0;
+    var getSrcs = this.session.route.stops;
+    for (inde; inde < this.trips.length; inde++) {
+      this.id_Src[inde] = this.trips[inde].id_src;
+      this.id_Dst[inde] = this.trips[inde].id_dst;
+      this.bloc[inde] = true
 
-    //Una parada
-
-    if (this.trips.length == 1) {
-      id_src1 = this.trips[0].id_src; id_dst1 = this.trips[0].id_dst;
-      this.bloc1 = true;
-
-      if (id_src1.id == undefined) { this.constStop = false; this.stopNumErr = 1 }
-      else if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
-      else (this.constStop = null, this.bloc1 = null)
+      if (this.id_Src[inde].id == undefined) { this.constStop = false; this.stopNumErr = (inde + 1) ; break}
+      else if (this.id_Dst[inde].id == undefined || this.id_Dst[inde].id == this.id_Src[inde].id) { this.constStop = true; this.stopNumErr = (inde + 1) ; break}
+      else (this.constStop = null, this.bloc[inde] = null)
 
       for (const key in getSrcs) {
         const position = getSrcs[key].id
-        if (position == id_src1.id) { this.keyDst1 = toInteger(key) }
-        if (position == id_dst1.id) { this.keySrc1 = toInteger(key) }
+        if (position == this.id_Src[inde].id) { this.keySrc[inde] = toInteger(key) }
+        if (position == this.id_Dst[inde].id) { this.keyDst[inde] = toInteger(key) }
       }
       if (this.session.route.id == 2) {
-        if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [0, 2, 3, 5] }
-        if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [1, 3, 4, 6] }
-
+        if (this.keySrc[inde] > this.keyDst[inde]) { this.bloqueoCalendario[inde] = false; this.calendarArray[inde] = [0, 2, 3, 5] }
+        else if (this.keySrc[inde] < this.keyDst[inde]) { this.bloqueoCalendario[inde] = true; this.calendarArray[inde] = [1, 3, 4, 6] }
       }
       else if (this.session.route.id == 1) {
-        if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [1, 3, 4, 6] }
-        if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [0, 2, 3, 5] }
-
+        if (this.keySrc[inde] > this.keyDst[inde]) { this.bloqueoCalendario[inde] = false; this.calendarArray[inde] = [1, 3, 4, 6] }
+        else if (this.keySrc[inde] < this.keyDst[inde]) { this.bloqueoCalendario[inde] = true; this.calendarArray[inde] = [0, 2, 3, 5] }
       }
-
-      let self = this;
-      if (this.bloqueoCalendario1 != null) {
-        setTimeout(function () {
-          $("#datepicker1").datepicker("destroy")
-          $("#datepicker1").datepicker({ daysOfWeekDisabled: self.calendarArray1, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' }).on('changeDate', (e) => { self.fechaGet[0] = e.date; self.dateChange(); }).keydown(false);
-        }, 1000)
+      if (this.bloqueoCalendario[inde] != null) {
+        if (this.cA[inde] != this.bloqueoCalendario[inde]) {
+          this.cA[inde] = this.bloqueoCalendario[inde];
+          this.cAV[inde] = true;
+        } else (this.cAV[inde] = null)
       }
-    }
-
-    //Dos paradas
-    if (this.trips.length == 2) {
-      id_src1 = this.trips[0].id_src; id_dst1 = this.trips[0].id_dst;
-      id_dst2 = this.trips[1].id_dst; id_src2 = this.trips[1].id_src;
-      this.bloc1 = true; this.bloc2 = true;
-
-      if (id_src1.id == undefined) { this.constStop = false; this.stopNumErr = 1 }
-      else if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
-      else if (id_src2.id == undefined) { this.constStop = false; this.stopNumErr = 2 }
-      else if (id_dst2.id == undefined || id_dst2.id == id_src2.id) { this.constStop = true; this.stopNumErr = 2 }
-      else (this.constStop = null, this.bloc1 = null, this.bloc2 = null)
-
-      for (const key in getSrcs) {
-        const position = getSrcs[key].id
-        if (position == id_src1.id) { this.keyDst1 = toInteger(key) }
-        if (position == id_dst1.id) { this.keySrc1 = toInteger(key) }
-        if (position == id_src2.id) { this.keyDst2 = toInteger(key) }
-        if (position == id_dst2.id) { this.keySrc2 = toInteger(key) }
-      }
-      if (this.session.route.id == 2) {
-        if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [0, 2, 3, 5] }
-        if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [1, 3, 4, 6] }
-        if (this.keySrc2 < this.keyDst2) { this.bloqueoCalendario2 = false; this.calendarArray2 = [0, 2, 3, 5] }
-        if (this.keySrc2 > this.keyDst2) { this.bloqueoCalendario2 = true; this.calendarArray2 = [1, 3, 4, 6] }
-      }
-      else if (this.session.route.id == 1) {
-        if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [1, 3, 4, 6] }
-        if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [0, 2, 3, 5] }
-        if (this.keySrc2 < this.keyDst2) { this.bloqueoCalendario2 = false; this.calendarArray2 = [1, 3, 4, 6] }
-        if (this.keySrc2 > this.keyDst2) { this.bloqueoCalendario2 = true; this.calendarArray2 = [0, 2, 3, 5] }
-      }
-      if (this.bloqueoCalendario2 != null) {
-        if (this.c1A != this.bloqueoCalendario1) {
-          this.c1A = this.bloqueoCalendario1
-          this.c1Av = true
-        } else (this.c1Av = null)
-
-        if (this.c2A != this.bloqueoCalendario2) {
-          this.c2A = this.bloqueoCalendario2
-          this.c2Av = true
-        } else (this.c2Av = null)
-      }
-
-      let self = this;
-
-      if (this.bloqueoCalendario2 != null) {
-        if (this.c1Av == true) {
-          setTimeout(function () {
-            $("#datepicker1").datepicker("destroy")
-            $("#datepicker1").datepicker({ daysOfWeekDisabled: self.calendarArray1, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-        if (this.c2Av == true) {
-          setTimeout(function () {
-            $("#datepicker2").datepicker("destroy")
-            $("#datepicker2").datepicker({ daysOfWeekDisabled: self.calendarArray2, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-      }
-    }
-    //Tres paradas
-    if (this.trips.length == 3) {
-      id_src1 = this.trips[0].id_src; id_dst1 = this.trips[0].id_dst;
-      id_dst2 = this.trips[1].id_dst; id_src2 = this.trips[1].id_src;
-      id_dst3 = this.trips[2].id_dst; id_src3 = this.trips[2].id_src;
-      this.bloc1 = true; this.bloc2 = true; this.bloc3 = true;
-
-      if (id_src1.id == undefined) { this.constStop = false; this.stopNumErr = 1 }
-      else if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
-      else if (id_src2.id == undefined) { this.constStop = false; this.stopNumErr = 2 }
-      else if (id_dst2.id == undefined || id_dst2.id == id_src2.id) { this.constStop = true; this.stopNumErr = 2 }
-      else if (id_src3.id == undefined) { this.constStop = false; this.stopNumErr = 3 }
-      else if (id_dst3.id == undefined || id_dst3.id == id_src3.id) { this.constStop = true; this.stopNumErr = 3 }
-      else (this.constStop = null, this.bloc1 = null, this.bloc2 = null, this.bloc3 = null)
-
-      for (const key in getSrcs) {
-        const position = getSrcs[key].id
-        if (position == id_src1.id) { this.keyDst1 = toInteger(key) }
-        if (position == id_dst1.id) { this.keySrc1 = toInteger(key) }
-        if (position == id_src2.id) { this.keyDst2 = toInteger(key) }
-        if (position == id_dst2.id) { this.keySrc2 = toInteger(key) }
-        if (position == id_src3.id) { this.keyDst3 = toInteger(key) }
-        if (position == id_dst3.id) { this.keySrc3 = toInteger(key) }
-      }
-      if (this.session.route.id == 2) {
-        if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [0, 2, 3, 5] }
-        if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [1, 3, 4, 6] }
-        if (this.keySrc2 < this.keyDst2) { this.bloqueoCalendario2 = false; this.calendarArray2 = [0, 2, 3, 5] }
-        if (this.keySrc2 > this.keyDst2) { this.bloqueoCalendario2 = true; this.calendarArray2 = [1, 3, 4, 6] }
-        if (this.keySrc3 < this.keyDst3) { this.bloqueoCalendario3 = false; this.calendarArray3 = [0, 2, 3, 5] }
-        if (this.keySrc3 > this.keyDst3) { this.bloqueoCalendario3 = true; this.calendarArray3 = [1, 3, 4, 6] }
-      }
-      else if (this.session.route.id == 1) {
-        if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [1, 3, 4, 6] }
-        if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [0, 2, 3, 5] }
-        if (this.keySrc2 < this.keyDst2) { this.bloqueoCalendario2 = false; this.calendarArray2 = [1, 3, 4, 6] }
-        if (this.keySrc2 > this.keyDst2) { this.bloqueoCalendario2 = true; this.calendarArray2 = [0, 2, 3, 5] }
-        if (this.keySrc3 < this.keyDst3) { this.bloqueoCalendario3 = false; this.calendarArray3 = [1, 3, 4, 6] }
-        if (this.keySrc3 > this.keyDst3) { this.bloqueoCalendario3 = true; this.calendarArray3 = [0, 2, 3, 5] }
-      }
-      if (this.bloqueoCalendario3 != null) {
-        if (this.c1A != this.bloqueoCalendario1) {
-          this.c1A = this.bloqueoCalendario1
-          this.c1Av = true
-        } else (this.c1Av = null)
-
-        if (this.c2A != this.bloqueoCalendario2) {
-          this.c2A = this.bloqueoCalendario2
-          this.c2Av = true
-        } else (this.c2Av = null)
-
-        if (this.c3A != this.bloqueoCalendario3) {
-          this.c3A = this.bloqueoCalendario3
-          this.c3Av = true
-        } else (this.c3Av = null)
-      }
-      let self = this;
-      if (this.bloqueoCalendario3 != null) {
-        if (this.c1Av == true) {
-          setTimeout(function () {
-            $("#datepicker1").datepicker("destroy")
-            $("#datepicker1").datepicker({ daysOfWeekDisabled: self.calendarArray1, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-        if (this.c2Av == true) {
-          setTimeout(function () {
-            $("#datepicker2").datepicker("destroy")
-            $("#datepicker2").datepicker({ daysOfWeekDisabled: self.calendarArray2, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-        if (this.c3Av == true) {
-          setTimeout(function () {
-            $("#datepicker3").datepicker("destroy")
-            $("#datepicker3").datepicker({ daysOfWeekDisabled: self.calendarArray3, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-      }
-    }
-    //Cuatro paradas
-    if (this.trips.length == 4) {
-      id_src1 = this.trips[0].id_src; id_dst1 = this.trips[0].id_dst;
-      id_dst2 = this.trips[1].id_dst; id_src2 = this.trips[1].id_src;
-      id_dst3 = this.trips[2].id_dst; id_src3 = this.trips[2].id_src;
-      id_src4 = this.trips[3].id_src; id_dst4 = this.trips[3].id_dst;
-      this.bloc1 = true; this.bloc2 = true; this.bloc3 = true; this.bloc4 = true;
-      if (id_src1.id == undefined) { this.constStop = false; this.stopNumErr = 1 }
-      else if (id_dst1.id == undefined || id_dst1.id == id_src1.id) { this.constStop = true; this.stopNumErr = 1 }
-      else if (id_src2.id == undefined) { this.constStop = false; this.stopNumErr = 2 }
-      else if (id_dst2.id == undefined || id_dst2.id == id_src2.id) { this.constStop = true; this.stopNumErr = 2 }
-      else if (id_src3.id == undefined) { this.constStop = false; this.stopNumErr = 3 }
-      else if (id_dst3.id == undefined || id_dst3.id == id_src3.id) { this.constStop = true; this.stopNumErr = 3 }
-      else if (id_src4.id == undefined) { this.constStop = false; this.stopNumErr = 4 }
-      else if (id_dst4.id == undefined || id_src4.id == id_dst4.id) { this.constStop = true; this.stopNumErr = 4 }
-      else (this.constStop = null, this.bloc1 = null, this.bloc2 = null, this.bloc3 = null, this.bloc4 = null)
-
-      for (const key in getSrcs) {
-        const position = getSrcs[key].id
-        if (position == id_src1.id) { this.keyDst1 = toInteger(key) }
-        if (position == id_dst1.id) { this.keySrc1 = toInteger(key) }
-        if (position == id_src2.id) { this.keyDst2 = toInteger(key) }
-        if (position == id_dst2.id) { this.keySrc2 = toInteger(key) }
-        if (position == id_src3.id) { this.keyDst3 = toInteger(key) }
-        if (position == id_dst3.id) { this.keySrc3 = toInteger(key) }
-        if (position == id_src4.id) { this.keyDst4 = toInteger(key) }
-        if (position == id_dst4.id) { this.keySrc4 = toInteger(key) }
-      }
-      if (this.keySrc1 < this.keyDst1) { this.bloqueoCalendario1 = false; this.calendarArray1 = [1, 3, 4, 6] }
-      if (this.keySrc1 > this.keyDst1) { this.bloqueoCalendario1 = true; this.calendarArray1 = [0, 2, 3, 5] }
-      if (this.keySrc2 < this.keyDst2) { this.bloqueoCalendario2 = false; this.calendarArray2 = [1, 3, 4, 6] }
-      if (this.keySrc2 > this.keyDst2) { this.bloqueoCalendario2 = true; this.calendarArray2 = [0, 2, 3, 5] }
-      if (this.keySrc3 < this.keyDst3) { this.bloqueoCalendario3 = false; this.calendarArray3 = [1, 3, 4, 6] }
-      if (this.keySrc3 > this.keyDst3) { this.bloqueoCalendario3 = true; this.calendarArray3 = [0, 2, 3, 5] }
-      if (this.keySrc4 < this.keyDst4) { this.bloqueoCalendario4 = false; this.calendarArray4 = [1, 3, 4, 6] }
-      if (this.keySrc4 > this.keyDst4) { this.bloqueoCalendario4 = true; this.calendarArray4 = [0, 2, 3, 5] }
-
-      if (this.bloqueoCalendario4 != null) {
-        if (this.c1A != this.bloqueoCalendario1) {
-          this.c1A = this.bloqueoCalendario1
-          this.c1Av = true
-        } else (this.c1Av = null)
-
-        if (this.c2A != this.bloqueoCalendario2) {
-          this.c2A = this.bloqueoCalendario2
-          this.c2Av = true
-        } else (this.c2Av = null)
-
-        if (this.c3A != this.bloqueoCalendario3) {
-          this.c3A = this.bloqueoCalendario3
-          this.c3Av = true
-        } else (this.c3Av = null)
-
-        if (this.c4A != this.bloqueoCalendario4) {
-          this.c4A = this.bloqueoCalendario4
-          this.c4Av = true
-        } else (this.c4Av = null)
-      }
-
-      let self = this;
-      if (this.bloqueoCalendario4 != null) {
-        if (this.c1Av == true) {
-          setTimeout(function () {
-            $("#datepicker1").datepicker("destroy")
-            $("#datepicker1").datepicker({ daysOfWeekDisabled: self.calendarArray1, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-        if (this.c2Av == true) {
-          setTimeout(function () {
-            $("#datepicker2").datepicker("destroy")
-            $("#datepicker2").datepicker({ daysOfWeekDisabled: self.calendarArray2, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-        if (this.c3Av == true) {
-          setTimeout(function () {
-            $("#datepicker3").datepicker("destroy")
-            $("#datepicker3").datepicker({ daysOfWeekDisabled: self.calendarArray3, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-        if (this.c4Av == true) {
-          setTimeout(function () {
-            $("#datepicker4").datepicker("destroy")
-            $("#datepicker4").datepicker({ daysOfWeekDisabled: self.calendarArray4, language: 'es', format: "dd/mm/yyyy", autoclose: true, startDate: '+' + self.c1 + 'd' })
-          }, 150)
-        }
-
-      }
-    }
-
-
+    } 
     this.dateChange();
     this.preflight();
 
@@ -685,7 +476,7 @@ export class Step1Component implements OnInit {
   public onDeleteTrip(tr: Trip, round: boolean) {
     let index;
     index = this.trips.indexOf(tr, 0);
-    // this.dateStr[index] = "";
+    this.dateStr[index]= "";
     this.trips.splice(index, 1);
     this.dateMY.splice(index, 1);
     this.onChangeStop(true, this.trips[0]);
