@@ -89,7 +89,7 @@ export class Step1Component implements OnInit {
   public fechaGetBack = [];
   public bloqueoCalendario1 = null; bloqueoCalendario2 = null; bloqueoCalendario3 = null; bloqueoCalendario4 = null;
   public bloc1 = true; public bloc2 = true; public bloc3 = true; public bloc4 = true;
-  public c1=[];
+  public c1 = [];
   public calendarArray1; public calendarArray2; public calendarArray3; public calendarArray4;
   public calendar = null;
   public c1A; c2A; c3A; c4A;
@@ -98,7 +98,7 @@ export class Step1Component implements OnInit {
 
 
 
-  public id_Src = []; id_Dst = []; keySrc = []; keyDst = []; bloqueoCalendario = []; bloc = []; calendarArray = []; cA=[]; cAV=[];
+  public id_Src = []; id_Dst = []; keySrc = []; keyDst = []; bloqueoCalendario = []; bloc = []; calendarArray = []; cA = []; cAV = [];
 
 
 
@@ -207,30 +207,6 @@ export class Step1Component implements OnInit {
         e.preventDefault();
         $("#mapa-full").removeClass("active");
       });
-      //DatePicker fecha 1
-      // $("#datepicker1").datepicker({
-      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      // }).on('changeDate', (e) => {
-      //   self.fechaGet[0] = e.date; self.dateChange();
-      // }).keydown(false);
-      // // //DatePicker fecha 2
-      // $("#datepicker2").datepicker({
-      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      // }).on('changeDate', (e) => {
-      //   self.fechaGet[1] = e.date; self.dateChange();
-      // }).keydown(false);
-      // //DatePicker fecha 3
-      // $("#datepicker3").datepicker({
-      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      // }).on('changeDate', (e) => {
-      //   self.fechaGet[2] = e.date; self.dateChange();
-      // }).keydown(false);
-      // //DatePicker fecha 4
-      // $("#datepicker4").datepicker({
-      //   language: 'es', format: "dd/mm/yyyy", autoclose: true,
-      // }).on('changeDate', (e) => {
-      //   self.fechaGet[3] = e.date; self.dateChange();
-      // }).keydown(false);
 
       //Tooltip
       $(".js-my-tooltip").click(function (e) {
@@ -278,51 +254,60 @@ export class Step1Component implements OnInit {
     var currMonth = [];
     var currYear = [];
     var mes;
-    var d = new Date();
-
     let self = this
-console.log(this.c1)
     this.c1[0] = '+1d'
-        if (this.cAV[0] == true) {
-                setTimeout(function () {
-                  $("#datepicker1").datepicker("destroy")
-                  $("#datepicker1").datepicker({daysOfWeekDisabled: self.calendarArray[0], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
-                  startDate: self.c1[0]})
-                  .on('changeDate', (e) => {self.fechaGet[0] = e.date; self.cAV[0] = null; self.cAV[1]=true; self.dateChange();
-                  }).keydown(false);          
-                }, 150)
-              }
-              if (this.cAV[1] == true) {
-                setTimeout(function () {
-                  $("#datepicker2").datepicker("destroy")
-                  $("#datepicker2").datepicker({daysOfWeekDisabled: self.calendarArray[1], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
-                  startDate: self.c1[1]})
-                  .on('changeDate', (e) => {self.fechaGet[1] = e.date;  self.cAV[1] = null; self.cAV[2]=true; self.dateChange();
-                  }).keydown(false);          
-                }, 150)
-              } 
-              if (this.cAV[2] == true) {
-                setTimeout(function () {
-                  $("#datepicker3").datepicker("destroy")
-                  $("#datepicker3").datepicker({daysOfWeekDisabled: self.calendarArray[2], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
-                  startDate: self.c1[2]})
-                  .on('changeDate', (e) => {self.fechaGet[2] = e.date; self.cAV[2] = null; self.cAV[3]=true; self.dateChange();
-                  }).keydown(false);          
-                }, 150)
-              }
-              if (this.cAV[3] == true) {
-                setTimeout(function () {
-                  $("#datepicker4").datepicker("destroy")
-                  $("#datepicker4").datepicker({daysOfWeekDisabled: self.calendarArray[3], language: 'es', format: "dd/mm/yyyy", autoclose: true ,
-                  startDate: self.c1[3]})
-                  .on('changeDate', (e) => {self.fechaGet[3] = e.date;  self.cAV[3] = null; self.dateChange();
-                  }).keydown(false);          
-                }, 150)
-              } 
+    if (this.cAV[0] == true) {
+      setTimeout(function () {
+        $("#datepicker1").datepicker("destroy")
+        $("#datepicker1").datepicker({
+          daysOfWeekDisabled: self.calendarArray[0], language: 'es', format: "dd/mm/yyyy", autoclose: true,
+          startDate: self.c1[0]
+        })
+          .on('changeDate', (e) => {
+          self.fechaGet[0] = e.date; self.cAV[0] = null; self.cAV[1] = true; self.dateChange();
+          }).keydown(false);
+      }, 150)
+    }
+    if (this.cAV[1] == true) {
+      setTimeout(function () {
+        $("#datepicker2").datepicker("destroy")
+        $("#datepicker2").datepicker({
+          daysOfWeekDisabled: self.calendarArray[1], language: 'es', format: "dd/mm/yyyy", autoclose: true,
+          startDate: self.c1[1]
+        })
+          .on('changeDate', (e) => {
+          self.fechaGet[1] = e.date; self.cAV[1] = null; self.cAV[2] = true; self.dateChange();
+          }).keydown(false);
+      }, 150)
+    }
+    if (this.cAV[2] == true) {
+      setTimeout(function () {
+        $("#datepicker3").datepicker("destroy")
+        $("#datepicker3").datepicker({
+          daysOfWeekDisabled: self.calendarArray[2], language: 'es', format: "dd/mm/yyyy", autoclose: true,
+          startDate: self.c1[2]
+        })
+          .on('changeDate', (e) => {
+          self.fechaGet[2] = e.date; self.cAV[2] = null; self.cAV[3] = true; self.dateChange();
+          }).keydown(false);
+      }, 150)
+    }
+    if (this.cAV[3] == true) {
+      setTimeout(function () {
+        $("#datepicker4").datepicker("destroy")
+        $("#datepicker4").datepicker({
+          daysOfWeekDisabled: self.calendarArray[3], language: 'es', format: "dd/mm/yyyy", autoclose: true,
+          startDate: self.c1[3]
+        })
+          .on('changeDate', (e) => {
+          self.fechaGet[3] = e.date; self.cAV[3] = null; self.dateChange();
+          }).keydown(false);
+      }, 150)
+    }
 
     this.calendar = null
     for (let i = 0; i < this.trips.length; i++) {
-        if (i == 0) {
+      if (i == 0) {
         if (this.fechaGet[i] == undefined) {
           this.dateStr[i] = "";
           this.dateMY[i] = false;
@@ -337,13 +322,13 @@ console.log(this.c1)
             this.dateMY[i] = null;
             break;
           } else {
-            this.trips[i].start = this.fechaGet[i]; 
-            currDate[i] = this.fechaGet[i].getDate(); 
-            currMonth[i] = this.fechaGet[i].getMonth(); 
-            currYear[i] = this.fechaGet[i].getFullYear(); 
-            mes = currMonth[i] + 1; 
-            this.c1 [i + 1] =  (currDate[i] + 1) + "/" + mes + "/" + currYear[i]; 
-            this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i]; 
+            this.trips[i].start = this.fechaGet[i];
+            currDate[i] = this.fechaGet[i].getDate();
+            currMonth[i] = this.fechaGet[i].getMonth();
+            currYear[i] = this.fechaGet[i].getFullYear();
+            mes = currMonth[i] + 1;
+            this.c1[i + 1] = (currDate[i] + 1) + "/" + mes + "/" + currYear[i];
+            this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i];
             this.dateMY[i] = true;
           }
         }
@@ -390,8 +375,8 @@ console.log(this.c1)
             ////////////////
             else (currDate[i] = this.fechaGet[i - 1].getDate(), currMonth[i] = this.fechaGet[i - 1].getMonth(), currYear[i] = this.fechaGet[i - 1].getFullYear(), mes = currMonth[i] + 1, this.fechaGet[i] = new Date(currYear[i], currMonth[i], currDate[i]), this.trips[i].start = this.fechaGet[i], this.dateStr[i] = currDate[i] + "/" + mes + "/" + currYear[i], this.dateMY[i] = null);
           }
-        
-        this.c1 [i + 1] =  (currDate[i] + 1) + "/" + mes + "/" + currYear[i]; 
+
+          this.c1[i + 1] = (currDate[i] + 1) + "/" + mes + "/" + currYear[i];
         }
       }
     }
@@ -433,8 +418,8 @@ console.log(this.c1)
       this.id_Dst[inde] = this.trips[inde].id_dst;
       this.bloc[inde] = true
 
-      if (this.id_Src[inde].id == undefined) { this.constStop = false; this.stopNumErr = (inde + 1) ; break}
-      else if (this.id_Dst[inde].id == undefined || this.id_Dst[inde].id == this.id_Src[inde].id) { this.constStop = true; this.stopNumErr = (inde + 1) ; break}
+      if (this.id_Src[inde].id == undefined) { this.constStop = false; this.stopNumErr = (inde + 1); break }
+      else if (this.id_Dst[inde].id == undefined || this.id_Dst[inde].id == this.id_Src[inde].id) { this.constStop = true; this.stopNumErr = (inde + 1); break }
       else (this.constStop = null, this.bloc[inde] = null)
 
       for (const key in getSrcs) {
@@ -456,19 +441,18 @@ console.log(this.c1)
           this.cAV[inde] = true;
         } else (this.cAV[inde] = null)
       }
-    } 
+    }
     this.dateChange();
-    this.preflight();
-
   }
+
   public onCreateTrip(round: boolean) {
     let dat = new Date();
     let index;
+    index = this.trips.length;
     let tr: Trip = new Trip(0, 0, dat);
     this.trips.push(tr);
-    index = this.trips.indexOf(tr, 0);
+    this.cAV[index] = true
     this.onChangeStop(true, this.trips[0]);
-    this.dateChange();
     this.numStops++;
     this.maxStop();
   }
@@ -476,11 +460,9 @@ console.log(this.c1)
   public onDeleteTrip(tr: Trip, round: boolean) {
     let index;
     index = this.trips.indexOf(tr, 0);
-    this.dateStr[index]= "";
+    this.fechaGet.splice(index, 1);
     this.trips.splice(index, 1);
-    this.dateMY.splice(index, 1);
     this.onChangeStop(true, this.trips[0]);
-    this.dateChange();
     this.numStops--;
     this.maxStop();
   }
