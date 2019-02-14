@@ -161,7 +161,7 @@ ul.colored{
 }
 
 ul.colored li::before {
-    content: "â€¢ ";
+    content: "Ã¢â‚¬Â¢ ";
     padding-right: 5px;
 }
 
@@ -3321,7 +3321,7 @@ textarea {
     display: none;
  }
 
-.form-control__number::-webkit-inner-spin-button,Â 
+.form-control__number::-webkit-inner-spin-button,Ã‚Â 
 .form-control__number::-webkit-outer-spin-button {
     -webkit-appearance: none; 
  }
@@ -3852,6 +3852,7 @@ FIXES RESPONSIVE
         -moz-transform-origin-y: 28%;
         -ms-transform-origin-y: 28%;
         -o-transform-origin-y: 28%;
+        -moz-transform-origin: -45% 29%;
     }
     .seat-show  .seat__label,
     .seat-show.show__left .seat__label:after,
@@ -3877,8 +3878,8 @@ FIXES RESPONSIVE
 
     /* seat lef */
     .seat-show.show__left .seat__label {
-        left: -173px;
-        top: 6px;
+        left: -144px;
+        top: 36px;
     }
     .seat-show.show__left .seat__label:after {
         right: 49px;
@@ -3891,32 +3892,36 @@ FIXES RESPONSIVE
 
     /* seat right */
     .seat-show.show__right .seat__label {
-        right: -198px;
-        top: 11px;
+        right: -168px;
+        top: 41px;
     }
     .seat-show.show__right .seat__label:before {
-        left: 29px;
-        top: 137px;
+        left: 31px;
+        top: 77px;
     }
     .seat-show.show__right .seat__label:after {
         left: 45px;
-        top: 115px;
+        top: 55px;
     }
     /*---- classic ----*/
     .select-seat.classic .seat-show.show__right .seat__label {
-        right: -198px;
-        top: 2px;
+        right: -168px;
+        top: 32px;
     }
     .select-seat.classic .seat-show.show__right .seat__label:after {
-        top: 124px;
+        top: 64px;
     }
     .select-seat.classic .seat-show.show__left .seat__label {
-        left: -173px;
-        top: -1px;
+        left: -144px;
+        top: 29px;
     }
     .select-seat.classic .seat-show.show__left .seat__label:after {
         right: 51px;
         top: -65px;
+    }
+    .select-seat.classic  .seat-show.show__right .seat__label:before {
+        left: 29px;
+        top: 77px;
     }
 }
 @media (min-width: 1200px) {
