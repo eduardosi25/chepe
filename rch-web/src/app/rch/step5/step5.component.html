@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-xs-24 timeline-seats-box center">
                         <h6 class="uppercase" id="assigned-passengers">
-                            <span class="bg-two-light no-pasaje">{{'Step5-P01' | translate}} {{getAssignedSbs()}}/{{session.query.getTotalPassengers()}}</span>
+                            <span class="bg-two-light no-pasaje">{{'Step5-P01' | translate}} {{getAssignedSbs()}}/{{session.query.getTotalPassengers()}} </span>
                         </h6>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
                 <div class="row">
                     <div class="col-sm-24 center">
-                        <h3 class="c-two fontweight400"> {{wagon.name}} {{wagon.type.numero_carro}}
+                        <h3 class="c-two fontweight400"> {{wagon.name}} {{'Step5-P11' | translate}} {{wagon.type.numero_carro}}
                             <a href="#" data-toggle="modal" data-target="#wagon-details" (click)="selectWagonType(wagon.type)" class="wagon_info">
                                 <div class="info-vagon">i</div>
                             </a>
