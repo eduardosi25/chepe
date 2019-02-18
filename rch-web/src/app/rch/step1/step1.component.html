@@ -238,20 +238,20 @@
                                         </select> -->
                                     </div>
                                 </div>
-                                <div class="search__item col-xs-8 col-md-6 col-lg-6 col-little col-nospace" *ngIf="isRegional(route)">
+                                <div class="search__item col-xs-8 col-md-6 col-lg-6 col-little col-nospace dropdown-special" *ngIf="isRegional(route)">
                                     <label class="label-space">{{'Step1-P24' | translate}}</label>
                                     <div class="box-passenger box-passenger__reset">
                                         <div class="row">
                                             <div class="col-xs-24 passenger-total">
-                                                    <div class="my-tooltip js-my-tooltip" *ngIf="isRegional(route)">
-                                                        i
-                                                        <span class="tooltiptext">
-                                                            <p class="text-default text-bold text-14">{{'Step1-P25' | translate}}</p> 
-                                                            <p class="text-default text-14">{{'Step1-P26' | translate}}</p>
-                                                            <p class="text-default text-14">{{'Step1-P27' | translate}}</p>
-                                                            <p class="text-default text-14">{{'Step1-P74' | translate}}</p>
-                                                        </span>
-                                                    </div>
+                                                <div class="my-tooltip js-my-tooltip" *ngIf="isRegional(route)">
+                                                    ?
+                                                    <span class="tooltiptext">
+                                                        <p class="text-default text-bold text-14">{{'Step1-P25' | translate}}</p> 
+                                                        <p class="text-default text-14">{{'Step1-P26' | translate}}</p>
+                                                        <p class="text-default text-14">{{'Step1-P27' | translate}}</p>
+                                                        <p class="text-default text-14">{{'Step1-P74' | translate}}</p>
+                                                    </span>
+                                                </div>
                                                 <div class="passsenger__hide">
                                                     <a class="btn btn-block bg-white c-base text-left passenger__btn passenger__small no-scroll" role="button" data-toggle="collapse" href="#popover-content-passengers"
                                                     aria-expanded="false" aria-controls="collapseExample">
@@ -266,9 +266,15 @@
                                                 <app-cost-box></app-cost-box>
                                             </div>
                                         </div>           -->
-                                        <div class="popover passengers collapse" id="popover-content-passengers" *ngIf="isRegional(route)">
+                                        <div class="popover passengers collapse my-tooltip__orange" id="popover-content-passengers" *ngIf="isRegional(route)">
                                             <div class="row" *ngFor="let pt of route.passenger_types">
                                                 <div class="col-xs-12 passenger-label">
+                                                    <div class="my-tooltip js-my-tooltip">
+                                                        ?
+                                                        <span class="tooltiptext">
+                                                            <p class="text-default text-bold text-14">texto de posición</p> 
+                                                        </span>
+                                                    </div>   
                                                     <label class="label-space">{{pt.name}}
                                                         <span *ngIf="pt.details">
                                                         <br/>{{pt.details}}</span>

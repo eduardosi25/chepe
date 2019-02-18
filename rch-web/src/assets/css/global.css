@@ -122,7 +122,7 @@ ol, ul, menu, dir {
 .popover.passengers{
     top: auto;
     left: auto;
-    width: 270px;
+    width: 250px;
     max-width: initial;
     border: 0px solid #ccc;
     border: 0px solid rgba(0,0,0,0.2);
@@ -3313,6 +3313,21 @@ textarea {
     opacity: 1;
 }
 
+/*MYCODE2*/
+.my-tooltip__orange .my-tooltip {
+    padding: 1px 0 0 7px;
+    background: #f18a21;
+    right: 36px;
+    top: 8px;
+}
+
+.my-tooltip__orange .my-tooltip .tooltiptext {
+    bottom: -345%;
+    width: 180px;
+    text-align: center;
+    right: -359%;
+}
+
 .no-scroll {
     overflow: hidden;
 }
@@ -3665,7 +3680,6 @@ body.active {
     0% { transform: rotate(0deg); } 
     100% { transform: rotate(360deg); } 
 } 
-
 
 /*::::::
 
