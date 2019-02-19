@@ -122,7 +122,7 @@ ol, ul, menu, dir {
 .popover.passengers{
     top: auto;
     left: auto;
-    width: 250px;
+    width: 270px;
     max-width: initial;
     border: 0px solid #ccc;
     border: 0px solid rgba(0,0,0,0.2);
@@ -161,7 +161,8 @@ ul.colored{
 }
 
 ul.colored li::before {
-    content: "Ã¢â‚¬Â¢ ";
+    content: "â€¢";
+    font-size: px;
     padding-right: 5px;
 }
 
@@ -3313,21 +3314,6 @@ textarea {
     opacity: 1;
 }
 
-/*MYCODE2*/
-.my-tooltip__orange .my-tooltip {
-    padding: 1px 0 0 7px;
-    background: #f18a21;
-    right: 36px;
-    top: 8px;
-}
-
-.my-tooltip__orange .my-tooltip .tooltiptext {
-    bottom: -345%;
-    width: 180px;
-    text-align: center;
-    right: -359%;
-}
-
 .no-scroll {
     overflow: hidden;
 }
@@ -3336,7 +3322,7 @@ textarea {
     display: none;
  }
 
-.form-control__number::-webkit-inner-spin-button,Ã‚Â 
+.form-control__number::-webkit-inner-spin-button,ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â 
 .form-control__number::-webkit-outer-spin-button {
     -webkit-appearance: none; 
  }
@@ -3680,6 +3666,7 @@ body.active {
     0% { transform: rotate(0deg); } 
     100% { transform: rotate(360deg); } 
 } 
+
 
 /*::::::
 
