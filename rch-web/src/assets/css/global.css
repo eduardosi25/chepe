@@ -3313,6 +3313,23 @@ textarea {
     visibility: visible;
     opacity: 1;
 }
+.my-tooltip.my-tooltip__orange {
+    background: #f18a21;
+}
+.passengers.my-tooltip__orange .my-tooltip {
+    padding: 1px 0 0 7px;
+    background: #f18a21;
+    right: 36px;
+    top: 8px;
+}
+
+.passengers.my-tooltip__orange .my-tooltip .tooltiptext {
+    bottom: -345%;
+    width: 180px;
+    text-align: center;
+    right: -359%;
+}
+
 
 .no-scroll {
     overflow: hidden;
