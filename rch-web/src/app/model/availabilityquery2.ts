@@ -6,9 +6,15 @@ import { ModelService } from "../model.service";
 import { Route2 } from "./route2";
 import { WagonType } from "./wagontype";
 import { Trip } from "./trip";
+import { TranslateService } from '@ngx-translate/core';
+import { P } from "@angular/core/src/render3";
 
 export class AvailabilityQuery2 implements FromJSONable{
-    constructor(private model:ModelService){}
+    constructor(private model:ModelService,
+        private translate: TranslateService
+
+        
+    ){}
     parseJSONObject(object: Object) {
         if(!object){return;}
         Object.assign(this,object);
@@ -72,7 +78,16 @@ export class AvailabilityQuery2 implements FromJSONable{
         let pt:PassengerType = route.passenger_types[i];
         let q:number = this.passengers[pt.id];
         if(q > 0){
-            pps.push(pt.name+": "+q);
+            if(pt.name == 'ADULTO'){
+            let p = this.translate.instant('Step1-P92');
+              pps.push(p +": "+q);
+            }else if(pt.name == 'MENOR'){
+                let p = this.translate.instant('Step1-P93');
+                pps.push(p +": "+q);      
+            }else if(pt.name == 'INFANTE'){
+                let p = this.translate.instant('Step1-P94');
+                pps.push(p +": "+q);      
+            }
         }
         }
         return pps.join(", ");

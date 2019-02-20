@@ -84,7 +84,10 @@
                             <div class="row">
                                 <div class="col-sm-24">
                                     <p class="fontweight700">{{'Step4-P08' | translate}}
-                                        <span class="c-one">{{person.type.name}}</span>
+                                        <span class="c-one" *ngIf="person.type.name == 'ADULTO'">{{'Step1-P92' | translate}}</span>
+                                        <span class="c-one" *ngIf="person.type.name == 'MENOR'">{{'Step1-P93' | translate}}</span>
+                                        <span class="c-one" *ngIf="person.type.name == 'INFANTE'">{{'Step1-P94' | translate}}</span>
+
                                     </p>
                                 </div>
                             </div>

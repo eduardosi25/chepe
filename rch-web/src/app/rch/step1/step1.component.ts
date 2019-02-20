@@ -99,16 +99,25 @@ export class Step1Component implements OnInit {
 
 
   public id_Src = []; id_Dst = []; keySrc = []; keyDst = []; bloqueoCalendario = []; bloc = []; calendarArray = []; cA = []; cAV = [];
-
+public Step1P92;
 
 
 
   ngOnInit() {
+
+    this.Step1P92= [
+      // this.translate.instant('Step1-P92'),
+      // this.translate.instant('Step1-P93'),
+      // this.translate.instant('Step1-P94'),
+      "Adulto: 12 años en adelante.",
+      "Menor: 5 a 11 años.",
+      "Infante: 0 a 4 años. Sin costo (Sin lugar asignado).",
+      ],
     // this.dateChange();
     this.isChecked = true;
-    var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
+    var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model, this.translate);
     if (this.previousRouteService.getPreviousUrl().indexOf('reservaciones/') == -1 || this.session.query == null) {
-      this.session.query = new AvailabilityQuery2(this.model);
+      this.session.query = new AvailabilityQuery2(this.model,  this.translate);
 
     }
     //clean session
@@ -561,7 +570,7 @@ export class Step1Component implements OnInit {
     if (this.constDateUnd) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P69'); return true; }
     if (this.constDateInv) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P76'); return true; }
 
-    this.session.query2 = new AvailabilityQuery2(this.model);
+    this.session.query2 = new AvailabilityQuery2(this.model, this.translate);
     var clase = this.session.query.class;
     var redondo = this.session.query.round;
     var pax = this.session.query.passengers;

@@ -235,7 +235,7 @@ export class Step3Component implements OnInit {
           this.model.getRoutes().subscribe((r: Response<Route2[]>) => {
             let route_name = this.aroute.snapshot.paramMap.get('route_name');
             this.session.route = this.model.getRouteByName(route_name);
-            var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model);
+            var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model, this.translate);
             aq.class = params.class ? this.model.getWagonTypeById(params.class) : aq.class;
             // aq.src = this.model.getTrainStopById(params.src);
             // aq.dst = this.model.getTrainStopById(params.dst);
