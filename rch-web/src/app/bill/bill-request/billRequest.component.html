@@ -1,0 +1,144 @@
+
+            <div class="main-content">
+                <section class="billing">
+                    <br>
+                    <br>
+                    
+                    <!-- BEGIN: TITLE -->
+                    <div class="row margintop50 mb-1">
+                        <div class="col-sm-24 no-gutter-left">
+                            <div class="row">
+                                <div class=" col-sm-24 col-md-24  no-gutter-left">
+                                    <div class=" col-sm-24 gap-left ">
+                                        <h1> {{'ComBill-P00' | translate}} </h1>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-sm-24 no-gutter-left-mobile">
+                                    <span class="title-underline c-border-one"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: TITLE -->
+                    <!-- BEGIN: STEPS -->
+                    <div class="wizard-steps">
+                        <ul>
+                            <li class="active">
+                                <a>
+                                    <span>{{'ComBill-P01' | translate}}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span>{{'ComBill-P02' | translate}}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span>{{'ComBill-P03' | translate}}
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span>{{'ComBill-P04' | translate}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END: STEPS -->
+                    <!-- BEGIN: BILLING -->
+                    <section class="billing-box">
+                        <!-- BEGIN: BILLING BLOCK 1 -->
+                        <div class="billing-block billing-1">
+                            <div class="billing-center row">
+                                <div class="ask-bill col-md-10">
+                                    <div class="title3">
+                                        <h3 class="icon-ask-bill">
+                                            {{'BillRequest-P00' | translate}}
+                                        </h3>
+                                    </div>
+                                    <div class="ask-bill__log">
+                                        <form #requestForm="ngForm" (ngSubmit)="onSubmit()">
+                                            <div class="row-field">
+                                                <div class="form-group col-xs-20 col-md-20 col-reset">
+                                                    <label>{{'BillRequest-P01' | translate}}</label>
+                                                    <input class="form-control" id="claveReq" type="text" #clave="ngModel" name='clave' [(ngModel)]="requestBill.clave">
+                                                </div>
+                                                <div class="col-xs-4 col-md-4 wo-pad-right">
+                                                    <div class="tooltipst tooltipstered tooltip-clave" data-tooltip-content="#tooltip_content">
+                                                        ?
+                                                    </div>
+                                                </div>
+                                                <div class="tooltip-content folio-number tooltip_templates ">
+                                                    <div id="tooltip_content">
+                                                        <h3>Tu número de folio</h3>
+                                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe unde nemo atque ipsum necessitatibus odit, tenetur libero illum animi blanditiis incidunt ea facilis minus neque ab reprehenderit, maiores
+                                                            sapiente numquam.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row-field">
+                                                <div class="form-group">
+                                                    <label>{{'BillRequest-P02' | translate}}</label>
+                                                    <input class="form-control datepicker datepicker-icon" type="text" #fecha="ngModel" name='fecha' [(ngModel)]="requestBill.fecha">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="error imposibleAction" style="display:block;">
+                                                <h3>Imposible procesar folio</h3>
+                                                <p>- Folio facturado previamente </p>
+                                                <p>- Folio inexistente. </p>
+                                            </div> -->
+                                            <div class="row-field">
+                                                    <!-- <div class="row-field">
+                                                            <div>{{billReq}}</div>
+                                                    </div> -->
+                                                    <br>
+                                                    
+                                                    
+                                                <input type="submit" class="btnForm btn-blue btn-size1" value="{{'BillRequest-P03' | translate}}"  *ngIf="readyToGoNext()"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="see-bill col-md-10 float-right row">
+                                    <div class="title3">
+                                        <h3 class="icon-see-bill">
+                                            {{'BillRequest-P04' | translate}}
+                                        </h3>
+                                    </div>
+                                    <div class="see-bill-log">
+                                        <form  #searchForm="ngForm" (ngSubmit)="onSubmitSearch()">
+                                            <div class="row-field">
+                                                <p>{{'BillRequest-P05' | translate}}</p>
+                                                <div class="form-group col-reset">
+                                                    <label>{{'BillRequest-P06' | translate}}</label>
+                                                    <input class="form-control" type="text"  #Folio="ngModel" name='Folio' [(ngModel)]="folio">
+                                                </div>
+                                                <!-- <div class="error imposibleAction" style="display:block;">
+                                                    <h3>Folio aun no generado</h3>
+                                                    <p>Debes esperar al menos 5 minutos para que nuestro sistema genere tu factura</p>
+                                                </div> -->
+                                            </div>
+                                            
+                                            <div class="row-field">
+                                                    <br>
+                                                <div class="row-field">
+                                                    <input type="submit" class="btnForm btn-blue btn-size1" value="{{'BillRequest-P07' | translate}}" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: BILLING BLOCK 1  -->
+    
+    
+                    </section>
+                    <!-- END: BILLING -->
+                </section>
+            </div>
+        

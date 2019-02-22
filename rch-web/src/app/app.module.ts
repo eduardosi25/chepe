@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -17,6 +18,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PaymentComponent } from './rch/payment/payment.component';
 import { PreviousRouteService } from './previous-route.service';
 import { TacExpressComponent } from './info/tac-express/tac-express.component';
+import { BillRequestComponent } from './bill/bill-request/billRequest.component';
+import { BillConfirmComponent } from './bill/bill-confirm/billConfirm.component';
+import { BillFiscalComponent } from './bill/bill-fiscal/billFiscal.component';
+import { BillReviewModalComponent } from './bill/bill-fiscal/review/review.component';
+import { BillConfirmModalComponent } from './bill/bill-fiscal/confirm/confirm.component';
+import { BillErrorModalComponent } from './bill/bill-fiscal/error/error.component';
+import { BillSearchComponent } from './bill/bill-search/billSearch.component';
 
 
 
@@ -31,11 +39,20 @@ import { TacExpressComponent } from './info/tac-express/tac-express.component';
     TacComponent,
     FaqComponent,
     LegalAdviceComponent,
-    TacExpressComponent
+    TacExpressComponent,
+    BillRequestComponent,
+    BillConfirmComponent,
+    BillFiscalComponent,
+    BillReviewModalComponent,
+    BillConfirmModalComponent,
+    BillErrorModalComponent,
+    BillSearchComponent,
+    
     //PaymentComponent
   ],
   providers:[PreviousRouteService],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="493px" height="421px" viewBox="0 0 493 421" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>warning-weather-interface-outlined-symbol</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="warning-weather-interface-outlined-symbol" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M246.458,133.582 C234.958,133.582 227.358,143.182 227.358,152.682 L227.358,267.482 C227.358,278.982 234.958,286.583 246.458,286.583 C257.958,286.583 265.559,276.982 265.559,267.482 L265.559,152.682 C265.559,141.182 257.958,133.582 246.458,133.582 Z" id="Shape"></path>
+            <circle id="Oval" cx="246.458" cy="343.982" r="19.1"></circle>
+            <path d="M483.658,355.382 L277.058,20.682 C259.858,-6.118 233.058,-6.118 215.858,20.682 L9.358,355.382 C-11.642,391.682 3.658,420.382 45.658,420.382 L445.358,420.382 C489.358,420.382 504.658,391.781 483.658,355.382 Z M451.158,401.281 L41.858,401.281 C20.858,401.281 13.158,385.981 24.658,368.781 L235.058,28.382 C240.758,16.882 252.258,16.882 259.957,28.382 L470.357,368.781 C479.858,385.981 472.158,401.281 451.158,401.281 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
