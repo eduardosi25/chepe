@@ -3202,6 +3202,10 @@ FIXES FRONT
     height: 1450px;
 }
 
+.select-seat.premium {
+    top: -130px;
+}
+
 #webpay_sframe {
     margin: 0 auto;
     display: block;
@@ -3940,6 +3944,32 @@ body.active {
     object-fit: cover;
 }
 
+.seat__left,
+.left__bottom,
+.seat__label {
+    display: none;
+}
+
+.select-seat__text {
+    position: relative;
+    max-width: 680px;
+    display: inline-block;
+    padding: 0 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.select-seat__text p {
+    color: #08265c;
+    font-size: 14px;
+}
+.select-seat__text span {
+    font-weight: 600;
+}
+
 
 /* Safari */
 
@@ -4154,7 +4184,10 @@ FIXES RESPONSIVE
     }
     .seat-train {
         width: 100% !important;
-        height: 500px;
+        height: 170px;
+    }
+    .select-seat.premium {
+        top: 70px;
     }
     .select-seat label {
         -webkit-transform: rotate(90deg);
@@ -4251,7 +4284,7 @@ FIXES RESPONSIVE
 }
 @media (min-width: 1200px) {
     .seat-train {
-        height: 550px;
+        height: 240px;
     }
     .select-seat.classic,
     .select-seat.premium {
