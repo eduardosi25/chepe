@@ -3568,6 +3568,31 @@ textarea {
     opacity: 1;
 }
 
+.my-tooltip.my-tooltip__orange {
+    background: #f18a21;
+}
+.passengers.my-tooltip__orange .my-tooltip {
+    padding: 1px 0 0 6px;
+    background: #f18a21;
+    right: 36px;
+    top: 8px;
+}
+.passengers.my-tooltip__orange .my-tooltip .tooltiptext {
+    bottom: -345%;
+    width: 180px;
+    text-align: center;
+    right: -359%;
+}
+.my-tooltip.tooltip-default {
+    margin-top: 30px;
+    right: 25px;
+    padding: 1px 0 0 6px;
+}
+.tooltip-default .tooltiptext {
+    bottom: -355%;
+    right: -629%;
+}
+
 .no-scroll {
     overflow: hidden;
 }
@@ -3760,6 +3785,44 @@ body.active {
     text-align: center;
 }
 
+/* campos borde */
+input.orange,
+select.orange,
+div.orange,
+span.orange {
+    border: 2px solid #f18a21;
+}
+.check input[type="checkbox"],.check input[disabled]{
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    border:1px solid gray;
+    appearance: none;
+    background-color:white;
+}
+.check input[type="checkbox"]:checked,.check input[disabled]{
+    border:5px solid #0099ff;
+    user-select: none;
+}
+.check input[disabled]{
+    background-color:#f18a21;
+}
+
+.select-map {
+    position: relative;
+}
+
+.select-map .check {
+    position: absolute;
+}
+
+#check_22 {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+
 
 /*:::::::: my code ::::::::*/
 
@@ -3942,6 +4005,16 @@ body.active {
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+/* Safari */ 
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .seat__left,
@@ -4475,6 +4548,13 @@ FIXES RESPONSIVE
 
     .select-seat.premium {
         top: 40px;
+    }
+    .my-tooltip.tooltip-default {
+        right: 30px;
+    }
+    .tooltip-default .tooltiptext {
+        bottom: -395%;
+        right: -149%;
     }
 }
 
