@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="ask-bill__log">
                                         <form #requestForm="ngForm" (ngSubmit)="onSubmit()">
-                                            <div class="row-field">
+                                            <div class="form-group">
                                                 <div class="form-group col-xs-20 col-md-20 col-reset">
                                                     <label>{{'BillRequest-P01' | translate}}</label>
                                                     <input class="form-control" id="claveReq" type="text" #clave="ngModel" name='clave' [(ngModel)]="requestBill.clave">
@@ -83,7 +83,7 @@
                                             <div class="row-field">
                                                 <div class="form-group">
                                                     <label>{{'BillRequest-P02' | translate}}</label>
-                                                    <input class="form-control datepicker datepicker-icon" type="text" #fecha="ngModel" name='fecha' [(ngModel)]="requestBill.fecha">
+                                                    <input class="form-control datepicker datepicker-icon" id="datepicker" type="text" autocomplete="off" >
                                                 </div>
                                             </div>
                                             <!-- <div class="error imposibleAction" style="display:block;">
@@ -91,14 +91,13 @@
                                                 <p>- Folio facturado previamente </p>
                                                 <p>- Folio inexistente. </p>
                                             </div> -->
-                                            <div class="row-field">
-                                                    <!-- <div class="row-field">
-                                                            <div>{{billReq}}</div>
-                                                    </div> -->
-                                                    <br>
-                                                    
-                                                    
-                                                <input type="submit" class="btnForm btn-blue btn-size1" value="{{'BillRequest-P03' | translate}}"  *ngIf="readyToGoNext()"/>
+
+                                            <div class="row-field" >
+                                                <div class="btn-link c-one" *ngIf="!readyToGoNext()">{{billReq}}</div>
+                                               </div>
+                                                <div class="row-field" >     
+                                                    <br>                                             
+                                                <input  disabled={{buttonFlag}} type="submit" class="btnForm btn-blue btn-size1" value="{{'BillRequest-P03' | translate}}"/>
                                             </div>
                                         </form>
                                     </div>

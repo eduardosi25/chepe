@@ -10,9 +10,6 @@ import { LegalAdviceComponent } from './info/legal-advice/legal-advice.component
 import { BillRequestComponent } from './bill/bill-request/billRequest.component';
 import { BillConfirmComponent } from './bill/bill-confirm/billConfirm.component';
 import { BillFiscalComponent } from './bill/bill-fiscal/billFiscal.component';
-import { BillReviewModalComponent } from './bill/bill-fiscal/review/review.component';
-import { BillConfirmModalComponent } from './bill/bill-fiscal/confirm/confirm.component';
-import { BillErrorModalComponent } from './bill/bill-fiscal/error/error.component';
 import { BillSearchComponent } from './bill/bill-search/billSearch.component';
 
 const routes: Routes = [
@@ -30,9 +27,6 @@ const routes: Routes = [
   { path: 'Facturacion', component: BillRequestComponent },
   { path: 'Facturacion-confirmacion', component: BillConfirmComponent },
   { path: 'Facturacion-DatosFiscales', component: BillFiscalComponent },
-  { path: 'Facturacion-ModalReview', component:  BillReviewModalComponent},
-  { path: 'Facturacion-ModalConfirm', component:  BillConfirmModalComponent},
-  { path: 'Facturacion-ModalError', component:  BillErrorModalComponent},
   { path: 'Facturacion-Search', component:  BillSearchComponent},
 
   

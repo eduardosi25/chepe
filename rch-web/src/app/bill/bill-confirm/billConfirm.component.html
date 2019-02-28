@@ -56,13 +56,13 @@
                     <div class="col-md-6 ">
                         <div class="form-group">
                             <label>{{'BillConfirmation-P00' | translate}}</label>
-                            <input class="form-control disabled-style" type="text">
+                            <input class="form-control disabled-style" type="text" [(ngModel)]="requestBill.clave" disabled>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{'BillConfirmation-P01' | translate}}</label>
-                            <input class="form-control datepicker datepicker-icon disabled-style" type="text">
+                            <input class="form-control datepicker disabled-style" type="text" [(ngModel)]="requestBill.fecha" disabled>
                         </div>
                     </div>
                 </div>
@@ -102,19 +102,19 @@
                                 </li>
                                 <li class="table-col-3">
                                     <strong class="head-mobile">Clave</strong>
-                                    <span class="table-content">92819SS</span>
+                                    <span class="table-content">{{fiscBill.clave}}</span>
                                 </li>
                                 <li class="table-col-4">
                                     <strong class="head-mobile">Concepto</strong>
-                                    <span class="table-content"> Lorem ipsum dolor sit amet </span>
+                                    <span class="table-content"> Viaje chepe </span>
                                 </li>
                                 <li class="table-col-5">
                                     <strong class="head-mobile">Cuota</strong>
-                                    <span class="table-content"> $0.00 </span>
+                                    <span class="table-content"> ${{fiscBill.monto_neto}} </span>
                                 </li>
                                 <li class="table-col-6 align-right">
                                     <strong class="head-mobile">Importe</strong>
-                                    <span class="table-content"> $1,000.00</span>
+                                    <span class="table-content"> ${{fiscBill.monto_neto}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -133,7 +133,7 @@
                                 </li>
                                 <li class="table-col-6 align-right">
                                     <strong class="head-mobile">Subtotal</strong>
-                                    <span class="table-highlight">$1,000.00
+                                    <span class="table-highlight">${{fiscBill.monto_neto}}
                                         </span>
                                 </li>
                             </ul>
@@ -151,7 +151,7 @@
                                 </li>
                                 <li class="table-col-6 align-right">
                                     <strong class="head-mobile">I.V.A</strong>
-                                    <span class="table-highlight ">$100.00
+                                    <span class="table-highlight ">${{fiscBill.impuestos}}
                                         </span>
                                 </li>
                             </ul>
@@ -169,7 +169,7 @@
                                 </li>
                                 <li class="table-col-6 align-right total-line">
                                     <strong class="head-mobile">Total</strong>
-                                    <span class="table-highlight ">$1,100.00
+                                    <span class="table-highlight ">${{total}}
                                         </span>
                                 </li>
                             </ul>

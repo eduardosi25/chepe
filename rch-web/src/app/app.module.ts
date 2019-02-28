@@ -21,10 +21,9 @@ import { TacExpressComponent } from './info/tac-express/tac-express.component';
 import { BillRequestComponent } from './bill/bill-request/billRequest.component';
 import { BillConfirmComponent } from './bill/bill-confirm/billConfirm.component';
 import { BillFiscalComponent } from './bill/bill-fiscal/billFiscal.component';
-import { BillReviewModalComponent } from './bill/bill-fiscal/review/review.component';
-import { BillConfirmModalComponent } from './bill/bill-fiscal/confirm/confirm.component';
-import { BillErrorModalComponent } from './bill/bill-fiscal/error/error.component';
 import { BillSearchComponent } from './bill/bill-search/billSearch.component';
+import { BillService } from './billSession.service';
+
 
 
 
@@ -43,14 +42,11 @@ import { BillSearchComponent } from './bill/bill-search/billSearch.component';
     BillRequestComponent,
     BillConfirmComponent,
     BillFiscalComponent,
-    BillReviewModalComponent,
-    BillConfirmModalComponent,
-    BillErrorModalComponent,
-    BillSearchComponent,
+    BillSearchComponent
     
     //PaymentComponent
   ],
-  providers:[PreviousRouteService],
+  providers:[PreviousRouteService, BillService],
   imports: [
     FormsModule,
     BrowserModule,

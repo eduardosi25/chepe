@@ -10,7 +10,7 @@
                         <div class=" col-sm-24 gap-left ">
                             <h1> {{'ComBill-P00' | translate}} </h1>
                         </div>
-                       
+
                     </div>
                     <div class="col-sm-24 no-gutter-left-mobile">
                         <span class="title-underline c-border-one"></span>
@@ -46,7 +46,14 @@
             </ul>
         </div>
         <!-- END: STEPS -->
-        
+        <!-- Loader -->
+        <div class="loader-complete" *ngIf="loadingPlanning">
+            <div class="loader-complete__inside">
+                <div class="loader"> </div>
+                <!-- <p class="text mt-4">Cargando...</p>         -->
+            </div>
+            <div class="velo"></div>
+        </div>
         <!-- BEGIN: BILLING -->
         <section class="billing-box">
 
@@ -54,33 +61,39 @@
             <div class="billing-block billing-3">
                 <div class="col-md-17 row">
                     <div class="blling-form">
-                        <form>
+                        <form #fiscalForm="ngForm" (ngSubmit)="onSubmit()">
                             <div class="row-field set-keyDate row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P00' | translate}}</label>
-                                        <input class="form-control disabled-style" type="text">
+                                        <input class="form-control disabled-style" type="text"
+                                            [(ngModel)]="requestBill.clave" [ngModelOptions]="{standalone: true}"
+                                            disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P01' | translate}}</label>
-                                        <input class="form-control datepicker datepicker-icon disabled-style" type="text">
+                                        <input class="form-control datepicker disabled-style" type="text"
+                                            [(ngModel)]="requestBill.fecha" [ngModelOptions]="{standalone: true}"
+                                            disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row-field row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>{{'BillFiscal-P02' | translate}}
-                                            </label>
-                                        <input class="form-control" type="text">
+                                        <label>{{'BillFiscal-P03' | translate}}</label>
+                                        <input maxlength="13" id="rfc" class="form-control" type="text" #rfc="ngModel" name='rfc'
+                                            [(ngModel)]="fiscalBill.rfc" (focusout)="focusOutFunction(fiscalBill.rfc)">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>{{'BillFiscal-P03' | translate}}                                      </label>
-                                        <input class="form-control" type="text">
+                                        <label>{{'BillFiscal-P02' | translate}}
+                                        </label>
+                                        <input maxlength="60" id="razon_social" class="form-control" type="text" #nombre="ngModel" name='nombre'
+                                            [(ngModel)]="fiscalBill.razon_social">
                                     </div>
                                 </div>
                             </div>
@@ -88,25 +101,20 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P04' | translate}}</label>
-                                        <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                        <select id="formaDePago" class="form-control" #formaDePago="ngModel" name='formaDePago'
+                                            [(ngModel)]="fiscalBill.forma_pago">
+                                            <option *ngFor="let row of Pago">{{row.tipo}}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P05' | translate}}</label>
-                                        <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                        <select id="usoCFDI" class="form-control" #usoCFDI="ngModel" name='usoCFDI'
+                                            [(ngModel)]="fiscalBill.uso_cfdi">
+                                            <option *ngFor="let row of cfdi;let i = index">{{cfdi[i].descripcion}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -114,21 +122,24 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P06' | translate}}</label>
-                                        <input class="form-control" type="text">
+                                        <input maxlength="60" id="calle" class="form-control" type="text" #calle="ngModel" name='calle'
+                                            [(ngModel)]="fiscalBill.calle">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P07' | translate}}
-                                            </label>
-                                        <input class="form-control" type="text">
+                                        </label>
+                                        <input maxlength="5" id="no_ext" class="form-control" type="text" #noExterior="ngModel" name='noExterior'
+                                            [(ngModel)]="fiscalBill.no_ext">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P08' | translate}}
-                                            </label>
-                                        <input class="form-control" type="text">
+                                        </label>
+                                        <input maxlength="5" id="no_int" class="form-control" type="text" #noInterior="ngModel" name='noInterior'
+                                            [(ngModel)]="fiscalBill.no_int">
                                     </div>
                                 </div>
                             </div>
@@ -136,32 +147,32 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P09' | translate}}</label>
-                                        <input class="form-control" type="text">
+                                        <input maxlength="5" id="cp" class="form-control" type="text" #cp="ngModel" name='cp'
+                                            [(ngModel)]="fiscalBill.cp">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P10' | translate}}
-                                            </label>
-                                        <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                        </label>
+                                        <select id="colonia" class="form-control" #colonia="ngModel" name='colonia'
+                                            [(ngModel)]="fiscalBill.colonia">
+                                            <option *ngFor="let row of Prueba.datos">{{row.name}}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P11' | translate}}</label>
-                                        <input type="text" class="form-control disabled-style">
+                                        <input disabled type="text" class="form-control disabled-style" #municipio="ngModel"
+                                            name='municipio' [(ngModel)]="fiscalBill.municipio">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P12' | translate}}</label>
-                                        <input type="text" class="form-control  disabled-style">
+                                        <input disabled type="text" class="form-control  disabled-style" #estado="ngModel"
+                                            name='estado' [(ngModel)]="fiscalBill.pais">
                                     </div>
                                 </div>
                             </div>
@@ -169,13 +180,15 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P13' | translate}}</label>
-                                        <input type="text" class="form-control">
+                                        <input maxlength="60" id="correo" type="text" class="form-control" #correo="ngModel" name='correo'
+                                            [(ngModel)]="fiscalBill.correo_electronico">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P14' | translate}}</label>
-                                        <input type="text" class="form-control">
+                                        <input maxlength="16" id="telefono" type="text" class="form-control" #telefono="ngModel" name='telefono'
+                                            [(ngModel)]="fiscalBill.telefono">
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +207,7 @@
                                 <strong>Subtotal</strong>
                             </div>
                             <div class="col-md-12 align-right">
-                                <span>$9890</span>
+                                <span>${{fiscBill.monto_neto}}</span>
                             </div>
                         </div>
                         <div class="row-field row">
@@ -202,7 +215,7 @@
                                 <strong>Iva</strong>
                             </div>
                             <div class="col-md-12 align-right">
-                                <span>$9890</span>
+                                <span>${{fiscBill.impuestos}}</span>
                             </div>
                         </div>
                         <div class="row-field row total-row ">
@@ -210,19 +223,169 @@
                                 <strong>Total</strong>
                             </div>
                             <div class="col-md-12 align-right">
-                                <span>$9890</span>
+                                <span>${{total}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="btn-set">
-                    <a routerLink="/Facturacion-confirmacion" class="btnForm btn-gray back-btn btn-size1">Regresar</a>
-                    <a (click)="onSubmit()" class="btnForm btn-blue next-btn btn-size1" data-toggle="modal" data-target="#confirmacion">Continuar</a>
+                    <div class="btn-set">
+                        <a (click)="goBack()"  class="btnForm btn-gray back-btn btn-size1">Regresar</a>
+                    </div>
+                    <div>
+                        <input (click)="onSubmit()" disabled={{ready}} type="submit" class="btnForm btn-blue btn-size1" value="{{'BillRequest-P03' | translate}}" data-toggle="modal"
+                            data-target="#confirmacion"/>
+                        <div class="btn-link c-one" *ngIf="!readyToGoNext()">{{fisReq}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="displayModal" class="modal modal-confirmacion fade in" id="confirmacion" role="dialog"
+                tabindex="-1" style="display:block">
+                <div class="modal-center__default2" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="lightbox1_content ">
+                                <div class="lightbox-title">
+                                    <figure>
+                                        <img src="assets/img/alarm.svg" />
+                                    </figure>
+                                    <h4>{{'BillReview-P00' | translate}}</h4>
+                                    <p>{{'BillReview-P01' | translate}}
+                                    </p>
+                                </div>
+                                <div class="lightbox1-row">
+                                    <div class="col-md-8">
+                                        <p><strong>{{'BillReview-P02' | translate}} </strong>343432423</p>
+                                        <p><strong>{{'BillReview-P04' | translate}} </strong>Viaje chepe</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p><strong>{{'BillReview-P03' | translate}} </strong>{{requestBill.fecha}}</p>
+                                        <p><strong>{{'BillReview-P05' | translate}} </strong>{{fiscalBill.forma_pago}}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p><strong>{{'BillReview-P06' | translate}} </strong>{{fiscalBill.uso_cfdi}}</p>
+                                    </div>
+                                </div>
+                                <div class="lightbox1-row  lightbox1-info col-md-24">
+                                    <p><strong>{{fiscalBill.razon_social}}</strong>
+                                    </p>
+                                    <p>{{fiscalBill.calle}} {{fiscalBill.no_ext}}, Col.
+                                        {{fiscalBill.colonia}}, {{fiscalBill.municipio}}, {{fiscalBill.pais}}, C.P.
+                                        {{fiscalBill.cp}}
+                                    </p>
+                                    <p>{{fiscalBill.correo_electronico}}
+                                    </p>
+                                </div>
+                                <div class="lightbox1-row">
+                                    <div class="bill-total-sumary">
+                                        <div class="row-field">
+                                            <div class="col-md-12">
+                                                <strong>Subtotal</strong>
+                                            </div>
+                                            <div class="col-md-12 align-right">
+                                                <span>${{fiscBill.monto_neto}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row-field">
+                                            <div class="col-md-12">
+                                                <strong>Iva</strong>
+                                            </div>
+                                            <div class="col-md-12 align-right">
+                                                <span>${{fiscBill.impuestos}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row-field total-row">
+                                            <div class="col-md-12">
+                                                <strong>Total</strong>
+                                            </div>
+                                            <div class="col-md-12 align-right">
+                                                <span>${{total}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-set">
+                                    <a (click)="goBackModelReview()"
+                                        class="btnForm btn-gray back-btn btn-size1">{{'BillReview-P07' | translate}}</a>
+                                    <a (click)="onSubmitModelReview()"
+                                        class="btnForm btn-blue next-btn btn-size2 show-factura" data-toggle="modal"
+                                        data-target="#confirmacion">{{'BillReview-P08' | translate}}</a>
+
+                                    <!-- <a href="#" class="btnForm btn-blue next-btn btn-size2 show-factura" aria-label="Close" class="close" data-dismiss="modal">Generar factura</a>
+                                        <a href="#" class="btnForm btn-blue next-btn btn-size2 btn-facturaGenerada" data-toggle="modal" data-target="#facturaGenerada" style="display:none">boton oculto</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="displayConfirm" class="modal  modal-facturaGenerada fade in" id="facturaGenerada" role="dialog"
+                tabindex="-1" style="display:block">
+                <div class="modal-center__default2" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span  aria-hidden="true">×</span>
+                                    </button> -->
+                        </div>
+                        <div class="modal-body">
+                            <div class="lightbox1_content">
+                                <div class="lightbox-title">
+                                    <figure>
+                                        <img src="assets/img/success2.svg" />
+                                    </figure>
+                                    <h4>{{'BillConfirm-P00' | translate}}</h4>
+                                    <p></p>
+                                </div>
+                                <div class="lightbox1-row lightbox1-info">
+                                    <p>{{'BillConfirm-P01' | translate}}
+                                    </p>
+                                    <p><strong>{{'BillConfirm-P02' | translate}}</strong>
+                                        {{'BillConfirm-P03' | translate}}
+                                    </p>
+                                </div>
+                                <div class="btn-set">
+                                    <a (click)="finish()"
+                                        class="btnForm btn-blue next-btn btn-size1">{{'BillConfirm-P04' | translate}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
 
 
+            <div *ngIf="displayError" class="modal  modal-error fade in" id="errorBill" role="dialog" tabindex="-1"
+                style="display:block">
+                <div class="modal-center__default2" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="lightbox1_content">
+                                <div class="lightbox-title">
+                                    <figure>
+                                        <img src="assets/img/alert.svg" />
+                                    </figure>
+                                    <h4>Ocurrió un error</h4>
+                                </div>
+                                <div class="lightbox1-info">
+                                    <p>RFC no válido,no es posible emitir una factura
+                                </div>
+                                <div class="btn-set">
+                                    <a (click)="goFisacal()" class="btnForm btn-blue next-btn btn-size1"
+                                        aria-label="Close" data-dismiss="modal">Regresar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- END: BILLING -->
     </section>
