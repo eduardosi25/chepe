@@ -3202,7 +3202,8 @@ FIXES FRONT
     height: 1450px;
 }
 
-.select-seat.premium {
+.select-seat.premium,
+.select-seat.classic {
     top: -130px;
 }
 
@@ -4556,7 +4557,8 @@ FIXES RESPONSIVE
         text-transform: initial;
     }
 
-    .select-seat.premium {
+    .select-seat.premium,
+    .select-seat.classic {
         top: 40px;
     }
     .my-tooltip.tooltip-default {
