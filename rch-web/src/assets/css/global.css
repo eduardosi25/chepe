@@ -4597,7 +4597,7 @@ FIXES RESPONSIVE
         margin-bottom: 20px;
     }  
     .btn-blue__small {
-        width: 300px;
+        width: 300px !important;
     }
 }
 
