@@ -234,7 +234,7 @@
                         <a (click)="goBack()"  class="btnForm btn-gray back-btn btn-size1">Regresar</a>
                     </div>
                     <div>
-                        <div class="btn-link btn-link__orange c-one" *ngIf="!readyToGoNext()">{{fisReq}}</div>
+                        <div class="btn-link btn-link__orange c-one text-center" *ngIf="!readyToGoNext()">{{fisReq}}</div>
                         <input (click)="onSubmit()" disabled={{ready}} type="submit" class="btnForm btn-blue btn-blue__small btn-size1" value="{{'BillRequest-P03' | translate}}" data-toggle="modal"
                             data-target="#confirmacion"/>
                     </div>

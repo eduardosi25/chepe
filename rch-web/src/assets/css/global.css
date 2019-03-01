@@ -3824,13 +3824,13 @@ span.orange {
 .input-block {
     background-color: #dadada !important;
 }
-.btn-set__top {
+.btn-set.btn-set__top {
     margin-top: 35px;
+    
 }
-.btn-link__orange {
+.btn-link__orange {
     margin-bottom: 10px;
 }
-
 
 
 /*:::::::: my code ::::::::*/
@@ -3842,7 +3842,8 @@ span.orange {
 
 /* Loader */
 
-.loader-wrapp {
+.loader-wrapp,
+.loader-complete {
     background: rgba(255, 255, 255, .8);
     position: fixed;
     z-index: 999999;
@@ -4597,7 +4598,7 @@ FIXES RESPONSIVE
     }  
     .btn-blue__small {
         width: 300px;
-    } 
+    }
 }
 
 @media (max-width:480px) {
