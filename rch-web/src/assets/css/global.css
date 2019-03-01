@@ -3821,6 +3821,15 @@ span.orange {
     top: 20px;
     left: 30px;
 }
+.input-block {
+    background-color: #dadada !important;
+}
+.btn-set__top {
+    margin-top: 35px;
+}
+.btn-link__orange {
+    margin-bottom: 10px;
+}
 
 
 
@@ -4581,6 +4590,14 @@ FIXES RESPONSIVE
         height: 450px;
         overflow-y: scroll;
     }
+
+    .btn-link__orange {
+        text-align: center;
+        margin-bottom: 20px;
+    }  
+    .btn-blue__small {
+        width: 300px;
+    } 
 }
 
 @media (max-width:480px) {

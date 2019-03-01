@@ -66,7 +66,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P00' | translate}}</label>
-                                        <input class="form-control disabled-style" type="text"
+                                        <input class="form-control disabled-style input-block" type="text"
                                             [(ngModel)]="requestBill.clave" [ngModelOptions]="{standalone: true}"
                                             disabled>
                                     </div>
@@ -74,7 +74,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P01' | translate}}</label>
-                                        <input class="form-control datepicker disabled-style" type="text"
+                                        <input class="form-control datepicker disabled-style input-block" type="text"
                                             [(ngModel)]="requestBill.fecha" [ngModelOptions]="{standalone: true}"
                                             disabled>
                                     </div>
@@ -164,14 +164,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P11' | translate}}</label>
-                                        <input disabled type="text" class="form-control disabled-style" #municipio="ngModel"
+                                        <input disabled type="text" class="form-control disabled-style input-block" #municipio="ngModel"
                                             name='municipio' [(ngModel)]="fiscalBill.municipio">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P12' | translate}}</label>
-                                        <input disabled type="text" class="form-control  disabled-style" #estado="ngModel"
+                                        <input disabled type="text" class="form-control  disabled-style input-block" #estado="ngModel"
                                             name='estado' [(ngModel)]="fiscalBill.pais">
                                     </div>
                                 </div>
@@ -230,13 +230,13 @@
                 </div>
 
                 <div class="btn-set">
-                    <div class="btn-set">
+                    <div class="btn-set btn-set__top">
                         <a (click)="goBack()"  class="btnForm btn-gray back-btn btn-size1">Regresar</a>
                     </div>
                     <div>
-                        <input (click)="onSubmit()" disabled={{ready}} type="submit" class="btnForm btn-blue btn-size1" value="{{'BillRequest-P03' | translate}}" data-toggle="modal"
+                        <div class="btn-link btn-link__orange c-one" *ngIf="!readyToGoNext()">{{fisReq}}</div>
+                        <input (click)="onSubmit()" disabled={{ready}} type="submit" class="btnForm btn-blue btn-blue__small btn-size1" value="{{'BillRequest-P03' | translate}}" data-toggle="modal"
                             data-target="#confirmacion"/>
-                        <div class="btn-link c-one" *ngIf="!readyToGoNext()">{{fisReq}}</div>
                     </div>
                 </div>
             </div>
