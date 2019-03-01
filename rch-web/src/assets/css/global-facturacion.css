@@ -545,6 +545,12 @@
     background: #192642;
 }
 
+.btn-blue.btn-blue__borde {
+    background-color: transparent;
+    border: 1px solid #192642;
+    color: #192642;
+}
+
 .btnForm:hover {
     opacity: .7;
     color: #fff;

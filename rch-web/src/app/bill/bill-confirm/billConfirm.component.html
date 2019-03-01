@@ -56,13 +56,13 @@
                     <div class="col-md-6 ">
                         <div class="form-group">
                             <label>{{'BillConfirmation-P00' | translate}}</label>
-                            <input class="form-control disabled-style" type="text" [(ngModel)]="requestBill.clave" disabled>
+                            <input class="form-control disabled-style input-block" type="text" [(ngModel)]="requestBill.clave" disabled>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{'BillConfirmation-P01' | translate}}</label>
-                            <input class="form-control datepicker disabled-style" type="text" [(ngModel)]="requestBill.fecha" disabled>
+                            <input class="form-control datepicker disabled-style input-block" type="text" [(ngModel)]="requestBill.fecha" disabled>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                         </div>
                     </div>
                     <div class="btn-set">
-                        <a routerLink="/Facturacion" class="btnForm btn-gray back-btn btn-size1">{{'BillConfirmation-P08' | translate}}</a>
+                        <a routerLink="/Facturacion" class="btnForm btn-blue back-btn btn-size1">{{'BillConfirmation-P08' | translate}}</a>
                         <a (click)="onSubmit()" class="btnForm btn-blue next-btn btn-size1">{{'BillConfirmation-P09' | translate}}</a>
                     </div>
                 </div>
