@@ -79,8 +79,9 @@ export class BillFiscalComponent implements OnInit {
     this.displayConfirm = null;
   }
   focusOutFunction(rfc) {
+    let rfcMayus = rfc.toUpperCase()
     this.loadingPlanning = true;
-    this.serviceBill.getFiscalRfcBill(rfc).subscribe(
+    this.serviceBill.getFiscalRfcBill(rfcMayus).subscribe(
       (data: any) => {
         this.loadingPlanning = null;
 
@@ -114,6 +115,9 @@ export class BillFiscalComponent implements OnInit {
   static cellphone_regex: RegExp = /^[0-9]{8,16}$/;
 
   readyToGoNext(): boolean {
+    
+    $('.form-control').removeClass('orange');
+
     if (this.fiscalBill.rfc == undefined || this.fiscalBill.rfc == "") { $('#rfc').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P17'); this.ready = true; return false }
     else if (!BillFiscalComponent.rfc.test(this.fiscalBill.rfc)) { $('#rfc').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P26'); this.ready = true; return false; }
     
@@ -127,9 +131,9 @@ export class BillFiscalComponent implements OnInit {
     else if (!BillFiscalComponent.calle.test(this.fiscalBill.calle)) { $('#calle').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P28'); this.ready = true; return false; }
 
     else if (this.fiscalBill.no_ext == undefined || this.fiscalBill.no_ext == "") { $('#no_ext').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P22'); this.ready = true; return false }
-    else if (!BillFiscalComponent.num.test(this.fiscalBill.no_ext)) { $('#no_ext').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P29'); this.ready = true; return false; }
+    else if (!BillFiscalComponent.num.test(this.fiscalBill.no_ext)) { $('#no_ext').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P30'); this.ready = true; return false; }
 
-    else if (this.fiscalBill.no_int != "" && this.fiscalBill.no_int != undefined && this.fiscalBill.no_int != null && !BillFiscalComponent.num.test(this.fiscalBill.no_int)){ $('#no_int').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P30'); this.ready = true; return false; }
+    else if (this.fiscalBill.no_int != "" && this.fiscalBill.no_int != undefined && this.fiscalBill.no_int != null && !BillFiscalComponent.num.test(this.fiscalBill.no_int)){ $('#no_int').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P29'); this.ready = true; return false; }
 
     else if (this.fiscalBill.cp == undefined || this.fiscalBill.cp == "") { $('#cp').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P23'); this.ready = true; return false }
     else if (!BillFiscalComponent.cp.test(this.fiscalBill.cp)) { $('#cp').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P31'); this.ready = true; return false; }

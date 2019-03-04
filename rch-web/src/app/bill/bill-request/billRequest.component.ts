@@ -79,9 +79,13 @@ export class BillRequestComponent implements OnInit {
     var dates = this.date + '/' + this.month + '/' + this.year;
     this.requestBill.fecha = dates;
   }
-
+  static clave: RegExp = /^[A-Za-z0-9\s]{2,60}$/;
   readyToGoNext(): boolean {
+    
+    $('.form-control').removeClass('orange');
+    let e = this.requestBill.clave;
     if (this.requestBill.clave == undefined || this.requestBill.clave == "") { $('#claveReq').addClass('orange'); this.billReq = this.translate.instant('BillRequest-P08'); this.buttonFlag = true; return false }
+    else if (!BillRequestComponent.clave.test(e.toString())) { $('#claveReq').addClass('orange');this.billReq = this.translate.instant('BillRequest-P10'); this.buttonFlag = true; return false; }    
     else if (this.requestBill.fecha == undefined || this.requestBill.fecha == "") { $('#datepicker').addClass('orange'); this.billReq = this.translate.instant('BillRequest-P09'); this.buttonFlag = true; return false }
     else if (this.buttonFlag == false) { this.billReq = 'Reserva no encontrado'; this.buttonFlag = true; return false }
     else { this.buttonFlag = null; return true }
