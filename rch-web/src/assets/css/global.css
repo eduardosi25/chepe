@@ -4054,14 +4054,14 @@ span.orange {
     font-weight: 600;
 }
 
-.btn-continue .btn-blue__small {
-    margin-top: 34px;
-}
-.btn-active .btn-continue .btn-blue__small {
-    margin-top: 0;
-}
 .btn-set.btn-set__reset {
     max-width: 440px;
+}
+.alert-text {
+   display: inherit !important;
+}
+.alert-text .btn-link__orange {
+    float: right;
 }
 
 
@@ -4610,6 +4610,10 @@ FIXES RESPONSIVE
     }  
     .btn-blue__small {
         width: 300px !important;
+    }
+    .alert-text .btn-link__orange {
+        float: inherit;
+        text-align: center;
     }
 }
 

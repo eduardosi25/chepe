@@ -228,13 +228,14 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="btn-set btn-set__reset alert-text">
+                    <div class="btn-link btn-link__orange c-one text-center" *ngIf="!readyToGoNext()">{{fisReq}}</div>
+                </div>
                 <div class="btn-set btn-set__reset">
-                    <div class="btn-set btn-set__top ">
+                    <div class="btn-set">
                         <a (click)="goBack()"  class="btnForm btn-blue btn-blue__borde back-btn btn-size1">Regresar</a>
                     </div>
-                    <div class="btn-continue">
-                        <div class="btn-link btn-link__orange c-one text-center" *ngIf="!readyToGoNext()">{{fisReq}}</div>
+                    <div>
                         <input (click)="onSubmit()" disabled={{ready}} type="submit" class="btnForm btn-blue btn-blue__small btn-size1" value="{{'BillRequest-P03' | translate}}" data-toggle="modal"
                             data-target="#confirmacion"/>
                     </div>
@@ -378,7 +379,7 @@
                                     <p>RFC no válido,no es posible emitir una factura
                                 </div>
                                 <div class="btn-set">
-                                    <a (click)="goFisacal()" class="btnForm btn-blue next-btn btn-size1"
+                                    <a (click)="goFisacal()" class="btnForm btn-blue btn-blue__borde next-btn btn-size1"
                                         aria-label="Close" data-dismiss="modal">Regresar</a>
                                 </div>
                             </div>
