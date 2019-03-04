@@ -55,7 +55,7 @@ export class BillRequestComponent implements OnInit {
       format: "yyyy-mm-dd"
     };
     $("#datepicker").datepicker({
-      language: 'es', format: "dd/mm/yyyy", autoclose: true,
+      language: 'es', format: "dd/mm/yyyy", autoclose: true, orientation: "top right",
     }).on('changeDate', (e) => {
       rthis.date = e.dates[0].getDate();
       rthis.month = e.dates[0].getMonth() + 1;

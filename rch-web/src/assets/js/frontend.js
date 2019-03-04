@@ -1,11 +1,5 @@
 $(document).ready(function () {
     setTimeout(function(){
-
-        //--Change position dropdown calendar (datepicker)
-        $( '.datepicker' ).datepicker({
-        orientation: 'top right'
-        });
-
         //-- Close modal
         $(".js-open__modal").click(function(e){
             $(".modalbox").addClass("active");
