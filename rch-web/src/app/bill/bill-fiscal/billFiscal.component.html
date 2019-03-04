@@ -231,9 +231,9 @@
 
                 <div class="btn-set btn-set__reset">
                     <div class="btn-set btn-set__top ">
-                        <a (click)="goBack()"  class="btnForm btn-blue__borde back-btn btn-size1">Regresar</a>
+                        <a (click)="goBack()"  class="btnForm btn-blue btn-blue__borde back-btn btn-size1">Regresar</a>
                     </div>
-                    <div>
+                    <div class="btn-continue">
                         <div class="btn-link btn-link__orange c-one text-center" *ngIf="!readyToGoNext()">{{fisReq}}</div>
                         <input (click)="onSubmit()" disabled={{ready}} type="submit" class="btnForm btn-blue btn-blue__small btn-size1" value="{{'BillRequest-P03' | translate}}" data-toggle="modal"
                             data-target="#confirmacion"/>
@@ -309,7 +309,7 @@
                                 </div>
                                 <div class="btn-set">
                                     <a (click)="goBackModelReview()"
-                                        class="btnForm btn-gray back-btn btn-size1">{{'BillReview-P07' | translate}}</a>
+                                        class="btnForm btn-blue btn-blue__borde back-btn btn-size1">{{'BillReview-P07' | translate}}</a>
                                     <a (click)="onSubmitModelReview()"
                                         class="btnForm btn-blue next-btn btn-size2 show-factura" data-toggle="modal"
                                         data-target="#confirmacion">{{'BillReview-P08' | translate}}</a>

@@ -164,19 +164,21 @@
                                 </li>
                                 <li class="table-col-4">
                                 </li>
-                                <li class="table-col-5 total-line">
-                                    <strong class="table-highlight">Total</strong>
-                                </li>
-                                <li class="table-col-6 align-right total-line">
-                                    <strong class="head-mobile">Total</strong>
-                                    <span class="table-highlight ">${{total}}
-                                        </span>
-                                </li>
+                                <div class="table-line__special">
+                                    <li class="table-col-5 total-line">
+                                        <strong class="table-highlight">Total</strong>
+                                    </li>
+                                    <li class="table-col-6 align-right total-line">
+                                        <strong class="head-mobile">Total</strong>
+                                        <span class="table-highlight ">${{total}}
+                                            </span>
+                                    </li>
+                                </div>
                             </ul>
                         </div>
                     </div>
                     <div class="btn-set">
-                        <a routerLink="/Facturacion" class="btnForm btn-blue back-btn btn-size1">{{'BillConfirmation-P08' | translate}}</a>
+                        <a routerLink="/Facturacion" class="btnForm btn-blue btn-blue__borde back-btn btn-size1">{{'BillConfirmation-P08' | translate}}</a>
                         <a (click)="onSubmit()" class="btnForm btn-blue next-btn btn-size1">{{'BillConfirmation-P09' | translate}}</a>
                     </div>
                 </div>

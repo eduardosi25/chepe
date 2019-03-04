@@ -3830,10 +3830,9 @@ span.orange {
     
 }
 .btn-link__orange {
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 10px;
 }
-
 
 /*:::::::: my code ::::::::*/
 
@@ -4053,6 +4052,16 @@ span.orange {
 }
 .select-seat__text span {
     font-weight: 600;
+}
+
+.btn-continue .btn-blue__small {
+    margin-top: 34px;
+}
+.btn-active .btn-continue .btn-blue__small {
+    margin-top: 0;
+}
+.btn-set.btn-set__reset {
+    max-width: 440px;
 }
 
 

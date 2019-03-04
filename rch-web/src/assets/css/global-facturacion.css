@@ -551,6 +551,10 @@
     color: #192642;
 }
 
+.btn-blue.btn-blue__borde:hover {
+    color: #192642;
+}
+
 .btnForm:hover {
     opacity: .7;
     color: #fff;
@@ -824,6 +828,30 @@
     background-image: url("../img/xml-file.svg");
 }
 
+.table-line__special {
+    right: 0;
+    float: right !important;
+    width: 33%;
+    border-top: 2px solid #1a2741 !important;
+}
+
+.table-line__special .total-line {
+    width: 50%;
+    border: 0;
+    float: left;
+}
+
+.table-line__special:first-of-type {
+    border: 0;
+    float: left;
+    padding-left: 10px;
+}
+
+.table-line__special:last-of-type {
+    border: 0;
+    padding-right: 10px;
+}
+
 @media screen and (max-width: 992px) {
     .mb-1 {
         margin-bottom: 40px;
@@ -952,6 +980,10 @@
         padding-top: 10px;
         padding-bottom: 10px;
         margin-bottom: 0;
+    }
+    .table-line__special {
+        width: 100%;
+        padding: 0;
     }
 }
 
