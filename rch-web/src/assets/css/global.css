@@ -3204,7 +3204,7 @@ FIXES FRONT
 
 .select-seat.premium,
 .select-seat.classic {
-    top: -130px;
+    top: -160px;
 }
 
 #webpay_sframe {
@@ -4086,6 +4086,35 @@ span.orange {
 .modal-body.modal-body__special .btn-set {
     margin: 20px auto 0;   
 }
+.wagon-content p {
+    font-size: 14px;
+}
+.wagon-combo__text {
+    position: relative;
+    display: inline;
+}
+.wagon-combo__text .gray-box {
+    background-color: #9B9B9B;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    display: inline-block;
+    border-radius: 11px;
+    float: left;
+    top: 20px;
+    margin-right: 10px;
+}
+.wagon-combo__text .blue-box {
+    background-color: #091E60;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    display: inline-block;
+    border-radius: 11px;
+    float: left;
+    top: 20px;
+    margin-right: 10px;
+}
 
 
 /* Safari */
@@ -4401,7 +4430,7 @@ FIXES RESPONSIVE
 }
 @media (min-width: 1200px) {
     .seat-train {
-        height: 300px;
+        height: 320px;
     }
     .select-seat.classic,
     .select-seat.premium {
