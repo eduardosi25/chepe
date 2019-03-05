@@ -2278,13 +2278,15 @@ table.chepe.secondary tr:last-child {
 
 .select-seat .wagon-img-classic {
     position: absolute;
-    width: 200px;
+    width: 125%;
 }
 
 .select-seat.classic,
 .select-seat.premium {
     width: 200px;
     height: 1400px;
+    right: 6%;
+    top: -120px;
 }
 
 .select-seat.classic .block-seats {
@@ -2295,8 +2297,8 @@ table.chepe.secondary tr:last-child {
 
 .select-seat.premium .block-seats {
     margin-top: 173px;
-    margin-right: 26px;
-    margin-left: 4px;
+    margin-right: -43px;
+    margin-left: 2px;
 }
 
 .select-seat .row-seats {
@@ -2318,9 +2320,9 @@ table.chepe.secondary tr:last-child {
 
 .select-seat .row-seats .seat {
     background-repeat: no-repeat;
-    background-size: 105px;
+    background-size: 134px;
     background-position: 0px 0px;
-    width: 35px;
+    width: 43px;
     height: 40px;
     text-align: center;
     text-transform: uppercase;
@@ -3194,7 +3196,7 @@ FIXES FRONT
 }
 
 .select-seat.premium .block-seats {
-    margin-top: 284px;
+    margin-top: 480px;
 }
 
 .select-seat.classic,
@@ -4039,12 +4041,8 @@ span.orange {
     max-width: 680px;
     display: inline-block;
     padding: 0 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
+    left: 35%;
+
 }
 .select-seat__text p {
     color: #08265c;
@@ -4173,9 +4171,9 @@ span.orange {
 }
 
 .seat__border {
-    border: 5px solid #7cb6ad;
+    border: 3px solid #ACC0FF;
     border-radius: 5px;
-    box-shadow: 0 0 6px #7cb6ad;
+    box-shadow: 0 0 3px #ACC0FF;
 }
 
 .seat__label {
@@ -4240,7 +4238,7 @@ span.orange {
 /*---- Ejecutivo -----*/
 
 .premium .seat__border {
-    width: 79px;
+    width: 94px;
     height: 132px;
 }
 
@@ -4440,7 +4438,7 @@ FIXES RESPONSIVE
 }
 @media (min-width: 1200px) {
     .seat-train {
-        height: 320px;
+        height: 377px;
     }
     .select-seat.classic,
     .select-seat.premium {
