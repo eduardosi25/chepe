@@ -12,6 +12,7 @@ export class BillFiscal {
         public municipio:String,
         public pais:String,
         public correo_electronico:String,
+        public confirm_correo_electronico:String,
         public telefono:String,
     ){}
 }

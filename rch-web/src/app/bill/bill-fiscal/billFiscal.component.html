@@ -184,6 +184,16 @@
                                             [(ngModel)]="fiscalBill.correo_electronico">
                                     </div>
                                 </div>
+                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>{{'BillFiscal-P36' | translate}}</label>
+                                            <input maxlength="60" id="correoC" type="text" class="form-control" #correoC="ngModel" name='correoC'
+                                                [(ngModel)]="fiscalBill.confirmacion_correo_electronico">
+                                        </div>
+                                    </div>
+                                </div>
+                              <div class="row-field row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P14' | translate}}</label>
@@ -191,7 +201,7 @@
                                             [(ngModel)]="fiscalBill.telefono">
                                     </div>
                                 </div>
-                            </div>
+                              </div>
                             <div class="form-info">
                                 <p><strong>{{'BillFiscal-P15' | translate}} </strong> {{'BillFiscal-P16' | translate}}
                                 </p>
