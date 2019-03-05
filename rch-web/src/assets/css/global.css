@@ -4115,7 +4115,17 @@ span.orange {
     top: 20px;
     margin-right: 10px;
 }
-
+.wagon-combo__text  .green-box {
+    background-color: #67baaf;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    display: inline-block;
+    border-radius: 11px;
+    float: left;
+    top: 20px;
+    margin-right: 10px;
+}
 
 /* Safari */
 
