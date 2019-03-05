@@ -4063,6 +4063,29 @@ span.orange {
 .alert-text .btn-link__orange {
     float: right;
 }
+.modal-body.modal-body__special {
+    padding-bottom: 0;
+}
+.modal-body.modal-body__special .lightbox-title {
+    padding: 10px 0;
+}
+.modal-body.modal-body__special .lightbox-title figure {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+.modal-body.modal-body__special .lightbox-title figure img {
+    max-width: 30px;
+}
+.modal-body.modal-body__special .lightbox-title .lightbox-text {
+    margin: 0;
+}
+.modal-body.modal-body__special .lightbox1-row {
+    padding: 10px;
+}
+.modal-body.modal-body__special .btn-set {
+    margin: 20px auto 0;   
+}
 
 
 /* Safari */
