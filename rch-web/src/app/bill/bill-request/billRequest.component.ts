@@ -91,7 +91,8 @@ export class BillRequestComponent implements OnInit {
     else { this.buttonFlag = null; return true }
   }
 
-  onSubmit() {
+  onSubmit() { 
+    this.requestBill.clave = this.requestBill.clave.toUpperCase()
     this.billService.getReaquestBill(this.requestBill).subscribe(
       (data: any) => {
         if (data.success) {

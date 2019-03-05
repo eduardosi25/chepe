@@ -58,7 +58,7 @@ export class BillFiscalComponent implements OnInit {
         this.cfdi = data.data;
       }
     );
-    this.fiscalBill = new BillFiscal("", "", "", "", "", "", "", "", "", "MIGUEL HIDALGO", "CDMX", "", "");
+    this.fiscalBill = new BillFiscal("", "", "", "", "", "", "", "", "", "MIGUEL HIDALGO", "CDMX", "","", "");
     this.requestBill = JSON.parse(Paso1SessionInfo);
     this.fiscBill = JSON.parse(Paso1Session);
     this.total = this.fiscBill.monto_neto + this.fiscBill.impuestos;
@@ -100,14 +100,15 @@ export class BillFiscalComponent implements OnInit {
             this.rfc.data.municipio = 'MIGUEL HIDALGO',
             this.rfc.data.pais = 'CDMX',
             this.rfc.data.correo_electronico,
+            this.rfc.data.confirm_correo_electronico,
             this.rfc.data.telefono);
-        } else (this.fiscalBill = new BillFiscal(rfc, "", "", "", "", "", "", "","", "MIGUEL HIDALGO", "CDMX",  "", ""))
+        } else (this.fiscalBill = new BillFiscal(rfc, "", "", "", "", "", "", "","", "MIGUEL HIDALGO", "CDMX", "", "", ""))
       }
     );
   }
 
   static email_regex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  static nameRazon: RegExp = /^[A-Za-z0-9\s]{2,60}$/;
+  static nameRazon: RegExp = /^[a-zA-ZÀ-ÿ0-9.,-\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ0-9.,-\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ0-9.,-\u00f1\u00d1]{2,60}$/;
   static calle: RegExp = /^[A-Za-z0-9\s]{2,60}$/;
   static rfc: RegExp = /^[a-zA-Z]{3,4}(\d{6})((\D|\d){2,3})?$/;
   static num: RegExp =  /^[A-Za-z0-9\s]{1,6}$/;
@@ -142,6 +143,9 @@ export class BillFiscalComponent implements OnInit {
   
     else if (this.fiscalBill.correo_electronico == undefined || this.fiscalBill.correo_electronico == "") { $('#correo').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P25'); this.ready = true; return false }
     else if (!BillFiscalComponent.email_regex.test(this.fiscalBill.correo_electronico)) { $('#correo').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P32'); this.ready = true; return false; }
+
+    else if (this.fiscalBill.confirmacion_correo_electronico == undefined || this.fiscalBill.confirmacion_correo_electronico == "") { $('#correoC').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P34'); this.ready = true; return false }
+    else if (this.fiscalBill.confirmacion_correo_electronico != this.fiscalBill.correo_electronico) { $('#correoC').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P35'); this.ready = true; return false }
 
     else if (this.fiscalBill.telefono != "" && this.fiscalBill.telefono != undefined && this.fiscalBill.telefono != null && !BillFiscalComponent.cellphone_regex.test(this.fiscalBill.telefono)){ $('#telefono').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P33'); this.ready = true; return false; }
 
