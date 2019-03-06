@@ -2284,9 +2284,9 @@ table.chepe.secondary tr:last-child {
 .select-seat.classic,
 .select-seat.premium {
     width: 200px;
-    height: 1400px;
-    right: 6%;
-    top: -120px;
+    height: 1400px !important;
+    right: 7%;
+    top: -120px !important;
 }
 
 .select-seat.classic .block-seats {
@@ -2311,7 +2311,7 @@ table.chepe.secondary tr:last-child {
 }
 
 .select-seat.premium .row-seats {
-    margin-bottom: 44px;
+    margin-bottom: 24px;
 }
 
 .select-seat.premium .row-seats.flip {
@@ -2323,7 +2323,7 @@ table.chepe.secondary tr:last-child {
     background-size: 134px;
     background-position: 0px 0px;
     width: 43px;
-    height: 40px;
+    height: 50px;
     text-align: center;
     text-transform: uppercase;
     position: relative;
@@ -2341,7 +2341,7 @@ table.chepe.secondary tr:last-child {
 }
 
 .select-seat .row-seats .seat.selected {
-    background-position: -35px 0px;
+    background-position: -45x 0px;
 }
 
 .select-seat .row-seats .seat.unavailable {
@@ -3197,16 +3197,6 @@ FIXES FRONT
 
 .select-seat.premium .block-seats {
     margin-top: 480px;
-}
-
-.select-seat.classic,
-.select-seat.premium {
-    height: 1450px;
-}
-
-.select-seat.premium,
-.select-seat.classic {
-    top: -160px;
 }
 
 #webpay_sframe {
@@ -4436,9 +4426,40 @@ FIXES RESPONSIVE
     }
 
 }
+@media (min-width: 1300px) {
+    .seat-train {
+        height: 416px;
+    }
+    .select-seat.classic, 
+    .select-seat.premium {
+        right: 0;
+    }
+    .select-seat .wagon-img-classic {
+        width: 105%;
+    }
+    .select-seat.premium .block-seats {
+        margin-top: 399px;
+        margin-right: -11px;
+        margin-left: -1px;
+    }
+    .select-seat.premium .row-seats {
+        margin-bottom: 8px;
+    }
+    .select-seat .row-seats .seat {
+        width: 44px;
+        height: 48px;
+    }
+    .premium .seat__border {
+        width: 96px;
+        height: 111px;
+    }
+    .select-seat__text {
+        left: 31%;
+    }
+}
 @media (min-width: 1200px) {
     .seat-train {
-        height: 377px;
+        height: 360px;
     }
     .select-seat.classic,
     .select-seat.premium {
@@ -4457,6 +4478,10 @@ FIXES RESPONSIVE
         -moz-transform-origin-y: 29%;
         -ms-transform-origin-y: 29%;
         -o-transform-origin-y: 29%;
+    }
+
+    .seat-train {
+        height: 356px;
     }
 }
 
@@ -4637,6 +4662,20 @@ FIXES RESPONSIVE
     .tooltip-default .tooltiptext {
         bottom: -395%;
         right: -149%;
+    }
+
+    .select-seat.classic, 
+    .select-seat.premium {
+        height: 1330px !important;
+        top: 50px !important;
+    }
+    .select-seat__text {
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
     }
 }
 
