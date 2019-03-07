@@ -4120,6 +4120,20 @@ span.orange {
     top: 20px;
     margin-right: 10px;
 }
+.wagon-combo__text .border-box {
+    background-color: transparent;
+    border: 3px solid #ACC0FF;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ACC0FF;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    display: inline-block;
+    border-radius: 11px;
+    float: left;
+    top: 20px;
+    margin-right: 10px;
+}
 
 /* Safari */
 
@@ -4752,6 +4766,17 @@ FIXES RESPONSIVE
     }
     .seat-train {
         height: 1587px;
+    }
+
+    /*-- Change image --*/
+    .select-seat.premium .wagon-img-classic {
+        background: url(/assets/img/reservacion/vagon-premium-horizontal__small.png) center center no-repeat;
+        background-size: 100%;
+    }
+    .select-seat.classic .wagon-img-classic,
+    .select-seat.classic.regional .wagon-img-classic {
+        background: url(/assets/img/reservacion/vvagon-clasico-regional__small.png) center center no-repeat;
+        background-size: 100%;
     }
 }
 
