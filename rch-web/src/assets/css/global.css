@@ -2346,9 +2346,8 @@ table.chepe.secondary tr:last-child {
 .select-seat .seat.unavailable * {
     cursor: not-allowed;
 }
-
 .select-seat .row-seats .seat.selected {
-    background-position: -45x 0px;
+    background-position: -45px 0;
 }
 
 .select-seat .row-seats .seat.unavailable {
