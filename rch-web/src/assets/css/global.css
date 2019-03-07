@@ -4515,6 +4515,10 @@ FIXES RESPONSIVE
         margin-right: -33px;
         margin-left: -1px;
     }
+    .classic .seat__border {
+        width: 92px;
+        height: 123px;
+    }
 }
 
 @media (max-width: 1282px) {
@@ -4566,6 +4570,17 @@ FIXES RESPONSIVE
     }
     .seat-train {
         height: 356px;
+    }
+
+    /*-- Classic --*/
+    .select-seat.classic {
+        right: -1%;
+    }
+    .select-seat.classic .wagon-img-classic {
+        width: 115%;
+    }
+    .select-seat.classic .row-seats {
+        margin-bottom: 16px;
     }
 }
 
