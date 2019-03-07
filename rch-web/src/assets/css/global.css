@@ -4233,8 +4233,8 @@ span.orange {
 }
 
 .classic .seat__border {
-    width: 79px;
-    height: 114px;
+    width: 87px;
+    height: 120px;
 }
 
 .classic .seat__label:after {
@@ -4500,6 +4500,20 @@ FIXES RESPONSIVE
     .select-seat.classic .row-seats .seat {
         width: 41px;
         height: 44px;
+    }
+    .select-seat.classic .wagon-img-classic {
+        width: 117%;
+    }
+    .select-seat.classic {
+        right: 4%;
+    }
+    .select-seat.classic .row-seats {
+        margin-bottom: 17px;
+    }
+    .select-seat.classic .block-seats {
+        margin-top: 270px;
+        margin-right: -33px;
+        margin-left: -1px;
     }
 }
 
