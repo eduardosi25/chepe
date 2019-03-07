@@ -2309,12 +2309,12 @@ table.chepe.secondary tr:last-child {
 .select-seat.classic .row-seats {
     margin-bottom: 21px;
 }
-.select-seat.classic.regional .row-seats {
-    margin-bottom: 14px;
+.select-seat.classic.regional .row-seats {
+    margin-bottom: 14px;
 }
-.classic.regional .seat__border {
-    width: 92px;
-    height: 121px;
+.classic.regional .seat__border {
+    width: 92px;
+    height: 121px;
 }
 
 .select-seat.premium .row-seats {
@@ -4530,14 +4530,12 @@ FIXES RESPONSIVE
     }
 
     /*-- Regional --*/
-    .classic.regional .seat__border {
-        margin-top: 1px;
-        margin-right: 4px;
-        margin-left: 6px;
-    }
-    .classic.regional .seat__border {
-        width: 81px;
-        height: 111px;
+    .classic.regional .seat__border {
+        margin-top: 1px;
+        margin-right: 4px;
+        margin-left: 6px;
+        width: 81px;
+        height: 111px;
     }
     
 }
