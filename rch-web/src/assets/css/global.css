@@ -4511,14 +4511,15 @@ FIXES RESPONSIVE
         margin-bottom: 17px;
     }
     .select-seat.classic .block-seats {
-        margin-top: 270px;
+        margin-top: 318x;
         margin-right: -33px;
         margin-left: -1px;
     }
     .classic .seat__border {
-        margin-top: 320px;
-        margin-right: -33px;
-        margin-left: -1px;
+        height: 112px;
+        margin-top: 0px;
+        margin-right: 4px;
+        margin-left: 2px;
     }
 }
 
