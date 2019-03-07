@@ -28,7 +28,79 @@
 
                     <div class="col-sm-22 gap-small-left margintop30">
                         <div class="table-responsive">
-                            <table class="table chepe">
+                                <table class="table chepe">
+                                        <tbody *ngIf="isRegional(route)">
+                                            <tr>
+                                                <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>
+                                                <td colspan="2" *ngIf="isRegional(route)">{{'Main-P13' | translate}}</td>                                        
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <span >{{'Main-P01' | translate}}</span>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-three border2" scope="row" rowspan="2">
+                                                   <span>{{'Main-P03' | translate}}
+                                                       </span>
+                                                </th>
+                                                <td class="c-one">{{'Step1-P76.1' | translate}} hrs
+                                                    <br>
+                                                    <br/> {{'Step1-P77' | translate}} hrs</td>
+                                                <td class="bg-one-light">
+                                                    {{'Main-P05' | translate}} {{'Step1-P80' | translate}}
+                                                    <br>
+                                                    <span>{{'Step1-P82' | translate}}</span>
+                                                    <br/> {{'Main-P07' | translate}} {{'Step1-P81' | translate}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="c-one">{{'Step1-P78' | translate}} hrs
+                                                    <br>
+                                                    <br/> {{'Step1-P79' | translate}} hrs</td>
+                                                <td class="bg-one-light">
+                                                    {{'Main-P05' | translate}} {{'Step1-P81' | translate}}
+                                                    <br>
+                                                    <span>{{'Step1-P83' | translate}}</span>
+                                                    <br/> {{'Main-P07' | translate}} {{'Step1-P80' | translate}}</td>
+                                            </tr>
+        
+                                        </tbody>
+                                        <tbody *ngIf="!isRegional(route)">
+                                            <tr>
+                                                <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>                                      
+                                                <td colspan="2">{{'Main-P10' | translate}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <span >{{'Main-P01' | translate}}</span>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-three border2" scope="row" rowspan="2">
+                                                    <span>{{'Main-P03' | translate}}
+                                                       </span>
+                                                </th>
+                                                <td class="c-one">{{'Step1-P84' | translate}} hrs
+                                                    <br>
+                                                    <br/> {{'Step1-P85' | translate}} hrs</td>
+                                                <td class="bg-one-light">
+                                                    {{'Main-P05' | translate}} {{'Step1-P88' | translate}}
+                                                    <br>
+                                                    <span>{{'Step1-P90' | translate}}</span>
+                                                    <br/> {{'Main-P07' | translate}} {{'Step1-P89' | translate}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="c-one">{{'Step1-P86' | translate}} hrs
+                                                    <br>
+                                                    <br/> {{'Step1-P87' | translate}} hrs</td>
+                                                <td class="bg-one-light">
+                                                    {{'Main-P05' | translate}} {{'Step1-P89' | translate}}
+                                                    <br>
+                                                    <span>{{'Step1-P91' | translate}}</span>
+                                                    <br/> {{'Main-P07' | translate}} {{'Step1-P88' | translate}}</td>
+                                            </tr>
+        
+                                        </tbody>
+                                    </table>
+                            <!-- <table class="table chepe">
 
                                 <tbody>
                                     <tr>
@@ -70,7 +142,7 @@
                                     </tr>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                         </div>
                        
                     </div>
