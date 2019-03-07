@@ -2290,8 +2290,8 @@ table.chepe.secondary tr:last-child {
 }
 
 .select-seat.classic .block-seats {
-    margin-top: 170px;
-    margin-right: 28px;
+    margin-top: 290px;
+    margin-right: -43px;
     margin-left: 2px;
 }
 
@@ -4241,6 +4241,13 @@ span.orange {
     height: 62px;
 }
 
+.select-seat.classic {
+    right: 6%;
+}
+.select-seat.classic .wagon-img-classic {
+    width: 123%;
+}
+
 
 /*---- Turista -----*/
 
@@ -4328,7 +4335,7 @@ FIXES RESPONSIVE
     }
     .seat-train {
         width: 100% !important;
-        height: 240px;
+        height: 352px;
     }
     /*.select-seat.premium {
         top: 70px;
@@ -4426,37 +4433,7 @@ FIXES RESPONSIVE
     }
 
 }
-@media (min-width: 1300px) {
-    .seat-train {
-        height: 416px;
-    }
-    .select-seat.classic, 
-    .select-seat.premium {
-        right: 0;
-    }
-    .select-seat .wagon-img-classic {
-        width: 105%;
-    }
-    .select-seat.premium .block-seats {
-        margin-top: 399px;
-        margin-right: -11px;
-        margin-left: -1px;
-    }
-    .select-seat.premium .row-seats {
-        margin-bottom: 8px;
-    }
-    .select-seat .row-seats .seat {
-        width: 44px;
-        height: 48px;
-    }
-    .premium .seat__border {
-        width: 96px;
-        height: 111px;
-    }
-    .select-seat__text {
-        left: 31%;
-    }
-}
+
 @media (min-width: 1200px) {
     .seat-train {
         height: 360px;
@@ -4487,6 +4464,44 @@ FIXES RESPONSIVE
 
 
 /* Down MediaQueries */
+
+@media (max-width: 1300px) {
+    .seat-train {
+        height: 416px;
+    }
+    .select-seat.classic, 
+    .select-seat.premium {
+        right: 0;
+    }
+    .select-seat .wagon-img-classic {
+        width: 105%;
+    }
+    .select-seat.premium .block-seats {
+        margin-top: 399px;
+        margin-right: -11px;
+        margin-left: -1px;
+    }
+    .select-seat.premium .row-seats {
+        margin-bottom: 8px;
+    }
+    .select-seat .row-seats .seat {
+        width: 44px;
+        height: 48px;
+    }
+    .premium .seat__border {
+        width: 96px;
+        height: 111px;
+    }
+    .select-seat__text {
+        left: 31%;
+    }
+
+    /*-- Classic --*/
+    .select-seat.classic .row-seats .seat {
+        width: 41px;
+        height: 44px;
+    }
+}
 
 @media (max-width: 1282px) {
     .col-full {
@@ -4526,6 +4541,17 @@ FIXES RESPONSIVE
     .table-horarios .table.chepe {
         font-size: 14px;
         height: 320px;
+    }
+    .select-seat__text {
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+        left: 50%;
+    }
+    .seat-train {
+        height: 356px;
     }
 }
 
@@ -4677,6 +4703,9 @@ FIXES RESPONSIVE
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
     }
+    .seat-train {
+        height: 1477px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -4685,6 +4714,9 @@ FIXES RESPONSIVE
     }
     .modalbox-link {
         font-size: 17px;
+    }
+    .seat-train {
+        height: 1587px;
     }
 }
 
