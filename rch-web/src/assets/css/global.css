@@ -4233,8 +4233,8 @@ span.orange {
 }
 
 .classic .seat__border {
-    width: 87px;
-    height: 120px;
+    width: 93px;
+    height: 127px;
 }
 
 .classic .seat__label:after {
@@ -4516,8 +4516,9 @@ FIXES RESPONSIVE
         margin-left: -1px;
     }
     .classic .seat__border {
-        width: 92px;
-        height: 123px;
+        margin-top: 320px;
+        margin-right: -33px;
+        margin-left: -1px;
     }
 }
 
@@ -4733,7 +4734,7 @@ FIXES RESPONSIVE
         -o-transform: translateX(-50%);
     }
     .seat-train {
-        height: 1477px;
+        height: 1587px;
     }
 }
 
@@ -4745,7 +4746,7 @@ FIXES RESPONSIVE
         font-size: 17px;
     }
     .seat-train {
-        height: 1587px;
+        height: 1697px;
     }
 }
 
