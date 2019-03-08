@@ -4778,6 +4778,9 @@ FIXES RESPONSIVE
         background: url(/assets/img/reservacion/vvagon-clasico-regional__small.png) center center no-repeat;
         background-size: 100%;
     }
+    .img-responsive {
+        opacity: 0;
+    }
 }
 
 @media (max-width: 768px) {
