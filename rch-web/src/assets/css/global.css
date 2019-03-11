@@ -4048,12 +4048,12 @@ span.orange {
     font-weight: 600;
 }
 
-.btn-set.btn-set__reset {
+.btn-set__reset.btn-set__alert {
     position: relative;
     width: 100%;
     display: inline-block;
 }
-.btn-set.btn-set__reset .btn-link__orange {
+.btn-set__reset.btn-set__alert .btn-link__orange {
     position: relative;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
