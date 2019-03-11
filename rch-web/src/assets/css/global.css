@@ -4049,7 +4049,19 @@ span.orange {
 }
 
 .btn-set.btn-set__reset {
-    max-width: 440px;
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+.btn-set.btn-set__reset .btn-link__orange {
+    position: relative;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 53%;
+
 }
 .alert-text {
    display: inherit !important;
