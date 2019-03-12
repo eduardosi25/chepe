@@ -80,46 +80,46 @@
             <!-- max number of seats -->
             <div id="seatsnumbermax" data="3"></div>
 
-            <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
-                <div class="row">
-                    <div class="col-sm-24 center">
-                        <h3 class="c-two fontweight400"> {{wagon.name}} {{'Step5-P11' | translate}} {{wagon.type.numero_carro}}
-                            <!--<a href="#" data-toggle="modal" data-target="#wagon-details" (click)="selectWagonType(wagon.type)" class="wagon_info">
-                                <div class="info-vagon">i</div>
-                            </a>-->
-                        </h3>
+            <div class="js-wagon__slider">
+                <div class="js-wagon__item">
+                    <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
+                        <div class="row">
+                            <div class="col-sm-24 center">
+                                <h3 class="c-two fontweight400"> {{wagon.name}} {{'Step5-P11' | translate}} {{wagon.type.numero_carro}}
+                                    <!--<a href="#" data-toggle="modal" data-target="#wagon-details" (click)="selectWagonType(wagon.type)" class="wagon_info">
+                                        <div class="info-vagon">i</div>
+                                    </a>-->
+                                </h3>
 
-                    </div>
-                    <div class="col-sm-24">
-                        <div class="col-xs-24 col-reset wagon-content">
-                            <div class="col-xs-24 col-sm-12 col-lg-6">
-                                <div class="wagon-combo__text">
-                                    <span class="border-box"></span>
-                                    <p>Asientos posicionados de frente</p>
-                                </div>
                             </div>
-                            <div class="col-xs-24 col-sm-12 col-lg-6">
-                                <div class="wagon-combo__text">
-                                    <span class="gray-box"></span>
-                                    <p>Asientos reservados</p>
+                            <div class="col-sm-24">
+                                <div class="col-xs-24 col-reset wagon-content">
+                                    <div class="col-xs-24 col-sm-12 col-lg-6">
+                                        <div class="wagon-combo__text">
+                                            <span class="border-box"></span>
+                                            <p>Asientos posicionados de frente</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-12 col-lg-6">
+                                        <div class="wagon-combo__text">
+                                            <span class="gray-box"></span>
+                                            <p>Asientos reservados</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-12 col-lg-6">
+                                        <div class="wagon-combo__text">
+                                            <span class="blue-box"></span>
+                                            <p>Asientos disponibles</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-12 col-lg-6">
+                                        <div class="wagon-combo__text">
+                                            <span class="green-box"></span>
+                                            <p>Asientos seleccionados</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-24 col-sm-12 col-lg-6">
-                                <div class="wagon-combo__text">
-                                    <span class="blue-box"></span>
-                                    <p>Asientos disponibles</p>
-                                </div>
-                            </div>
-                            <div class="col-xs-24 col-sm-12 col-lg-6">
-                                <div class="wagon-combo__text">
-                                    <span class="green-box"></span>
-                                    <p>Asientos seleccionados</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="center">
-                            <div class="js-wagon__slider">
-                                <div class="js-wagon__item">
+                                <div class="center">
                                     <div class="select-seat {{getWagonType2(wagon)}}" id="VC">
                                         
                                         <div class="wagon-img-classic">

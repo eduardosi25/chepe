@@ -4047,7 +4047,6 @@ span.orange {
 .select-seat__text span {
     font-weight: 600;
 }
-
 .btn-set__reset.btn-set__alert {
     position: relative;
     width: 100%;
@@ -4145,6 +4144,11 @@ span.orange {
     float: left;
     top: 20px;
     margin-right: 10px;
+}
+.js-wagon__slider {
+    width: 100%;
+    position: relative;
+    display: inline-block;
 }
 
 /* Safari */
