@@ -81,8 +81,8 @@
             <div id="seatsnumbermax" data="3"></div>
 
             <div class="js-wagon__slider">
-                <div class="js-wagon__item">
-                    <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
+                <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
+                    <div class="js-wagon__item">   
                         <div class="row">
                             <div class="col-sm-24 center">
                                 <h3 class="c-two fontweight400"> {{wagon.name}} {{'Step5-P11' | translate}} {{wagon.type.numero_carro}}
