@@ -51,17 +51,6 @@ export class Step5Component implements OnInit {
       alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
       this.router.navigate(["/reservaciones"]);
     }
-
-    //Slick slider 
-    $('.js-wagon__slider').slick({
-      dots: true,
-      arrows: true,
-      infinite: false,
-      speed: 300,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    });
-   
   }
   goBack(): void {
     this.location.back();

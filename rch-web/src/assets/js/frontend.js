@@ -18,5 +18,16 @@ $(document).ready(function () {
             $(".modalbox").addClass("active");
             //$("body").removeClass("active");
         });
+
+        //Slick slider 
+        $('.js-wagon__slider').slick({
+            dots: true,
+            arrows: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+
      }, 1000);
  }); 
