@@ -68,7 +68,7 @@ export class Step5Component implements OnInit {
       this.selected_segment = segment;
     }
     else{
-      this.model.getTravel(travel0.id, travel0.id_src, travel0.id_dst, this.session.query.passengers.length).subscribe((response: Response<Travel>) => {
+      this.model.getTravel(travel0.id, travel0.id_src, travel0.id_dst, this.session.query.getTotalPassengers()).subscribe((response: Response<Travel>) => {
         for (var i = 0; i < segment.travels.length; i++) {
           let tt: Travel = segment.travels[i];
           if (tt.id == response.data.id && tt.id_src == response.data.id_src && tt.id_dst == response.data.id_dst) {
