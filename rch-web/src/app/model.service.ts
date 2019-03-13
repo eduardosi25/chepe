@@ -87,6 +87,7 @@ export class ModelService implements IModel {
     return this.impl.getWebPayUrl(b);
   }
   getTravel(id:number,id_src:number,id_dst:number,passenger:number):Observable<Response<Travel>>{
+    console.log(passenger)
     return this.impl.getTravel(id,id_src,id_dst,passenger);
   }
   getPaymentNotification(reference:number):Observable<Response<WebPayNotification>>{

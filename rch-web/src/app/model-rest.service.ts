@@ -79,10 +79,11 @@ export class ModelRestService implements IModel {
   getWebPayUrl(b:RouteBooking):Observable<Response<WebPay>>{
     return this.stdCall<WebPay>(WebPay,this.base+"/"+this.prefix+"/routes/booking","post",b,{},null,"put-booking");
   }
-  getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel>>{
+  getTravel(id:number,id_src:number,id_dst:number,passenger:number):Observable<Response<Travel>>{
     return this.stdCall<Travel>(Travel,this.base+"/"+this.prefix+"/travel/"+id,"get",null,{
       'src':id_src,
-      'dst':id_dst
+      'dst':id_dst,
+      'passenger':passenger
     });
   }
   getCountries():Observable<Response<Country[]>>{
