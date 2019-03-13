@@ -154,12 +154,12 @@
                     </div>
 
                     <div class=" col-xs-12 col-sm-3 center">
-                        <a class="btn btn-link c-one card" (click)="bookIt()" role="button" *ngIf="is_captcha_solved">
+                        <button class="btn btn-link c-one card"  (click)="bookIt()" role="button"  [disabled]="buttonFlag">
                             <div>
                                 <img src="assets/img/icon_card.png">
                             </div>
-                            <div>{{'Com1-P09' | translate}}</div>
-                        </a>
+                            <div>{{commit}}</div>
+                        </button>
                     </div>
 
                 </div>

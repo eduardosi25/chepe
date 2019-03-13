@@ -19,6 +19,7 @@ import { SeatBooking } from '../../model/seatbooking';
 import { Cost } from '../../model/cost';
 import { CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-commit',
@@ -27,7 +28,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommitComponent implements OnInit {
 
-  constructor(private location:Location, 
+  constructor(
+    private translate: TranslateService,
+    private location:Location, 
     private model:ModelService, 
     public session:SessionService,
     private router:Router,
@@ -42,11 +45,14 @@ export class CommitComponent implements OnInit {
     public notifBody1 = "";
     public isLoading = true;
     public route ;
+    public buttonFlag = true;
+    public commit;
     public routeX = "/reservaciones/" + this.session.route.name + "/confirmar";
   ngOnInit() {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
       this.router.navigate(["/reservaciones"]);return;
     }
+    this.commit = this.translate.instant('Com1-P11');
     this.segments = this.session.mkUnifiedSegments();
     this.session.segments = this.segments;
     this.is_captcha_solved = false;
@@ -118,7 +124,9 @@ export class CommitComponent implements OnInit {
     return costs2;
   }
   captchaSolved(captchaResponse: string){
-    this.is_captcha_solved=true;
+    this.buttonFlag = null;
+    this.commit = this.translate.instant('Com1-P09');
+    // this.is_captcha_solved=true;
     this.http.post('https://www.google.com/recaptcha/api/siteverify',{
       'secret':'6LdqDHQUAAAAALywsAfjmgqDg0k_O682N0XY7-3d',
       'response':captchaResponse
