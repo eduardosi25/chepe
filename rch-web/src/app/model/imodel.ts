@@ -20,7 +20,7 @@ export interface IModel{
     getRouteScheduleAvailable(id:number,query:AvailabilityQuery):Observable<Response<Schedule> >;
     saveRouteBooking(b:RouteBooking):Observable<Response<RouteBooking> >;
     getWebPayUrl(b:RouteBooking):Observable<Response<WebPay> >;
-    getTravel(id:number,id_src:number,id_dst:number):Observable<Response<Travel> >;
+    getTravel(id:number,id_src:number,id_dst:number,passenger:number):Observable<Response<Travel> >;
     getCountries():Observable<Response<Country[]>>;
     getPaymentNotification(reference:number):Observable<Response<WebPayNotification>>;
 }
