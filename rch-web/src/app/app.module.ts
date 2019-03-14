@@ -23,7 +23,8 @@ import { BillConfirmComponent } from './bill/bill-confirm/billConfirm.component'
 import { BillFiscalComponent } from './bill/bill-fiscal/billFiscal.component';
 import { BillSearchComponent } from './bill/bill-search/billSearch.component';
 import { BillService } from './billSession.service';
-
+import { LegalExpressComponent } from './info/legal/express/legal-express.component'
+import { LegalRegionalComponent } from './info/legal/regional/legal-regional.component'
 
 
 
@@ -42,7 +43,9 @@ import { BillService } from './billSession.service';
     BillRequestComponent,
     BillConfirmComponent,
     BillFiscalComponent,
-    BillSearchComponent
+    BillSearchComponent,
+    LegalExpressComponent,
+    LegalRegionalComponent
     
     //PaymentComponent
   ],

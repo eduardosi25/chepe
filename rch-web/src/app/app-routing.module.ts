@@ -11,6 +11,9 @@ import { BillRequestComponent } from './bill/bill-request/billRequest.component'
 import { BillConfirmComponent } from './bill/bill-confirm/billConfirm.component';
 import { BillFiscalComponent } from './bill/bill-fiscal/billFiscal.component';
 import { BillSearchComponent } from './bill/bill-search/billSearch.component';
+import { LegalExpressComponent } from './info/legal/express/legal-express.component'
+import { LegalRegionalComponent } from './info/legal/regional/legal-regional.component'
+
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -28,7 +31,10 @@ const routes: Routes = [
   { path: 'Facturacion-confirmacion', component: BillConfirmComponent },
   { path: 'Facturacion-DatosFiscales', component: BillFiscalComponent },
   { path: 'Facturacion-Search', component:  BillSearchComponent},
+  { path: 'terminos-y-condiciones-express1', component:  LegalExpressComponent},
+  { path: 'terminos-y-condiciones-regional1', component:  LegalRegionalComponent},
 
+  
   
 ];
 
