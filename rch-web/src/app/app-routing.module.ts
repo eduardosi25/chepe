@@ -25,14 +25,14 @@ const routes: Routes = [
   { path: 'contacto', component: ContactComponent },
   { path: 'historia', component: HistoryComponent },
   { path: 'terminos-y-condiciones', component: TacComponent },
-  { path: 'terminos-y-condiciones-express', component: TacExpressComponent },
+  { path: 'terminos-y-condiciones-express1', component: TacExpressComponent },
   { path: 'aviso-legal', component: LegalAdviceComponent },
   { path: 'Facturacion', component: BillRequestComponent },
   { path: 'Facturacion-confirmacion', component: BillConfirmComponent },
   { path: 'Facturacion-DatosFiscales', component: BillFiscalComponent },
   { path: 'Facturacion-Search', component:  BillSearchComponent},
-  { path: 'terminos-y-condiciones-express1', component:  LegalExpressComponent},
-  { path: 'terminos-y-condiciones-regional1', component:  LegalRegionalComponent},
+  { path: 'terminos-y-condiciones-express', component:  LegalExpressComponent},
+  { path: 'terminos-y-condiciones-regional', component:  LegalRegionalComponent},
 
   
   
