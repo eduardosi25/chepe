@@ -45,7 +45,7 @@ export class CommitComponent implements OnInit {
     public notifBody1 = "";
     public isLoading = true;
     public route ;
-    public buttonFlag = true;
+    public buttonFlag = null;
     public commit;
     public routeX = "/reservaciones/" + this.session.route.name + "/confirmar";
   ngOnInit() {
@@ -125,6 +125,7 @@ export class CommitComponent implements OnInit {
   }
   captchaSolved(captchaResponse: string){
     this.buttonFlag = null;
+    this.is_captcha_solved=true;
     this.commit = this.translate.instant('Com1-P09');
     // this.is_captcha_solved=true;
     this.http.post('https://www.google.com/recaptcha/api/siteverify',{
