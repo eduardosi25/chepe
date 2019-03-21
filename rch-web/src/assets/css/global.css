@@ -4373,6 +4373,10 @@ span.orange {
 .wagon__slider .slick-arrow.slick-next {
     right: 45%;
 }
+.wagon-content {
+    position: relative;
+    z-index: 10;
+}
 
 /*:::::::::::
 
@@ -4851,6 +4855,12 @@ FIXES RESPONSIVE
     }
     .seat-train {
         height: 1697px;
+    }
+    .wagon__slider .slick-arrow.slick-next {
+        right: 20%;
+    }
+    .wagon__slider .slick-arrow.slick-prev {
+        left: 20%;
     }
 }
 
