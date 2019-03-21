@@ -61,7 +61,7 @@ export class Step5Component implements OnInit {
           prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
           nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
       });
-    }, 500);
+    }, 1500);
    
   }
   goBack(): void {

@@ -4348,6 +4348,9 @@ span.orange {
 }
 
 /* slider */
+.wagon__slider {
+    padding-bottom: 50px;
+}
 .wagon__slider .select-seat.classic,
 .wagon__slider .select-seat.premium {
     top: -90px !important;
@@ -4365,10 +4368,10 @@ span.orange {
     position: absolute;
 }
 .wagon__slider .slick-arrow.slick-prev {
-    left: 40%;
+    left: 45%;
 }
 .wagon__slider .slick-arrow.slick-next {
-    right: 40%;
+    right: 45%;
 }
 
 /*:::::::::::
