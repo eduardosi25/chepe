@@ -4810,7 +4810,8 @@ FIXES RESPONSIVE
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
     }
-    .seat-train {
+    .seat-train,
+    .wagon__slider .seat-train {
         height: 1587px;
     }
     .classic .seat__border {
@@ -4853,7 +4854,8 @@ FIXES RESPONSIVE
     .modalbox-link {
         font-size: 17px;
     }
-    .seat-train {
+    .seat-train,
+    .wagon__slider .seat-train {
         height: 1697px;
     }
     .wagon__slider .slick-arrow.slick-next {
