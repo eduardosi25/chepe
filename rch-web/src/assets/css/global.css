@@ -4035,10 +4035,10 @@ span.orange {
 .select-seat__text {
     position: relative;
     max-width: 680px;
-    display: inline-block;
+    display: block;
     padding: 0 30px;
-    left: 35%;
-
+    margin: 0 auto;
+    text-align: center;
 }
 .select-seat__text p {
     color: #08265c;
@@ -4557,9 +4557,6 @@ FIXES RESPONSIVE
     .premium .seat__border {
         width: 96px;
         height: 111px;
-    }
-    .select-seat__text {
-        left: 31%;
     }
 
     /*-- Classic --*/
