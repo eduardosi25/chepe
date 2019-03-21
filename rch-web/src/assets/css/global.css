@@ -4347,6 +4347,29 @@ span.orange {
     color: #c9c9c9;
 }
 
+/* slider */
+.wagon__slider .select-seat.classic,
+.wagon__slider .select-seat.premium {
+    top: -90px !important;
+}
+.wagon__slider .seat-train {
+    height: 436px;
+}
+.wagon__slider .slick-arrow {
+    background: #67baaf;
+    color: #fff;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    bottom: 0;
+    position: absolute;
+}
+.wagon__slider .slick-arrow.slick-prev {
+    left: 40%;
+}
+.wagon__slider .slick-arrow.slick-next {
+    right: 40%;
+}
 
 /*:::::::::::
 

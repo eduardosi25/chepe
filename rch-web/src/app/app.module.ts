@@ -25,7 +25,6 @@ import { BillSearchComponent } from './bill/bill-search/billSearch.component';
 import { BillService } from './billSession.service';
 import { LegalExpressComponent } from './info/legal/express/legal-express.component'
 import { LegalRegionalComponent } from './info/legal/regional/legal-regional.component'
-import { OwlModule } from 'ngx-owl-carousel';
 
 
 
@@ -56,7 +55,6 @@ import { OwlModule } from 'ngx-owl-carousel';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    OwlModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
