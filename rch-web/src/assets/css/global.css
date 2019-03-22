@@ -4349,33 +4349,35 @@ span.orange {
 
 /* slider */
 .wagon__slider {
-    padding-bottom: 50px;
+    padding-top: 50px;
 }
 .wagon__slider .select-seat.classic,
 .wagon__slider .select-seat.premium {
-    top: -90px !important;
+    top: -110px !important;
 }
 .wagon__slider .seat-train {
     height: 436px;
 }
 .wagon__slider .slick-arrow {
-    background: #67baaf;
+    background: #f18a21;
     color: #fff;
     border: 0;
-    width: 40px;
+    width: 60px;
     height: 40px;
-    bottom: 0;
+    top: 70px;
     position: absolute;
+    border-radius: 7px;
 }
 .wagon__slider .slick-arrow.slick-prev {
-    left: 45%;
+    left: 25%;
 }
 .wagon__slider .slick-arrow.slick-next {
-    right: 45%;
+    right: 25%;
 }
 .wagon-content {
     position: relative;
     z-index: 10;
+    padding-top: 30px;
 }
 
 /*:::::::::::

@@ -53,7 +53,7 @@ export class Step5Component implements OnInit {
     }
     setTimeout(function(){
       $(".js-wagon__slider").slick({
-          infinite: true,
+          infinite: false,
           slidesToShow: 1,
           slideToScroll: 1,
           dots: false,
