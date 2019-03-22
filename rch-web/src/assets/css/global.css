@@ -4378,6 +4378,11 @@ span.orange {
 .wagon__slider .slick-arrow.slick-next {
     right: 25%;
 }
+.wagon__slider .slick-arrow.slick-disabled {
+    opacity: .3;
+    pointer-events: none;
+    background: #d2c3b4;
+}
 .wagon-content {
     position: relative;
     z-index: 10;
