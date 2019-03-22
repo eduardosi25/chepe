@@ -4369,7 +4369,7 @@ span.orange {
     z-index: 1;
 }
 .wagon__slider .slick-arrow:hover {
-    background: #cc7216;
+    background: #faf8f8;
 }
 .wagon__slider .slick-arrow.slick-prev {
     left: 30%;
