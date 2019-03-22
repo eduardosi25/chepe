@@ -4367,6 +4367,10 @@ span.orange {
     top: 70px;
     position: absolute;
     border-radius: 7px;
+    z-index: 1;
+}
+.wagon__slider .slick-arrow:hover {
+    background: #cc7216;
 }
 .wagon__slider .slick-arrow.slick-prev {
     left: 25%;
@@ -4857,11 +4861,15 @@ FIXES RESPONSIVE
     .wagon__slider .seat-train {
         height: 1697px;
     }
+    .wagon__slider .slick-arrow {
+        
+width: 30px;
+    }
     .wagon__slider .slick-arrow.slick-next {
-        right: 20%;
+        right: 10px;
     }
     .wagon__slider .slick-arrow.slick-prev {
-        left: 20%;
+        left: 10px;
     }
 }
 
