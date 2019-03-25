@@ -562,14 +562,7 @@ public Step1P92;
     this.a1('datepicker3'); this.a1('datepicker4');
     this.a1('destino1'); this.a1('destino2');
     this.a1('destino3'); this.a1('destino4');
-
-    if (this.session.route.pick_class && this.session.query.class == null) { this.flagDisabled = true; this.last_failure_motive = "Elige una clase."; this.a1('clase', 'orange'); this.step1 = this.translate.instant('Step1-P66'); return true; }
-    if (this.constStop == false) { this.a1('origen' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
-    if (this.constStop == true) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
-    if (this.constDate) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
-    if (this.constDateUnd) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P69'); return true; }
-    if (this.constDateInv) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P76'); return true; }
-
+    this.a1('pp')
     this.session.query2 = new AvailabilityQuery2(this.model, this.translate);
     var clase = this.session.query.class;
     var redondo = this.session.query.round;
@@ -578,6 +571,18 @@ public Step1P92;
     this.session.query2.class = clase;
     this.session.query2.round = redondo;
     this.session.query2.passengers = pax;
+    console.log(pax)
+    let l = pax[1] + pax[2]
+    if (this.session.route.pick_class && this.session.query.class == null) { this.flagDisabled = true; this.last_failure_motive = "Elige una clase."; this.a1('clase', 'orange'); this.step1 = this.translate.instant('Step1-P66'); return true; }
+    if(pax[1] < pax[8] ){this.a1('pp'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P95'); return true; }
+    if(l > 10){this.a1('pp'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P96'); return true; }
+    if (this.constStop == false) { this.a1('origen' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
+    if (this.constStop == true) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
+    if (this.constDate) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
+    if (this.constDateUnd) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P69'); return true; }
+    if (this.constDateInv) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P76'); return true; }
+
+    
     if (this.session.query.getTotalPassengers() <= 0) { this.flagDisabled = null; this.last_failure_motive = "Elige pasajeros."; this.a1('pasajeros', 'orange'); return true; }
     if (this.last_failure_motive == null) { this.flagDisabled = null; this.step1 = this.translate.instant('Step1-P64'); return true; }
 
