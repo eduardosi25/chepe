@@ -85,6 +85,7 @@ export class RouteBooking implements FromJSONable{
                 
                 if(p.id_passenger_type == 1){
                         arregloAdulto.push(p.id)
+                        p.parent_id = -1
                 }
                 if( p.id_passenger_type == 8)
                 {
