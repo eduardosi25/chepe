@@ -76,20 +76,22 @@ export class RouteBooking implements FromJSONable{
             let ptq:number = session.query.passengers[pt.id];
             
             for(var j=0;j<ptq;j++){
-                flag = flag + 1;
+                
                 var p:Person = new Person();
                 p.type = pt;
                 p.id_passenger_type = pt.id;
                 p.id = flag;
                 this.persons.push(p);
+                
                 if(p.id_passenger_type == 1){
                         arregloAdulto.push(p.id)
                 }
                 if( p.id_passenger_type == 8)
                 {
-                    p.child = true;
                     p.parent_id = arregloAdulto.shift();
+                    session.rb.persons[j].child = true
                 }
+                flag = flag + 1;
             }
         }
     }
