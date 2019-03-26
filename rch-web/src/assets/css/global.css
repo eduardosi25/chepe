@@ -156,7 +156,7 @@ ul.colored {
 }
 
 ul.colored li::before {
-    content: "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ ";
+    content: "⚈";
     padding-right: 5px;
 }
 
@@ -2310,7 +2310,7 @@ table.chepe.secondary tr:last-child {
     margin-bottom: 21px;
 }
 .select-seat.classic.regional .row-seats {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 .classic.regional .seat__border {
     width: 92px;
@@ -3600,8 +3600,8 @@ textarea {
     display: none;
 }
 
-.form-control__number::-webkit-inner-spin-button,
-Ãƒâ€šÃ‚Â .form-control__number::-webkit-outer-spin-button {
+.form-control__number::-webkit-inner-spin-button‚
+.form-control__number::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
@@ -3807,7 +3807,7 @@ span.orange {
     background-color:#f18a21;
 }
 
-.select-map {
+.select-mapÂ {
     position: relative;
 }
 
@@ -4035,10 +4035,10 @@ span.orange {
 .select-seat__text {
     position: relative;
     max-width: 680px;
-    display: inline-block;
+    display: block;
     padding: 0 30px;
-    left: 35%;
-
+    margin: 0 auto;
+    text-align: center;
 }
 .select-seat__text p {
     color: #08265c;
@@ -4343,6 +4343,48 @@ span.orange {
     color: #c9c9c9;
 }
 
+/* slider */
+.wagon__slider {
+    padding-top: 50px;
+}
+.wagon__slider .select-seat.classic,
+.wagon__slider .select-seat.premium {
+    top: -110px !important;
+}
+.wagon__slider .seat-train {
+    height: 466px;
+}
+.wagon__slider .slick-arrow {
+    border: 1px solid #f18a21;
+    color: #f18a21;
+    width: 60px;
+    height: 40px;
+    top: 70px;
+    position: absolute;
+    border-radius: 7px;
+    z-index: 1;
+}
+.wagon__slider .slick-arrow:hover {
+    background: #faf8f8;
+}
+.wagon__slider .slick-arrow.slick-prev {
+    left: 30%;
+}
+.wagon__slider .slick-arrow.slick-next {
+    right: 30%;
+}
+.wagon__slider .slick-arrow.slick-disabled {
+    opacity: .3;
+    pointer-events: none;
+    background: #ffffff;
+    border-color: #c9c2ba;
+    color: #c9c2ba;
+}
+.wagon-content {
+    position: relative;
+    z-index: 10;
+    padding-top: 30px;
+}
 
 /*:::::::::::
 
@@ -4524,9 +4566,6 @@ FIXES RESPONSIVE
         width: 96px;
         height: 111px;
     }
-    .select-seat__text {
-        left: 31%;
-    }
 
     /*-- Classic --*/
     .select-seat.classic .row-seats .seat {
@@ -4543,7 +4582,7 @@ FIXES RESPONSIVE
         margin-bottom: 17px;
     }
     .select-seat.classic .block-seats {
-        margin-top: 318x;
+        margin-top: 318px;
         margin-right: -33px;
         margin-left: -1px;
     }
@@ -4755,7 +4794,7 @@ FIXES RESPONSIVE
     .select-seat.classic {
         top: 40px;
     }
-    .my-tooltip.tooltip-default {
+    .my-tooltip.tooltip-defaultÂ {
         right: 30px;
     }
     .tooltip-default .tooltiptext {
@@ -4775,8 +4814,10 @@ FIXES RESPONSIVE
         -moz-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
+        max-width: 100%;
     }
-    .seat-train {
+    .seat-train,
+    .wagon__slider .seat-train {
         height: 1587px;
     }
     .classic .seat__border {
@@ -4810,6 +4851,18 @@ FIXES RESPONSIVE
     .img-responsive {
         opacity: 0;
     }
+    .wagon__slider .slick-arrow.slick-prev {
+        left: 35%;
+    }
+    .wagon__slider .slick-arrow.slick-next {
+        right: 35%;
+    }
+    .wagon__slider .select-seat.classic,
+    .wagon__slider .select-seat.premium {
+
+top: 20px !important;
+
+}
 }
 
 @media (max-width: 768px) {
@@ -4819,8 +4872,18 @@ FIXES RESPONSIVE
     .modalbox-link {
         font-size: 17px;
     }
-    .seat-train {
+    .seat-train,
+    .wagon__slider .seat-train {
         height: 1697px;
+    }
+    .wagon__slider .slick-arrow {
+        width: 30px;
+    }
+    .wagon__slider .slick-arrow.slick-next {
+        right: 10px;
+    }
+    .wagon__slider .slick-arrow.slick-prev {
+        left: 10px;
     }
 }
 
@@ -4849,6 +4912,9 @@ FIXES RESPONSIVE
     .alert-text .btn-link__orange {
         float: inherit;
         text-align: center;
+    }
+    .wagon__slider .select-seat.classic, .wagon__slider .select-seat.premium {
+        right: 10px;
     }
 }
 

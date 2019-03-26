@@ -46,11 +46,24 @@ export class Step5Component implements OnInit {
     }
     this.segments = this.session.mkUnifiedSegments();
     if (this.session && this.segments && this.segments.length > 0) {
+      console.log(this.session)
       this.setSelectedSegment(this.segments[0]);
     } else {
       alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
       this.router.navigate(["/reservaciones"]);
     }
+    setTimeout(function(){
+      $(".js-wagon__slider").slick({
+          infinite: false,
+          slidesToShow: 1,
+          slideToScroll: 1,
+          dots: false,
+          arrows: true,
+          prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+          nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+      });
+    }, 1500);
+   
   }
   goBack(): void {
     this.location.back();
