@@ -4917,6 +4917,9 @@ top: 20px !important;
         float: inherit;
         text-align: center;
     }
+    .wagon__slider .select-seat.classic, .wagon__slider .select-seat.premium {
+        right: 10px;
+    }
 }
 
 @media (max-width:480px) {
