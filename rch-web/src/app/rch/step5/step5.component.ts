@@ -46,6 +46,7 @@ export class Step5Component implements OnInit {
     }
     this.segments = this.session.mkUnifiedSegments();
     if (this.session && this.segments && this.segments.length > 0) {
+      console.log(this.session)
       this.setSelectedSegment(this.segments[0]);
     } else {
       alert("No se detectaron viajes elegidos en la selección de itinerario, por favor, vuelva a hacer su selección.");
