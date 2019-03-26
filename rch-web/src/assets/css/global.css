@@ -4669,6 +4669,12 @@ FIXES RESPONSIVE
     .select-seat.classic .row-seats {
         margin-bottom: 16px;
     }
+    .wagon__slider .slick-arrow.slick-prev {
+        left: 20%;
+    }
+    .wagon__slider .slick-arrow.slick-next {
+        right: 20%;
+    }
 }
 
 @media (max-width: 1089px) {
@@ -4819,6 +4825,7 @@ FIXES RESPONSIVE
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
         max-width: 100%;
+        margin-top: -50px;
     }
     .seat-train,
     .wagon__slider .seat-train {
@@ -4856,17 +4863,15 @@ FIXES RESPONSIVE
         opacity: 0;
     }
     .wagon__slider .slick-arrow.slick-prev {
-        left: 35%;
+        left: 5%;
     }
     .wagon__slider .slick-arrow.slick-next {
-        right: 35%;
+        right: 5%;
     }
     .wagon__slider .select-seat.classic,
     .wagon__slider .select-seat.premium {
-
-top: 20px !important;
-
-}
+        top: 20px !important;
+    }
 }
 
 @media (max-width: 768px) {
