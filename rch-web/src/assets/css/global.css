@@ -156,7 +156,7 @@ ul.colored {
 }
 
 ul.colored li::before {
-    content: "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ ";
+    content: "⚈";
     padding-right: 5px;
 }
 
@@ -3600,8 +3600,8 @@ textarea {
     display: none;
 }
 
-.form-control__number::-webkit-inner-spin-button,
-Ãƒâ€šÃ‚Â .form-control__number::-webkit-outer-spin-button {
+.form-control__number::-webkit-inner-spin-button‚
+.form-control__number::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
@@ -3807,7 +3807,7 @@ span.orange {
     background-color:#f18a21;
 }
 
-.select-map {
+.select-mapÂ {
     position: relative;
 }
 
@@ -4356,7 +4356,7 @@ span.orange {
     top: -110px !important;
 }
 .wagon__slider .seat-train {
-    height: 436px;
+    height: 466px;
 }
 .wagon__slider .slick-arrow {
     border: 1px solid #f18a21;
@@ -4586,7 +4586,7 @@ FIXES RESPONSIVE
         margin-bottom: 17px;
     }
     .select-seat.classic .block-seats {
-        margin-top: 318x;
+        margin-top: 318px;
         margin-right: -33px;
         margin-left: -1px;
     }
@@ -4798,7 +4798,7 @@ FIXES RESPONSIVE
     .select-seat.classic {
         top: 40px;
     }
-    .my-tooltip.tooltip-default {
+    .my-tooltip.tooltip-defaultÂ {
         right: 30px;
     }
     .tooltip-default .tooltiptext {
@@ -4818,6 +4818,7 @@ FIXES RESPONSIVE
         -moz-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
+        max-width: 100%;
     }
     .seat-train,
     .wagon__slider .seat-train {
@@ -4860,6 +4861,12 @@ FIXES RESPONSIVE
     .wagon__slider .slick-arrow.slick-next {
         right: 35%;
     }
+    .wagon__slider .select-seat.classic,
+    .wagon__slider .select-seat.premium {
+
+top: 20px !important;
+
+}
 }
 
 @media (max-width: 768px) {
