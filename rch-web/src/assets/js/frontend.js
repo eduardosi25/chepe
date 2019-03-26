@@ -1,5 +1,16 @@
 $(document).ready(function () {
     setTimeout(function(){
+
+                //Slick slider 
+                $('.js-wagon__slider').slick({
+                    dots: true,
+                    arrows: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                });
+                
         //-- Close modal
         $(".js-open__modal").click(function(e){
             $(".modalbox").addClass("active");
@@ -19,15 +30,7 @@ $(document).ready(function () {
             //$("body").removeClass("active");
         });
 
-        //Slick slider 
-        $('.js-wagon__slider').slick({
-            dots: true,
-            arrows: true,
-            infinite: false,
-            speed: 300,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        });
+
 
      }, 1000);
  }); 
