@@ -4893,6 +4893,9 @@ FIXES RESPONSIVE
     .wagon__slider .slick-arrow.slick-prev {
         left: 10px;
     }
+    .select-seat.classic .block-seats {
+        margin-top: 288px;
+    }
 }
 
 @media (max-width:600px) {
