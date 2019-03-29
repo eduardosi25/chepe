@@ -4890,10 +4890,11 @@ FIXES RESPONSIVE
         left: 10px;
     }
     .select-seat.classic .block-seats {
-        margin-top: 288px;
+        margin-top: 288px; 
     }
 }
 
+/* mobile */
 @media (max-width:600px) {
     #webpay_sframe {
         width: 100% !important;
