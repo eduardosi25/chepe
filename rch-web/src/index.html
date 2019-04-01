@@ -96,6 +96,18 @@
         $('.equalheight').matchHeight();
       });
     })(jQuery);
+
+    // Random video
+    randomNumber = Math.floor(Math.random()*3+1);
+
+    // Window load
+    window.onload = function() {
+      if (randomNumber == 3) {
+        console.log(">>> Esconder video");
+        $("#modal-video").addClass("video--hide");
+      }
+    }
+
   </script>
 </body>
 
