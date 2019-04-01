@@ -4386,6 +4386,10 @@ span.orange {
     padding-top: 30px;
 }
 
+.modal-video.video--hide {
+    display: none !important; 
+}
+
 /*:::::::::::
 
 FIXES RESPONSIVE 
