@@ -24,11 +24,11 @@
                     <div class="col-sm-24 no-gutter-left-mobile">
                         <span class="title-underline-half c-border-one"></span>
                     </div>
-
+<!-- Inicia tabla anterior de horarios -->
 
                     <div class="col-sm-22 gap-small-left margintop30">
                         <div class="table-responsive">
-                                <table class="table chepe">
+                                <!-- <table class="table chepe">
                                         <tbody *ngIf="isRegional(route)">
                                             <tr>
                                                 <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>
@@ -64,6 +64,8 @@
                                             </tr>
         
                                         </tbody>
+
+                                        
                                         <tbody *ngIf="!isRegional(route)">
                                             <tr>
                                                 <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>                                      
@@ -99,7 +101,10 @@
                                             </tr>
         
                                         </tbody>
-                                    </table>
+                                    </table> -->
+
+<!-- Finaliza tabla anterior de horarios -->
+
                             <!-- <table class="table chepe">
 
                                 <tbody>
@@ -160,7 +165,236 @@
                         </a>
                     </div>
                 </div>
+<!-- Inicia tabla nueva de horarios -->
+                <div class="col-sm-22 gap-small-left margintop30">
+                    <div class="table-responsive">
+                            <table class="table chepe">
+                                    <tbody *ngIf="isRegional(route)">
+                                        <tr>
+                                            <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>
+                                            <td colspan="2" *ngIf="isRegional(route)">{{'Main-P13' | translate}}</td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <span >{{'Main-P01' | translate}}</span>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three border2">{{'Faq-P66' | translate}}</th>
+                                            <th class="bg-three border2">{{'Faq-P67' | translate}}</th>
+                                            <th class="bg-three border2">{{'Faq-P68' | translate}}</th>
+                                          </tr>
+                                          <tr>
+                                            <td>Chihuahua-Cuahutémoc</td>
+                                            <td>06:00</td>
+                                            <td>08:25</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Cuahutémoc-San Juanito</td>
+                                            <td>08:25</td>
+                                            <td>11:03</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>San Juanito-Creel</td>
+                                            <td>11:03</td>
+                                            <td>11:47</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Creel-Pitorreal</td>
+                                            <td>11:47</td>
+                                            <td>12:42</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Pitorreal-Divisadero</td>
+                                            <td>12:42</td>
+                                            <td>13:41</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Divisadero-Posada Barrancas</td>
+                                            <td>13:41</td>
+                                            <td>13:52</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Posada Barrancas-San Rafael</td>
+                                            <td>13:52</td>
+                                            <td>14:16</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>San Rafael-Cuiteco</td>
+                                            <td>14:16</td>
+                                            <td>14:58</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Cuiteco-Bahuichivo</td>
+                                            <td>14:58</td>
+                                            <td>15:12</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Bahuichivo-Témoris</td>
+                                            <td>15:12</td>
+                                            <td>16:12</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Témoris-El Fuerte</td>
+                                            <td>16:12</td>
+                                            <td>19:19</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>El Fuerte-Los Mochis</td>
+                                            <td>19:19</td>
+                                            <td>21:28</td>
+                                          </tr>
 
+                                          <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                          </tr>
+                        
+                                          <tr>
+                                            <th class="bg-three border2">{{'Faq-P69' | translate}}</th>
+                                            <th class="bg-three border2">{{'Faq-P70' | translate}}</th>
+                                            <th class="bg-three border2">{{'Faq-P71' | translate}}</th>
+                                          </tr>
+                                          <tr>
+                                            <td>Los Mochis-El Fuerte</td>
+                                            <td>06:00</td>
+                                            <td>08:19</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>El Fuerte-Témoris</td>
+                                            <td>08:19</td>
+                                            <td>11:24</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Témoris-Bahuichivo</td>
+                                            <td>11:24</td>
+                                            <td>12:24</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Bahuichivo-Cuiteco</td>
+                                            <td>12:24</td>
+                                            <td>12:35</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Cuiteco-San Rafael</td>
+                                            <td>12:35</td>
+                                            <td>13:15</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>San Rafael-Posada Barrancas</td>
+                                            <td>13:15</td>
+                                            <td>13:46</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Posada Barrancas-Divisadero</td>
+                                            <td>13:46</td>
+                                            <td>13:50</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Divisadero-Pitorreal</td>
+                                            <td>13:50</td>
+                                            <td>14:45</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Pitorreal-Creel</td>
+                                            <td>14:45</td>
+                                            <td>15:39</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Creel-San Juanito</td>
+                                            <td>15:39</td>
+                                            <td>16:23</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>San Juanito-Cuahutémoc</td>
+                                            <td>16:23</td>
+                                            <td>19:07</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Cuahutémoc-Chihuahua</td>
+                                            <td>19:07</td>
+                                            <td>21:34</td>
+                                          </tr>
+    
+                                    </tbody>
+
+                                    
+                                    <tbody *ngIf="!isRegional(route)">
+                                        <tr>
+                                            <th class="bg-three border2" scope="row">{{'Main-P00' | translate}}</th>                                      
+                                            <td colspan="2">{{'Main-P10' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <span >{{'Main-P01' | translate}}</span>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three border2">{{'Faq-P61' | translate}}</th>
+                                            <th class="bg-three border2">{{'Faq-P62' | translate}}</th>
+                                            <th class="bg-three border2">{{'Faq-P63' | translate}}</th>
+                                          </tr>
+                                          <tr>
+                                            <td>Creel-Divisadero</td>
+                                            <td>07:30</td>
+                                            <td>08:47</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Divisadero-El Fuerte</td>
+                                            <td>09:02</td>
+                                            <td>14:24</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>El Fuerte-Los Mochis</td>
+                                            <td>14:29</td>
+                                            <td>16:35</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Los Mochis-El Fuerte</td>
+                                            <td>07:30</td>
+                                            <td>09:44</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>El Fuerte-Divisadero</td>
+                                            <td>09:49</td>
+                                            <td>15:20</td>
+                                          </tr>
+                          
+                                          <tr>
+                                            <td>Divisadero-Creel</td>
+                                            <td>15:53</td>
+                                            <td>17:14</td>
+                                          </tr>
+
+    
+                                    </tbody>
+                                </table>
+<!-- Finaliza tabla nueva de horarios -->
 
             </div>
         </div>
@@ -178,6 +412,8 @@
                         <img src="{{selected_route.img_map_full | translate}}" class="img-responsive" />
                     </div>
 
+                    
+
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -185,4 +421,5 @@
         </div>
         <!-- /.modal -->
     </div>
+
 </div>
