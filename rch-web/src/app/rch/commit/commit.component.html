@@ -13,24 +13,6 @@
 
                 </div>
             </div>
-            <div class="col-sm-8 col-md-offset-1 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.rb">
-                <table class="table uppercase">
-                    <tbody>
-                        <tr>
-                            <th class="bg-three border2 c-one" scope="row">{{'Costo por pasajero' | translate}}</th>
-                            <td class="bg-two-darker border2 c-one">{{session.schedule.cost / session.query.getTotalPassengers()| currency}} {{session.schedule.currency}}</td>
-                        </tr>
-                        <tr>
-                            <th class="bg-three c-one" scope="row">{{'Com1-P00' | translate}}</th>
-                            <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
-                        </tr>
-                        <tr>
-                            <th class="bg-three border2 c-one" scope="row">Total</th>
-                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{session.schedule.cost | currency}} {{c.currency}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
 
         <div class="row">
@@ -38,6 +20,8 @@
                 <div class="row">
                     <div class="col-sm-24 gap-left">
                         <div class="table-responsive">
+                            <br>
+                            <br>
                             <table class="table chepe three center">
 
                                 <thead class="uppercase">
@@ -127,17 +111,72 @@
     </div>-->
         <div class="row margintop40 marginbot40">
             <div class="col-sm-24 no-gutter-left">
+                
                 <div class="row">
-
-                    <div class="col-sm-10 col-md-offset-15 col-md-6 paddingtop20 no-gutter-right">
-                        <re-captcha (resolved)="captchaSolved($event)"></re-captcha>
-                    </div>
+                        <div class="col-sm-10 col-md-offset-3 col-md-6 paddingtop20 no-gutter-left">
+                                <table class="table uppercase">
+                                        <thead class="uppercase">
+                                                <tr>
+                                                    <th>TIPO PASAJERO</th>
+                                                    <th>NOMBRE</th>
+                                                    <th>APELLIDO</th>
+                                                </tr>
+                                            </thead>
+                                    <tbody *ngFor="let person of session.rb.persons;let i = index;">
+                                        <tr>
+                                            <td class="bg-two-medium" *ngIf="person.id_passenger_type == '1'">ADULTO</td>
+                                            <td class="bg-two-medium" *ngIf="person.id_passenger_type == '2'">MENOR</td>
+                                            <td class="bg-two-medium" *ngIf="person.id_passenger_type == '8'">INFANTE</td>
+                                        
+                                            <td class="bg-three">{{person.name}}</td>
+                                        
+                                            <td class="bg-two-medium">{{person.lastname}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <!-- <tbody>
+                                        <tr>
+                                            <th class="bg-three c-one" scope="row">EMAIL</th>
+                                            <td class="bg-two-darker c-one">{{session.rb.etickets_email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three c-one" scope="row">TELEFONO</th>
+                                            <td class="bg-two-darker c-one">{{session.rb.etickets_phone}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three c-one" scope="row">TELEFONO DE EMERGENCIA</th>
+                                            <td class="bg-two-darker c-one">{{session.rb.etickets_emergency_contact}}</td>
+                                        </tr>
+                                    </tbody> -->
+                                </table>
+                            </div>
+                        <div class="col-sm-10 col-md-offset-14 col-md-6 paddingtop20 no-gutter-right" style="float: left;position: absolute;left: auto;" *ngIf="session.rb">
+                                <table class="table uppercase">
+                                    <tbody>
+                                        <tr>
+                                            <th class="bg-three border2 c-one" scope="row">{{'Costo por pasajero' | translate}}</th>
+                                            <td class="bg-two-darker border2 c-one">{{session.schedule.cost / session.query.getTotalPassengers()| currency}} {{session.schedule.currency}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three c-one" scope="row">{{'Com1-P00' | translate}}</th>
+                                            <td class="bg-two-darker c-one">{{session.query.getTotalPassengers()}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-three border2 c-one" scope="row">Total</th>
+                                            <td class="bg-two-darker border2 c-one" *ngFor="let c of getCosts()">{{session.schedule.cost | currency}} {{c.currency}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                   
 
                 </div>
             </div>
-        </div>
-        <div class="row margintop20 marginbot40">
-            <div class="col-sm-24 no-gutter-left">
+            
+            <div class="col-sm-24 no-gutter-left" style="margin: inherit;">
+                    <div class="col-sm-10 col-md-offset-14 col-md-6 paddingtop20 no-gutter-right">
+                            <re-captcha (resolved)="captchaSolved($event)"></re-captcha>
+                        </div>
                 <div class="row">
 
                     <div class="col-sm-15 gap-left">

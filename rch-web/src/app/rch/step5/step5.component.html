@@ -74,6 +74,71 @@
             </div>
         </div>-->
 
+        <div class="row">
+                <div class="col-sm-20 no-gutter-left">
+                    <div class="row">
+                        <div class="col-sm-24 gap-left">
+                            <div class="table-responsive">
+                                    <br>
+                                    <br>
+                                <table class="table chepe three center">
+    
+                                    <thead class="uppercase">
+                                        <tr>
+                                            <th>{{'Step4-P00' | translate}}</th>
+                                            <th>{{'Step4-P01' | translate}}</th>
+                                            <th>{{'Step4-P02' | translate}}</th>
+                                            <th>{{'Step4-P03' | translate}}</th>
+                                            <th>{{'Step4-P04' | translate}}</th>
+                                            <th>{{'Step4-P05' | translate}}</th>
+                                            <th>{{'Step4-P06' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr  *ngFor="let segment of segments; let i = index" >
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }">{{segment.n}}</td>
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }" class="bg-two-medium">{{segment.src.name}}</td>
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }">{{segment.selected_travel.getDate()}}</td>
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }" class="bg-three">{{segment.selected_travel.departure.time}} hrs</td>
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }" class="bg-two-medium">{{segment.dst.name}}</td>
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }">{{segment.selected_travel.arrival.time}} hrs</td>
+                                            <td [ngStyle]="{'background-color':(selected_segment.n - 1)== i ? '#FF9F45':'transparent' }" class="bg-three">{{segment.selected_travel.getDuration()}}</td>
+                                        </tr>  
+                                    </tbody>
+                                </table>
+                                <br>
+                                <br>
+                            <table class="table chepe three center">
+
+                                <thead class="uppercase">
+                                    <tr>
+                                        <th>{{'Step4-P00' | translate}}</th>
+                                        <th>{{'Step4-P01' | translate}}</th>
+                                        <th>{{'Step4-P02' | translate}}</th>
+                                        <th>{{'Step4-P03' | translate}}</th>
+                                        <th>{{'Step4-P04' | translate}}</th>
+                                        <th>{{'Step4-P05' | translate}}</th>
+                                        <th>{{'Step4-P06' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                                <td>{{segments[selected_segment.n - 1].n}}</td>
+                                                <td class="bg-two-medium">{{segments[selected_segment.n - 1].src.name}}</td>
+                                                <td>{{segments[selected_segment.n - 1].selected_travel.getDate()}}</td>
+                                                <td class="bg-three">{{segments[selected_segment.n - 1].selected_travel.departure.time}} hrs</td>
+                                                <td class="bg-two-medium">{{segments[selected_segment.n - 1].dst.name}}</td>
+                                                <td>{{segments[selected_segment.n - 1].selected_travel.arrival.time}} hrs</td>
+                                                <td class="bg-three">{{segments[selected_segment.n - 1].selected_travel.getDuration()}}</td>
+                                            </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
 
         <div class="row margintop20" *ngIf="selected_segment ">
 

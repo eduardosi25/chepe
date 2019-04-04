@@ -1,19 +1,17 @@
 <div class="main-content">
-  <div class="container">
-      <div class="row">
-          <div class="col-sm-16 no-gutter-left">
-              <div class="row">
-                  <div class=" col-sm-20 gap-left">
-                      <h1 class="c-two">{{session.route.name}}</h1>
-                  </div>
-
-                  <div class="col-sm-24 no-gutter-left-mobile">
-                      <span class="title-underline c-border-two"></span>
-                  </div>
-
-              </div>
-          </div>
-          <!-- <div class="col-sm-8 col-md-offset-1 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.rb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-16 no-gutter-left">
+                <div class="row">
+                    <div class=" col-sm-20 gap-left">
+                        <h1 class="c-two">{{route1.seats[0].route.name}}</h1>
+                    </div>
+                    <div class="col-sm-24 no-gutter-left-mobile">
+                        <span class="title-underline c-border-two"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-8 col-md-offset-1 col-md-6 paddingtop20 no-gutter-right" *ngIf="session.rb">
               <table class="table uppercase">
                   <tbody>
                       <tr>
@@ -27,124 +25,102 @@
                   </tbody>
               </table>
           </div> -->
-      </div>
+        </div>
 
-      <!-- <div class="row">
-          <div class="col-sm-20 no-gutter-left">
-              <div class="row">
-                  <div class="col-sm-24 gap-left">
-                      <div class="table-responsive">
-                          <table class="table chepe three center">
+        <div class="row">
+            <div class="col-sm-24 no-gutter-left">
+                <div class="row">
+                    <div class="col-sm-24">
+                        <div class="table-responsive">
+                            <br>
+                            <br>
+                            <table class="table chepe three center">
 
-                              <thead class="uppercase">
-                                  <tr>
-                                      <th>Escalas</th>
-                                      <th>Origen</th>
-                                      <th>Fecha</th>
-                                      <th>Salida</th>
-                                      <th>Destino</th>
-                                      <th>Llegada</th>
-                                      <th>Duración</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr *ngFor="let segment of segments">
-                                      <td>{{segment.n}}</td>
-                                      <td class="bg-two-medium">{{segment.src.name}}</td>
-                                      <td>{{segment.selected_travel.getDate()}}</td>
-                                      <td class="bg-three">{{segment.selected_travel.departure.time}} hrs</td>
-                                      <td class="bg-two-medium">{{segment.dst.name}}</td>
-                                      <td>{{segment.selected_travel.arrival.time}} hrs</td>
-                                      <td class="bg-three">{{segment.selected_travel.getDuration()}}</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div> -->
-      <iframe 
-      id="webpay_sframe"
-      [src]="url"
-        height="560px"    
-        width="460px"    
-        frameborder="0" 
-        scrolling="no"
-        seamless="seamless"
-        *ngIf="url!==undefined && url!==null"></iframe>
-      <br/>
-      <!--<div class="col-sm-24 no-gutter-left">
-      <div class="row">
-          
-          <div class=" col-sm-24 gap-left">
-                  <h4 class="no-bold">Elegir forma de pago</h4>
-          </div>
-      </div>
-      <div class="row margintop20">
-          <div class=" col-sm-8 gap-left">
-                  <div class="checkbox">
-                  <label>
-                      <input type="radio" name="payment-method" value="visa-maestro-mastercard"> <img height="40px" src="assets/img/reservacion/visa-maestro-mastercard.png">
-                  </label>
-                  </div>
-          </div>
-          
-          <div class=" col-sm-8">
-                  <div class="checkbox">
-                  <label>
-                      <input type="radio" name="payment-method" value="paypal"> <img height="40px" src="assets/img/reservacion/paypal.jpg">
-                  </label>
-                  </div>
-          </div>
-          
-      </div>
-      <div class="row margintop20">
-          
-          <div class=" col-sm-24 gap-left">
-                  <h5 class="">Los boletos y asientos quedarán confirmados al finalizar el pago. </h5>
-          </div>
-      </div>
-  </div>-->
-      <!-- <div class="row margintop40 marginbot40">
-          <div class="col-sm-24 no-gutter-left">
-              <div class="row">
+                                <thead class="uppercase">
+                                    <tr>
+                                        <th>{{'Com1-P01' | translate}}</th>
+                                        <th>{{'Com1-P02' | translate}}</th>
+                                        <th>{{'Com1-P03' | translate}}</th>
+                                        <th>{{'Com1-P04' | translate}}</th>
+                                        <th>{{'Com1-P05' | translate}}</th>
+                                        <th>{{'Com1-P06' | translate}}</th>
+                                        <th>{{'Com1-P07' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let segment of tabla1">
+                                        <td>{{segment.n}}</td>
+                                        <td class="bg-two-medium">{{segment.src.name}}</td>
+                                        <td>{{segment.selected_travel.getDate()}}</td>
+                                        <td class="bg-three">{{segment.selected_travel.arrival.time}} hrs</td>
+                                        <td class="bg-two-medium">{{segment.dst.name}}</td>
+                                        <td>{{segment.selected_travel.departure.time}} hrs</td>
+                                        <td class="bg-three">{{segment.selected_travel.getDuration()}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-24 gap-left">
+                        <p>{{'Com1-P10' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                  <div class="col-sm-18 gap-left">
-                      <re-captcha (resolved)="captchaSolved($event)"></re-captcha>
-                  </div>
 
-              </div>
-          </div>
-      </div> -->
-      <div class="row margintop20 marginbot40">
-          <div class="col-sm-24 no-gutter-left">
-              <div class="row">
+        <div class="col-sm-24 no-gutter-left">
+            <div class="row">
+                <div class="col-sm-10 col-md-offset-3 col-md-6 paddingtop20 no-gutter-left">
+                    <table class="table uppercase">
+                        <thead class="uppercase">
+                            <tr>
+                                <th>TIPO PASAJERO</th>
+                                <th>NOMBRE</th>
+                                <th>APELLIDO</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let person of tabla.rb.persons;let i = index;">
+                            <tr>
+                                <td class="bg-two-medium" *ngIf="person.id_passenger_type == '1'">ADULTO</td>
+                                <td class="bg-two-medium" *ngIf="person.id_passenger_type == '2'">MENOR</td>
+                                <td class="bg-two-medium" *ngIf="person.id_passenger_type == '8'">INFANTE</td>
 
-                  <!-- <div class="col-sm-15 gap-left">
-                      <img width="120px" src="assets/img/secured-by-rapidssl.png">
-                  </div> -->
+                                <td class="bg-three">{{person.name}}</td>
 
-                  <!-- <div class="col-xs-12 col-sm-3 center">
-                      <a class="btn btn-link" (click)="goBack()" role="button">
-                          <div>
-                              <img src="assets/img/icon_left.png">
-                          </div>
-                          <div>Regresar</div>
-                      </a>
-                  </div> -->
+                                <td class="bg-two-medium">{{person.lastname}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                  <!-- <div class=" col-xs-12 col-sm-3 center">
-                      <a class="btn btn-link c-one card" (click)="bookIt()" role="button">
-                          <div>
-                              <img src="assets/img/icon_right.png">
-                          </div>
-                          <div>Reservar</div>
-                      </a>
-                  </div> -->
+                <iframe id="webpay_sframe" [src]="url" height="500px" width="260px" frameborder="0" scrolling="no"
+                    seamless="seamless" *ngIf="url!==undefined && url!==null"></iframe>
 
-              </div>
-          </div>
-      </div> 
-  </div>
+
+            </div>
+        </div>
+        <div class="col-sm-10 col-md-offset-13 col-md-6 paddingtop20 no-gutter-right">
+            <table class="table uppercase">
+                <tbody>
+                    <tr>
+                        <th class="bg-three border2 c-one" scope="row">{{'Costo por pasajero' | translate}}</th>
+                        <td class="bg-two-darker border2 c-one">{{schedule.cost / query.getTotalPassengers()| currency}}
+                            {{schedule.currency}}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-three c-one" scope="row">{{'Com1-P00' | translate}}</th>
+                        <td class="bg-two-darker c-one">{{query.getTotalPassengers()}}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-three border2 c-one" scope="row">Total</th>
+                        <td class="bg-two-darker border2 c-one">{{schedule.cost | currency}} {{schedule.currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>

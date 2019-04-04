@@ -74,8 +74,8 @@ export class CommitComponent implements OnInit {
   }
 
   public bookIt(){
-
-
+    let r = JSON.stringify( this.session.rb )
+    sessionStorage.setItem('route', r )
     this.isLoading = false
     this.displayModal = true;
     this.notifTitle = "";

@@ -183,9 +183,44 @@
                         </table> -->
                     </div>
                 </div>
+                
+              
                 <div class="col-sm-15 gap-left">
                    <p *ngIf="isRegional(route)">{{'Step1-P73' | translate}} <a href="/terminos-y-condiciones" target="_blank" class="link__orange text-bold">{{'Step1-P73.1' | translate}}</a>{{'Step1-P73.2' | translate}}</p>
                 </div>
+
+                <div class="row">
+                        <div class="col-sm-20 no-gutter-left">
+                            <div class="row">
+                                <div class="col-sm-24 gap-left">
+                                    <div class="table-responsive">
+                                            <br>
+                                            <br>
+                                        <table class="table chepe three center">
+            
+                                            <thead class="uppercase">
+                                                <tr>
+                                                    <th>{{'Step4-P00' | translate}}</th>
+                                                    <th>{{'Step4-P01' | translate}}</th>
+                                                    <th>{{'Step4-P02' | translate}}</th>
+                                                    <th>{{'Step4-P04' | translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let segment of trips ;let i = index">
+                                                    <td>{{i + 1}}</td>
+                                                    <td class="bg-two-medium">{{segment.id_src.name}}</td>
+                                                    <td>{{dateStr[i]}}</td>
+                                                    <td class="bg-two-medium">{{segment.id_dst.name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
                 <!-- title -->
                 <div class=" col-sm-20 gap-left">
                     <h3 class="c-two fontweight300">{{'Step1-P03' | translate}}</h3>
