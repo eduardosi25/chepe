@@ -40,6 +40,8 @@ export class Step5Component implements OnInit {
     public isLoading = true;
     public route ;
     public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
+    public slickAlive:boolean = true;
+
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments || !this.session.rb) {
       this.router.navigate(["/reservaciones"]); return;
@@ -260,10 +262,17 @@ export class Step5Component implements OnInit {
        
       } else {
         this.setSelectedSegment(this.segments[i + 1]);
-        
+        this.resetSlick();
       }
     }
   }
+  resetSlick(){
+    this.slickAlive = false;
+    setTimeout(()=>{
+      this.slickAlive = true;
+    },100);
+  }
+
   segment(){
    
   }
@@ -274,8 +283,9 @@ export class Step5Component implements OnInit {
         this.isLoading = false
         this.displayModalReturn = true;
         this.notifTitle = "";
-        this.notifBody = "¿Desea regresar a la escala anterior?";       
+        this.notifBody = "¿Desea regresar a la escala anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
         this.route = this.routeX;
+        this.resetSlick();
       //this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
       //}
     } else {
