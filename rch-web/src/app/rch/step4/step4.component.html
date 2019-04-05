@@ -14,7 +14,7 @@
 
                 </div>
             </div>
-            <app-cost-box></app-cost-box>
+            
             <rch-status></rch-status>
             <!--<div class="col-sm-8 col-md-offset-2 col-md-6 paddingtop20 no-gutter-right">
         <table class="table uppercase">
@@ -187,9 +187,12 @@
 
 
 
-
+        
 
         <div class="row margintop20 marginbot40">
+                <div class="col-xs-1 col-sm-11 center" style="float: right; display: flex;">
+                        <app-cost-box></app-cost-box>
+                        </div>
             <div class="col-sm-24 no-gutter-left">
                 <div class="row">
 
@@ -206,7 +209,7 @@
                         </div>
                         <small>{{'Step4-P23' | translate}}</small>
                     </div>
-
+                    
                     <div class="col-xs-12 col-sm-3 center">
                         <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso1" role="button">
                             <div>
