@@ -230,6 +230,19 @@ export class Step5Component implements OnInit {
   }
   onNext() {
     this.ocultarModales();
+    setTimeout(function(){
+      $(".js-go-button").click(function(){
+        $(".js-wagon__slider").slick({
+            infinite: false,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            dots: false,
+            arrows: true,
+            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+            nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+        });
+      });
+    },1000);
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs(); 
     if (i == (this.segments.length - 1) && r == 0) {
@@ -266,6 +279,19 @@ export class Step5Component implements OnInit {
   }
   onBack() {
     this.ocultarModales();
+    setTimeout(function(){
+      $(".js-go-button").click(function(){
+        $(".js-wagon__slider").slick({
+            infinite: false,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            dots: false,
+            arrows: true,
+            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+            nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+        });
+      });
+    },1000);
     let i: number = this.segments.indexOf(this.selected_segment);
     if (i != 0) {
         this.isLoading = false
