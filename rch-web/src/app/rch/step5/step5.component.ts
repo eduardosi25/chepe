@@ -248,14 +248,27 @@ export class Step5Component implements OnInit {
     if (i == (this.segments.length - 1) && r == 0) {
         this.isLoading = false
         this.route = "/reservaciones/"+ this.session.route.name +"/confirmar";
-       this.session.rb.seats = [];
-        for (var j = 0; j < this.segments.length; j++) {
-          let s: Segment = this.segments[j];
-          for (var k = 0; k < s.sbs.length; k++) {
-            let sb: SeatBooking = s.sbs[k];
-            this.session.rb.seats.push(sb);
+        this.session.rb.seats = [];
+          for (var j = 0; j < this.segments.length; j++) {
+            let s: Segment = this.segments[j];
+            for (var k = 0; k < s.sbs.length; k++) {
+              let sb: SeatBooking = s.sbs[k];
+              this.session.rb.seats.push(sb);
+            }
           }
-        }
+          setTimeout(function(){
+            $(".js-go-button").click(function(){
+              $(".js-wagon__slider").slick({
+                  infinite: false,
+                  slidesToShow: 1,
+                  slideToScroll: 1,
+                  dots: false,
+                  arrows: true,
+                  prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+                  nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+              });
+            });
+          },1000);
     } else {
       if (r > 0) {
         this.isLoading = false
@@ -307,6 +320,19 @@ export class Step5Component implements OnInit {
     this.displayModalReturn = true;
     this.notifTitle = "";
     this.notifBody = (i!=0)?"¿Desea regresar a la escala anterior?":"¿Desea regresar a la sección anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
+    setTimeout(function(){
+      $(".js-go-button").click(function(){
+        $(".js-wagon__slider").slick({
+            infinite: false,
+            slidesToShow: 1,
+            slideToScroll: 1,
+            dots: false,
+            arrows: true,
+            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+            nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+        });
+      });
+    },1000);
   }
   onShowNextModal(){
     let i: number = this.segments.indexOf(this.selected_segment);
@@ -315,6 +341,19 @@ export class Step5Component implements OnInit {
       this.notifTitle = "";
       this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";       
       this.displayModal = true;
+      setTimeout(function(){
+        $(".js-go-button").click(function(){
+          $(".js-wagon__slider").slick({
+              infinite: false,
+              slidesToShow: 1,
+              slideToScroll: 1,
+              dots: false,
+              arrows: true,
+              prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+              nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+          });
+        });
+      },1000);
     }else if (r > 0) {
        this.displayModal = true;
        this.notifTitle = "";
