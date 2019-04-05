@@ -229,19 +229,13 @@ export class Step5Component implements OnInit {
     return (i == (this.segments.length - 1));
   }
   onNext() {
+    this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
-    let r: number = this.getRemainingSbs();
-    this.resetSlick();  
+    let r: number = this.getRemainingSbs(); 
     if (i == (this.segments.length - 1) && r == 0) {
-      //if (confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")) {
         this.isLoading = false
-        this.displayModal = true;
-        this.notifTitle = "";
-        this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";       
         this.route = "/reservaciones/"+ this.session.route.name +"/confirmar";
-       
-       
-        this.session.rb.seats = [];
+       this.session.rb.seats = [];
         for (var j = 0; j < this.segments.length; j++) {
           let s: Segment = this.segments[j];
           for (var k = 0; k < s.sbs.length; k++) {
@@ -249,19 +243,11 @@ export class Step5Component implements OnInit {
             this.session.rb.seats.push(sb);
           }
         }
-        //this.router.navigate(["/reservaciones/" + this.session.route.name + "/confirmar"]);
-      //}
     } else {
       if (r > 0) {
-       // alert("Aun debe elegir " + r + " asientos más.");
         this.isLoading = false
-        this.displayModal = true;
-        this.notifTitle = "";
-        if(r == 1){
-          this.notifBody = "Aun debe elegir " + r + " asiento más.";
-        }else(this.notifBody = "Aun debe elegir " + r + " asientos más.")       
         this.route = this.routeX;
-       
+        this.resetSlick(); 
       } else {
         this.setSelectedSegment(this.segments[i + 1]);
         this.resetSlick();
@@ -279,22 +265,46 @@ export class Step5Component implements OnInit {
    
   }
   onBack() {
+    this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
     if (i != 0) {
-      //if (confirm("¿Desea regresar a la pantalla anterior?")) {
         this.isLoading = false
-        this.displayModalReturn = true;
-        this.notifTitle = "";
-        this.notifBody = "¿Desea regresar a la escala anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
         this.route = this.routeX;
         this.resetSlick();
-      //this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
-      //}
+        this.setSelectedSegment(this.segments[i-1]);
     } else {
       this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
-      
-     // this.setSelectedSegment(this.segments[i - 1]);
     }
+  }
+  onShowBackModal(){
+    let i: number = this.segments.indexOf(this.selected_segment);
+    this.displayModalReturn = true;
+    this.notifTitle = "";
+    this.notifBody = (i!=0)?"¿Desea regresar a la escala anterior?":"¿Desea regresar a la sección anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
+  }
+  onShowNextModal(){
+    let i: number = this.segments.indexOf(this.selected_segment);
+    let r: number = this.getRemainingSbs();
+    if (i == (this.segments.length - 1) && r == 0) {
+      this.notifTitle = "";
+      this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";       
+      this.displayModal = true;
+    }else if (r > 0) {
+       this.displayModal = true;
+       this.notifTitle = "";
+       if(r == 1){
+         this.notifBody = "Aun debe elegir " + r + " asiento más.";
+       }else(this.notifBody = "Aun debe elegir " + r + " asientos más.")       
+     }else{
+       this.onNext();
+     }
+      
+    
+    
+  }
+  ocultarModales(){
+    this.displayModal = false;
+    this.displayModalReturn = false;
   }
   getWagonType2(wagon: Wagon): string {
     if (wagon.type.id == 4) { return "classic"; }

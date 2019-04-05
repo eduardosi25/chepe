@@ -246,7 +246,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-sm-offset-15 center margintop30">
-                        <a class="btn btn-link" (click)="onBack()" role="button" *ngIf="selected_segment">
+                        <a class="btn btn-link" (click)="onShowBackModal()" role="button" *ngIf="selected_segment">
                             <div>
                                 <img src="assets/img/icon_left.png">
                             </div>
@@ -256,7 +256,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-3 center margintop30">
-                        <a class="btn btn-link c-one" (click)="onNext()" role="button" *ngIf="selected_segment">
+                        <a class="btn btn-link c-one" (click)="onShowNextModal()" role="button" *ngIf="selected_segment">
                             <div>
                                 <img src="assets/img/icon_right.png">
                             </div>
@@ -306,7 +306,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-header cearfix">
                     <button type="button" class="close js-close-modal" data-dismiss="modal" aria-label="Close">
-                         <span routerLink={{routeX}}  aria-hidden="true" (click)="ocultarModel()">×</span>
+                        <span  aria-hidden="true" (click)="ocultarModales()">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -315,8 +315,8 @@
                     <p>{{this.notifBody}}</p>
                 </div>
                 <div class="modal-footer">
-                    <!-- <a href="Javascript:void(0);" class="buttons__link js-close-modal">Cancelar</a>  -->
-                    <a routerLink={{route}} class="buttons__link buttons--type1"  (click)="ocultarModel()">Aceptar</a>
+                    <a href="Javascript:void(0);" class="buttons__link js-close-modal" (click)="ocultarModales()">Cancelar</a> 
+                    <a class="buttons__link buttons--type1"  (click)="onNext()">Aceptar</a>
                 </div>
             </div>
         </div>
@@ -325,7 +325,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-header cearfix">
                     <button type="button" class="close js-close-modal" data-dismiss="modal" aria-label="Close">
-                         <span routerLink={{routeX}}  aria-hidden="true" (click)="ocultarModel()">×</span>
+                        <span aria-hidden="true" (click)="ocultarModales()">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -334,8 +334,8 @@
                     <p>{{this.notifBody}}</p>
                 </div>
                 <div class="modal-footer">
-                    <!-- <a href="Javascript:void(0);" class="buttons__link js-close-modal">Cancelar</a>  -->
-                    <a routerLink={{route}} class="buttons__link buttons--type1"  (click)="ocultarModelReturn()">Aceptar</a>
+                    <a href="Javascript:void(0);" class="buttons__link js-close-modal" (click)="ocultarModales()">Cancelar</a> 
+                    <a class="buttons__link buttons--type1"  (click)="onBack()">Aceptar</a>
                 </div>
             </div>
         </div>
