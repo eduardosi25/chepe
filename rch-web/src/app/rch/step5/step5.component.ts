@@ -231,6 +231,7 @@ export class Step5Component implements OnInit {
   onNext() {
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs();
+    this.resetSlick();  
     if (i == (this.segments.length - 1) && r == 0) {
       //if (confirm("¿Ha terminado de seleccionar los asientos de los pasajeros?")) {
         this.isLoading = false
