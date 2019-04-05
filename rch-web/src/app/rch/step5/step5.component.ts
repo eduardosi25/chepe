@@ -194,6 +194,7 @@ export class Step5Component implements OnInit {
           this.notifTitle = "";
           this.notifBody = "Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.";       
               this.route = this.routeX;
+          this.resetSlick();    
           return;
         }
         seat.status = Seat.taken;
