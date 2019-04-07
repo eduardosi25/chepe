@@ -74,7 +74,7 @@
             </div>
         </div>-->
 
-        <div class="row">
+        <div class="row" *ngIf="selected_segment">
                 <div class="col-sm-20 no-gutter-left">
                     <div class="row">
                         <div class="col-sm-24 gap-left">
@@ -145,8 +145,8 @@
             <!-- max number of seats -->
             <div id="seatsnumbermax" data="3"></div>
 
-            <div class="js-wagon__slider wagon__slider" *ngIf="slickAlive">
-                <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment)" style="width:50%;box-sizing:border-box;">
+            <div class="js-wagon__slider wagon__slider">
+                <div class="col-sm-24 seat-train" *ngFor="let wagon of getWagons(selected_segment); trackBy: trackByFn" style="width:50%;box-sizing:border-box;">
                     <div class="row">
                         <div class="col-sm-24 center">
                             <h3 class="c-two fontweight400"> {{wagon.name}} {{'Step5-P11' | translate}} {{wagon.type.numero_carro}}
@@ -230,7 +230,7 @@
                 </div>
             </div>
           
-            <div class="select-seat__text">
+            <div class="select-seat__text" style="pointer-events: none;">
                 <p><span>Puedes cambiar de asiento</span> dando <span>click nuevamente en el asiento que ya habías seleccionado</span> (para recuperar la selección) y luego dando <span>click en el nuevo asiento deseado</span>.</p>
             </div>
         </div>

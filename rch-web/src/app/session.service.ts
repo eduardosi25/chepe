@@ -29,6 +29,9 @@ export class SessionService {
   }
   public mkUnifiedSegments():Segment[]{
     var s:Segment[] = [];
+    if(this.segments == null ){
+      return s;
+    }
     for(var i=0;i<this.segments.length;i++){
       s.push(this.segments[i]);
     }

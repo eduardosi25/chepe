@@ -41,6 +41,11 @@ export class Step5Component implements OnInit {
     public route ;
     public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
     public slickAlive:boolean = true;
+    /**
+     * Bandera para fines de prueba. Al activarla, se forza que la funcion que indica cantidad de vagones, indique el doble.
+     * Asi podemos forzar a que nos muestre al menos dos vagones y asi evaluar la funcionalidad del slick.
+     */
+    //public duplicateWagons:boolean = true;
 
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments || !this.session.rb) {
@@ -164,6 +169,9 @@ export class Step5Component implements OnInit {
       let wagon: Wagon = wagons[i];
       if (wagon.type.id_clase === wt.id) {
         wagons2.push(wagon);
+        /*if(this.duplicateWagons){
+          wagons2.push(wagon);
+        }*/
       }
     }
     return wagons2;
@@ -230,45 +238,20 @@ export class Step5Component implements OnInit {
   }
   onNext() {
     this.ocultarModales();
-    setTimeout(function(){
-      $(".js-go-button").click(function(){
-        $(".js-wagon__slider").slick({
-            infinite: false,
-            slidesToShow: 1,
-            slideToScroll: 1,
-            dots: false,
-            arrows: true,
-            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-            nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-        });
-      });
-    },1000);
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs(); 
     if (i == (this.segments.length - 1) && r == 0) {
         this.isLoading = false
         this.route = "/reservaciones/"+ this.session.route.name +"/confirmar";
-        this.session.rb.seats = [];
-          for (var j = 0; j < this.segments.length; j++) {
-            let s: Segment = this.segments[j];
-            for (var k = 0; k < s.sbs.length; k++) {
-              let sb: SeatBooking = s.sbs[k];
-              this.session.rb.seats.push(sb);
-            }
+       this.session.rb.seats = [];
+        for (var j = 0; j < this.segments.length; j++) {
+          let s: Segment = this.segments[j];
+          for (var k = 0; k < s.sbs.length; k++) {
+            let sb: SeatBooking = s.sbs[k];
+            this.session.rb.seats.push(sb);
           }
-          setTimeout(function(){
-            $(".js-go-button").click(function(){
-              $(".js-wagon__slider").slick({
-                  infinite: false,
-                  slidesToShow: 1,
-                  slideToScroll: 1,
-                  dots: false,
-                  arrows: true,
-                  prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-                  nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-              });
-            });
-          },1000);
+        }
+        this.router.navigate([this.route]);
     } else {
       if (r > 0) {
         this.isLoading = false
@@ -292,19 +275,6 @@ export class Step5Component implements OnInit {
   }
   onBack() {
     this.ocultarModales();
-    setTimeout(function(){
-      $(".js-go-button").click(function(){
-        $(".js-wagon__slider").slick({
-            infinite: false,
-            slidesToShow: 1,
-            slideToScroll: 1,
-            dots: false,
-            arrows: true,
-            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-            nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-        });
-      });
-    },1000);
     let i: number = this.segments.indexOf(this.selected_segment);
     if (i != 0) {
         this.isLoading = false
@@ -320,19 +290,6 @@ export class Step5Component implements OnInit {
     this.displayModalReturn = true;
     this.notifTitle = "";
     this.notifBody = (i!=0)?"¿Desea regresar a la escala anterior?":"¿Desea regresar a la sección anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
-    setTimeout(function(){
-      $(".js-go-button").click(function(){
-        $(".js-wagon__slider").slick({
-            infinite: false,
-            slidesToShow: 1,
-            slideToScroll: 1,
-            dots: false,
-            arrows: true,
-            prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-            nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-        });
-      });
-    },1000);
   }
   onShowNextModal(){
     let i: number = this.segments.indexOf(this.selected_segment);
@@ -341,19 +298,6 @@ export class Step5Component implements OnInit {
       this.notifTitle = "";
       this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";       
       this.displayModal = true;
-      setTimeout(function(){
-        $(".js-go-button").click(function(){
-          $(".js-wagon__slider").slick({
-              infinite: false,
-              slidesToShow: 1,
-              slideToScroll: 1,
-              dots: false,
-              arrows: true,
-              prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
-              nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-          });
-        });
-      },1000);
     }else if (r > 0) {
        this.displayModal = true;
        this.notifTitle = "";
@@ -446,4 +390,7 @@ export class Step5Component implements OnInit {
       return false;
     }
   } 
+  public trackByFn(index,item){
+    return index;
+  }
 }
