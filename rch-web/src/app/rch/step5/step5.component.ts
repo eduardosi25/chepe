@@ -284,6 +284,7 @@ export class Step5Component implements OnInit {
   prueba(){
       if(this.segmentNumber == 1){
           $(".js-wagon__slider .slick-arrow").hide();
+          $(".js-wagon__slider").slick("slickGoTo", 0)
       }
   }
 
