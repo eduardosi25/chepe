@@ -17,6 +17,8 @@ import { WagonType } from '../../model/wagontype';
 import { Seat } from '../../model/seat';
 import { SeatBooking } from '../../model/seatbooking';
 import { Cost } from '../../model/cost';
+import { ifError } from 'assert';
+import { setTimeout } from 'timers';
 declare var $: any;
 @Component({
   selector: 'app-step5',
@@ -39,6 +41,7 @@ export class Step5Component implements OnInit {
     public notifBody1 = "";
     public isLoading = true;
     public route ;
+    public segmentNumber;
     public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
     public slickAlive:boolean = true;
     /**
@@ -66,6 +69,8 @@ export class Step5Component implements OnInit {
           slideToScroll: 1,
           dots: false,
           arrows: true,
+          swipe: false,
+          touchMove: false,
           prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
           nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
       });
@@ -96,7 +101,7 @@ export class Step5Component implements OnInit {
             break;
           }
         }
-        this.selected_segment = segment;
+      this.selected_segment = segment;
         this.selected_segment.selected_travel = response.data;
         if (this.selected_segment.sbs == null) {
           this.selected_segment.sbs = [];
@@ -139,6 +144,7 @@ export class Step5Component implements OnInit {
 
   public auto_pick_wagon: boolean = true;
   getWagons(segment: Segment): Wagon[] {
+    this.segmentNumber = 1;
     if (this.auto_pick_wagon && segment != this.segments[0]) {
       if (this.segments[0].selected_wagon) {
         var wagons: Wagon[] = [];
@@ -149,6 +155,7 @@ export class Step5Component implements OnInit {
             wagons.push(w);
           }
         }
+        console.log(wagons)
         return this.filterWagons(wagons);
       } else {
         return this.filterWagons(segment.selected_travel.wagons);
@@ -174,6 +181,8 @@ export class Step5Component implements OnInit {
         }*/
       }
     }
+    this.segmentNumber = wagons2.length
+    this.prueba()
     return wagons2;
   }
   getRemainingSbs(): number {
@@ -210,7 +219,9 @@ export class Step5Component implements OnInit {
           segment.selected_travel, this.session.route,
           segment.getNextPT(this.session.route, this.session.query),
           new Cost(), id_person,0);
-        this.selected_segment.sbs.push(sb);    
+        this.selected_segment.sbs.push(sb);   
+      console.log(this.selected_segment)
+
         this.selected_segment = segment;
         break;
       case Seat.unavailable: seat.status = Seat.unavailable; break;
@@ -236,10 +247,11 @@ export class Step5Component implements OnInit {
     let i: number = this.segments.indexOf(this.selected_segment);
     return (i == (this.segments.length - 1));
   }
-  onNext() {
+  onNext(id) {
     this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs(); 
+    console.log(this.segments.length)
     if (i == (this.segments.length - 1) && r == 0) {
         this.isLoading = false
         this.route = "/reservaciones/"+ this.session.route.name +"/confirmar";
@@ -253,16 +265,28 @@ export class Step5Component implements OnInit {
         }
         this.router.navigate([this.route]);
     } else {
+     
       if (r > 0) {
         this.isLoading = false
         this.route = this.routeX;
         this.resetSlick(); 
       } else {
-        this.setSelectedSegment(this.segments[i + 1]);
-        this.resetSlick();
+        if(id == 1){
+          this.setSelectedSegment(this.segments[i + 1]);
+          this.resetSlick(); 
+        }else{
+          this.resetSlick();
+          }
       }
     }
   }
+
+  prueba(){
+      if(this.segmentNumber == 1){
+          $(".js-wagon__slider .slick-arrow").hide();
+      }
+  }
+
   resetSlick(){
     this.slickAlive = false;
     setTimeout(()=>{
@@ -270,22 +294,30 @@ export class Step5Component implements OnInit {
     },100);
   }
 
-  segment(){
-   
-  }
   onBack() {
     this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
     if (i != 0) {
         this.isLoading = false
         this.route = this.routeX;
-        this.resetSlick();
         this.setSelectedSegment(this.segments[i-1]);
+        this.resetSlick()
+        setTimeout(()=>{
+          $(".js-wagon__slider").slick("refresh");
+        },500);
+        
     } else {
       this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
     }
+    this.resetSlick()
+    setTimeout(()=>{
+      $(".js-wagon__slider").slick("refresh");
+    },500);
+
   }
   onShowBackModal(){
+    this.resetSlick()
+    $(".js-wagon__slider").slick("refresh");
     let i: number = this.segments.indexOf(this.selected_segment);
     this.displayModalReturn = true;
     this.notifTitle = "";
@@ -305,7 +337,7 @@ export class Step5Component implements OnInit {
          this.notifBody = "Aun debe elegir " + r + " asiento más.";
        }else(this.notifBody = "Aun debe elegir " + r + " asientos más.")       
      }else{
-       this.onNext();
+       this.onNext(1);
      }
       
     
