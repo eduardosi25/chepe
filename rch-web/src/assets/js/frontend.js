@@ -1,15 +1,15 @@
 $(document).ready(function () {
     setTimeout(function(){
 
-                //Slick slider 
-                $('.js-wagon__slider').slick({
-                    dots: true,
-                    arrows: true,
-                    infinite: false,
-                    speed: 300,
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                });
+        //Slick slider 
+        $('.js-wagon__slider').slick({
+            dots: true,
+            arrows: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
                 
         //-- Close modal
         $(".js-open__modal").click(function(e){
@@ -30,7 +30,12 @@ $(document).ready(function () {
             //$("body").removeClass("active");
         });
 
-
+        //video not show
+        $(".navbar-brand").click(function(e){
+            $("body").addClass("video-active");
+        });
 
      }, 1000);
  }); 
+
+
