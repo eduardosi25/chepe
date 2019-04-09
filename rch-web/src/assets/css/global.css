@@ -4853,9 +4853,12 @@ FIXES RESPONSIVE
         background: url(/assets/img/reservacion/vagon-premium-horizontal__small.png) center center no-repeat;
         background-size: 100%;
     }
-    .select-seat.classic .wagon-img-classic,
+    .select-seat.classic .wagon-img-classic {
+        background: url(/assets/img/reservacion/vagon-clasico__small.png) center center no-repeat;
+        background-size: 100%;
+    }
     .select-seat.classic.regional .wagon-img-classic {
-        background: url(/assets/img/reservacion/vagon-clasico-regional__small.png) center center no-repeat;
+        background: url(/assets/img/reservacion/vagon-regional__small.png) center center no-repeat;
         background-size: 100%;
     }
     .img-responsive {
