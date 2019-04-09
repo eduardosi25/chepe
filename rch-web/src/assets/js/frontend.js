@@ -30,12 +30,5 @@ $(document).ready(function () {
             //$("body").removeClass("active");
         });
 
-        //video not show
-        $(".navbar-brand").click(function(e){
-            $("body").addClass("video-active");
-        });
-
      }, 1000);
  }); 
-
-
