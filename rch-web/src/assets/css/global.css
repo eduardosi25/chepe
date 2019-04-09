@@ -1326,10 +1326,6 @@ table.chepe.secondary tr:last-child {
     height: 148px;
 }
 
-.video-active .modal-video {
-    display: none;
-}
-
 .transparent-nav {
     position: absolute;
     z-index: 10000;
