@@ -286,7 +286,7 @@ export class Step5Component implements OnInit {
           $(".js-wagon__slider .slick-arrow").hide();
       setTimeout(() => {
         $(".js-wagon__slider").slick("slickGoTo", 0)
-      }, 1000);
+      }, 600);
       }
   }
 
@@ -300,6 +300,8 @@ export class Step5Component implements OnInit {
   onBack() {
     this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
+    console.log(i)
+    
     if (i != 0) {
         this.isLoading = false
         this.route = this.routeX;
@@ -307,20 +309,22 @@ export class Step5Component implements OnInit {
         this.resetSlick()
         setTimeout(()=>{
           $(".js-wagon__slider").slick("refresh");
-        },1000);
+        },300);
         
     } else {
       this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
     }
-    this.resetSlick()
-    setTimeout(()=>{
-      $(".js-wagon__slider").slick("refresh");
-    },1000);
+    // this.resetSlick()
+    // setTimeout(()=>{
+    //   $(".js-wagon__slider").slick("refresh");
+    // },600);
 
   }
   onShowBackModal(){
     this.resetSlick()
-    $(".js-wagon__slider").slick("refresh");
+    setTimeout(()=>{
+      $(".js-wagon__slider").slick("refresh");
+    },700);
     let i: number = this.segments.indexOf(this.selected_segment);
     this.displayModalReturn = true;
     this.notifTitle = "";
@@ -349,6 +353,10 @@ export class Step5Component implements OnInit {
   ocultarModales(){
     this.displayModal = false;
     this.displayModalReturn = false;
+    this.resetSlick()
+    setTimeout(()=>{
+      $(".js-wagon__slider").slick("refresh");
+    },700);
   }
   getWagonType2(wagon: Wagon): string {
     if (wagon.type.id == 4) { return "classic"; }
