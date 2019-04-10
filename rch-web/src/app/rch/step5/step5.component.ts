@@ -249,6 +249,8 @@ export class Step5Component implements OnInit {
   }
   onNext(id) {
     this.ocultarModales();
+    this.slideEnCero();
+    this.slideDown();
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs(); 
     console.log(this.segments.length)
@@ -289,6 +291,11 @@ export class Step5Component implements OnInit {
       }, 600);
       }
   }
+  slideEnCero(){
+    setTimeout(() => {
+      $(".js-wagon__slider").slick("slickGoTo", 0)
+    }, 600);
+  }
 
   resetSlick(){
     this.slickAlive = false;
@@ -297,6 +304,11 @@ export class Step5Component implements OnInit {
     },100);
   }
 
+  slideDown(){
+    setTimeout(()=>{
+      $(".js-wagon__slider").slick("refresh");
+    },300);
+  }
   onBack() {
     this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
