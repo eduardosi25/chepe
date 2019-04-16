@@ -13,13 +13,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 @Injectable()
 export class BillService {
-  public bill;
+  public = '/invoices';
   public fiscal;
   public bodyFiscal;
   private base:string=environment.restws_base;
   private prefix:string="/v1";
   private invoices = "/invoices?";
   private invoicesBill = "/invoices";
+  private invoicesFile = "/files/"
 
   constructor(private http: HttpClient
   ) {
@@ -43,7 +44,15 @@ export class BillService {
     return this.http.get(url,{ headers: this.setHeaders() });
   }
 
+  public setBill(body){
+    const url = this.base + this.prefix + this.invoicesBill 
+    return this.http.post(url,body,{ headers: this.setHeaders() });
+  }
 
+  public getBill(folio){
+    const url = this.base + this.prefix + this.invoicesBill + this.invoicesFile + folio
+    return this.http.get(url,{ headers: this.setHeaders()})
+  }
   setHeaders(){
     var headers = {
       'X-Rch-At':'vXykLvyM7VmfGZLNYn3D'

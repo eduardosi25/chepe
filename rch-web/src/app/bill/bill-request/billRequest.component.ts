@@ -24,23 +24,15 @@ export class BillRequestComponent implements OnInit {
   public billReq;
   public buttonFlag = true;
   public date; month; year;
+  public dat;
   constructor(private _router: Router,
     private billService: BillService,
-    private translate: TranslateService, ) {
-      // _router.events.subscribe(event => {
-      //   if (event instanceof NavigationEnd) {
-      //     this.ngOnInit();
-          
-      //   }
-      // })
-     }
+    private translate: TranslateService, ) {}
 
   ngOnInit() {
-    
     sessionStorage.clear();
     this.requestBill = new BillRequest("", "");
     this.folio = "";
-
     let rthis = this
     $.fn.datepicker.dates['es'] = {
       days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
@@ -60,11 +52,8 @@ export class BillRequestComponent implements OnInit {
       rthis.date = e.dates[0].getDate();
       rthis.month = e.dates[0].getMonth() + 1;
       rthis.year = e.dates[0].getFullYear();
-
       rthis.datePrepare();
     }).keydown(false);
-
-
   }
 
   datePrepare() {
@@ -77,11 +66,12 @@ export class BillRequestComponent implements OnInit {
       this.month = '0' + this.month;
     }
     var dates = this.date + '/' + this.month + '/' + this.year;
+    this.dat = this.year + '-' + this.month + '-' + this.date;
     this.requestBill.fecha = dates;
   }
   static clave: RegExp = /^[A-Za-z0-9\s]{2,60}$/;
+
   readyToGoNext(): boolean {
-    
     $('.form-control').removeClass('orange');
     let e = this.requestBill.clave;
     if (this.requestBill.clave == undefined || this.requestBill.clave == "") { $('#claveReq').addClass('orange'); this.billReq = this.translate.instant('BillRequest-P08'); this.buttonFlag = true; return false }
@@ -98,18 +88,34 @@ export class BillRequestComponent implements OnInit {
         if (data.success) {
           sessionStorage.setItem('billRequest', JSON.stringify(data.data[0]));
           sessionStorage.setItem('billRequestInfo', JSON.stringify(this.requestBill));
+          sessionStorage.setItem('date', this.dat)
           this._router.navigate(['/Facturacion-confirmacion']);
         } else {
           this.buttonFlag = false
         }
       }, (e) => {
-       
        console.log("Credenciales incorrectas");
       }
     );
-
   }
+
   onSubmitSearch() {
-    this._router.navigate(['/Facturacion-Search']);
+
+    this.billService.getBill(this.folio).subscribe(
+      (data:any)=>{
+        if(data.success){
+          console.log(data)
+          sessionStorage.setItem('pdf', data.data.pdf)
+          sessionStorage.setItem('xml', data.data.xml)
+          sessionStorage.setItem('folio', this.folio)
+          this._router.navigate(['/Facturacion-Search']);
+        }else{
+          console.log(data)
+        }
+      },(e)=>{
+        console.log(e)
+      }
+    )
+    // this._router.navigate(['/Facturacion-Search']);
   }
 }

@@ -35,11 +35,15 @@ export class BillFiscalComponent implements OnInit {
   public total;
   public cfdi;
   public rfc;
+  public dat;
   public displayModal = null;
   public displayError = null;
   public displayConfirm = null;
   public ready = true;
   public fisReq;
+  public confirmacion_correo_electronico;
+  public conceptos = [{}]
+  public msgError;
 
 
   constructor(private _router: Router, private serviceBill: BillService,
@@ -50,6 +54,7 @@ export class BillFiscalComponent implements OnInit {
     var Paso1Session = sessionStorage.getItem('billRequest');
     var Paso1SessionInfo = sessionStorage.getItem('billRequestInfo');
     var Paso2FiscalInfo = sessionStorage.getItem('billFiscalInfo');
+    var paso1Date = sessionStorage.getItem('date')
     if (Paso1SessionInfo == null) {
       this._router.navigate(['/Facturacion']);
     }
@@ -58,25 +63,50 @@ export class BillFiscalComponent implements OnInit {
         this.cfdi = data.data;
       }
     );
-    this.fiscalBill = new BillFiscal("", "", "", "", "", "", "", "", "", "MIGUEL HIDALGO", "CDMX", "","", "");
+    this.dat = paso1Date
     this.requestBill = JSON.parse(Paso1SessionInfo);
     this.fiscBill = JSON.parse(Paso1Session);
     this.total = this.fiscBill.monto_neto + this.fiscBill.impuestos;
+
     if (Paso2FiscalInfo != null) {
       this.fiscalBill = JSON.parse(Paso2FiscalInfo);
       sessionStorage.removeItem('billFiscalInfo');
     }
     sessionStorage.removeItem('billRequest');
     sessionStorage.removeItem('billRequestInfo')
+    this.fiscalBill = new BillFiscal("","", "", "", "", "", "", "", "", "", "", "", "","", [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.dat}]);
+    this.conceptos = [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.requestBill.fecha}]
+  console.log(this.conceptos)
   }
 
   onSubmit() {
     this.displayModal = true;
+    
   }
   onSubmitModelReview() {
-    this.displayModal = null;
-    this.displayError = true;
-    this.displayConfirm = null;
+    console.log(this.fiscalBill)
+    this.serviceBill.setBill(this.fiscalBill).subscribe(
+      (data: any) => {
+        if (data.success) {
+          console.log(data)
+          this.displayModal = null;
+          this.displayError = null;
+          this.displayConfirm = true;
+        }else{
+          this.displayModal = null;
+          this.displayError = true;
+          this.displayConfirm = null;
+          this.msgError = data.status.message
+        }
+      },(e)=>{
+        console.log(e)
+        this.displayModal = null;
+        this.displayError = true;
+        this.displayConfirm = null;
+        this.msgError = "Lo sentimos por el momento no se pudo completar el proceso intente mas tarde"
+      }
+      )
+    
   }
   focusOutFunction(rfc) {
     let rfcMayus = rfc.toUpperCase()
@@ -88,8 +118,8 @@ export class BillFiscalComponent implements OnInit {
         if (data.success) {
           this.rfc = data;
           this.fiscalBill = new BillFiscal(
-            this.rfc.data.rfc,
             this.rfc.data.razon_social,
+            this.rfc.data.rfc,
             this.rfc.data.forma_pago,
             this.rfc.data.uso_cfdi,
             this.rfc.data.calle,
@@ -98,20 +128,23 @@ export class BillFiscalComponent implements OnInit {
             this.rfc.data.cp,
             this.rfc.data.colonia,
             this.rfc.data.municipio = 'MIGUEL HIDALGO',
-            this.rfc.data.pais = 'CDMX',
+            this.rfc.data.estado = "CDMX",
+            this.rfc.data.pais = 'MEXICO',
             this.rfc.data.correo_electronico,
-            this.rfc.data.confirm_correo_electronico,
-            this.rfc.data.telefono);
-        } else (this.fiscalBill = new BillFiscal(rfc, "", "", "", "", "", "", "","", "MIGUEL HIDALGO", "CDMX", "", "", ""))
+            // this.rfc.data.confirm_correo_electronico,
+            this.rfc.data.telefono,
+            [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.dat}]
+            )
+        } else (this.fiscalBill = new BillFiscal("",rfc, "", "", "", "", "", "", "", "MIGUEL HIDALGO","CDMX", "MEXICO", "", "", [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.dat}]))
       }
     );
   }
 
   static email_regex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  static nameRazon: RegExp = /^[a-zA-ZÀ-ÿ0-9.,-\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ0-9.,-\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ0-9.,-\u00f1\u00d1]{2,60}$/;
+  static nameRazon: RegExp = /^[0-9]*[a-zA-Z][a-zA-Z0-9À-ÿ.,-\u00f1\s]{1,60}$/;
   static calle: RegExp = /^[A-Za-z0-9\s]{2,60}$/;
   static rfc: RegExp = /^[a-zA-Z]{3,4}(\d{6})((\D|\d){2,3})?$/;
-  static num: RegExp =  /^[A-Za-z0-9\s]{1,6}$/;
+  static num: RegExp =  /^[a-zA-Z]*[0-9][a-zA-Z0-9]{0,5}$/;
   static cp: RegExp = /^[0-9]{5}$/;
   static cellphone_regex: RegExp = /^[0-9]{8,16}$/;
 
@@ -144,8 +177,8 @@ export class BillFiscalComponent implements OnInit {
     else if (this.fiscalBill.correo_electronico == undefined || this.fiscalBill.correo_electronico == "") { $('#correo').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P25'); this.ready = true; return false }
     else if (!BillFiscalComponent.email_regex.test(this.fiscalBill.correo_electronico)) { $('#correo').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P32'); this.ready = true; return false; }
 
-    else if (this.fiscalBill.confirmacion_correo_electronico == undefined || this.fiscalBill.confirmacion_correo_electronico == "") { $('#correoC').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P34'); this.ready = true; return false }
-    else if (this.fiscalBill.confirmacion_correo_electronico != this.fiscalBill.correo_electronico) { $('#correoC').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P35'); this.ready = true; return false }
+    else if (this.confirmacion_correo_electronico == undefined || this.confirmacion_correo_electronico == "") { $('#correoC').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P34'); this.ready = true; return false }
+    else if (this.confirmacion_correo_electronico != this.fiscalBill.correo_electronico) { $('#correoC').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P35'); this.ready = true; return false }
 
     else if (this.fiscalBill.telefono != "" && this.fiscalBill.telefono != undefined && this.fiscalBill.telefono != null && !BillFiscalComponent.cellphone_regex.test(this.fiscalBill.telefono)){ $('#telefono').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P33'); this.ready = true; return false; }
 

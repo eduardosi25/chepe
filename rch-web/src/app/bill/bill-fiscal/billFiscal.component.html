@@ -126,7 +126,7 @@
                                             [(ngModel)]="fiscalBill.calle">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="float: left">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P07' | translate}}
                                         </label>
@@ -134,7 +134,7 @@
                                             [(ngModel)]="fiscalBill.no_ext">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="float: left">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P08' | translate}}
                                         </label>
@@ -144,14 +144,14 @@
                                 </div>
                             </div>
                             <div class="row-field row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="float: left">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P09' | translate}}</label>
                                         <input maxlength="5" id="cp" class="form-control" type="text" #cp="ngModel" name='cp'
                                             [(ngModel)]="fiscalBill.cp">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="float: left">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P10' | translate}}
                                         </label>
@@ -161,18 +161,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="float: left">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P11' | translate}}</label>
                                         <input disabled type="text" class="form-control disabled-style input-block" #municipio="ngModel"
                                             name='municipio' [(ngModel)]="fiscalBill.municipio">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="float: left">
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P12' | translate}}</label>
                                         <input disabled type="text" class="form-control  disabled-style input-block" #estado="ngModel"
-                                            name='estado' [(ngModel)]="fiscalBill.pais">
+                                            name='estado' [(ngModel)]="fiscalBill.estado">
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                                         <div class="form-group">
                                             <label>{{'BillFiscal-P36' | translate}}</label>
                                             <input maxlength="60" id="correoC" type="text" class="form-control" #correoC="ngModel" name='correoC'
-                                                [(ngModel)]="fiscalBill.confirmacion_correo_electronico">
+                                                [(ngModel)]="confirmacion_correo_electronico">
                                         </div>
                                     </div>
                                 </div>
@@ -386,7 +386,7 @@
                                     <h4>Ocurrió un error</h4>
                                 </div>
                                 <div class="lightbox1-info">
-                                    <p>RFC no válido,no es posible emitir una factura
+                                    <p>{{msgError}}
                                 </div>
                                 <div class="btn-set">
                                     <a (click)="goFisacal()" class="btnForm btn-blue btn-blue__borde next-btn btn-size1"

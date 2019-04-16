@@ -20,7 +20,7 @@
         </div>
         <!-- END: TITLE -->
         <!-- BEGIN: STEPS -->
-        <div class="wizard-steps">
+        <!-- <div class="wizard-steps">
             <ul>
                 <li>
                     <a>
@@ -44,7 +44,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <!-- END: STEPS -->
         <!-- BEGIN: BILLING -->
         <section class="billing-box">
@@ -56,7 +56,7 @@
                     <div class="col-md-6 ">
                         <div class="form-group">
                             <label>{{'BillSearch-P00' | translate}}</label>
-                            <input class="form-control disabled-style" type="text">
+                            <input class="form-control disabled-style" [value]="folio" type="text" disabled>
                         </div>
                     </div>
                 </div>
@@ -66,12 +66,12 @@
                         </h4>
                         <div class="download-docs">
                             <div class="col-md-12">
-                                <a href="#" class="bill-download icon-pdf">
+                                <a href="javascript: void(0)" (click)="clickPdf()" class="bill-download icon-pdf">
                                     <strong>{{'BillSearch-P02' | translate}} </strong>
                                 </a>
                             </div>
                             <div class="col-md-12">
-                                <a href="#" class="bill-download icon-xml">
+                                <a href="javascript: void(0)" (click)="clickXml()" class="bill-download icon-xml">
                                     <strong>{{'BillSearch-P02' | translate}} </strong>
                                 </a>
                             </div>
