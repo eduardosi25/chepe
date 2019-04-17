@@ -155,23 +155,27 @@
                                     <div class="form-group">
                                         <label>{{'BillFiscal-P10' | translate}}
                                         </label>
-                                        <select id="colonia" class="form-control" #colonia="ngModel" name='colonia'
+                                        <input id="colonia" type="text" class="form-control" #colonia="ngModel" name='colonia'
+                                        [(ngModel)]="fiscalBill.colonia">
+                                        <!-- <select id="colonia" class="form-control" #colonia="ngModel" name='colonia'
                                             [(ngModel)]="fiscalBill.colonia">
-                                            <option *ngFor="let row of Prueba.datos">{{row.name}}</option>
-                                        </select>
+                                            <option *ngFor="let row of Prueba.datos">{{row.name}}</option> -->
+                                        <!-- </select> -->
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="float: left">
                                     <div class="form-group">
-                                        <label>{{'BillFiscal-P11' | translate}}</label>
-                                        <input disabled type="text" class="form-control disabled-style input-block" #municipio="ngModel"
+                                        <label>{{'BillFiscal-P11' | translate}}*</label>
+                                        <!-- <input disabled type="text" class="form-control disabled-style input-block" #municipio="ngModel" -->
+                                        <input id="municipio" type="text" class="form-control" #municipio="ngModel"
                                             name='municipio' [(ngModel)]="fiscalBill.municipio">
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="float: left">
                                     <div class="form-group">
-                                        <label>{{'BillFiscal-P12' | translate}}</label>
-                                        <input disabled type="text" class="form-control  disabled-style input-block" #estado="ngModel"
+                                        <label>{{'BillFiscal-P12' | translate}}*</label>
+                                        <!-- <input disabled type="text" class="form-control  disabled-style input-block" #estado="ngModel" -->
+                                        <input id="estado" type="text" class="form-control" #estado="ngModel"
                                             name='estado' [(ngModel)]="fiscalBill.estado">
                                     </div>
                                 </div>

@@ -127,15 +127,15 @@ export class BillFiscalComponent implements OnInit {
             this.rfc.data.no_int,
             this.rfc.data.cp,
             this.rfc.data.colonia,
-            this.rfc.data.municipio = 'MIGUEL HIDALGO',
-            this.rfc.data.estado = "CDMX",
+            this.rfc.data.municipio,
+            this.rfc.data.estado,
             this.rfc.data.pais = 'MEXICO',
             this.rfc.data.correo_electronico,
             // this.rfc.data.confirm_correo_electronico,
             this.rfc.data.telefono,
             [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.dat}]
             )
-        } else (this.fiscalBill = new BillFiscal("",rfc, "", "", "", "", "", "", "", "MIGUEL HIDALGO","CDMX", "MEXICO", "", "", [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.dat}]))
+        } else (this.fiscalBill = new BillFiscal("",rfc, "", "", "", "", "", "", "", "","", "MEXICO", "", "", [{clave:this.requestBill.clave,monto_neto: this.fiscBill.monto_neto, impuestos:this.fiscBill.impuestos,fecha_venta:this.dat}]))
       }
     );
   }
@@ -147,6 +147,7 @@ export class BillFiscalComponent implements OnInit {
   static num: RegExp =  /^[a-zA-Z]*[0-9][a-zA-Z0-9]{0,5}$/;
   static cp: RegExp = /^[0-9]{5}$/;
   static cellphone_regex: RegExp = /^[0-9]{8,16}$/;
+  static CME: RegExp = /^[A-Za-z\s]{2,60}$/;
 
   readyToGoNext(): boolean {
     
@@ -173,6 +174,11 @@ export class BillFiscalComponent implements OnInit {
     else if (!BillFiscalComponent.cp.test(this.fiscalBill.cp)) { $('#cp').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P31'); this.ready = true; return false; }
 
     else if (this.fiscalBill.colonia == undefined || this.fiscalBill.colonia == "") { $('#colonia').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P24'); this.ready = true; return false }
+    else if (!BillFiscalComponent.CME.test(this.fiscalBill.colonia)) { $('#colonia').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P41'); this.ready = true; return false }
+    else if (this.fiscalBill.municipio == undefined || this.fiscalBill.municipio == "") { $('#municipio').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P37'); this.ready = true; return false }
+    else if (!BillFiscalComponent.CME.test(this.fiscalBill.municipio)) { $('#municipio').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P39'); this.ready = true; return false }
+    else if (this.fiscalBill.estado == undefined || this.fiscalBill.estado == "") { $('#estado').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P38'); this.ready = true; return false }
+    else if (!BillFiscalComponent.CME.test(this.fiscalBill.estado)) { $('#estado').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P40'); this.ready = true; return false }
   
     else if (this.fiscalBill.correo_electronico == undefined || this.fiscalBill.correo_electronico == "") { $('#correo').addClass('orange'); this.fisReq = this.translate.instant('BillFiscal-P25'); this.ready = true; return false }
     else if (!BillFiscalComponent.email_regex.test(this.fiscalBill.correo_electronico)) { $('#correo').addClass('orange');this.fisReq = this.translate.instant('BillFiscal-P32'); this.ready = true; return false; }
