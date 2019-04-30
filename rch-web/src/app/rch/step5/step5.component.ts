@@ -31,25 +31,25 @@ export class Step5Component implements OnInit {
     private model: ModelService,
     public session: SessionService,
     private router: Router) { }
-    public selected_segment: Segment = null;
-    public selected_wagon_type: WagonType = null;
-    public segments: Segment[] = [];
-    public displayModal = false;
-    public displayModalReturn = false;
-    public notifTitle = "";
-    public notifBody = "";
-    public notifBody1 = "";
-    public isLoading = true;
-    public route ;
-    public segmentNumber;
-    public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
-    public slickAlive:boolean = true;
-    /**
-     * Bandera para fines de prueba. Al activarla, se forza que la funcion que indica cantidad de vagones, indique el doble.
-     * Asi podemos forzar a que nos muestre al menos dos vagones y asi evaluar la funcionalidad del slick.
-     */
-    //public duplicateWagons:boolean = true;
-
+  public selected_segment: Segment = null;
+  public selected_wagon_type: WagonType = null;
+  public segments: Segment[] = [];
+  public displayModal = false;
+  public displayModalReturn = false;
+  public notifTitle = "";
+  public notifBody = "";
+  public notifBody1 = "";
+  public isLoading = true;
+  public route;
+  public segmentNumber;
+  public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
+  public slickAlive: boolean = true;
+  /**
+   * Bandera para fines de prueba. Al activarla, se forza que la funcion que indica cantidad de vagones, indique el doble.
+   * Asi podemos forzar a que nos muestre al menos dos vagones y asi evaluar la funcionalidad del slick.
+   */
+  //public duplicateWagons:boolean = true;
+  /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments || !this.session.rb) {
       this.router.navigate(["/reservaciones"]); return;
@@ -75,15 +75,15 @@ export class Step5Component implements OnInit {
     //       nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
     //   });
     // }, 1500);
-   
-  }
 
-  buildSlide(){
-    if(!$(".js-wagon__slider").hasClass('slick-initialized')){
+  }
+  /**Construye los slider */
+  buildSlide() {
+    if (!$(".js-wagon__slider").hasClass('slick-initialized')) {
       console.log($(".js-wagon__slider").hasClass('slick-initialized'))
-    setTimeout(function(){
-      console.log("Entre")
-      $(".js-wagon__slider").slick({
+      setTimeout(function () {
+        console.log("Entre")
+        $(".js-wagon__slider").slick({
           infinite: false,
           slidesToShow: 1,
           slideToScroll: 1,
@@ -93,26 +93,29 @@ export class Step5Component implements OnInit {
           touchMove: false,
           prevArrow: '<button class="slick-prev" aria-label="Previous" type="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
           nextArrow: '<button class="slick-next" aria-label="Next" type="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
-      });
-    }, 500);
+        });
+      }, 500);
+    }
   }
-  }
+  /**Función que permite regresar al paso anterior */
   goBack(): void {
     this.location.back();
   }
+  /**Valida si el segmento en las escalas sea el primero */
   isFirstSegment(segment: Segment): boolean {
     return (segment.n <= 1);
   }
-
+  /**Valida sil el segmento en las escalas sea el ultimo */
   isLastSegment(segment: Segment): boolean {
     return (this.segments.length == segment.n);
   }
+  /**Se valida el paso en las escalas en el que te encuentras */
   setSelectedSegment(segment: Segment) {
     let travel0: Travel = segment.selected_travel;
-    if (segment.sbs != null){
+    if (segment.sbs != null) {
       this.selected_segment = segment;
     }
-    else{
+    else {
       this.model.getTravel(travel0.id, travel0.id_src, travel0.id_dst, this.session.query.getTotalPassengers()).subscribe((response: Response<Travel>) => {
         for (var i = 0; i < segment.travels.length; i++) {
           let tt: Travel = segment.travels[i];
@@ -121,13 +124,13 @@ export class Step5Component implements OnInit {
             break;
           }
         }
-      this.selected_segment = segment;
+        this.selected_segment = segment;
         this.selected_segment.selected_travel = response.data;
         if (this.selected_segment.sbs == null) {
           this.selected_segment.sbs = [];
           let j: number = this.segments.indexOf(segment);
           if (j > 0) {
-            this.prePickSeats(segment,this.segments[i]);
+            this.prePickSeats(segment, this.segments[i]);
           }
         }
         // this.buildSlide();
@@ -135,15 +138,18 @@ export class Step5Component implements OnInit {
       });
     }
   }
-  ocultarModel(){
+  /**Oculta el modal */
+  ocultarModel() {
     this.displayModal = false;
     this.displayModalReturn = false;
   }
-  ocultarModelReturn(){
+  /**Oculta el modal que es cuando das al boton de regresar */
+  ocultarModelReturn() {
     let i: number = this.segments.indexOf(this.selected_segment);
     this.setSelectedSegment(this.segments[i - 1]);
     this.displayModalReturn = false;
   }
+  /** */
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
       let sb: SeatBooking = base.sbs[i];
@@ -153,17 +159,18 @@ export class Step5Component implements OnInit {
         if (w.name == sbwname) {
           let s: Seat = w.getSeat(sb.seat.row, sb.seat.col);
           if (s != null) {
-            this.onSeatClicked(s, w, segment,i);
+            this.onSeatClicked(s, w, segment, i);
           }
         }
       }
     }
   }
+  /** */
   selectWagonType(wt: WagonType) {
     this.selected_wagon_type = wt;
   }
-
   public auto_pick_wagon: boolean = true;
+  /**Valida la cantidad de vagones que contiene el tren con la fecha seleccionada */
   getWagons(segment: Segment): Wagon[] {
     this.segmentNumber = 1;
     if (this.auto_pick_wagon && segment != this.segments[0]) {
@@ -185,12 +192,14 @@ export class Step5Component implements OnInit {
       return this.filterWagons(segment.selected_travel.wagons);
     }
   }
+  /**Valida la cantidad de vagones que contiene el tren con la fecha seleccionada */
   filterWagons(wagons: Wagon[]): Wagon[] {
     if (this.session.route.pick_class && this.session.query.class != null) {
       return this.filterWagonsByWagonType(wagons, this.session.query.class);
     }
     return wagons;
   }
+  /**Valida la cantidad de vagones que contiene el tren con la fecha seleccionada */
   filterWagonsByWagonType(wagons: Wagon[], wt: WagonType): Wagon[] {
     var wagons2: Wagon[] = [];
     for (var i = 0; i < wagons.length; i++) {
@@ -205,14 +214,15 @@ export class Step5Component implements OnInit {
     this.segmentNumber = wagons2.length
     this.buildSlide();
     // this.prueba()
-   
     return wagons2;
   }
+  /** */
   getRemainingSbs(): number {
     let remaining: number = this.session.query.getTotalPassengers() - this.selected_segment.sbs.length;
-    
+
     return remaining;
   }
+  /**Quita o pone la clase orange para informar sobre los asientos */
   getAssignedSbs(): number {
     let remaining: number = this.getRemainingSbs();
     if (remaining > 0) {
@@ -222,35 +232,33 @@ export class Step5Component implements OnInit {
     }
     return this.selected_segment.sbs.length;
   }
+  /**Esta función es para la selección de lugares */
   onSeatClicked(seat: Seat, wagon: Wagon, segment: Segment, id_person: number) {
-    
     let remaining: number = this.getRemainingSbs();
     switch (seat.status) {
       case Seat.available:
         if (remaining <= 0) {
-        //  alert("Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.");
+          //  alert("Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.");
           this.isLoading = false
           this.displayModal = true;
           this.notifTitle = "";
-          this.notifBody = "Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.";       
-              this.route = this.routeX;
-          this.resetSlick();    
+          this.notifBody = "Ya has asignado a todos los pasajeros disponibles. Puedes hacer clic sobre un asiento seleccionado para quitar esa selección y así volver a asignar al pasajero, o bien, elige otra escala para seguir seleccionando asientos.";
+          this.route = this.routeX;
+          this.resetSlick();
           return;
         }
         seat.status = Seat.taken;
         var sb: SeatBooking = new SeatBooking(seat, wagon,
           segment.selected_travel, this.session.route,
           segment.getNextPT(this.session.route, this.session.query),
-          new Cost(), id_person,0);
-        this.selected_segment.sbs.push(sb);   
-      console.log(this.selected_segment)
-
+          new Cost(), id_person, 0);
+        this.selected_segment.sbs.push(sb);
+        console.log(this.selected_segment)
         this.selected_segment = segment;
         break;
       case Seat.unavailable: seat.status = Seat.unavailable; break;
       case Seat.taken:
         seat.status = Seat.available;
-        
         for (var i = 0; i < segment.sbs.length; i++) {
           let sb: SeatBooking = segment.sbs[i];
           if (sb.seat.id == seat.id) {
@@ -262,84 +270,83 @@ export class Step5Component implements OnInit {
       case Seat.booked: seat.status = Seat.booked; break;
     }
   }
+  /**Valida si el segmento en las escalas sea el primero */
   isFirstNav(): boolean {
     let i: number = this.segments.indexOf(this.selected_segment);
     return (i == 0);
   }
+  /**Valida si el segmento en las escalas sea el ultimo */
   isLastNav(): boolean {
     let i: number = this.segments.indexOf(this.selected_segment);
     return (i == (this.segments.length - 1));
   }
+  /**Esta función da la logica al boton de siguiente */
   onNext(id) {
     this.ocultarModales();
     // this.slideEnCero();
     // this.slideDown();
-    
-      $('.slick-slider').slick('unslick'); 
-    
+    $('.slick-slider').slick('unslick');
     let i: number = this.segments.indexOf(this.selected_segment);
-    let r: number = this.getRemainingSbs(); 
+    let r: number = this.getRemainingSbs();
     console.log(this.segments.length)
     if (i == (this.segments.length - 1) && r == 0) {
-        this.isLoading = false
-        this.route = "/reservaciones/"+ this.session.route.name +"/confirmar";
-       this.session.rb.seats = [];
-        for (var j = 0; j < this.segments.length; j++) {
-          let s: Segment = this.segments[j];
-          for (var k = 0; k < s.sbs.length; k++) {
-            let sb: SeatBooking = s.sbs[k];
-            this.session.rb.seats.push(sb);
-          }
+      this.isLoading = false
+      this.route = "/reservaciones/" + this.session.route.name + "/confirmar";
+      this.session.rb.seats = [];
+      for (var j = 0; j < this.segments.length; j++) {
+        let s: Segment = this.segments[j];
+        for (var k = 0; k < s.sbs.length; k++) {
+          let sb: SeatBooking = s.sbs[k];
+          this.session.rb.seats.push(sb);
         }
-        this.router.navigate([this.route]);
+      }
+      this.router.navigate([this.route]);
     } else {
-     
       if (r > 0) {
         this.isLoading = false
         this.route = this.routeX;
-        this.resetSlick(); 
+        this.resetSlick();
       } else {
-        if(id == 1){
+        if (id == 1) {
           // this.buildSlide()
           this.setSelectedSegment(this.segments[i + 1]);
-          this.resetSlick(); 
-        }else{
           this.resetSlick();
-          }
+        } else {
+          this.resetSlick();
+        }
       }
     }
   }
-
-  prueba(){
-      if(this.segmentNumber == 1){
-          $(".js-wagon__slider .slick-arrow").hide();
+  /**Funcion para el slider */
+  prueba() {
+    if (this.segmentNumber == 1) {
+      $(".js-wagon__slider .slick-arrow").hide();
       setTimeout(() => {
         $(".js-wagon__slider").slick("slickGoTo", 0)
       }, 600);
-      }
+    }
   }
-
-  resetSlick(){
+  /**Resetea el slider */
+  resetSlick() {
     this.slickAlive = false;
-    setTimeout(()=>{
+    setTimeout(() => {
       this.slickAlive = true;
-    },100);
+    }, 100);
   }
-
-  
+  /**Esta función da la logica al boton de atras */
   onBack() {
     this.ocultarModales();
     let i: number = this.segments.indexOf(this.selected_segment);
     console.log(i)
-    
+
     if (i != 0) {
-        this.isLoading = false
-        this.route = this.routeX;
-          $('.slick-slider').slick('unslick'); 
-        this.setSelectedSegment(this.segments[i-1]);
-        this.resetSlick()
-        
-        
+      this.isLoading = false
+      this.route = this.routeX;
+      $('.slick-slider').slick('unslick');
+      this.setSelectedSegment(this.segments[i - 1]);
+      this.resetSlick()
+
+
     } else {
       this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]);
     }
@@ -349,60 +356,63 @@ export class Step5Component implements OnInit {
     // },600);
 
   }
-  onShowBackModal(){
+  /**Muestra el modal cuando das en el boton de siguiente */
+  onShowBackModal() {
     this.resetSlick()
     let i: number = this.segments.indexOf(this.selected_segment);
     this.displayModalReturn = true;
     this.notifTitle = "";
-    this.notifBody = (i!=0)?"¿Desea regresar a la escala anterior?":"¿Desea regresar a la sección anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
+    this.notifBody = (i != 0) ? "¿Desea regresar a la escala anterior?" : "¿Desea regresar a la sección anterior?";  //Esto ni es pregunta... solo existe la opcion de aceptar... e igual hace el cambio.           
   }
-  onShowNextModal(){
+  /**Muestra el modal cuando das en el boton de atras */
+  onShowNextModal() {
     let i: number = this.segments.indexOf(this.selected_segment);
     let r: number = this.getRemainingSbs();
     if (i == (this.segments.length - 1) && r == 0) {
       this.notifTitle = "";
-      this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";       
+      this.notifBody = "¿Ha terminado de seleccionar los asientos de los pasajeros?";
       this.displayModal = true;
-    }else if (r > 0) {
-       this.displayModal = true;
-       this.notifTitle = "";
-       if(r == 1){
-         this.notifBody = "Aun debe elegir " + r + " asiento más.";
-       }else(this.notifBody = "Aun debe elegir " + r + " asientos más.")       
-     }else{
-       this.onNext(1);
-     }
-      
-    
-    
+    } else if (r > 0) {
+      this.displayModal = true;
+      this.notifTitle = "";
+      if (r == 1) {
+        this.notifBody = "Aun debe elegir " + r + " asiento más.";
+      } else (this.notifBody = "Aun debe elegir " + r + " asientos más.")
+    } else {
+      this.onNext(1);
+    }
   }
-  ocultarModales(){
+  /**Oculta el modal */
+  ocultarModales() {
     this.displayModal = false;
     this.displayModalReturn = false;
     this.resetSlick()
   }
+  /** */
   getWagonType2(wagon: Wagon): string {
     if (wagon.type.id == 4) { return "classic"; }
-    if (wagon.type.id == 3) { return "premium"; }    
+    if (wagon.type.id == 3) { return "premium"; }
     if (wagon.type.id == 1) { return "classic regional"; }
     return "classic";
   }
+  /** */
   getRowClasses(i: number, vagonId: number): string {
     switch (vagonId) {
       case 1:
-        if (i == 0 || i == 6 ) return ""; 
+        if (i == 0 || i == 6) return "";
         else return "flip";
       case 3:
-        if (i % 2 == 0) return ""; 
+        if (i % 2 == 0) return "";
         else return "flip";
       case 4:
-        if (i < 7) return ""; 
+        if (i < 7) return "";
         else return "flip";
       default:
         return "";
     }
   }
   fly_max: number = -1;
+  /** */
   public shouldFly(): boolean {
     return false;
     /*  this.fly_max = document.body.clientHeight-screen.height;
@@ -414,6 +424,7 @@ export class Step5Component implements OnInit {
       return true;
     }*/
   }
+  /** */
   public seatsHeadOnLeft(seat: number): boolean {
     switch (this.session.query.class.id) {
       case 1:
@@ -422,19 +433,20 @@ export class Step5Component implements OnInit {
         }
         break;
       case 4:
-      if (seat == 6 || seat == 14 || seat == 22 || seat == 30 || seat == 38 || seat == 46) {
-        return true;
-        }        
+        if (seat == 6 || seat == 14 || seat == 22 || seat == 30 || seat == 38 || seat == 46) {
+          return true;
+        }
         break;
-      case 5:        
+      case 5:
         if (seat == 28) {
           return true;
         }
-      break ;
+        break;
       default:
-      return false;
+        return false;
     }
-  } 
+  }
+  /** */
   public seatsHeadOnRight(seat: number): boolean {
     switch (this.session.query.class.id) {
       case 1:
@@ -443,20 +455,21 @@ export class Step5Component implements OnInit {
         }
         break;
       case 4:
-      if (seat == 1 || seat == 9 || seat == 17 || seat == 25 || seat == 33 || seat == 41) {
-        return true;
+        if (seat == 1 || seat == 9 || seat == 17 || seat == 25 || seat == 33 || seat == 41) {
+          return true;
         }
         break;
       case 5:
-      if (seat == 25) {
-        return true;
-      }
-      break ;
+        if (seat == 25) {
+          return true;
+        }
+        break;
       default:
-      return false;
+        return false;
     }
-  } 
-  public trackByFn(index,item){
+  }
+  /** */
+  public trackByFn(index, item) {
     return index;
   }
 }

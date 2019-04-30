@@ -31,7 +31,7 @@ export class ConfirmComponent implements OnInit {
     private router: Router,
     private model:ModelService, 
   ) { }
-
+  /**Se hace la validación del pago, si es satisfactoria la respuesta se muestra el modal de pago exitoso, de lo contrario se mostrara el modal de rechazado */
   ngOnInit() {
     // Obtenemos parametros de pago
     this.activatedRoute.queryParams.subscribe((params: Params) => {

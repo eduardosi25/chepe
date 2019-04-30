@@ -34,16 +34,18 @@ export class Step3Component implements OnInit {
 
   public segments: Segment[] = [];
   public schedule: Schedule = null;
-  public dateWeek; 
-  public  btnNext= true;
+  public dateWeek;
+  public btnNext = true;
   public displayModal = false;
   public notifTitle = "";
   public notifBody = "";
   public notifBody1 = "";
   public notifBody2 = "";
   public notifBody3 = "";
-  public notifBody11="";
+  public notifBody11 = "";
   public isLoading = true;
+
+  /**Se valida si existe disponibilidad y si no lo hay, arma el model de no disponibilidad y si hay disponibilidad te manda al siguiente paso  */
   ngOnInit() {
     this
     this.checkQueryString().subscribe((r: boolean) => {
@@ -53,102 +55,101 @@ export class Step3Component implements OnInit {
       this.session.save();
       let query: AvailabilityQuery = this.session.query.toAvailabilityQuery(this.session.route);
       this.model.getRouteScheduleAvailable(this.session.route.id, query).subscribe((response: Response<Schedule>) => {
-        
+
         if (response.success && response.data.travels.length > 0) {
           this.schedule = response.data;
           this.session.schedule = response.data;
           this.segments = this.makeSegments(this.schedule, query);
           this.session.segments = this.segments;
-          
-          this.segments.forEach(e => {
-            this.onTravelSelected(e,e.travels[0])
-          });
-          
-    
-    
-          /*************/          
-         if(this.session.query.round)
-          {
-            
-          let query2: AvailabilityQuery = this.session.query2.toAvailabilityQuery(this.session.route);
-          query2 = this.fixQuery(query2);
 
-          this.model.getRouteScheduleAvailable(this.session.route.id,query2).subscribe((response:Response<Schedule>)=>{
-            if(response.success && response.data.travels.length>0){
-              console.log("response sch");
-              console.log(response.data);
-              this.segments = this.makeSegments(response.data,query2);
-              this.session.segments2 = this.segments;
-              console.log(" segs");
-              console.log(this.segments);
-              
-              this.segments.forEach(e => {
-                this.onTravelSelected(e,e.travels[0])
-            });
-              this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
-              // this.schedule = response.data;
-              // this.session.schedule.travels. = response.data;
-              // this.segments = this.makeSegments(this.schedule,query2);
-              // this.session.segments2 = this.segments;
-            }else{
-              if (this.session.route.name == 'Express') {
-                this.isLoading = false;
-                this.displayModal = true;
-                this.notifTitle = "No hay disponibilidad";
-                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
-                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
-                this.notifBody11= "aquí"
-                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
-                this.notifBody3 = "Gracias por elegirnos!"
-                // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
-              }
-              else{
-                this.displayModal = true;
-                this.isLoading = false;
-                this.notifTitle = "No hay viajes disponibles";
-                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
-                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
-                this.notifBody11= "aquí"
-                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
-                this.notifBody3 = "Gracias por elegirnos!"
-                  // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
-              }
-              this.schedule = new Schedule();
-              this.session.schedule = null;
-            }
+          this.segments.forEach(e => {
+            this.onTravelSelected(e, e.travels[0])
           });
+
+
+
+          /*************/
+          if (this.session.query.round) {
+
+            let query2: AvailabilityQuery = this.session.query2.toAvailabilityQuery(this.session.route);
+            query2 = this.fixQuery(query2);
+
+            this.model.getRouteScheduleAvailable(this.session.route.id, query2).subscribe((response: Response<Schedule>) => {
+              if (response.success && response.data.travels.length > 0) {
+                console.log("response sch");
+                console.log(response.data);
+                this.segments = this.makeSegments(response.data, query2);
+                this.session.segments2 = this.segments;
+                console.log(" segs");
+                console.log(this.segments);
+
+                this.segments.forEach(e => {
+                  this.onTravelSelected(e, e.travels[0])
+                });
+                this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
+                // this.schedule = response.data;
+                // this.session.schedule.travels. = response.data;
+                // this.segments = this.makeSegments(this.schedule,query2);
+                // this.session.segments2 = this.segments;
+              } else {
+                if (this.session.route.name == 'Express') {
+                  this.isLoading = false;
+                  this.displayModal = true;
+                  this.notifTitle = "No hay disponibilidad";
+                  this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";
+                  this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click "
+                  this.notifBody11 = "aquí"
+                  this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+                  this.notifBody3 = "Gracias por elegirnos!"
+                  // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
+                }
+                else {
+                  this.displayModal = true;
+                  this.isLoading = false;
+                  this.notifTitle = "No hay viajes disponibles";
+                  this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";
+                  this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click "
+                  this.notifBody11 = "aquí"
+                  this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+                  this.notifBody3 = "Gracias por elegirnos!"
+                  // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
+                }
+                this.schedule = new Schedule();
+                this.session.schedule = null;
+              }
+            });
           }
-          else{            
+          else {
             //   this.segments.forEach(e => {
             //     this.onTravelSelected(e,e.travels[0])
             // });
             this.router.navigate(["/reservaciones/" + this.session.route.name + "/paso4"]); return;
-          } 
+          }
           /*************/
         } else {
           // alert("No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo");
-              if (this.session.route.name == 'Express') {
-                this.isLoading = false
-                this.displayModal = true;
-                this.notifTitle = "No hay disponibilidad";
-                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
-                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
-                this.notifBody11= "aquí"
-                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
-                this.notifBody3 = "Gracias por elegirnos!"
-                // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
-              }
-              else{
-                this.isLoading = false
-                this.displayModal = true;
-                this.notifTitle = "No hay disponibilidad";
-                this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";       
-                this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click " 
-                this.notifBody11= "aquí"
-                this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
-                this.notifBody3 = "Gracias por elegirnos!"
-                   // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
-              }
+          if (this.session.route.name == 'Express') {
+            this.isLoading = false
+            this.displayModal = true;
+            this.notifTitle = "No hay disponibilidad";
+            this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";
+            this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click "
+            this.notifBody11 = "aquí"
+            this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+            this.notifBody3 = "Gracias por elegirnos!"
+            // alert("No se encontraron asiento disponibles par su viaje, elija otras opciones de búsqueda e inténtelo de nuevo");                
+          }
+          else {
+            this.isLoading = false
+            this.displayModal = true;
+            this.notifTitle = "No hay disponibilidad";
+            this.notifBody = "Para un mejor servicio te sugerimos tomar en cuenta los siguientes puntos:";
+            this.notifBody1 = "Tener en cuenta los únicos días de salida del tren por semana. Para mas información da click "
+            this.notifBody11 = "aquí"
+            this.notifBody2 = "Si revisaste lo anterior y tus fechas son correctas es probable que la fecha que elegiste ya no está disponible de venta por falta de cupo, en este caso te recomendamos marcar al 01800 122 4373 para apoyarte en buscar nuevas fechas disponibles para armar tu viaje."
+            this.notifBody3 = "Gracias por elegirnos!"
+            // alert("No se encontraron viajes disponibles, verifica los días de salida para tu trayecto");
+          }
           // this.schedule = new Schedule();
           // this.session.schedule = null;
         }
@@ -164,11 +165,11 @@ export class Step3Component implements OnInit {
   }
 
   private selectTrips() {
-    
-  } 
- 
-  
-  fixQuery(query:AvailabilityQuery):AvailabilityQuery{
+
+  }
+
+
+  fixQuery(query: AvailabilityQuery): AvailabilityQuery {
     // let src = query.id_src;
     // query.id_src = query.id_dst;
     // query.id_dst = src;
@@ -176,41 +177,41 @@ export class Step3Component implements OnInit {
     // console.log(query.start);
     return query;
   }
-  
-  mkDate(s:string):Date{
-    var mps:string[] = s.split(" ");
-    let now:Date = new Date();
-    if(mps.length==1){
-        mps.push("00:00:01");
+
+  mkDate(s: string): Date {
+    var mps: string[] = s.split(" ");
+    let now: Date = new Date();
+    if (mps.length == 1) {
+      mps.push("00:00:01");
     }
-    let dps:string[] = mps[0].split("-");
-    let tps:string[] = mps[1].split(":");
+    let dps: string[] = mps[0].split("-");
+    let tps: string[] = mps[1].split(":");
 
-    let year:number  = dps.length>=1?parseInt(dps[0]):now.getFullYear();
-    let month:number  = dps.length>=2?parseInt(dps[1])-1:now.getMonth();
-    let day:number  = dps.length>=3?parseInt(dps[2]):now.getDate();
+    let year: number = dps.length >= 1 ? parseInt(dps[0]) : now.getFullYear();
+    let month: number = dps.length >= 2 ? parseInt(dps[1]) - 1 : now.getMonth();
+    let day: number = dps.length >= 3 ? parseInt(dps[2]) : now.getDate();
 
-    let hour:number = tps.length>=1?parseInt(tps[0]):now.getHours();
-    let minute:number = tps.length>=2?parseInt(tps[1]):now.getMinutes();
-    let second:number = tps.length>=3?parseInt(tps[2]):now.getSeconds();
+    let hour: number = tps.length >= 1 ? parseInt(tps[0]) : now.getHours();
+    let minute: number = tps.length >= 2 ? parseInt(tps[1]) : now.getMinutes();
+    let second: number = tps.length >= 3 ? parseInt(tps[2]) : now.getSeconds();
 
-    let dd:Date = new Date(year,month,day+1,hour,minute,second);
+    let dd: Date = new Date(year, month, day + 1, hour, minute, second);
     return dd;
   }
   public onTravelSelected(segment: Segment, travel: Travel) {
     segment.selected_travel = travel;
-   
-    for(var a = 0; a <= segment.n; a++){
-       var d = segment.selected_travel.getWeekday()
-       
-        var dateWee = [d];
 
-       if (dateWee[0] == "Jueves"){
-       this.dateWeek = this.translate.instant('Step3-P16');
+    for (var a = 0; a <= segment.n; a++) {
+      var d = segment.selected_travel.getWeekday()
+
+      var dateWee = [d];
+
+      if (dateWee[0] == "Jueves") {
+        this.dateWeek = this.translate.instant('Step3-P16');
       }
     }
   }
-  public lenguajeWeekDay(){
+  public lenguajeWeekDay() {
 
 
   }
@@ -219,7 +220,7 @@ export class Step3Component implements OnInit {
     // gral_max.setHours(23);
     // gral_max.setMinutes(59);
     // gral_max.setSeconds(59);
-     let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
+    let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
     // if (ts.length == 1) {
 
     //   //  segment.selected_travel = ts[0];
@@ -302,22 +303,22 @@ export class Step3Component implements OnInit {
     var routets01: TrainStop[] = [];
     var direction = Direction.up;
     var fromkm = 0; var tokm = 0;
-    
+
     for (var i = 0; i < this.session.route.stops.length; i++) {
-    //   let ts: TrainStop = this.session.route.stops[i];
-    //   // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
-    //   if (ts.id == query.id_src) {
-    //     fromkm = ts.km;
-    //     routets.push(ts);
-    //   }
-    //   if (ts.id == query.id_dst) {
-    //     tokm = ts.km;
-    //     routets.push(ts);
-    //   }
-    // if (query.stops.toString().search(ts.id.toString()) >= 0)
-    //   routets.push(ts);
-    //   // console.log(routets);
-    }   
+      //   let ts: TrainStop = this.session.route.stops[i];
+      //   // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
+      //   if (ts.id == query.id_src) {
+      //     fromkm = ts.km;
+      //     routets.push(ts);
+      //   }
+      //   if (ts.id == query.id_dst) {
+      //     tokm = ts.km;
+      //     routets.push(ts);
+      //   }
+      // if (query.stops.toString().search(ts.id.toString()) >= 0)
+      //   routets.push(ts);
+      //   // console.log(routets);
+    }
     if (fromkm > tokm) {
       routets.reverse();
     }
@@ -325,21 +326,20 @@ export class Step3Component implements OnInit {
       const e = query.trips[i];
       let ts0: any = e.id_src;// this.model.getTrainStopById(e.id_src);    
       let ts1: any = e.id_dst;// this.model.getTrainStopById(e.id_dst);   
-      
-      var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
-      
+
+      var segment: Segment = new Segment(i + 1, ts0, ts1, [], query);
+
       segments.push(segment);
     }
     for (var i = 0; i < (routets.length - 1); i++) {
-      let ts0: TrainStop = routets[i];    
-      let ts1: TrainStop = routets[i+1];
-      var segment: Segment = new Segment(i+1, ts0, ts1, [], query);     
+      let ts0: TrainStop = routets[i];
+      let ts1: TrainStop = routets[i + 1];
+      var segment: Segment = new Segment(i + 1, ts0, ts1, [], query);
       //segments_by_ts[ts0.id] = segment;
-      if (direction == 1) {        
+      if (direction == 1) {
         segments_by_ts[ts0.id] = segment;
       }
-      else if (fromkm < tokm)
-      {        
+      else if (fromkm < tokm) {
         segments_by_ts[ts1.id] = segment;
       }
       if (i > 0) {
@@ -359,7 +359,7 @@ export class Step3Component implements OnInit {
       // {        
       //   segment = segments_by_ts[t.id_dst];
       // }
-      if (segment == null) { continue; } 
+      if (segment == null) { continue; }
       segment.travels.push(t);
     }
     var k = 1;
@@ -372,16 +372,16 @@ export class Step3Component implements OnInit {
         segments2.push(s);
       }
     }
-    
-    this.btnNext=null;
+
+    this.btnNext = null;
     return segments2
   }
   public isFirstSegment(segment: Segment): boolean {
-   
+
     return (segment.n == 1);
   }
   public isLastSegment(segment: Segment): boolean {
-   
+
     return (segment.n == this.segments.length);
   }
 

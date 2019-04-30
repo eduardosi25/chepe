@@ -94,30 +94,25 @@ export class Step1Component implements OnInit {
   public calendar = null;
   public c1A; c2A; c3A; c4A;
   public c1Av; c2Av; c3Av; c4Av;
-
-
-
-
   public id_Src = []; id_Dst = []; keySrc = []; keyDst = []; bloqueoCalendario = []; bloc = []; calendarArray = []; cA = []; cAV = [];
-public Step1P92;
+  public Step1P92;
 
-
-
+  /**Función que valida si existe informacion para en binding, tambien da */
   ngOnInit() {
 
-    this.Step1P92= [
+    this.Step1P92 = [
       // this.translate.instant('Step1-P92'),
       // this.translate.instant('Step1-P93'),
       // this.translate.instant('Step1-P94'),
       "Adulto: 12 años en adelante.",
       "Menor: 5 a 11 años.",
       "Infante: 0 a 4 años. Sin costo (Sin lugar asignado).",
-      ],
-    // this.dateChange();
-    this.isChecked = true;
+    ],
+      // this.dateChange();
+      this.isChecked = true;
     var aq: AvailabilityQuery2 = new AvailabilityQuery2(this.model, this.translate);
     if (this.previousRouteService.getPreviousUrl().indexOf('reservaciones/') == -1 || this.session.query == null) {
-      this.session.query = new AvailabilityQuery2(this.model,  this.translate);
+      this.session.query = new AvailabilityQuery2(this.model, this.translate);
 
     }
     //clean session
@@ -176,6 +171,7 @@ public Step1P92;
     this.avaStops = this.getSrcs(0);
 
   }
+  /**Corre varias funciones de jquery */
   createInstance() {
     // Funcion de calendario
     $.fn.datepicker.dates['es'] = {
@@ -255,8 +251,7 @@ public Step1P92;
 
     }, 1000);
   }
-
-
+  /**Esta función cacha el evento del calendario y genera la fecha en el formato que necesita el servicio*/
   public dateChange() {
     ////Parada 1
     var currDate = [];
@@ -273,7 +268,7 @@ public Step1P92;
           startDate: self.c1[0]
         })
           .on('changeDate', (e) => {
-          self.fechaGet[0] = e.date; self.cAV[0] = null; self.cAV[1] = true; self.dateChange();
+            self.fechaGet[0] = e.date; self.cAV[0] = null; self.cAV[1] = true; self.dateChange();
           }).keydown(false);
       }, 150)
     }
@@ -285,7 +280,7 @@ public Step1P92;
           startDate: self.c1[1]
         })
           .on('changeDate', (e) => {
-          self.fechaGet[1] = e.date; self.cAV[1] = null; self.cAV[2] = true; self.dateChange();
+            self.fechaGet[1] = e.date; self.cAV[1] = null; self.cAV[2] = true; self.dateChange();
           }).keydown(false);
       }, 150)
     }
@@ -297,7 +292,7 @@ public Step1P92;
           startDate: self.c1[2]
         })
           .on('changeDate', (e) => {
-          self.fechaGet[2] = e.date; self.cAV[2] = null; self.cAV[3] = true; self.dateChange();
+            self.fechaGet[2] = e.date; self.cAV[2] = null; self.cAV[3] = true; self.dateChange();
           }).keydown(false);
       }, 150)
     }
@@ -309,7 +304,7 @@ public Step1P92;
           startDate: self.c1[3]
         })
           .on('changeDate', (e) => {
-          self.fechaGet[3] = e.date; self.cAV[3] = null; self.dateChange();
+            self.fechaGet[3] = e.date; self.cAV[3] = null; self.dateChange();
           }).keydown(false);
       }, 150)
     }
@@ -391,23 +386,24 @@ public Step1P92;
     }
     this.onDateChange();
   }
-
-
+  /** */
   public countTrips(n: number) {
     if (this.trips.length >= n) {
       return true;
     }
   }
+  /** */
   public countTrips2(n: number) {
     if (this.trips2.length >= n) {
       return true;
     }
   }
+  /** */
   public countStops(tr: Trip[]) {
     if (tr.length > 1)
       return true;
   }
-
+  /**Hace la validación de las fechas */
   public onDateChange() {
     this.constDate = null;
     var i = 0;
@@ -418,7 +414,7 @@ public Step1P92;
       else (this.constDate = null, this.constDateInv = null, this.constDateUnd = null)
     }
   }
-
+  /**Esta función cacha los cambios en los lugares donde se hara escala*/
   public onChangeStop(round: boolean, tr: Trip) {
     var inde = 0;
     var getSrcs = this.session.route.stops;
@@ -453,7 +449,7 @@ public Step1P92;
     }
     this.dateChange();
   }
-
+  /**Crea en el arreglo un espacio para la nueva escala */
   public onCreateTrip(round: boolean) {
     let dat = new Date();
     let index;
@@ -465,7 +461,7 @@ public Step1P92;
     this.numStops++;
     this.maxStop();
   }
-
+  /**Elimina el arreglo de la escala elegida */
   public onDeleteTrip(tr: Trip, round: boolean) {
     let index;
     index = this.trips.indexOf(tr, 0);
@@ -475,7 +471,7 @@ public Step1P92;
     this.numStops--;
     this.maxStop();
   }
-
+  /** Obtiene la fecha en un formato*/
   public getDate(with_weekday: boolean = true): string {
     let d: Date = new Date();
     var s: string = "";
@@ -485,6 +481,7 @@ public Step1P92;
     s += d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
     return s;
   }
+  /**Obtiene la semana */
   public getWeekday(n: number = -1, full: boolean = true): string {
     if (n == -1) {
       let d: Date = new Date();
@@ -512,6 +509,7 @@ public Step1P92;
       }
     }
   }
+  /** */
   public getRouteStops(): TrainStop[] {
     var tss: TrainStop[] = [];
     let direction: number = 1;
@@ -520,13 +518,17 @@ public Step1P92;
     }
     return tss;
   }
+  /** */
   public onPickTS(ts: TrainStop) {
   }
+  /** */
   public isMiddle(i: number, ts: TrainStop) {
   }
+  /**Obtiene la dirección en la que inicia el viaje */
   public getSrcs(direction: number = Direction.up): TrainStop[] {
     return this.route.getSrcs(direction);
   }
+  /**Obtiene la direccion en la que finaliza el viaje */
   public getDsts(direction: number = Direction.up, src: TrainStop = null): TrainStop[] {
     if (src == null) {
       return this.getSrcs(direction)
@@ -542,6 +544,7 @@ public Step1P92;
     }
   }
   public last_failure_motive: string = null;
+  /**Esta función sirve para agregar o quitar la calse orange que es la que se coloca en el recuadro de los elementos en el formulario*/
   public a1(id: string, cl: string = null) {
     var a = document.getElementById(id);
     if (a) {
@@ -551,7 +554,7 @@ public Step1P92;
       }
     }
   }
-
+  /**Valida cada elemento en el formulario para que ningun elemento este vacio */
   public readyToGoNext(): boolean {
     this.last_failure_motive = null;
     this.a1('pasajeros'); this.a1('inicio');
@@ -574,20 +577,21 @@ public Step1P92;
     console.log(pax)
     let l = pax[1] + pax[2]
     if (this.session.route.pick_class && this.session.query.class == null) { this.flagDisabled = true; this.last_failure_motive = "Elige una clase."; this.a1('clase', 'orange'); this.step1 = this.translate.instant('Step1-P66'); return true; }
-    if(pax[1] < pax[8] ){this.a1('pp'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P95'); return true; }
-    if(l > 10){this.a1('pp'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P96'); return true; }
+    if (pax[1] < pax[8]) { this.a1('pp'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P95'); return true; }
+    if (l > 10) { this.a1('pp'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P96'); return true; }
     if (this.constStop == false) { this.a1('origen' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un origen"; this.step1 = this.translate.instant('Step1-P67'); return true; }
     if (this.constStop == true) { this.a1('destino' + this.stopNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige un destino"; this.step1 = this.translate.instant('Step1-P68'); return true; }
     if (this.constDate) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P70'); return true; }
     if (this.constDateUnd) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P69'); return true; }
     if (this.constDateInv) { this.a1('datepicker' + this.dateNumErr, 'orange'); this.flagDisabled = true; this.last_failure_motive = "Elige una fecha"; this.step1 = this.translate.instant('Step1-P76'); return true; }
 
-    
+
     if (this.session.query.getTotalPassengers() <= 0) { this.flagDisabled = null; this.last_failure_motive = "Elige pasajeros."; this.a1('pasajeros', 'orange'); return true; }
     if (this.last_failure_motive == null) { this.flagDisabled = null; this.step1 = this.translate.instant('Step1-P64'); return true; }
 
     return true;
   }
+  /** */
   public add(pt: PassengerType, d: number) {
     var a = this.session.query.passengers[pt.id];
     a += d;
@@ -596,9 +600,11 @@ public Step1P92;
     this.session.query.passengers[pt.id] = a;
     this.preflight();
   }
+  /**Obtiene el total de pasajeros que se eligieron */
   public getTotalPassengers(): string {
     return this.session.query.getPassengersString(this.route);
   }
+  /** */
   public getCoordinates(ts: TrainStop) {
     if (ts.px >= 0 && ts.py >= 0) {
       let styles: string = "left:" + (ts.px * 100) + "%;top:" + (ts.py * 100) + "%;";
@@ -618,9 +624,11 @@ public Step1P92;
 
     return this.sanitizer.bypassSecurityTrustStyle(styles);
   }
+  /** */
   public canSelectMap(): boolean {
     return true;//(this.session.query.src != null  && this.session.query.dst != null);
   }
+  /** */
   public onMap() {
     if (this.canSelectMap()) {
       $('#map-stops').modal('show');
@@ -628,6 +636,7 @@ public Step1P92;
       alert("Debes elegir un origen y un destino");
     }
   }
+  /** */
   public preflight() {
     if (this.session.preflight != null) {
       this.session.preflight.unsubscribe();
@@ -635,10 +644,10 @@ public Step1P92;
     if (this.session.query.isReady()) {
       this.session.query.trips = this.trips;
     }
-
     this.readyToGoNext();
   }
   public wts: Wagon[] = null;
+  /** */
   public getClasses(route: Route2): Wagon[] {
     if (this.wts != null) {
       return this.wts;
@@ -661,6 +670,7 @@ public Step1P92;
     }
     return this.wts;
   }
+  /**Cacha el cambio del checkbox  */
   public onChange(value) {
     this.session.query.round = value;
     this.radio = value;
@@ -689,18 +699,22 @@ public Step1P92;
     this.dateChange();
     this.onChangeStop(false, this.trips[0])
   }
+  /**Transforma el nombre de la ruta a minusculas y lo compara para saber si es regional la ruta */
   isRegional(route: Route2): boolean {
     return (route.name.toLowerCase() == "regional");
   }
+  /**Va agregando posiciones al arreglo de paradas y valida que no se pase del numero de paradas que puede tener */
   public maxStop() {
 
     if (this.route.max_stops <= this.numStops) { this.tripMaxStop = false }
     else (this.tripMaxStop = true)
     this.onChangeStop(false, this.trips[0]);
   }
+  /** */
   public isRound(): boolean {
     return this.session.query.round;
   }
+  /** */
   public display(): boolean {
     if (this.trips2.length == 1) {
       return true;

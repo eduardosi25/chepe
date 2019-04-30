@@ -48,6 +48,7 @@ export class CommitComponent implements OnInit {
     public buttonFlag = null;
     public commit;
     public routeX = "/reservaciones/" + this.session.route.name + "/confirmar";
+     /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
   ngOnInit() {
     if(!this.session || !this.session.route ||  !this.session.query || !this.session.segments || !this.session.rb){
       this.router.navigate(["/reservaciones"]);return;
@@ -64,15 +65,15 @@ export class CommitComponent implements OnInit {
       this.is_getting_quote = false;
     });
   }
-
+/**Función para el boton de regresar al paso anterior */
   public goBack(){
     this.location.back();
   }
-
+/**Función para ocultar el model */
   ocultarModel(){
     this.displayModal = false;
   }
-
+/**Función que te manda un aviso si quieres continuar al pago si es asi te redirige al paso de pago */
   public bookIt(){
     let r = JSON.stringify( this.session.rb )
     sessionStorage.setItem('route', r )
@@ -101,6 +102,7 @@ export class CommitComponent implements OnInit {
       
     //}
   }
+  /**Función que obtine el costo del viaje*/
   public getCosts():Cost[]{
     var costs={};
     console.log("logSeats");
@@ -123,6 +125,7 @@ export class CommitComponent implements OnInit {
     }
     return costs2;
   }
+  /**Función del captcha */
   captchaSolved(captchaResponse: string){
     this.buttonFlag = null;
     this.is_captcha_solved=true;

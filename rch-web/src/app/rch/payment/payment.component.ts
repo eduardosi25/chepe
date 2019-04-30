@@ -41,7 +41,6 @@ export class PaymentComponent implements OnInit {
   public selected_wagon_type: WagonType = null;
   public segments: Segment[] = [];
   public url: Url;
-
   public tabla;
   public tabla1;
   public route1;
@@ -50,7 +49,8 @@ export class PaymentComponent implements OnInit {
   public goBack() {
     this.location.back();
   }
-
+   /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
+   /**Este paso lo unico que hace es mostrar el iframe webpay */
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments) {
       this.router.navigate(["/reservaciones"]); return;
@@ -75,7 +75,7 @@ export class PaymentComponent implements OnInit {
       });
     }, 1000);
   }
-
+  /** */
   public getCosts(): Cost[] {
     var costs = {};
 
@@ -97,6 +97,7 @@ export class PaymentComponent implements OnInit {
     // }
     return costs2;
   }
+  /** */
   public bookIt() {
     // this.session.rb.status = RouteBooking.booked;
     //   this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{

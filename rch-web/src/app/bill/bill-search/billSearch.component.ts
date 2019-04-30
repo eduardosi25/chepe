@@ -14,17 +14,16 @@ export class BillSearchComponent implements OnInit {
   public pdf;
   public xml;
   public folio;
-  constructor(){}
+  constructor() { }
 
-
+/**Obtiene lo que se encuentra en el sessionStorage que es el base64 del pdf, xml y tambien obtiene el folio */
   ngOnInit() {
     this.pdf = sessionStorage.getItem('pdf');
     this.folio = sessionStorage.getItem('folio');
     this.xml = sessionStorage.getItem('xml');
   }
-
-
-clickPdf(){
+/**Función para convertir el base64 a pdf y descargarlo */
+  clickPdf() {
     const linkSource = `data:application/pdf;base64,${this.pdf}`;
     const downloadLink = document.createElement("a");
     const fileName = this.folio + ".pdf";
@@ -32,8 +31,8 @@ clickPdf(){
     downloadLink.download = fileName;
     downloadLink.click();
   }
-
-  clickXml(){
+/**Función para convertir el base64 a xml y descargarlo */
+  clickXml() {
     const linkSource = `data:application/csv;base64,${this.xml}`;
     const downloadLink = document.createElement("a");
     const fileName = this.folio + ".xml";

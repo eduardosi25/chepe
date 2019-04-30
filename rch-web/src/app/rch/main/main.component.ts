@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   routes:Route2[] = [];
   public loading:boolean = false;
   public selected_route:Route2 = null;
+  /**Se obtienen las rutas que existen*/
   ngOnInit() {
     this.loading = true;
     this.model.getRoutes().subscribe((r:Response<Route2[]>)=>{
@@ -33,12 +34,15 @@ export class MainComponent implements OnInit {
       this.routes = [];
     });
   }
+  /**Pinta los viajes que esten disponible (Express y Regional) */
   public noRoutes(){
     return (!this.loading && (!this.routes || this.routes.length<=0));
   }
+
   public selectRoute(route:Route2){
     this.selected_route = route;
   }
+  /**Valida que este haya disponibilidad de vagones*/
   getRouteWagonTypes(route:Route2){
     var wts = [];var wtnames:number[] = [];
     for(var i=0;i<route.wagons.length;i++){
@@ -64,6 +68,7 @@ export class MainComponent implements OnInit {
     }
     return str;
   }
+  /**Transforma el nombre de la ruta a minusculas y lo compara para saber si es regional la ruta */
   isRegional(route:Route2):boolean{
     return (route.name.toLowerCase() == "regional");
   }

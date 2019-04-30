@@ -20,7 +20,7 @@ export class BillConfirmComponent implements OnInit {
   public total;
   constructor(private _router: Router, private serviceBill: BillService) { }
 
-
+  /**Valida que existan datos en el sessionStorage y obtiene todos los datos que se encuentran en el, si no tien te manda a la pantalla principal. */
   ngOnInit() {
     var Paso1Session = sessionStorage.getItem('billRequest');
     var Paso1SessionInfo = sessionStorage.getItem('billRequestInfo');
@@ -33,10 +33,10 @@ export class BillConfirmComponent implements OnInit {
     sessionStorage.removeItem('billRequest');
     sessionStorage.removeItem('billRequestInfo')
   }
+  /**Manda la información al sessionStorage y manda a la pantalla de Facturacion-DatosFiscales */
   onSubmit() {
     sessionStorage.setItem('billRequest', JSON.stringify(this.fiscBill));
     sessionStorage.setItem('billRequestInfo', JSON.stringify(this.requestBill));
     this._router.navigate(['/Facturacion-DatosFiscales']);
   }
-
 }

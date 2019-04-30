@@ -27,7 +27,7 @@ export class Step2Component implements OnInit {
     public session: SessionService,
     protected router: Router,
     private aroute: ActivatedRoute) { }
-    public translate
+  public translate
 
   public schedule: Schedule = null;
   public segments: Segment[] = [];
@@ -128,22 +128,22 @@ export class Step2Component implements OnInit {
     var routets01: TrainStop[] = [];
     var direction = Direction.up;
     var fromkm = 0; var tokm = 0;
-    
+
     for (var i = 0; i < this.session.route.stops.length; i++) {
-    //   let ts: TrainStop = this.session.route.stops[i];
-    //   // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
-    //   if (ts.id == query.id_src) {
-    //     fromkm = ts.km;
-    //     routets.push(ts);
-    //   }
-    //   if (ts.id == query.id_dst) {
-    //     tokm = ts.km;
-    //     routets.push(ts);
-    //   }
-    // if (query.stops.toString().search(ts.id.toString()) >= 0)
-    //   routets.push(ts);
-    //   // console.log(routets);
-    }   
+      //   let ts: TrainStop = this.session.route.stops[i];
+      //   // console.log("ts id: " + ts.id + " id_src: " + query.id_src);
+      //   if (ts.id == query.id_src) {
+      //     fromkm = ts.km;
+      //     routets.push(ts);
+      //   }
+      //   if (ts.id == query.id_dst) {
+      //     tokm = ts.km;
+      //     routets.push(ts);
+      //   }
+      // if (query.stops.toString().search(ts.id.toString()) >= 0)
+      //   routets.push(ts);
+      //   // console.log(routets);
+    }
     if (fromkm > tokm) {
       routets.reverse();
     }
@@ -156,24 +156,23 @@ export class Step2Component implements OnInit {
       console.log("ts1");
       console.log(ts1);
       console.log(query);
-      var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
+      var segment: Segment = new Segment(i + 1, ts0, ts1, [], query);
       console.log("Segment");
       console.log(segment);
       segments.push(segment);
     }
     for (var i = 0; i < (routets.length - 1); i++) {
-      let ts0: TrainStop = routets[i];    
-      let ts1: TrainStop = routets[i+1];
-      var segment: Segment = new Segment(i+1, ts0, ts1, [], query);
+      let ts0: TrainStop = routets[i];
+      let ts1: TrainStop = routets[i + 1];
+      var segment: Segment = new Segment(i + 1, ts0, ts1, [], query);
       // console.log(ts0.id);
       // console.log(ts1.id);
       // console.log(segment);
       //segments_by_ts[ts0.id] = segment;
-      if (direction == 1) {        
+      if (direction == 1) {
         segments_by_ts[ts0.id] = segment;
       }
-      else if (fromkm < tokm)
-      {        
+      else if (fromkm < tokm) {
         segments_by_ts[ts1.id] = segment;
       }
       if (i > 0) {
@@ -186,12 +185,12 @@ export class Step2Component implements OnInit {
     console.log(schedule);
     for (var i = 0; i < schedule.travels.length; i++) {
       let t: Travel = schedule.travels[i];
-      
+
       console.log("t");
       console.log(t);
       let segment = segments[i];
       console.log("segmnt");
-      console.log(segment);       
+      console.log(segment);
       console.log("segs1");
       console.log(segments);
       //let segment: Segment;
@@ -202,7 +201,7 @@ export class Step2Component implements OnInit {
       // {        
       //   segment = segments_by_ts[t.id_dst];
       // }
-      if (segment == null) { continue; } 
+      if (segment == null) { continue; }
       console.log("seg1");
       console.log(segment);
       segment.travels.push(t);
@@ -220,7 +219,7 @@ export class Step2Component implements OnInit {
       }
     }
     // console.log(segments2);
-    
+
     return segments2;
   }
   public onTravelSelected(segment: Segment, travel: Travel) {
@@ -246,7 +245,7 @@ export class Step2Component implements OnInit {
     console.log("this.segments");
     console.log(this.segments);
     console.log(gral_max);
-     let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
+    let ts: Travel[] = segment.getTravels2(gral_max, this.segments);
     // if (ts.length == 1) {
 
     //   //  segment.selected_travel = ts[0];

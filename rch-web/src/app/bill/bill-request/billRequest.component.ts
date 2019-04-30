@@ -27,8 +27,8 @@ export class BillRequestComponent implements OnInit {
   public dat;
   constructor(private _router: Router,
     private billService: BillService,
-    private translate: TranslateService, ) {}
-
+    private translate: TranslateService, ) { }
+  /**Inicializa los modelos y el datepicker */
   ngOnInit() {
     sessionStorage.clear();
     this.requestBill = new BillRequest("", "");
@@ -55,7 +55,7 @@ export class BillRequestComponent implements OnInit {
       rthis.datePrepare();
     }).keydown(false);
   }
-
+  /**Prepara la fecha en el formato que se requiere para el servicio*/
   datePrepare() {
     let d = this.date.toString();
     let m = this.month.toString();
@@ -70,18 +70,18 @@ export class BillRequestComponent implements OnInit {
     this.requestBill.fecha = dates;
   }
   static clave: RegExp = /^[A-Za-z0-9\s]{2,60}$/;
-
+  /**Es la función que va a validar que los campos no esten vacios y que cumplan con el formato que se requiere */
   readyToGoNext(): boolean {
     $('.form-control').removeClass('orange');
     let e = this.requestBill.clave;
     if (this.requestBill.clave == undefined || this.requestBill.clave == "") { $('#claveReq').addClass('orange'); this.billReq = this.translate.instant('BillRequest-P08'); this.buttonFlag = true; return false }
-    else if (!BillRequestComponent.clave.test(e.toString())) { $('#claveReq').addClass('orange');this.billReq = this.translate.instant('BillRequest-P10'); this.buttonFlag = true; return false; }    
+    else if (!BillRequestComponent.clave.test(e.toString())) { $('#claveReq').addClass('orange'); this.billReq = this.translate.instant('BillRequest-P10'); this.buttonFlag = true; return false; }
     else if (this.requestBill.fecha == undefined || this.requestBill.fecha == "") { $('#datepicker').addClass('orange'); this.billReq = this.translate.instant('BillRequest-P09'); this.buttonFlag = true; return false }
     else if (this.buttonFlag == false) { this.billReq = 'Reserva no encontrado'; this.buttonFlag = true; return false }
     else { this.buttonFlag = null; return true }
   }
-
-  onSubmit() { 
+  /**Guarda la respuesta del servicio en el sessionStorage para persistencia de datos y manda al siguiente paso billConfirm */
+  onSubmit() {
     this.requestBill.clave = this.requestBill.clave.toUpperCase()
     this.billService.getReaquestBill(this.requestBill).subscribe(
       (data: any) => {
@@ -94,25 +94,24 @@ export class BillRequestComponent implements OnInit {
           this.buttonFlag = false
         }
       }, (e) => {
-       console.log("Credenciales incorrectas");
+        console.log("Credenciales incorrectas");
       }
     );
   }
-
+  /**Guarda la respuesta del servicio donde se pasa el folio de venta y la respuesta es el base64 del pdf y el xml, despues te manta al siguiente paso billSearch */
   onSubmitSearch() {
-
     this.billService.getBill(this.folio).subscribe(
-      (data:any)=>{
-        if(data.success){
+      (data: any) => {
+        if (data.success) {
           console.log(data)
           sessionStorage.setItem('pdf', data.data.pdf)
           sessionStorage.setItem('xml', data.data.xml)
           sessionStorage.setItem('folio', this.folio)
           this._router.navigate(['/Facturacion-Search']);
-        }else{
+        } else {
           console.log(data)
         }
-      },(e)=>{
+      }, (e) => {
         console.log(e)
       }
     )

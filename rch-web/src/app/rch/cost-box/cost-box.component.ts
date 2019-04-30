@@ -9,7 +9,7 @@ import { SessionService } from '../../session.service';
 export class CostBoxComponent implements OnInit {
 
   constructor(public session:SessionService) { }
-
+/**Este componente lo que hace es mostrar el cuadro donde se muestran lo costos del viaje*/
   ngOnInit() {
   }
 
