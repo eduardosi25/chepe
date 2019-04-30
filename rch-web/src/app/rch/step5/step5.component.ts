@@ -33,18 +33,31 @@ export class Step5Component implements OnInit {
     private model: ModelService,
     public session: SessionService,
     private router: Router) { }
+  /** .*/
   public selected_segment: Segment = null;
+  /** .*/
   public selected_wagon_type: WagonType = null;
+  /** .*/
   public segments: Segment[] = [];
+  /** .*/
   public displayModal = false;
+  /** .*/
   public displayModalReturn = false;
+  /** .*/
   public notifTitle = "";
+  /** .*/
   public notifBody = "";
+  /** .*/
   public notifBody1 = "";
+  /** .*/
   public isLoading = true;
+  /** .*/
   public route;
+  /** .*/
   public segmentNumber;
+  /** .*/
   public routeX = "/reservaciones/" + this.session.route.name + "/paso5";
+  /** .*/
   public slickAlive: boolean = true;
   /**
    * Bandera para fines de prueba. Al activarla, se forza que la funcion que indica cantidad de vagones, indique el doble.
@@ -151,7 +164,7 @@ export class Step5Component implements OnInit {
     this.setSelectedSegment(this.segments[i - 1]);
     this.displayModalReturn = false;
   }
-  /** */
+  /** .*/
   prePickSeats(segment: Segment, base: Segment) {
     for (var i = 0; i < base.sbs.length; i++) {
       let sb: SeatBooking = base.sbs[i];
@@ -167,7 +180,7 @@ export class Step5Component implements OnInit {
       }
     }
   }
-  /** */
+  /** .*/
   selectWagonType(wt: WagonType) {
     this.selected_wagon_type = wt;
   }
@@ -218,7 +231,7 @@ export class Step5Component implements OnInit {
     // this.prueba()
     return wagons2;
   }
-  /** */
+  /** .*/
   getRemainingSbs(): number {
     let remaining: number = this.session.query.getTotalPassengers() - this.selected_segment.sbs.length;
 
@@ -390,14 +403,14 @@ export class Step5Component implements OnInit {
     this.displayModalReturn = false;
     this.resetSlick()
   }
-  /** */
+  /** .*/
   getWagonType2(wagon: Wagon): string {
     if (wagon.type.id == 4) { return "classic"; }
     if (wagon.type.id == 3) { return "premium"; }
     if (wagon.type.id == 1) { return "classic regional"; }
     return "classic";
   }
-  /** */
+  /** .*/
   getRowClasses(i: number, vagonId: number): string {
     switch (vagonId) {
       case 1:
@@ -414,7 +427,7 @@ export class Step5Component implements OnInit {
     }
   }
   fly_max: number = -1;
-  /** */
+  /** .*/
   public shouldFly(): boolean {
     return false;
     /*  this.fly_max = document.body.clientHeight-screen.height;
@@ -426,7 +439,7 @@ export class Step5Component implements OnInit {
       return true;
     }*/
   }
-  /** */
+  /** .*/
   public seatsHeadOnLeft(seat: number): boolean {
     switch (this.session.query.class.id) {
       case 1:
@@ -448,7 +461,7 @@ export class Step5Component implements OnInit {
         return false;
     }
   }
-  /** */
+  /** .*/
   public seatsHeadOnRight(seat: number): boolean {
     switch (this.session.query.class.id) {
       case 1:
@@ -470,7 +483,7 @@ export class Step5Component implements OnInit {
         return false;
     }
   }
-  /** */
+  /** .*/
   public trackByFn(index, item) {
     return index;
   }

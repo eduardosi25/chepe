@@ -32,18 +32,29 @@ export class Step3Component implements OnInit {
     public session: SessionService,
     private router: Router,
     private aroute: ActivatedRoute) { }
-
+  /** .*/
   public segments: Segment[] = [];
+  /** .*/
   public schedule: Schedule = null;
+  /** .*/
   public dateWeek;
+  /** .*/
   public btnNext = true;
+  /** .*/
   public displayModal = false;
+  /** .*/
   public notifTitle = "";
+  /** .*/
   public notifBody = "";
+  /** .*/
   public notifBody1 = "";
+  /** .*/
   public notifBody2 = "";
+  /** .*/
   public notifBody3 = "";
+  /** .*/
   public notifBody11 = "";
+  /** .*/
   public isLoading = true;
 
   /**Se valida si existe disponibilidad y si no lo hay, arma el model de no disponibilidad y si hay disponibilidad te manda al siguiente paso  */
@@ -169,7 +180,7 @@ export class Step3Component implements OnInit {
 
   }
 
-
+  /** .*/
   fixQuery(query: AvailabilityQuery): AvailabilityQuery {
     // let src = query.id_src;
     // query.id_src = query.id_dst;
@@ -178,7 +189,7 @@ export class Step3Component implements OnInit {
     // console.log(query.start);
     return query;
   }
-
+  /** .*/
   mkDate(s: string): Date {
     var mps: string[] = s.split(" ");
     let now: Date = new Date();
@@ -199,6 +210,7 @@ export class Step3Component implements OnInit {
     let dd: Date = new Date(year, month, day + 1, hour, minute, second);
     return dd;
   }
+  /** .*/
   public onTravelSelected(segment: Segment, travel: Travel) {
     segment.selected_travel = travel;
 
@@ -212,10 +224,12 @@ export class Step3Component implements OnInit {
       }
     }
   }
+  /** .*/
   public lenguajeWeekDay() {
 
 
   }
+  /** .*/
   public getSegmentTravels(segment: Segment): Travel[] {
     let gral_max: Date = new Date();
     // gral_max.setHours(23);
@@ -229,7 +243,7 @@ export class Step3Component implements OnInit {
     //}
     return ts;
   }
-
+  /** .*/
   checkQueryString() {
     return new Observable<boolean>((observer) => {
       this.aroute.queryParams.subscribe((params) => {
@@ -292,10 +306,11 @@ export class Step3Component implements OnInit {
 
     });
   }
-
+  /** .*/
   goBack(): void {
     this.location.back();
   }
+  /** .*/
   makeSegments(schedule: Schedule, query: AvailabilityQuery): Segment[] {
     var segments: Segment[] = [];
     var segments_by_ts = {};
@@ -377,12 +392,12 @@ export class Step3Component implements OnInit {
     this.btnNext = null;
     return segments2
   }
+  /** .*/
   public isFirstSegment(segment: Segment): boolean {
-
     return (segment.n == 1);
   }
+  /** .*/
   public isLastSegment(segment: Segment): boolean {
-
     return (segment.n == this.segments.length);
   }
 

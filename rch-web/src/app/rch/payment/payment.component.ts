@@ -38,19 +38,29 @@ export class PaymentComponent implements OnInit {
     public session: SessionService,
     private router: Router,
     private sanitizer: DomSanitizer) { }
+  /** .*/
   public selected_segment: Segment = null;
+  /** .*/
   public selected_wagon_type: WagonType = null;
+  /** .*/
   public segments: Segment[] = [];
+  /** .*/
   public url: Url;
+  /** .*/
   public tabla;
+  /** .*/
   public tabla1;
+  /** .*/
   public route1;
+  /** .*/
   public query;
+  /** .*/
   public schedule;
+  /** .*/
   public goBack() {
     this.location.back();
   }
-   /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
+  /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments) {
       this.router.navigate(["/reservaciones"]); return;
@@ -75,7 +85,7 @@ export class PaymentComponent implements OnInit {
       });
     }, 1000);
   }
-  /** */
+  /** .*/
   public getCosts(): Cost[] {
     var costs = {};
 
@@ -97,7 +107,7 @@ export class PaymentComponent implements OnInit {
     // }
     return costs2;
   }
-  /** */
+  /** .*/
   public bookIt() {
     // this.session.rb.status = RouteBooking.booked;
     //   this.model.saveRouteBooking(this.session.rb).subscribe((response:Response<RouteBooking>)=>{

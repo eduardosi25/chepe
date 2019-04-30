@@ -29,11 +29,29 @@ export class Step4Component implements OnInit {
     private model: ModelService,
     public session: SessionService,
     private router: Router) { }
+    /** .*/
   public paises: Country[] = [];
-  public personName; public personLast; public email; public cellphone; public emergency;
-  public flagName; public flagLast;
-  public flagNext = null; public flagDisabled;
+  /** .*/
+  public personName; 
+  /** .*/
+  public personLast; 
+  /** .*/
+  public email; 
+  /** .*/
+  public cellphone; 
+  /** .*/
+  public emergency;
+  /** .*/
+  public flagName; 
+  /** .*/
+  public flagLast;
+  /** .*/
+  public flagNext = null; 
+  /** .*/
+  public flagDisabled;
+  /** .*/
   public step4;
+  /** .*/
   public segments: Segment[] = [];
   /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
   ngOnInit() {

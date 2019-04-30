@@ -385,19 +385,19 @@ export class Step1Component implements OnInit {
     }
     this.onDateChange();
   }
-  /** */
+  /** .*/
   public countTrips(n: number) {
     if (this.trips.length >= n) {
       return true;
     }
   }
-  /** */
+  /** .*/
   public countTrips2(n: number) {
     if (this.trips2.length >= n) {
       return true;
     }
   }
-  /** */
+  /** .*/
   public countStops(tr: Trip[]) {
     if (tr.length > 1)
       return true;
@@ -508,7 +508,7 @@ export class Step1Component implements OnInit {
       }
     }
   }
-  /** */
+  /** .*/
   public getRouteStops(): TrainStop[] {
     var tss: TrainStop[] = [];
     let direction: number = 1;
@@ -517,10 +517,10 @@ export class Step1Component implements OnInit {
     }
     return tss;
   }
-  /** */
+  /** .*/
   public onPickTS(ts: TrainStop) {
   }
-  /** */
+  /** .*/
   public isMiddle(i: number, ts: TrainStop) {
   }
   /**Obtiene la dirección en la que inicia el viaje */
@@ -590,7 +590,7 @@ export class Step1Component implements OnInit {
 
     return true;
   }
-  /** */
+  /** .*/
   public add(pt: PassengerType, d: number) {
     var a = this.session.query.passengers[pt.id];
     a += d;
@@ -603,7 +603,7 @@ export class Step1Component implements OnInit {
   public getTotalPassengers(): string {
     return this.session.query.getPassengersString(this.route);
   }
-  /** */
+  /** .*/
   public getCoordinates(ts: TrainStop) {
     if (ts.px >= 0 && ts.py >= 0) {
       let styles: string = "left:" + (ts.px * 100) + "%;top:" + (ts.py * 100) + "%;";
@@ -623,11 +623,11 @@ export class Step1Component implements OnInit {
 
     return this.sanitizer.bypassSecurityTrustStyle(styles);
   }
-  /** */
+  /** .*/
   public canSelectMap(): boolean {
     return true;//(this.session.query.src != null  && this.session.query.dst != null);
   }
-  /** */
+  /** .*/
   public onMap() {
     if (this.canSelectMap()) {
       $('#map-stops').modal('show');
@@ -635,7 +635,7 @@ export class Step1Component implements OnInit {
       alert("Debes elegir un origen y un destino");
     }
   }
-  /** */
+  /** .*/
   public preflight() {
     if (this.session.preflight != null) {
       this.session.preflight.unsubscribe();
@@ -646,7 +646,7 @@ export class Step1Component implements OnInit {
     this.readyToGoNext();
   }
   public wts: Wagon[] = null;
-  /** */
+  /** .*/
   public getClasses(route: Route2): Wagon[] {
     if (this.wts != null) {
       return this.wts;
@@ -709,11 +709,11 @@ export class Step1Component implements OnInit {
     else (this.tripMaxStop = true)
     this.onChangeStop(false, this.trips[0]);
   }
-  /** */
+  /** .*/
   public isRound(): boolean {
     return this.session.query.round;
   }
-  /** */
+  /** .*/
   public display(): boolean {
     if (this.trips2.length == 1) {
       return true;
