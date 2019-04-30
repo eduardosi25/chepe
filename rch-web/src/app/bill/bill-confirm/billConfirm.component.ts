@@ -4,7 +4,7 @@ import { BillRequest } from './../../model/billRequest'
 import { BillService } from './../../billSession.service'
 
 import { Router, ActivatedRoute } from '@angular/router';
-
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 @NgModule({
   imports: [HttpClient]

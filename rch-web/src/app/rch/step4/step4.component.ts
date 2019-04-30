@@ -14,6 +14,7 @@ import { RouteBooking } from '../../model/routebooking';
 import { Person } from '../../model/person';
 import { Country } from '../../model/country';
 import { TranslateService } from '@ngx-translate/core';
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 @Component({
   selector: 'app-step4',

@@ -8,6 +8,12 @@
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "./app/model/*",
+    "./app/model.*",
+    "./app/model-*.*",
+    "./app/i18n*",
+    "./app/*.service.ts*"
+
   ]
 }

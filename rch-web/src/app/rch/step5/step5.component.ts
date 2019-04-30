@@ -19,6 +19,7 @@ import { SeatBooking } from '../../model/seatbooking';
 import { Cost } from '../../model/cost';
 import { ifError } from 'assert';
 import { setTimeout } from 'timers';
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 @Component({
   selector: 'app-step5',

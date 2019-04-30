@@ -34,6 +34,7 @@ import { SourceMapGenerator } from '@angular/compiler/src/output/source_map';
 
 
 // import { MyDatePickerModule } from './mydatepicker';
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 @NgModule({
   imports: [HttpClient]

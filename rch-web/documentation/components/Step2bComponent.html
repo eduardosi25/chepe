@@ -1,0 +1,1424 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rch-web documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rch-web documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>Step2bComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/rch/step2b/step2b.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-step2b</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./step2b.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./step2b.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#schedule">schedule</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#segments">segments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#session">session</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#translate">translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fixQuery">fixQuery</a>
+                            </li>
+                            <li>
+                                <a href="#mkDate">mkDate</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#canContinueNext">canContinueNext</a>
+                            </li>
+                            <li>
+                                <a href="#checkQueryString">checkQueryString</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getSegmentTravels">getSegmentTravels</a>
+                            </li>
+                            <li>
+                                <a href="#goBack">goBack</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isStop">isStop</a>
+                            </li>
+                            <li>
+                                <a href="#makeSegments">makeSegments</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#onTravelSelected">onTravelSelected</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fixQuery"></a>
+                    <span class="name">
+                        <b>
+                            fixQuery
+                        </b>
+                        <a href="#fixQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fixQuery(query: AvailabilityQuery)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/app/rch/step2b/step2b.component.ts:38</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                            <code>AvailabilityQuery</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>AvailabilityQuery</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mkDate"></a>
+                    <span class="name">
+                        <b>
+                            mkDate
+                        </b>
+                        <a href="#mkDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mkDate(s: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/rch/step2b/step2b.component.ts:46</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>s</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/app/rch/step2b/step2b.component.ts:15</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canContinueNext"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            canContinueNext
+                        </b>
+                        <a href="#canContinueNext"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>canContinueNext()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:228</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkQueryString"></a>
+                    <span class="name">
+                        <b>
+                            checkQueryString
+                        </b>
+                        <a href="#checkQueryString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkQueryString()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:58</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSegmentTravels"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            getSegmentTravels
+                        </b>
+                        <a href="#getSegmentTravels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSegmentTravels(segment: Segment)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:240</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>segment</td>
+                                    <td>
+                                            <code>Segment</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Travel[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <b>
+                            goBack
+                        </b>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:120</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isStop"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            isStop
+                        </b>
+                        <a href="#isStop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isStop(ts: TrainStop)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:237</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ts</td>
+                                    <td>
+                                            <code>TrainStop</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeSegments"></a>
+                    <span class="name">
+                        <b>
+                            makeSegments
+                        </b>
+                        <a href="#makeSegments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeSegments(schedule: Schedule, query: AvailabilityQuery)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:123</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>schedule</td>
+                                    <td>
+                                            <code>Schedule</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                            <code>AvailabilityQuery</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Segment[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:34</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTravelSelected"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            onTravelSelected
+                        </b>
+                        <a href="#onTravelSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onTravelSelected(segment: Segment, travel: Travel)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:225</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>segment</td>
+                                    <td>
+                                            <code>Segment</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>travel</td>
+                                    <td>
+                                            <code>Travel</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="schedule"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            schedule</b>
+                            <a href="#schedule"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Schedule</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:32</a></code>
+</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="segments"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            segments</b>
+                            <a href="#segments"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Segment[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:33</a></code>
+</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="session"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            session</b>
+                            <a href="#session"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>SessionService</code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:27</a></code>
+</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="translate"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            translate</b>
+                            <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../components/Step2Component.html" target="_self" >Step2Component</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../components/Step2Component.html#source" target="_self" >Step2Component:30</a></code>
+</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Step2Component } from &#x27;../step2/step2.component&#x27;;
+import { AvailabilityQuery } from &#x27;../../model/availabilityquery&#x27;;
+import { Response } from &#x27;../../model/response&#x27;;
+import { Schedule } from &#x27;../../model/schedule&#x27;;
+
+@Component({
+  selector: &#x27;app-step2b&#x27;,
+  templateUrl: &#x27;./step2b.component.html&#x27;,
+  styleUrls: [&#x27;./step2b.component.css&#x27;]
+})
+export class Step2bComponent extends Step2Component implements OnInit{
+
+
+  ngOnInit() {
+    if(!this.session || !this.session.query || !this.session.route){
+      this.router.navigate([&quot;/reservaciones/&quot;]);return;
+    }
+    this.session.save();
+    var query:AvailabilityQuery &#x3D; this.session.query.toAvailabilityQuery(this.session.route);
+
+    query &#x3D; this.fixQuery(query);
+
+    this.model.getRouteScheduleAvailable(this.session.route.id,query).subscribe((response:Response&lt;Schedule&gt;)&#x3D;&gt;{
+      if(response.success &amp;&amp; response.data.travels.length&gt;0){
+        this.schedule &#x3D; response.data;
+        this.session.schedule &#x3D; response.data;
+        this.segments &#x3D; this.makeSegments(this.schedule,query);
+        this.session.segments2 &#x3D; this.segments;
+        
+      }else{
+        alert(&quot;No se lograron obtener opciones de viaje, elija otras opciones de búsqueda e inténtelo de nuevo&quot;);
+        this.schedule &#x3D; new Schedule();
+        this.session.schedule &#x3D; null;
+      }
+    });
+  }
+  fixQuery(query:AvailabilityQuery):AvailabilityQuery{
+    // let src &#x3D; query.id_src;
+    // query.id_src &#x3D; query.id_dst;
+    // query.id_dst &#x3D; src;
+    // query.start &#x3D; this.mkDate( this.session.segments[this.session.segments.length-1].selected_travel.getArrivalDateTime()).toString();    
+    // console.log(query.start);
+    return query;
+  }
+  mkDate(s:string):Date{
+    var mps:string[] &#x3D; s.split(&quot; &quot;);
+    let now:Date &#x3D; new Date();
+    if(mps.length&#x3D;&#x3D;1){
+        mps.push(&quot;00:00:01&quot;);
+    }
+    let dps:string[] &#x3D; mps[0].split(&quot;-&quot;);
+    let tps:string[] &#x3D; mps[1].split(&quot;:&quot;);
+
+    let year:number  &#x3D; dps.length&gt;&#x3D;1?parseInt(dps[0]):now.getFullYear();
+    let month:number  &#x3D; dps.length&gt;&#x3D;2?parseInt(dps[1])-1:now.getMonth();
+    let day:number  &#x3D; dps.length&gt;&#x3D;3?parseInt(dps[2]):now.getDate();
+
+    let hour:number &#x3D; tps.length&gt;&#x3D;1?parseInt(tps[0]):now.getHours();
+    let minute:number &#x3D; tps.length&gt;&#x3D;2?parseInt(tps[1]):now.getMinutes();
+    let second:number &#x3D; tps.length&gt;&#x3D;3?parseInt(tps[2]):now.getSeconds();
+
+    let dd:Date &#x3D; new Date(year,month,day+1,hour,minute,second);
+    return dd;
+}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;main-content&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+        &lt;div class&#x3D;&quot;row row--relative&quot;&gt;
+
+            &lt;div class&#x3D;&quot;col-sm-10 no-gutter-left&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot; col-sm-20 gap-left&quot;&gt;
+                        &lt;h1 class&#x3D;&quot;c-two&quot;&gt;{{session.route.name}}&lt;/h1&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;col-sm-24 no-gutter-left-mobile&quot;&gt;
+                        &lt;span class&#x3D;&quot;title-underline c-border-two&quot;&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;app-cost-box&gt;&lt;/app-cost-box&gt;
+            &lt;rch-status&gt;&lt;/rch-status&gt;
+            &lt;!-- &lt;div class&#x3D;&quot;col-sm-5 center margintop10&quot;&gt;
+                &lt;a class&#x3D;&quot;btn btn-link search&quot; routerLink&#x3D;&quot;/reservaciones/{{session.route.name}}/paso1&quot; role&#x3D;&quot;button&quot;&gt;
+                    &lt;div&gt;
+                        &lt;img src&#x3D;&quot;assets/img/icon_search.png&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;div&gt;Cambiar de búsqueda&lt;/div&gt;
+                &lt;/a&gt;
+            &lt;/div&gt; --&gt;
+            &lt;!--&lt;div class&#x3D;&quot;col-sm-7 col-sm-offset-2 col-md-offset-3 col-md-6 paddingtop20 no-gutter-right&quot;&gt;
+        &lt;table class&#x3D;&quot;table uppercase&quot;&gt;
+
+                &lt;tbody&gt;
+                        &lt;tr&gt;
+                        &lt;th class&#x3D;&quot;bg-three border2 c-one &quot; scope&#x3D;&quot;row&quot;&gt;Total&lt;/th&gt;
+                        &lt;td class&#x3D;&quot;bg-two-darker border2 c-one&quot;&gt;$3,277.00 MXN&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                        &lt;th class&#x3D;&quot;bg-three c-one&quot; scope&#x3D;&quot;row&quot;&gt;Pasajeros&lt;/th&gt;
+                        &lt;td class&#x3D;&quot;bg-two-darker c-one&quot;&gt;2&lt;/td&gt;
+                        &lt;/tr&gt;
+                &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;--&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+
+            &lt;div class&#x3D;&quot;col-md-24 no-gutter-left&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-sm-24  gap-left&quot;&gt;
+                        &lt;h3 class&#x3D;&quot; c-two&quot;&gt;{{&#x27;Step2-P00&#x27; | translate}}&lt;/h3&gt;
+                        &lt;p&gt;{{&#x27;Step2-P01&#x27; | translate}}&lt;/p&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;row marginbot20&quot; *ngFor&#x3D;&quot;let segment of segments&quot;&gt;
+
+            &lt;div class&#x3D;&quot;col-md-24 no-gutter-left &quot;&gt;
+
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-md-24 gap-left&quot;&gt;
+                        &lt;h3 class&#x3D;&quot;uppercase c-two&quot;&gt;
+                            &lt;span class&#x3D;&quot;fontweight700&quot;&gt;{{&#x27;Step2-P02&#x27; | translate}} {{segment.n}}&lt;/span&gt;&amp;emsp; {{segment.src.name}} ― {{segment.dst.name}}
+                            &lt;!-- &lt;span *ngIf&#x3D;&quot;isStop(segment.dst)&quot;&gt;(Baja del tren)&lt;/span&gt;--&gt;
+                        &lt;/h3&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-sm-18 no-gutter-left-mobile&quot;&gt;
+                        &lt;span class&#x3D;&quot;title-underline-full c-border-two&quot;&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;table-escala regional gap-left&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;row hidden-xs table-escala-header&quot;&gt;
+
+                        &lt;div class&#x3D;&quot;col-sm-4 equalheight&quot;&gt;
+                            {{&#x27;Step2-P03&#x27; | translate}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-sm-3 equalheight&quot;&gt;
+                            {{&#x27;Step2-P04&#x27; | translate}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-sm-3 equalheight&quot;&gt;
+                            {{&#x27;Step2-P05&#x27; | translate}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-sm-3 equalheight&quot;&gt;
+                            {{&#x27;Step2-P06&#x27; | translate}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-sm-4  equalheight&quot;&gt;
+                            {{&#x27;Step2-P07&#x27; | translate}} {{session.query.getTotalPassengers(session.route)}}
+                        &lt;/div&gt;
+
+
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;row table-escala-line&quot; *ngFor&#x3D;&quot;let travel of getSegmentTravels(segment)&quot;&gt;
+                        &lt;div class&#x3D;&quot; col-xs-12 col-sm-4  equalheight&quot;&gt;
+                            &lt;span class&#x3D;&quot;visible-xs-block&quot;&gt;{{&#x27;Step2-P03&#x27; | translate}} &lt;/span&gt;
+                            {{travel.getDate()}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-xs-12 col-sm-3 equalheight&quot;&gt;
+                            &lt;span class&#x3D;&quot;visible-xs-block&quot;&gt;{{&#x27;Step2-P04&#x27; | translate}} &lt;/span&gt;
+                            {{travel.getDepartureTime()}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-xs-12 col-sm-3 equalheight&quot;&gt;
+                            &lt;span class&#x3D;&quot;visible-xs-block&quot;&gt;{{&#x27;Step2-P05&#x27; | translate}} &lt;/span&gt;
+                            {{travel.getArrivalTime()}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-xs-12 col-sm-3 equalheight&quot;&gt;
+                            &lt;span class&#x3D;&quot;visible-xs-block&quot;&gt;{{&#x27;Step2-P06&#x27; | translate}} &lt;/span&gt;
+                            {{travel.getDuration()}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-xs-24 col-sm-4  equalheight&quot;&gt;
+                            &lt;span class&#x3D;&quot;visible-xs-block&quot;&gt;{{&#x27;Step2-P07&#x27; | translate}} {{session.query.getTotalPassengers(session.route)}} &lt;/span&gt;
+                            {{session.query.getPassengersString(session.route)}}
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-xs-24 col-sm-7 equalheight&quot;&gt;
+                            &lt;input type&#x3D;&quot;radio&quot; id&#x3D;&quot;travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}&quot; name&#x3D;&quot;segment_{{segment.n}}&quot; (click)&#x3D;&quot;onTravelSelected(segment,travel)&quot;&gt;
+                            &lt;label for&#x3D;&quot;travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}&quot;&gt;
+                                &lt;span class&#x3D;&quot;check&quot;&gt;&lt;/span&gt; {{&#x27;Step2-P08&#x27; | translate}}&lt;/label&gt;
+
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+
+
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;row marginbot20&quot; *ngIf&#x3D;&quot;!schedule&quot;&gt;
+            &lt;i class&#x3D;&quot;fa fa-spinner&quot;&gt;&lt;/i&gt; {{&#x27;Step2-P09&#x27; | translate}}
+        &lt;/div&gt;
+
+        &lt;!-- &lt;div class&#x3D;&quot;row margintop40 marginbot40&quot;&gt;
+     &lt;div class&#x3D;&quot;col-sm-24 no-gutter-left&quot;&gt;
+         &lt;div class&#x3D;&quot;row&quot;&gt;
+             
+            &lt;div class&#x3D;&quot;col-sm-18 gap-left&quot;&gt;
+                &lt;img src&#x3D;&quot;assets/img/captcha.jpg&quot; class&#x3D;&quot;img-responsive&quot;&gt;
+            &lt;/div&gt;
+             
+         &lt;/div&gt;
+     &lt;/div&gt;
+&lt;/div&gt;--&gt;
+
+        &lt;div class&#x3D;&quot;row margintop40 marginbot40&quot;&gt;
+            &lt;div class&#x3D;&quot;col-sm-24 no-gutter-left&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;col-xs-12 col-sm-3 col-sm-offset-15 center margintop30&quot;&gt;
+                        &lt;a class&#x3D;&quot;btn btn-link&quot; routerLink&#x3D;&quot;/reservaciones/{{session.route.name}}/paso2&quot; role&#x3D;&quot;button&quot;&gt;
+                            &lt;div&gt;
+                                &lt;img src&#x3D;&quot;assets/img/icon_left.png&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;{{&#x27;Step2-P10&#x27; | translate}}&lt;/div&gt;
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot; col-xs-12 col-sm-3 center margintop30&quot;&gt;
+                        &lt;a class&#x3D;&quot;btn btn-link c-one&quot; routerLink&#x3D;&quot;/reservaciones/{{session.route.name}}/paso3&quot; *ngIf&#x3D;&quot;canContinueNext()&quot; role&#x3D;&quot;button&quot;&gt;
+                            &lt;div&gt;
+                                &lt;img src&#x3D;&quot;assets/img/icon_right.png&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;div&gt;{{&#x27;Step2-P11&#x27; | translate}}&lt;/div&gt;
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./step2b.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="main-content">    <div class="container">        <div class="row row--relative">            <div class="col-sm-10 no-gutter-left">                <div class="row">                    <div class=" col-sm-20 gap-left">                        <h1 class="c-two">{{session.route.name}}</h1>                    </div>                    <div class="col-sm-24 no-gutter-left-mobile">                        <span class="title-underline c-border-two"></span>                    </div>                </div>            </div>            <app-cost-box></app-cost-box>            <rch-status></rch-status>            <!-- <div class="col-sm-5 center margintop10">                <a class="btn btn-link search" routerLink="/reservaciones/{{session.route.name}}/paso1" role="button">                    <div>                        <img src="assets/img/icon_search.png">                    </div>                    <div>Cambiar de búsqueda</div>                </a>            </div> -->            <!--<div class="col-sm-7 col-sm-offset-2 col-md-offset-3 col-md-6 paddingtop20 no-gutter-right">        <table class="table uppercase">                <tbody>                        <tr>                        <th class="bg-three border2 c-one " scope="row">Total</th>                        <td class="bg-two-darker border2 c-one">$3,277.00 MXN</td>                        </tr>                        <tr>                        <th class="bg-three c-one" scope="row">Pasajeros</th>                        <td class="bg-two-darker c-one">2</td>                        </tr>                </tbody>        </table>    </div>-->        </div>        <div class="row">            <div class="col-md-24 no-gutter-left">                <div class="row">                    <div class="col-sm-24  gap-left">                        <h3 class=" c-two">{{\'Step2-P00\' | translate}}</h3>                        <p>{{\'Step2-P01\' | translate}}</p>                    </div>                </div>            </div>        </div>        <div class="row marginbot20" *ngFor="let segment of segments">            <div class="col-md-24 no-gutter-left ">                <div class="row">                    <div class="col-md-24 gap-left">                        <h3 class="uppercase c-two">                            <span class="fontweight700">{{\'Step2-P02\' | translate}} {{segment.n}}</span>&emsp; {{segment.src.name}} ― {{segment.dst.name}}                            <!-- <span *ngIf="isStop(segment.dst)">(Baja del tren)</span>-->                        </h3>                    </div>                    <div class="col-sm-18 no-gutter-left-mobile">                        <span class="title-underline-full c-border-two"></span>                    </div>                </div>                <div class="table-escala regional gap-left">                    <div class="row hidden-xs table-escala-header">                        <div class="col-sm-4 equalheight">                            {{\'Step2-P03\' | translate}}                        </div>                        <div class="col-sm-3 equalheight">                            {{\'Step2-P04\' | translate}}                        </div>                        <div class="col-sm-3 equalheight">                            {{\'Step2-P05\' | translate}}                        </div>                        <div class="col-sm-3 equalheight">                            {{\'Step2-P06\' | translate}}                        </div>                        <div class="col-sm-4  equalheight">                            {{\'Step2-P07\' | translate}} {{session.query.getTotalPassengers(session.route)}}                        </div>                    </div>                    <div class="row table-escala-line" *ngFor="let travel of getSegmentTravels(segment)">                        <div class=" col-xs-12 col-sm-4  equalheight">                            <span class="visible-xs-block">{{\'Step2-P03\' | translate}} </span>                            {{travel.getDate()}}                        </div>                        <div class="col-xs-12 col-sm-3 equalheight">                            <span class="visible-xs-block">{{\'Step2-P04\' | translate}} </span>                            {{travel.getDepartureTime()}}                        </div>                        <div class="col-xs-12 col-sm-3 equalheight">                            <span class="visible-xs-block">{{\'Step2-P05\' | translate}} </span>                            {{travel.getArrivalTime()}}                        </div>                        <div class="col-xs-12 col-sm-3 equalheight">                            <span class="visible-xs-block">{{\'Step2-P06\' | translate}} </span>                            {{travel.getDuration()}}                        </div>                        <div class="col-xs-24 col-sm-4  equalheight">                            <span class="visible-xs-block">{{\'Step2-P07\' | translate}} {{session.query.getTotalPassengers(session.route)}} </span>                            {{session.query.getPassengersString(session.route)}}                        </div>                        <div class="col-xs-24 col-sm-7 equalheight">                            <input type="radio" id="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}" name="segment_{{segment.n}}" (click)="onTravelSelected(segment,travel)">                            <label for="travel_{{travel.id}}_{{travel.id_src}}_{{travel.id_dst}}">                                <span class="check"></span> {{\'Step2-P08\' | translate}}</label>                        </div>                    </div>                </div>            </div>        </div>        <div class="row marginbot20" *ngIf="!schedule">            <i class="fa fa-spinner"></i> {{\'Step2-P09\' | translate}}        </div>        <!-- <div class="row margintop40 marginbot40">     <div class="col-sm-24 no-gutter-left">         <div class="row">                         <div class="col-sm-18 gap-left">                <img src="assets/img/captcha.jpg" class="img-responsive">            </div>                      </div>     </div></div>-->        <div class="row margintop40 marginbot40">            <div class="col-sm-24 no-gutter-left">                <div class="row">                    <div class="col-xs-12 col-sm-3 col-sm-offset-15 center margintop30">                        <a class="btn btn-link" routerLink="/reservaciones/{{session.route.name}}/paso2" role="button">                            <div>                                <img src="assets/img/icon_left.png">                            </div>                            <div>{{\'Step2-P10\' | translate}}</div>                        </a>                    </div>                    <div class=" col-xs-12 col-sm-3 center margintop30">                        <a class="btn btn-link c-one" routerLink="/reservaciones/{{session.route.name}}/paso3" *ngIf="canContinueNext()" role="button">                            <div>                                <img src="assets/img/icon_right.png">                            </div>                            <div>{{\'Step2-P11\' | translate}}</div>                        </a>                    </div>                </div>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AirlinesComponent', 'selector': 'app-airlines'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BahuichivoComponent', 'selector': 'app-bahuichivo'},{'name': 'BarrancasCobreComponent', 'selector': 'app-barrancas-cobre'},{'name': 'BillConfirmComponent', 'selector': 'app-billConfirm'},{'name': 'BillFiscalComponent', 'selector': 'app-billFiscal'},{'name': 'BillRequestComponent', 'selector': 'app-billRequest'},{'name': 'BillSearchComponent', 'selector': 'app-billSearch'},{'name': 'ChepeExpressComponent', 'selector': 'app-chepe-express'},{'name': 'ChepeRegionalComponent', 'selector': 'app-chepe-regional'},{'name': 'ChepexploraComponent', 'selector': 'app-chepexplora'},{'name': 'ChihuahuaComponent', 'selector': 'app-chihuahua'},{'name': 'CommitComponent', 'selector': 'app-commit'},{'name': 'ConfirmComponent', 'selector': 'app-confirm'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'CostBoxComponent', 'selector': 'app-cost-box'},{'name': 'CreelComponent', 'selector': 'app-creel'},{'name': 'CuauhtemocComponent', 'selector': 'app-cuauhtemoc'},{'name': 'DestinationsComponent', 'selector': 'app-destinations'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'ElFuerteComponent', 'selector': 'app-el-fuerte'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GalleryComponent', 'selector': 'app-gallery'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HotelsComponent', 'selector': 'app-hotels'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'LegalAdviceComponent', 'selector': 'app-legal-advice'},{'name': 'LegalExpressComponent', 'selector': 'app-legal-express'},{'name': 'LegalRegionalComponent', 'selector': 'app-legal-regional'},{'name': 'LosMochisComponent', 'selector': 'app-los-mochis'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NativeCommunitiesComponent', 'selector': 'app-native-communities'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'ReceiptComponent', 'selector': 'app-receipt'},{'name': 'ScheduleComponent', 'selector': 'app-schedule'},{'name': 'ScheduleRegionalComponent', 'selector': 'app-schedule-regional'},{'name': 'StatusComponent', 'selector': 'rch-status'},{'name': 'Step1Component', 'selector': 'app-step1'},{'name': 'Step2bComponent', 'selector': 'app-step2b'},{'name': 'Step2Component', 'selector': 'app-step2'},{'name': 'Step3Component', 'selector': 'app-step3'},{'name': 'Step4Component', 'selector': 'app-step4'},{'name': 'Step5Component', 'selector': 'app-step5'},{'name': 'TacComponent', 'selector': 'app-tac'},{'name': 'TacExpressComponent', 'selector': 'app-tac-express'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TimesFaresComponent', 'selector': 'app-times-fares'},{'name': 'UrikeComponent', 'selector': 'app-urike'}];
+    var DIRECTIVES = [{'name': 'StopcheckDirective', 'selector': '[appStopcheck]'}];
+    var ACTUAL_COMPONENT = {'name': 'Step2bComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Step2bComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

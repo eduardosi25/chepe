@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+/** Inicializa variable para poder usar jquery en componente */
 declare var $:any;
 @Component({
   selector: 'app-gallery',

@@ -23,6 +23,7 @@ import { WebPay } from '../../model/webpay';
 import { AvailabilityQuery2 } from '../../model/availabilityquery2';
 import { Route } from '@angular/compiler/src/core';
 import { Route2 } from '../../model/route2';
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 
 @Component({
