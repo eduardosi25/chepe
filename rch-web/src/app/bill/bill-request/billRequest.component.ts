@@ -9,6 +9,10 @@ import { BillService } from './../../billSession.service';
 import { NgForm } from '@angular/forms';
 import { EEXIST } from 'constants';
 /** Inicializa variable para poder usar jquery en componente */
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 declare var $: any;
 
 @NgModule({

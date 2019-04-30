@@ -1,6 +1,10 @@
 import { Component, OnInit, NgModule, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 /** Inicializa variable para poder usar jquery en componente */
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 declare var $: any;
 @NgModule({
   imports: [HttpClient]

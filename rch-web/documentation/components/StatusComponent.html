@@ -65,6 +65,13 @@
     <code>src/app/rch/status/status.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>consulta el status del servicio </p>
+
+    </p>
 
 
     <p class="comment">
@@ -249,8 +256,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/rch/status/status.component.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/rch/status/status.component.ts:26</a></div>
                 </td>
             </tr>
 
@@ -288,14 +295,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/rch/status/status.component.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/rch/status/status.component.ts:17</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>checa estatus y muestra el mensaje del servicio  </p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -374,6 +383,12 @@
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el servicio en true  </p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -386,7 +401,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy } from &#x27;@angular/core&#x27;;
 import { ModelService } from &#x27;../../model.service&#x27;;
 import { IntervalObservable } from &quot;rxjs/observable/IntervalObservable&quot;;
-
+/** consulta el status del servicio */
 @Component({
   selector: &#x27;rch-status&#x27;,
   templateUrl: &#x27;./status.component.html&#x27;,
@@ -395,9 +410,10 @@ import { IntervalObservable } from &quot;rxjs/observable/IntervalObservable&quot
 export class StatusComponent implements OnInit,OnDestroy {
 
   constructor(private model:ModelService) { }
-
+/** Inicializa el servicio en true  */
   public status_ok:boolean &#x3D; true;
   private alive:boolean &#x3D; true;
+  /** checa estatus y muestra el mensaje del servicio  */
   ngOnInit() {
     IntervalObservable.create(5000)
     .takeWhile(() &#x3D;&gt; this.alive) // only fires when component is alive
