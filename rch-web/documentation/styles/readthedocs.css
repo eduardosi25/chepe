@@ -2,15 +2,20 @@
     background: #2980B9;
     border: none;
 }
+
 .navbar-default .navbar-brand {
     color: #fcfcfc;
 }
 .menu {
-    background: #343131;
+    background: url(./chepe_white_small_nav.png);
     color: #fcfcfc;
+    background-color:  #1A2741;
+    background-size: 286px;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
 }
 .menu ul.list li a {
-    color: #fcfcfc;
+    color: hsl(0, 0%, 99%);
 }
 
 .menu ul.list li a.active {
@@ -20,6 +25,7 @@
 .menu ul.list li.title {
     background: #2980B9;
     padding-bottom: 5px;
+    margin-top:150px;
 }
 
 .menu ul.list li:nth-child(2) {
@@ -27,7 +33,7 @@
 }
 
 .menu ul.list li.chapter a, .menu ul.list li.chapter .simple {
-    color: #555;
+    color: #dde2e6;
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -38,7 +44,7 @@
     padding-left: 35px;
 }
 .menu ul.list li.chapter ul.links a:hover {
-    background: #4E4A4A;
+    background: #98002e;
 }
 
 .menu ul.list li.chapter ul.links {
@@ -95,4 +101,7 @@ pre {
     overflow: auto;
     color: #404040;
     background: rgba(238,238,238,.35);
+}
+compodoc-menu > nav{
+    background-color: #1A2741;
 }
