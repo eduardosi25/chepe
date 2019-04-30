@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+/** Este componente tiene su funcionalidad en el html, muestra el directorio de hoteles*/
 
 @Component({
   selector: 'app-hotels',

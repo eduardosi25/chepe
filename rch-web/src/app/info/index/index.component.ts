@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
+/** Este componente tiene su funcionalidad en el html*/
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -9,11 +10,12 @@ declare var $: any;
 export class IndexComponent implements OnInit {
 
   constructor() { }
-
+/** inserta video en div */
   ngOnInit() {
     this.scriptInit();
     var vid = document.getElementById("bgvid");
   }
+  /** Video player load y muestra diferentes modales */
   scriptInit(){
     // Video player load
     $(document).ready(function () {

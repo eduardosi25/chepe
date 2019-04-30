@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $:any;
+/** Este componente tiene su funcionalidad en el html, muestra galeria de imagenes de trenes regional y express */
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
@@ -13,6 +14,7 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
     this.scriptInit();
   }
+  /** muestra modals para eventos y galerias */
   scriptInit(){
     $('#chepe_express_galeria').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal

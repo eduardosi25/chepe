@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
+/** Este componente tiene su funcionalidad en el html, muestra las caracteristicas de chepe express */
 @Component({
   selector: 'app-chepe-express',
   templateUrl: './chepe-express.component.html',

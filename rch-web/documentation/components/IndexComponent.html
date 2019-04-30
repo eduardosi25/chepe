@@ -65,6 +65,13 @@
     <code>src/app/info/index/index.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Este componente tiene su funcionalidad en el html</p>
+
+    </p>
 
 
     <p class="comment">
@@ -160,7 +167,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/info/index/index.component.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/info/index/index.component.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -199,14 +206,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/app/info/index/index.component.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/app/info/index/index.component.ts:14</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>inserta video en div </p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -238,14 +247,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/info/index/index.component.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/info/index/index.component.ts:19</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Video player load y muestra diferentes modales </p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -264,6 +275,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
+/** Este componente tiene su funcionalidad en el html*/
 @Component({
   selector: &#x27;app-index&#x27;,
   templateUrl: &#x27;./index.component.html&#x27;,
@@ -272,11 +284,12 @@ declare var $: any;
 export class IndexComponent implements OnInit {
 
   constructor() { }
-
+/** inserta video en div */
   ngOnInit() {
     this.scriptInit();
     var vid &#x3D; document.getElementById(&quot;bgvid&quot;);
   }
+  /** Video player load y muestra diferentes modales */
   scriptInit(){
     // Video player load
     $(document).ready(function () {
@@ -537,8 +550,8 @@ export class IndexComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <app-header></app-header>  <div class="row">    <div id="carousel-slider-header" class="carousel carousel-home slide border-img-bot c-border-one" data-ride="carousel">      <div class="carousel-home-title">        <h1 class="c-white">          <span>{{\'home-title\' | translate}}</span>        </h1>      </div>      <!-- Wrapper for slides -->      <div class="carousel-inner" role="listbox">        <div class="item active">          <div class="img-slider" style="background-image: url(\'assets/img/header6.jpg\');"></div>        </div>        <div class="item">          <div class="img-slider" style="background-image: url(\'assets/img/header7.jpg\');"></div>        </div>        <div class="item">          <div class="img-slider" style="background-image: url(\'assets/img/header3.jpg\');"></div>        </div>        <div class="item">          <div class="img-slider" style="background-image: url(\'assets/img/header4.jpg\');"></div>        </div>        <div class="item">          <div class="img-slider" style="background-image: url(\'assets/img/header8.jpg\');"></div>        </div>        <div class="item">          <div class="img-slider" style="background-image: url(\'assets/img/header9.jpg\');"></div>        </div>      </div>      <!-- Controls -->      <a class="left carousel-control" href="#carousel-slider-header" role="button" data-slide="prev">        <i class="fa fa-angle-left" aria-hidden="true"></i>        <span class="sr-only">Previous</span>      </a>      <a class="right carousel-control" href="#carousel-slider-header" role="button" data-slide="next">        <i class="fa fa-angle-right" aria-hidden="true"></i>        <span class="sr-only">Next</span>      </a>    </div>  </div></div><div class="" style="background: url(assets/img/bg/mountain-water.jpg) no-repeat center center; background-size: cover;">  <div class="main-content transparent">    <div class="container margintop100">      <div class="row">        <div class="col-sm-15 no-gutter-left text-justify bg-six col transparent equalheight">          <div class="row">            <div class=" col-sm-24 gap-left margintop20">              <h1>Chepe</h1>            </div>            <div class="col-sm-24 no-gutter-left-mobile">              <span class="title-underline c-border-one"></span>            </div>            <div class="col-sm-24 gap-left margintop20">              <p class="fontweight700 c-one">{{\'contenedor1-P0\' | translate}}</p>              <p>{{\'contenedor1-P1\' | translate}}</p>              <p>{{\'contenedor1-P2\' | translate}}</p>              <p>{{\'contenedor1-P3\' | translate}}</p>              <p>{{\'contenedor1-P4\' | translate}}                <span class="fontweight600">                  <a href="#" data-toggle="modal" data-target="#modal-altitudes">{{\'contenedor1-P5\' | translate}}</a>                </span>{{\'contenedor1-P6\' | translate}}              </p>            </div>          </div>        </div>        <div class="col-sm-9 paddingtop100 bg-one col transparent equalheight">          <div class="row">            <div class=" col-sm-24 center">              <h3 class="c-white">{{\'contenedor2-P0\' | translate}}</h3>            </div>            <div class="col-xs-24 center margintop30">              <a class="btn btn-link c-white" routerLink="/trenes/chepe-express" role="button">                <div>                  <img src="assets/img/icon_train_white.png">                </div>                <div>CHEPE EXPRESS</div>              </a>              <a class="btn btn-link c-white" routerLink="/trenes/chepe-regional" role="button">                <div>                  <img src="assets/img/icon_train_white.png">                </div>                <div>CHEPE REGIONAL</div>              </a>            </div>          </div>        </div>      </div>    </div>  </div>  <!-- modal altitudes -->  <div class="modal mapa fade" id="modal-altitudes" tabindex="-1" role="dialog">    <div class="modal-dialog modal-lg" role="document">      <div class="modal-content">        <div class="modal-header">          <button type="button" class="close" data-dismiss="modal" aria-label="Close">            <span aria-hidden="true">&times;</span>          </button>        </div>        <div class="modal-body">          <img src="assets/img/chepe_altitudes.png" class="img-responsive">        </div>      </div>      <!-- /.modal-content -->    </div>    <!-- /.modal-dialog -->  </div>  <!-- /.modal -->  <app-footer></app-footer></div><!-- Modalbox --><div class="modalbox modalbox-special">  <div class="modalbox-content">    <div class="modalbox-top__blue">      <figure class="modalbox-figure">          <img src="assets/img/logo-chepe-express_white.png" />        </figure>        <a href="#" class="icon-close__modal js-specialClose__modal">          <i class="fa fa-times icon-close__item"></i>        </a>    </div>    <div class="modalbox-inside">      <div class="modalbox-text text-center">        <!--<i class="icon-warning"></i>-->        <h3 class="mt-0 title-modal__big">Aviso Importante</h3>               <p>Para evitar ser defraudado, <b>evita comprar tus boletos</b> en la página fraudulenta:</p>        <a href="https://www.chepe-reservasonline.com/" target="_blank" class="modalbox-link modalbox-link__red">https://www.chepe-reservasonline.com/</a>        <p>Nuestra <b>única</b> página web oficial es:</p>        <a href="https://chepe.mx" class="modalbox-link">https://chepe.mx</a>        <p><b>No nos hacemos responsables</b> por la compra de boletos en cualquier página ajena a esta.</p>        <p>Para mayores informes favor de comunicarse a<br><b><a href="tel:01 800 122 43 73">01 800 122 43 73</a></b> o al correo <b><a href="mailto:chepe@ferromex.mx">chepe@ferromex.mx</a></b></p>      </div>    </div>  </div></div><!-- Modal video --><div id="modal-video" class="modal-video">  <a href="#" class="video-close">    <i class="fa fa-times" aria-hidden="true"></i>  </a>  <div class="logo">    <img src="assets/img/chepe_white.png" width="350px">    <div class="carousel-home-title">      &nbsp;    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AirlinesComponent', 'selector': 'app-airlines'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BahuichivoComponent', 'selector': 'app-bahuichivo'},{'name': 'BarrancasCobreComponent', 'selector': 'app-barrancas-cobre'},{'name': 'BillConfirmComponent', 'selector': 'app-billConfirm'},{'name': 'BillFiscalComponent', 'selector': 'app-billFiscal'},{'name': 'BillRequestComponent', 'selector': 'app-billRequest'},{'name': 'BillSearchComponent', 'selector': 'app-billSearch'},{'name': 'ChepeExpressComponent', 'selector': 'app-chepe-express'},{'name': 'ChepeRegionalComponent', 'selector': 'app-chepe-regional'},{'name': 'ChepexploraComponent', 'selector': 'app-chepexplora'},{'name': 'ChihuahuaComponent', 'selector': 'app-chihuahua'},{'name': 'CommitComponent', 'selector': 'app-commit'},{'name': 'ConfirmComponent', 'selector': 'app-confirm'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'CostBoxComponent', 'selector': 'app-cost-box'},{'name': 'CreelComponent', 'selector': 'app-creel'},{'name': 'CuauhtemocComponent', 'selector': 'app-cuauhtemoc'},{'name': 'DestinationsComponent', 'selector': 'app-destinations'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'ElFuerteComponent', 'selector': 'app-el-fuerte'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GalleryComponent', 'selector': 'app-gallery'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HotelsComponent', 'selector': 'app-hotels'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'LegalAdviceComponent', 'selector': 'app-legal-advice'},{'name': 'LegalExpressComponent', 'selector': 'app-legal-express'},{'name': 'LegalRegionalComponent', 'selector': 'app-legal-regional'},{'name': 'LosMochisComponent', 'selector': 'app-los-mochis'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NativeCommunitiesComponent', 'selector': 'app-native-communities'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'ReceiptComponent', 'selector': 'app-receipt'},{'name': 'ScheduleComponent', 'selector': 'app-schedule'},{'name': 'ScheduleRegionalComponent', 'selector': 'app-schedule-regional'},{'name': 'StatusComponent', 'selector': 'rch-status'},{'name': 'Step1Component', 'selector': 'app-step1'},{'name': 'Step2bComponent', 'selector': 'app-step2b'},{'name': 'Step2Component', 'selector': 'app-step2'},{'name': 'Step3Component', 'selector': 'app-step3'},{'name': 'Step4Component', 'selector': 'app-step4'},{'name': 'Step5Component', 'selector': 'app-step5'},{'name': 'TacComponent', 'selector': 'app-tac'},{'name': 'TacExpressComponent', 'selector': 'app-tac-express'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TimesFaresComponent', 'selector': 'app-times-fares'},{'name': 'UrikeComponent', 'selector': 'app-urike'}];
-    var DIRECTIVES = [{'name': 'StopcheckDirective', 'selector': '[appStopcheck]'}];
+    var COMPONENTS = [{'name': 'AirlinesComponent', 'selector': 'app-airlines'},{'name': 'BahuichivoComponent', 'selector': 'app-bahuichivo'},{'name': 'BarrancasCobreComponent', 'selector': 'app-barrancas-cobre'},{'name': 'BillConfirmComponent', 'selector': 'app-billConfirm'},{'name': 'BillFiscalComponent', 'selector': 'app-billFiscal'},{'name': 'BillRequestComponent', 'selector': 'app-billRequest'},{'name': 'BillSearchComponent', 'selector': 'app-billSearch'},{'name': 'ChepeExpressComponent', 'selector': 'app-chepe-express'},{'name': 'ChepeRegionalComponent', 'selector': 'app-chepe-regional'},{'name': 'ChepexploraComponent', 'selector': 'app-chepexplora'},{'name': 'ChihuahuaComponent', 'selector': 'app-chihuahua'},{'name': 'CommitComponent', 'selector': 'app-commit'},{'name': 'ConfirmComponent', 'selector': 'app-confirm'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'CostBoxComponent', 'selector': 'app-cost-box'},{'name': 'CreelComponent', 'selector': 'app-creel'},{'name': 'CuauhtemocComponent', 'selector': 'app-cuauhtemoc'},{'name': 'DestinationsComponent', 'selector': 'app-destinations'},{'name': 'DetailsComponent', 'selector': 'app-details'},{'name': 'ElFuerteComponent', 'selector': 'app-el-fuerte'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GalleryComponent', 'selector': 'app-gallery'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HotelsComponent', 'selector': 'app-hotels'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'LegalAdviceComponent', 'selector': 'app-legal-advice'},{'name': 'LegalExpressComponent', 'selector': 'app-legal-express'},{'name': 'LegalRegionalComponent', 'selector': 'app-legal-regional'},{'name': 'LosMochisComponent', 'selector': 'app-los-mochis'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NativeCommunitiesComponent', 'selector': 'app-native-communities'},{'name': 'PaymentComponent', 'selector': 'app-payment'},{'name': 'ReceiptComponent', 'selector': 'app-receipt'},{'name': 'ScheduleComponent', 'selector': 'app-schedule'},{'name': 'ScheduleRegionalComponent', 'selector': 'app-schedule-regional'},{'name': 'StatusComponent', 'selector': 'rch-status'},{'name': 'Step1Component', 'selector': 'app-step1'},{'name': 'Step3Component', 'selector': 'app-step3'},{'name': 'Step4Component', 'selector': 'app-step4'},{'name': 'Step5Component', 'selector': 'app-step5'},{'name': 'TacComponent', 'selector': 'app-tac'},{'name': 'TacExpressComponent', 'selector': 'app-tac-express'},{'name': 'TestimonialsComponent', 'selector': 'app-testimonials'},{'name': 'TimesFaresComponent', 'selector': 'app-times-fares'},{'name': 'UrikeComponent', 'selector': 'app-urike'}];
+    var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'IndexComponent'};
 </script>
 <script src="../js/tree.js"></script>

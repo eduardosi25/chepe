@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $:any;
+/** Este componente tiene su funcionalidad en el html, muestra un formulario de contacto*/
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -13,6 +15,7 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.scriptInit();
   }
+  /** funcionalidad de calendario  */
   scriptInit(){
     $(document).ready(function () {
       $('.input-group.date').datepicker({
@@ -30,7 +33,7 @@ export class ContactComponent implements OnInit {
         alert('Su mensaje no pudo ser enviado, favor de validar la información');
       }
     });
-  
+  /** cacha parametros de url  */
     function GetURLParameter(sParam) {
       var sPageURL = window.location.search.substring(1);
       var sURLVariables = sPageURL.split('&');

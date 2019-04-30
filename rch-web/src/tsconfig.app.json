@@ -13,7 +13,14 @@
     "./app/model.*",
     "./app/model-*.*",
     "./app/i18n*",
-    "./app/*.service.ts*"
-
+    "./app/*.service.ts*",
+    "./app/app.module.ts",
+    "./app/app.component.ts",
+    "./app/NgbDateNativeAdapter.ts",
+    "./environments/environment.ts",
+    "./environments/environment.prod.ts",
+    "./app/stopcheck.directive.ts",
+    "./app/rch/step2b/step2b.component.ts",
+    "./app/rch/step2/step2.component.ts"
   ]
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModelService } from '../../model.service';
 import { IntervalObservable } from "rxjs/observable/IntervalObservable";
-/** consulta el status del servicio */
+/** consulta el status del servicio
+*/
 @Component({
   selector: 'rch-status',
   templateUrl: './status.component.html',
