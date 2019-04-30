@@ -21,6 +21,7 @@ import { ifError } from 'assert';
 import { setTimeout } from 'timers';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
+/**Componente de la pantalla donde se eligen los asientos para el viaje */
 @Component({
   selector: 'app-step5',
   templateUrl: './step5.component.html',

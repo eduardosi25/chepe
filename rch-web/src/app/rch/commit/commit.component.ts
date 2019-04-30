@@ -20,7 +20,7 @@ import { Cost } from '../../model/cost';
 import { CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-
+/**Componente del paso donde encontaremos el captcha para saber que no se es un bot */
 @Component({
   selector: 'app-commit',
   templateUrl: './commit.component.html',

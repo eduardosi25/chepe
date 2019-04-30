@@ -9,6 +9,7 @@ declare var $: any;
 @NgModule({
   imports: [HttpClient]
 })
+/**Componente para la pantalla donde se confirma el costo del viaje y la fecha*/
 @Component({
   selector: 'app-billConfirm',
   templateUrl: './billConfirm.component.html',

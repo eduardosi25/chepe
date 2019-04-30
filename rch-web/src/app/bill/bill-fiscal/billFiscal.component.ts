@@ -9,6 +9,7 @@ declare var $: any;
 @NgModule({
   imports: [HttpClient]
 })
+/**Componente de la pantala donde se llena el formulario de datos fiscales*/
 @Component({
   selector: 'app-billFiscal',
   templateUrl: './billFiscal.component.html',

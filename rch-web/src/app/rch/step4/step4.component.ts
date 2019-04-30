@@ -16,6 +16,7 @@ import { Country } from '../../model/country';
 import { TranslateService } from '@ngx-translate/core';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
+/**Componente de la pantalla donde se mete los datos de los usuarios que viajaran en el tren*/
 @Component({
   selector: 'app-step4',
   templateUrl: './step4.component.html',

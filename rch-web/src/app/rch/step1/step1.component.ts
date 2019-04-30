@@ -31,14 +31,12 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { constants } from 'os';
 import { SourceMapGenerator } from '@angular/compiler/src/output/source_map';
-
-
-// import { MyDatePickerModule } from './mydatepicker';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 @NgModule({
   imports: [HttpClient]
 })
+/**Componente del paso 1 donde se elige la ruta y las fechas para el viaje */
 @Component({
   selector: 'app-step1',
   templateUrl: './step1.component.html',

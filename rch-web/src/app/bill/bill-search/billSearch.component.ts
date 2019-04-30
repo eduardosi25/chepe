@@ -1,10 +1,11 @@
 import { Component, OnInit, NgModule, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 @NgModule({
   imports: [HttpClient]
 })
+/**Componente de la pantalla donde se puede descargar la factura en formato pdf y xml */
 @Component({
   selector: 'app-billSearch',
   templateUrl: './billSearch.component.html',

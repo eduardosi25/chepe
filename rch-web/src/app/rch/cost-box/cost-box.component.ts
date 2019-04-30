@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../session.service';
-
+/**Este componente lo que hace es mostrar el cuadro donde se muestran lo costos del viaje*/
 @Component({
   selector: 'app-cost-box',
   templateUrl: './cost-box.component.html',

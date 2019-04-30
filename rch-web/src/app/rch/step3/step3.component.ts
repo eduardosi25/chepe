@@ -18,6 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { query } from '@angular/core/src/animation/dsl';
 import { forEach } from '@angular/router/src/utils/collection';
 import { setTimeout } from 'timers';
+/**Componente del paso donde se muestra el modal de no disponibilidad*/
 @Component({
   selector: 'app-step3',
   templateUrl: './step3.component.html',

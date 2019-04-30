@@ -8,11 +8,13 @@ import { BillRequest } from './../../model/billRequest';
 import { BillService } from './../../billSession.service';
 import { NgForm } from '@angular/forms';
 import { EEXIST } from 'constants';
+/** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
 
 @NgModule({
   imports: [HttpClient]
 })
+/**Componente de la pantalla inicial de la parte de facturación donde se puede solicitar la factura o se puede descargar una factura previamente solicitada */
 @Component({
   selector: 'app-billRequest',
   templateUrl: './billRequest.component.html',

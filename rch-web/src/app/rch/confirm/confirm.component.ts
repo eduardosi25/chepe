@@ -4,7 +4,7 @@ import { ModelService } from '../../model.service';
 import { WebPayNotification } from '../../model/WebPayNotification';
 import { Observable } from 'rxjs';
 import { UrlWebPay } from '../../model/url';
-
+/**Componente donde se valida si el pago fue satisfactorio o no */
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',

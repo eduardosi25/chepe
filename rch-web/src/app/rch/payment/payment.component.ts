@@ -25,7 +25,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Route2 } from '../../model/route2';
 /** Inicializa variable para poder usar jquery en componente */
 declare var $: any;
-
+/**Este paso lo unico que hace es mostrar el iframe webpay */
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -51,7 +51,6 @@ export class PaymentComponent implements OnInit {
     this.location.back();
   }
    /**Valida que exista un datos en session, si no existe te regresa al paso de reservaciones */
-   /**Este paso lo unico que hace es mostrar el iframe webpay */
   ngOnInit() {
     if (!this.session || !this.session.route || !this.session.query || !this.session.segments) {
       this.router.navigate(["/reservaciones"]); return;
